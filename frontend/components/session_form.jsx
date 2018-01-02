@@ -45,7 +45,8 @@ class SessionForm extends React.Component {
             value={this.state.email}
             onChange={this.update('email')}
             className="login-input" />
-      )
+        </label>
+      );
     }
   }
 

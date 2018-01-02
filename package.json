@@ -17,6 +17,10 @@
     "redux-thunk": "^2.2.0",
     "webpack": "^3.10.0"
   },
+  "engines": {
+    "node": "^6.10.1",
+    "npm": "^3.10.10"
+  },
   "description": "* Submitted Proposal: 12/28/17",
   "version": "1.0.0",
   "main": "index.js",
@@ -25,7 +29,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --watch"
+    "webpack": "webpack --watch",
+    "postinstall": "webpack"
   },
   "repository": {
     "type": "git",
