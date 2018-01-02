@@ -1,5 +1,5 @@
 import React from 'react';
-import SessionFormContainer from './sessionFormContainer';
+import SessionFormContainer from './session_form_container';
 
 const App = () => (
   <div>
