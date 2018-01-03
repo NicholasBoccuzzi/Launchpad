@@ -13,22 +13,6 @@
   </head>
 
   <body>
-    <nav class="main-nav">
-      <section class="top-nav-left">
-        <button class="nav-button" to=#>Explore</button>
-        <a href="#" class="new-project">Launch a project</a>
-      </section>
-      <section class="top-nav-middle">
-        <a href="#"class="title-link">LAUNCHPAD</a>
-      </section>
-      <section class="top-nav-right">
-        <button class="nav-button">Search</button>
-        <% if current_user %>
-        <%= current_user.username %>
-        <% end %>
-      </section>
-    </nav>
-
     <%= yield %>
   </body>
 </html>
