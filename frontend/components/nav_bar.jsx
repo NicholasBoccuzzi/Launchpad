@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 
 
 const isSession = (currentUser) => {
+
   if (currentUser) {
-    return <p> { currentUser.username } </p>;
+    return <Link to="#" className="nav-button"> { currentUser.username } </Link>;
   } else {
     return <Link className="nav-button" to="/login">login</Link>;
   }

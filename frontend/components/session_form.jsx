@@ -14,6 +14,7 @@ class SessionForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
+      debugger
       this.props.history.push('/');
     }
   }
@@ -34,9 +35,9 @@ class SessionForm extends React.Component {
     if (this.props.formType === 'login') {
       return(
       <div className="signup-button-container">
-        <h2 className="new-signup">New to Launchpad
-        <Link to="/signup">Sign Up</Link>
-        </h2>
+        <h2 className="new-signup">New to Launchpad?
+         &nbsp;<Link to="/signup">SIGN UP</Link>
+     </h2>
       </div>
       );
     }
@@ -47,7 +48,7 @@ class SessionForm extends React.Component {
       return(
       <div className="signup-button-container">
         <h2 className="new-login">Already registered? &nbsp;
-         <Link className ="login-link" to="/login">Log In</Link>
+         <Link className ="login-link" to="/login">LOGIN</Link>
         </h2>
       </div>
       );
@@ -88,7 +89,7 @@ class SessionForm extends React.Component {
       <div className="login-signup-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
           {this.loginLink()}
-          {this.props.formType}
+          <h2 className="form-title">{this.props.formType}</h2>
           {this.renderErrors()}
           <div className="login-form">
             <br/>
