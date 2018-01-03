@@ -9,7 +9,7 @@
 
 .login-form-box{
   border-radius: 3px;
-  height: 550px;
+  height: 800px;
   width: 400px;
   background: white;
   align-content: center;
@@ -36,7 +36,7 @@
 
 .new-signup {
   position: relative;
-  bottom: -200px;
+  bottom: -40px;
   width: 376px;
   background: #f9f9f9;
   border-top: 1px solid #ededed;
@@ -68,7 +68,7 @@
   top: 15px;
   text-align: left;
   font-size: 30px;
-  padding: 0px;
+  padding: 20px 0px 60px 0px;
   margin: 0px;
 }
 
@@ -93,4 +93,19 @@
   color: white;
   font-size: 14px;
   border: none;
+}
+
+.signup-errors {
+  font-family: 'Changa', sans-serif;
+  width: 300px;
+  background: #ffea9e;
+  padding: 20px 0px 20px 0px;
+  align-content: center;
+  text-align: center;
+  margin: auto;
+  font-size: 12px;
+}
+
+.errors-list {
+  padding: 0px 0px 20px 0px;
 }

@@ -14,7 +14,6 @@ class SessionForm extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.loggedIn) {
-      debugger
       this.props.history.push('/');
     }
   }
@@ -32,7 +31,7 @@ class SessionForm extends React.Component {
   }
 
   signUpLink() {
-    if (this.props.formType === 'LOGIN') {
+    if (this.props.formType === 'login') {
       return(
       <div className="signup-button-container">
         <h2 className="new-signup">New to Launchpad?
@@ -44,11 +43,11 @@ class SessionForm extends React.Component {
   }
 
   loginLink() {
-    if (this.props.formType === 'SIGNUP') {
+    if (this.props.formType === 'signup') {
       return(
       <div className="signup-button-container">
         <h2 className="new-login">Already registered? &nbsp;
-         <Link className ="login-link" to="/login">LOGIN</Link>
+         <Link className ="login-link" to="/login">login</Link>
         </h2>
       </div>
       );
@@ -56,7 +55,7 @@ class SessionForm extends React.Component {
   }
 
   renderEmail() {
-    if (this.props.formType === 'SIGNUP') {
+    if (this.props.formType === 'signup') {
       return (
         <label>
           <br/>
@@ -73,9 +72,9 @@ class SessionForm extends React.Component {
   renderErrors() {
     if (this.props.errors) {
       return (
-        <ul>
+        <ul className="errors-list">
           {this.props.errors.map((error, i) => (
-            <li key={`error-${i}`}>
+            <li className="signup-errors" key={`error-${i}`}>
               {error}
             </li>
           ))}
@@ -85,7 +84,7 @@ class SessionForm extends React.Component {
   }
 
   renderSubmit() {
-      if (this.props.formType === 'SIGNUP')
+      if (this.props.formType === 'signup')
       return (
         <input type="submit"
           className="login-input new-account-button"
@@ -112,7 +111,7 @@ class SessionForm extends React.Component {
       <div className="login-signup-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
           {this.loginLink()}
-          <h2 className="form-title">{this.props.formType}</h2>
+          <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
           {this.renderErrors()}
           <div className="login-form">
             <br/>
@@ -137,18 +136,7 @@ class SessionForm extends React.Component {
             </label>
             <br/>
             {this.renderSubmit()}
-            <div className="inline">
-              <h3 className="strike">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </h3>
-              <h3 >&nbsp;OR&nbsp;</h3>
-              <h3 className="strike">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </h3>
-            </div>
             <br/>
-            <button onClick={this.renderDemo}
-              class="login-input new-account-button">Try Demo!</button>
             {this.signUpLink()}
             <br/>
           </div>
@@ -159,3 +147,17 @@ class SessionForm extends React.Component {
 }
 
 export default withRouter(SessionForm);
+
+// add back later after render submit
+// <div className="inline">
+//   <h3 className="strike">
+//     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//   </h3>
+//   <h3 >&nbsp;OR&nbsp;</h3>
+//   <h3 className="strike">
+//     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+//   </h3>
+// </div>
+
+// <button onClick={this.renderDemo}
+//   className="login-input new-account-button">Try Demo!</button>

@@ -11,17 +11,21 @@ const isSession = (currentUser, logout) => {
   }
 };
 
+// Explore in first button
+// Launch a project in second project
+// Search and <i className="fa fa-search" aria-hidden="true"></i> in third button
 const Navbar = ({currentUser, logout}) => (
   <nav className="main-nav">
     <section className="top-nav-left">
-      <button className="nav-button" to="#">Explore</button>
-      <a href="#" className="new-project nav-button">Launch a project</a>
+      <button className="nav-button" to="#"></button>
+      <a href="#" className="new-project nav-button"></a>
     </section>
     <section className="top-nav-middle">
-      <a href="#"className="title-link">LAUNCHPAD</a>
+      <a href="#" className="title-link">LAUNCHPAD</a>
     </section>
     <section className="top-nav-right">
-      <button className="nav-button">Search</button>
+      <button className="nav-button search-button">
+      </button>
       {isSession(currentUser, logout)}
     </section>
   </nav>
