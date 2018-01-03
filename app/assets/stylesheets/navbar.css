@@ -28,22 +28,22 @@
   top: 2px;
   font-size: 30px;
   padding: 10px 0px 10px 0px;
-  color: #960000;
+  color: #ffc700;
   display: inline-block;
   font-family: 'Black Ops One';
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .title-link {
   cursor: pointer;
-  color: #960000;
+  color: #ffc700;
 }
 
 .top-nav-right {
   display:inline-block;
   font-family: 'Changa', sans-serif;
   text-align: right;
-  position: fixed;
+  position: absolute;
   right: 50px;
   top: 10px;
 }
@@ -61,6 +61,6 @@
 }
 
 .nav-button:hover {
-  color: #ff9d00;
+  color: #960000;
   cursor: pointer;
 }

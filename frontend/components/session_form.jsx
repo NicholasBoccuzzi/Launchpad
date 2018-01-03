@@ -32,7 +32,7 @@ class SessionForm extends React.Component {
   }
 
   signUpLink() {
-    if (this.props.formType === 'login') {
+    if (this.props.formType === 'LOGIN') {
       return(
       <div className="signup-button-container">
         <h2 className="new-signup">New to Launchpad?
@@ -44,7 +44,7 @@ class SessionForm extends React.Component {
   }
 
   loginLink() {
-    if (this.props.formType === 'signup') {
+    if (this.props.formType === 'SIGNUP') {
       return(
       <div className="signup-button-container">
         <h2 className="new-login">Already registered? &nbsp;
@@ -56,11 +56,11 @@ class SessionForm extends React.Component {
   }
 
   renderEmail() {
-    if (this.props.formType === 'signup') {
+    if (this.props.formType === 'SIGNUP') {
       return (
         <label>
           <br/>
-          <input type="text"
+          <input type="email"
             value={this.state.email}
             onChange={this.update('email')}
             className="login-input"
@@ -83,6 +83,29 @@ class SessionForm extends React.Component {
       );
     }
   }
+
+  renderSubmit() {
+      if (this.props.formType === 'SIGNUP')
+      return (
+        <input type="submit"
+          className="login-input new-account-button"
+          value="Create your account!"
+        />
+      );
+    else {
+      return (
+        <input type="submit"
+          className="login-input new-account-button"
+          value="Sign In to Launchpad!"
+          />
+      );
+    }
+  }
+
+  renderDemo () {
+  }
+
+
 
   render() {
     return (
@@ -113,8 +136,21 @@ class SessionForm extends React.Component {
               />
             </label>
             <br/>
-            <input type="submit" value="Submit" />
+            {this.renderSubmit()}
+            <div className="inline">
+              <h3 className="strike">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </h3>
+              <h3 >&nbsp;OR&nbsp;</h3>
+              <h3 className="strike">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </h3>
+            </div>
+            <br/>
+            <button onClick={this.renderDemo}
+              class="login-input new-account-button">Try Demo!</button>
             {this.signUpLink()}
+            <br/>
           </div>
         </form>
       </div>
