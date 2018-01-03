@@ -109,8 +109,8 @@ class SessionForm extends React.Component {
   render() {
     return (
       <div className="login-signup-container">
+        {this.loginLink()}
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          {this.loginLink()}
           <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
           {this.renderErrors()}
           <div className="login-form">
@@ -137,10 +137,10 @@ class SessionForm extends React.Component {
             <br/>
             {this.renderSubmit()}
             <br/>
-            {this.signUpLink()}
             <br/>
           </div>
         </form>
+        {this.signUpLink()}
       </div>
     );
   }

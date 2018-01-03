@@ -8,12 +8,12 @@
 }
 
 .login-form-box{
-  border-radius: 3px;
-  height: 800px;
-  width: 400px;
+  max-height: 800px;
+  width: 398px;
   background: white;
   align-content: center;
   margin: auto;
+  border: 1px solid #fcfcfc;
   justify-content: center;
 }
 
@@ -23,20 +23,21 @@
 
 
 .new-login {
+  margin:auto;
+  width: 376px;
   background: #f9f9f9;
   border-bottom: 1px solid #ededed;
   font-family: 'Changa', sans-serif;
   font-size: 16px;
   text-align: center;
   padding: 14px 12px 14px 12px;
-  margin: 0px;
   border-top-left-radius: 3px;
   border-top-right-radius: 3px;
 }
 
 .new-signup {
-  position: relative;
-  bottom: -40px;
+  margin: auto;
+  align-content: center;
   width: 376px;
   background: #f9f9f9;
   border-top: 1px solid #ededed;
@@ -44,7 +45,6 @@
   font-size: 16px;
   text-align: center;
   padding: 14px 12px 14px 12px;
-  margin: 0px;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -67,8 +67,8 @@
   left: 20px;
   top: 15px;
   text-align: left;
-  font-size: 30px;
-  padding: 20px 0px 60px 0px;
+  font-size: 34px;
+  padding: 15px 0px 40px 0px;
   margin: 0px;
 }
 
@@ -104,8 +104,18 @@
   text-align: center;
   margin: auto;
   font-size: 12px;
+  border-radius: 3px;
 }
 
 .errors-list {
   padding: 0px 0px 20px 0px;
+}
+
+.errors-list:first-child {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.errors-list:last-child {
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
