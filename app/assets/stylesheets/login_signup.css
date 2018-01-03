@@ -1,0 +1,33 @@
+.login-signup-container {
+  height: 500px;
+  background: #ededed;
+  text-align: center;
+  align-content: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.login-form-box{
+  height: 400px;
+  width: 400px;
+  background: white;
+  align-content: center;
+  margin: auto;
+  justify-content: center;
+}
+
+
+.new-login {
+  background: #FCFCFB;
+  border-bottom: 1px solid lightgrey;
+  font-family: 'Changa', sans-serif;
+  font-size: 13px;
+  font-stretch: extra-expanded;
+  text-align: center;
+  padding: 14px 12px 14px 12px;
+  margin: 0px;
+}
+
+.signup-button-container{
+
+}

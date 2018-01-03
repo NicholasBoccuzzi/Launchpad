@@ -1,0 +1,63 @@
+.main-nav {
+  width: 100%;
+  display: block;
+  position: relative;
+  border-bottom: 1px solid darkgrey;
+  padding: 0px 0px 0px 40px;
+  font-weight: 400;
+  font-size: 16px;
+  height: 66px;
+}
+
+.top-nav-left {
+  position: relative;
+  top: -1px;
+  display:inline-block;
+  font-family: 'Changa', sans-serif;
+  width: 39%;
+}
+
+.new-project {
+  color: black;
+  text-decoration: none;
+}
+
+.top-nav-middle {
+  position: relative;
+  top: 2px;
+  font-size: 30px;
+  padding: 10px 0px 10px 0px;
+  color: #960000;
+  display: inline-block;
+  font-family: 'Black Ops One';
+  text-decoration: underline;
+}
+
+.title-link {
+  cursor: pointer;
+  color: #960000;
+}
+
+.top-nav-right {
+  position: relative;
+  top: -1px;
+  display:inline-block;
+  font-family: 'Changa', sans-serif;
+  text-align: right;
+  width: 38.5%;
+}
+
+.nav-button {
+  border: 0px;
+  font-family: 'Changa', sans-serif;
+  width: 48px;
+  height: 42px;
+  padding: 0px;
+  margin: 0px 10px 0px 0px;
+  font-size: 16px;
+}
+
+.nav-button:hover {
+  color: #ff9d00;
+  cursor: pointer;
+}

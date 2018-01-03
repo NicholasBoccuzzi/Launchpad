@@ -11,7 +11,6 @@ import {
 const App = () => (
   <div>
     <header>
-      <h1>Launch Pad</h1>
     </header>
 
     <Route path="/login" component={SessionFormContainer} />

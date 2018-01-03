@@ -3,15 +3,31 @@
   <head>
     <title>Launchpad</title>
     <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Black+Ops+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Changa:200" rel="stylesheet">
+    <link rel="stylesheet" src="../assets/stylesheets/navbar.css">
+    <link rel="stylesheet" src="../assets/stylesheets/login_signup.css">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
 
   <body>
-    <% if current_user %>
-    <h1> Current User: <%= current_user.username %> </h1>
-    <% end %>
+    <nav class="main-nav">
+      <section class="top-nav-left">
+        <button class="nav-button" to=#>Explore</button>
+        <a href="#" class="new-project">Launch a project</a>
+      </section>
+      <section class="top-nav-middle">
+        <a href="#"class="title-link">LAUNCHPAD</a>
+      </section>
+      <section class="top-nav-right">
+        <button class="nav-button">Search</button>
+        <% if current_user %>
+        <%= current_user.username %>
+        <% end %>
+      </section>
+    </nav>
 
     <%= yield %>
   </body>

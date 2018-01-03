@@ -29,22 +29,40 @@ class SessionForm extends React.Component {
     this.props.processForm({user});
   }
 
-  navLink() {
+  signUpLink() {
     if (this.props.formType === 'login') {
-      return <Link to="/signup">sign up instead</Link>;
-    } else {
-      return <Link to="/login">log in instead</Link>;
+      return(
+      <div className="signup-button-container">
+        <h2 className="new-signup">New to Launchpad
+        <Link to="/signup">Sign Up</Link>
+        </h2>
+      </div>
+      );
+    }
+  }
+
+  loginLink() {
+    if (this.props.formType === 'signup') {
+      return(
+      <div className="signup-button-container">
+        <h2 className="new-login">Already registered? &nbsp;
+         <Link className ="login link" to="/login">Log In</Link>
+        </h2>
+      </div>
+      );
     }
   }
 
   renderEmail() {
-    if (this.props.formType === 'signUp') {
+    if (this.props.formType === 'signup') {
       return (
-        <label>Email:
+        <label>
+          <br/>
           <input type="text"
             value={this.state.email}
             onChange={this.update('email')}
-            className="login-input" />
+            className="login-input"
+            placeholder="Email"/>
         </label>
       );
     }
@@ -64,34 +82,35 @@ class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="login-form-container">
+      <div className="login-signup-container">
         <form onSubmit={this.handleSubmit} className="login-form-box">
-          Welcome to Launchpad!
-          <br/>
-          Please {this.props.formType} or {this.navLink()}
+          {this.loginLink()}
+          {this.props.formType}
           {this.renderErrors()}
           <div className="login-form">
             <br/>
-            <label>Username:
+            <label>
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
                 className="login-input"
+                placeholder="Username"
               />
-
             {this.renderEmail()}
 
             </label>
             <br/>
-            <label>Password:
+            <label>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 className="login-input"
+                placeholder="Password"
               />
             </label>
             <br/>
             <input type="submit" value="Submit" />
+            {this.signUpLink()}
           </div>
         </form>
       </div>
