@@ -10,6 +10,7 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -31,6 +32,7 @@ class SessionForm extends React.Component {
   }
 
   signUpLink() {
+
     if (this.props.formType === 'login') {
       return(
       <div className="signup-button-container">
@@ -47,7 +49,7 @@ class SessionForm extends React.Component {
       return(
       <div className="signup-button-container">
         <h2 className="new-login">Already registered? &nbsp;
-         <Link className ="login-link" to="/login">login</Link>
+         <Link className ="login-link" to="/login">LOGIN</Link>
         </h2>
       </div>
       );
@@ -101,8 +103,41 @@ class SessionForm extends React.Component {
     }
   }
 
-  renderDemo () {
+  demoLogin () {
+    let demo;
+
+    if (this.props.formType === 'login') {
+      let user = {
+          user: {
+          username: "demo",
+          password: "password"
+        }
+      };
+
+      return this.props.processForm(user);
+    }
   }
+
+  renderOr () {
+    if (this.props.formType === 'login') {
+      return (
+        <div>
+          <div className="inline">
+            <h3 className="strike">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </h3>
+            <h3 >&nbsp;OR&nbsp;</h3>
+            <h3 className="strike">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </h3>
+          </div>
+          <button className="login-input demo-account-button"
+            onClick={this.demoLogin}>Try the Demo!</button>
+        </div>
+      );
+    }
+  }
+
 
 
 
@@ -112,7 +147,7 @@ class SessionForm extends React.Component {
         {this.loginLink()}
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
-          {this.renderErrors()}
+          { this.renderErrors()}
           <div className="login-form">
             <br/>
             <label>
@@ -137,6 +172,7 @@ class SessionForm extends React.Component {
             <br/>
             {this.renderSubmit()}
             <br/>
+            {this.renderOr()}
             <br/>
           </div>
         </form>
