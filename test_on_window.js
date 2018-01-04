@@ -56,3 +56,5 @@
 // }
 //
 // export default Navbar;
+
+onclickoutside

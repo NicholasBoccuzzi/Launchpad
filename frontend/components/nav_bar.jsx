@@ -6,11 +6,6 @@ class Navbar extends React.Component {
   constructor () {
     super();
     this.isSession = this.isSession.bind(this);
-    this.state = {
-      active: false
-    };
-
-    this.setActive = this.setActive.bind(this);
     this.displayDrowDown = this.displayDrowDown.bind(this);
   }
 
@@ -18,7 +13,7 @@ class Navbar extends React.Component {
   isSession () {
 
     if (this.props.currentUser) {
-      return <button onClick={this.setActive} to="#"
+      return <button onClick={this.props.toggleProfileDropDown} to="#"
             className="nav-button"> { this.props.currentUser.username }
           </button>;
       } else {
@@ -26,12 +21,8 @@ class Navbar extends React.Component {
       }
   }
 
-  setActive () {
-    this.setState({active: !this.state.active});
-  }
-
   displayDrowDown () {
-    if (this.state.active) {
+    if (this.props.profileDropDownActive) {
       return <DropDown class={"current-user-dropdown"}/>;
     }
   }

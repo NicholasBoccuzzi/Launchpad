@@ -4,17 +4,22 @@ import React from 'react';
 class DropDown extends React.Component {
   constructor (props) {
     super(props);
-    this.state = {
-      active: this.props.active
-    };
-
   }
 
   render () {
 
     return (
       <main className={this.props.class}>
-        <h1>success</h1>
+        <div className="logout-dropdown-box">
+          <button onClick={() => { return (
+              this.props.toggleProfileDropDown(),
+              this.props.logout()
+              );
+            }}
+            className="logout-dropdown">LOGOUT
+          </button>
+
+        </div>
       </main>
     );
   }

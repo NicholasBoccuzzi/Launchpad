@@ -4,9 +4,47 @@
   right: 20px;
   min-width: 400px;
   min-height: 300px;
-  width: 1100px;
+  width: 1067px;
   height: 500px;
   background: white;
   border: 1px solid #474747;
   display:flex;
+
+  @media (max-width: 1025px) {
+    width: 350px;
+    height: 500px;
+  }
+}
+
+.logout-dropdown-box {
+  bottom: 500px;
+  left: 40px;
+  width: 100%;
+  text-align: left;
+
+}
+
+.logout-dropdown {
+  border: 0px;
+  font-family: 'Changa', sans-serif;
+  padding: 0px;
+  font-size: 16px;
+  color: black;
+}
+
+.logout-dropdown:hover {
+  color: #960000;
+  cursor: pointer;
+}
+
+.logout-dropdown::selection {
+  outline: none;
+}
+
+.transparent-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background:transparent;
+  z-index: 0;
 }
