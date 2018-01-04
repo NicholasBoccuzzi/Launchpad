@@ -31,3 +31,28 @@
   not, we redirect to ="/" which happens whenever a user types in the specified
   path (located in App.jsx).
 */
+
+
+// import React from 'react' // rcd
+// import PropTypes from 'prop-types'
+//
+// class Navbar extends React.Component {
+//
+//   componentWillUpdate(nextProps, nextState) {
+//     // cwu6
+//   }
+//
+//   componentDidMount() {
+//     // cdm6
+//   }
+//
+//   componentWillReceiveProps(nextProps) {
+//
+//   }
+//
+//   render () {
+//
+//   }
+// }
+//
+// export default Navbar;
