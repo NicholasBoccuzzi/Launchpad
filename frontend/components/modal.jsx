@@ -8,18 +8,22 @@ class DropDown extends React.Component {
 
   render () {
 
-    return (
-      <main className={this.props.class}>
-        <div className="logout-dropdown-box">
-          <button onClick={() => { return (
-              this.props.toggleProfileDropDown(),
-              this.props.logout()
-              );
-            }}
-            className="logout-dropdown">LOGOUT
-          </button>
+    const errors = this.props.errors.map ((error, i) => {
+      return (
+        <li key={`error-${i}`}>
+          {error}
+        </li>
+      );
+    });
 
-        </div>
+    return (
+      <main onClick={this.props.toggleErrorModal} className="transparent-background">
+
+        <ul className="modal-box">
+          {
+            errors
+          }
+        </ul>
       </main>
     );
   }

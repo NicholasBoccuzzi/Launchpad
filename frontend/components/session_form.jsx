@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import DropDown from './drop_down_container';
+import Modal from './modal_container';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -10,8 +10,10 @@ class SessionForm extends React.Component {
       email: '',
       password: ''
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
+    this.displayModal = this.displayModal.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -42,7 +44,7 @@ class SessionForm extends React.Component {
       return(
       <div className="signup-button-container">
         <h2 className="new-signup">New to Launchpad?
-         &nbsp;<Link to="/signup" class="login-signup-link">Sign Up!</Link>
+         &nbsp;<Link to="/signup" className="login-signup-link">Sign Up!</Link>
      </h2>
       </div>
       );
@@ -76,6 +78,12 @@ class SessionForm extends React.Component {
     }
   }
 
+  displayModal() {
+    if (this.props.errorModalActive) {
+      return <Modal />;
+    }
+  }
+
   renderErrors() {
     if (this.props.formType === "signup") {
       if (this.props.errors.length > 0) {
@@ -88,11 +96,9 @@ class SessionForm extends React.Component {
             ))}
           </ul>
         );
-      } else {
-        return;
-
-
       }
+    } else {
+      this.props.toggleErrorModal();
     }
   }
 
@@ -151,6 +157,7 @@ class SessionForm extends React.Component {
   render() {
     return (
       <div className="login-signup-container">
+        {this.displayModal()}
         {this.loginLink()}
         <form onSubmit={this.handleSubmit} className="login-form-box">
           <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>

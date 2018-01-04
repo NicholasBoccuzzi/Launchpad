@@ -3,7 +3,7 @@ import { merge } from 'lodash';
 
 const initialState = {
   profileDropDownActive: false,
-  toggleErrorModal: false
+  errorModalActive: false
 };
 
 export default (state = initialState, action) => {
@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
     return newState;
   case TOGGLE_ERROR_MODAL:
     let newErrorState = merge({}, state);
-    newErrorState.toggleErrorModal = !newErrorState.toggleErrorModal;
+    newErrorState.errorModalActive = !newErrorState.errorModalActive;
     return newErrorState;
   default:
     return state;

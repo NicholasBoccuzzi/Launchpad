@@ -1,22 +1,20 @@
 import { connect } from 'react-redux';
 import { logout } from '../actions/session_actions';
-import DropDown from './drop_down';
+import Modal from './modal';
 import { toggleErrorModal } from '../actions/ui_actions.js';
 
 const mapStateToProps = state => {
   return {
-    loggedIn: Boolean(state.session.currentUser),
     errors: state.errors,
-    profileDropDownActive: state.ui.profileDropDownActive
+    errorModalActive: state.ui.errorModalActive
   };
 };
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(logout()),
   toggleErrorModal: () => dispatch(toggleErrorModal()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(DropDown);
+)(Modal);
