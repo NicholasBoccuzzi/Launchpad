@@ -56,8 +56,8 @@
 // }
 //
 // export default Navbar;
-<<<<<<< HEAD
-=======
-
-onclickoutside
->>>>>>> finishAuth
+// <<<<<<< HEAD
+// =======
+//
+// onclickoutside
+// >>>>>>> finishAuth
