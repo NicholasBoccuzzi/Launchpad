@@ -19,6 +19,10 @@ class SessionForm extends React.Component {
     }
   }
 
+  componentWillUnmount () {
+    this.props.clearSessionErrors();
+  }
+
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
@@ -103,7 +107,8 @@ class SessionForm extends React.Component {
     }
   }
 
-  demoLogin () {
+  demoLogin (e) {
+    e.preventDefault();
     let demo;
 
     if (this.props.formType === 'login') {
@@ -114,7 +119,7 @@ class SessionForm extends React.Component {
         }
       };
 
-      return this.props.processForm(user);
+      this.props.processForm(user);
     }
   }
 
@@ -183,17 +188,3 @@ class SessionForm extends React.Component {
 }
 
 export default withRouter(SessionForm);
-
-// add back later after render submit
-// <div className="inline">
-//   <h3 className="strike">
-//     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-//   </h3>
-//   <h3 >&nbsp;OR&nbsp;</h3>
-//   <h3 className="strike">
-//     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-//   </h3>
-// </div>
-
-// <button onClick={this.renderDemo}
-//   className="login-input new-account-button">Try Demo!</button>
