@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import DropDown from './drop_down_container';
 
 class SessionForm extends React.Component {
   constructor(props) {
@@ -41,7 +42,7 @@ class SessionForm extends React.Component {
       return(
       <div className="signup-button-container">
         <h2 className="new-signup">New to Launchpad?
-         &nbsp;<Link to="/signup">SIGN UP</Link>
+         &nbsp;<Link to="/signup" class="login-signup-link">Sign Up!</Link>
      </h2>
       </div>
       );
@@ -53,7 +54,7 @@ class SessionForm extends React.Component {
       return(
       <div className="signup-button-container">
         <h2 className="new-login">Already registered? &nbsp;
-         <Link className ="login-link" to="/login">LOGIN</Link>
+         <Link className ="login-link login-signup-link" to="/login">LOGIN</Link>
         </h2>
       </div>
       );
@@ -76,16 +77,22 @@ class SessionForm extends React.Component {
   }
 
   renderErrors() {
-    if (this.props.errors) {
-      return (
-        <ul className="errors-list">
-          {this.props.errors.map((error, i) => (
-            <li className="signup-errors" key={`error-${i}`}>
-              {error}
-            </li>
-          ))}
-        </ul>
-      );
+    if (this.props.formType === "signup") {
+      if (this.props.errors.length > 0) {
+        return (
+          <ul className="errors-list">
+            {this.props.errors.map((error, i) => (
+              <li className="signup-errors" key={`error-${i}`}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        );
+      } else {
+        return;
+
+
+      }
     }
   }
 
@@ -101,7 +108,7 @@ class SessionForm extends React.Component {
       return (
         <input type="submit"
           className="login-input new-account-button"
-          value="Sign In to Launchpad!"
+          value="Log me in!"
           />
       );
     }
@@ -109,9 +116,7 @@ class SessionForm extends React.Component {
 
   demoLogin (e) {
     e.preventDefault();
-    let demo;
 
-    if (this.props.formType === 'login') {
       let user = {
           user: {
           username: "demo",
@@ -119,28 +124,25 @@ class SessionForm extends React.Component {
         }
       };
 
-      this.props.processForm(user);
-    }
+    this.props.login(user);
   }
 
   renderOr () {
-    if (this.props.formType === 'login') {
-      return (
-        <div>
-          <div className="inline">
-            <h3 className="strike">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </h3>
-            <h3 >&nbsp;OR&nbsp;</h3>
-            <h3 className="strike">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </h3>
-          </div>
-          <button className="login-input demo-account-button"
-            onClick={this.demoLogin}>Try the Demo!</button>
+    return (
+      <div>
+        <div className="inline">
+          <h3 className="strike">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </h3>
+          <h3 >&nbsp;OR&nbsp;</h3>
+          <h3 className="strike">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </h3>
         </div>
-      );
-    }
+        <button className="login-input demo-account-button"
+          onClick={this.demoLogin}>Try the Demo!</button>
+      </div>
+    );
   }
 
 

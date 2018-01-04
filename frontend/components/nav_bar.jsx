@@ -14,10 +14,10 @@ class Navbar extends React.Component {
 
     if (this.props.currentUser) {
       return <button onClick={this.props.toggleProfileDropDown} to="#"
-            className="nav-button main-profile-button"> 
+            className="nav-button main-profile-button">
           </button>;
       } else {
-        return <Link className="nav-button" to="/login">login</Link>;
+        return <Link className="nav-button" to="/login">Sign In</Link>;
       }
   }
 
