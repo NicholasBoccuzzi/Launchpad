@@ -7,7 +7,6 @@
   font-weight: 400;
   font-size: 16px;
   height: 66px;
-  z-index: 0;
 }
 
 .top-nav-left {
@@ -59,4 +58,14 @@
 .nav-button:hover {
   color: #960000;
   cursor: pointer;
+}
+
+.main-profile-button {
+  width: 42px;
+  height: 42px;
+  padding: 0px 0px 0px 0px;
+  margin-top: 15px;
+  margin-right: 2px;
+  border-radius: 360px;
+  border: 1px solid black;
 }
