@@ -61,3 +61,16 @@
 //
 // onclickoutside
 // >>>>>>> finishAuth
+
+
+/*
+start with Migration
+model
+controllers
+views jbuilder
+api util/ajax
+actions
+reducer (add new reducer to root reducer)
+components / containers
+
+*/
