@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+class Api::ProjectsController < ApplicationController
   def index
     @projects = Project.all
   end
@@ -27,7 +27,7 @@ class ProjectsController < ApplicationController
     if @project.update_attributes(project_params)
       render :show
     else
-      render :json @project.errors.full_messages, status:422
+      render json: @project.errors.full_messages, status:422
     end
   end
 
