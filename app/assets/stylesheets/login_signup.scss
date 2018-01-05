@@ -7,6 +7,16 @@
   padding-bottom: 4rem;
 }
 
+.login-container {
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.signup-container {
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
 .login-form-box{
   max-height: 800px;
   width: 398px;
@@ -129,17 +139,17 @@
   width: 300px;
   background: #FA0E41;
   color:white;
-  padding: 20px 0px 20px 0px;
+  padding: 12px 0px 12px 0px;
   align-content: center;
-  text-align: center;
+  text-align: left;
   margin: auto;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .errors-list {
   margin: auto;
-  padding: 0px 24px 0px 24px;
+  padding: 0px 21px 0px 21px;
   background: #FA0E41;
   border-radius: 3px;
   max-width: 320px;

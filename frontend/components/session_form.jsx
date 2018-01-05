@@ -156,46 +156,91 @@ class SessionForm extends React.Component {
     }
   }
 
+  displayCorrectForm () {
+    if (this.props.formType === "signup") {
+      return (
+        <form onSubmit={this.handleSubmit}
+          className="login-form-box signup-container">
+          <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
+          {this.renderErrors()}
+          <br/>
+          <div className="login-form">
+            <br/>
+            <label>
+              <input type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+                className="login-input"
+                placeholder="Username"
+                />
+              {this.renderEmail()}
+
+            </label>
+            <br/>
+            <label>
+              <input type="password"
+                value={this.state.password}
+                onChange={this.update('password')}
+                className="login-input"
+                placeholder="Password"
+                />
+            </label>
+            <br/>
+            {this.renderSubmit()}
+            <br/>
+            {this.renderOr()}
+            <br/>
+          </div>
+        </form>
+      );
+    } else {
+      return (
+        <form onSubmit={this.handleSubmit}
+          className="login-form-box login-container">
+          <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
+          {this.renderErrors()}
+          <br/>
+          <div className="login-form">
+            <br/>
+            <label>
+              <input type="text"
+                value={this.state.username}
+                onChange={this.update('username')}
+                className="login-input"
+                placeholder="Username"
+                />
+              {this.renderEmail()}
+
+            </label>
+            <br/>
+            <label>
+              <input type="password"
+                value={this.state.password}
+                onChange={this.update('password')}
+                className="login-input"
+                placeholder="Password"
+                />
+            </label>
+            <br/>
+            {this.renderSubmit()}
+            <br/>
+            {this.renderOr()}
+            <br/>
+          </div>
+        </form>
+      );
+    }
+  }
 
   render() {
     return (
-      <div className="hello">
+      <div>
         {this.displayModal()}
         <div className="login-signup-container">
           {this.loginLink()}
-          <form onSubmit={this.handleSubmit} className="login-form-box">
-            <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
-            {this.renderErrors()}
-            <div className="login-form">
-              <br/>
-              <label>
-                <input type="text"
-                  value={this.state.username}
-                  onChange={this.update('username')}
-                  className="login-input"
-                  placeholder="Username"
-                  />
-                {this.renderEmail()}
-
-              </label>
-              <br/>
-              <label>
-                <input type="password"
-                  value={this.state.password}
-                  onChange={this.update('password')}
-                  className="login-input"
-                  placeholder="Password"
-                  />
-              </label>
-              <br/>
-              {this.renderSubmit()}
-              <br/>
-              {this.renderOr()}
-              <br/>
-            </div>
-          </form>
-          {this.signUpLink()}
-        </div>
+          {this.displayCorrectForm()}
+        {this.signUpLink()}
+      </div>
       </div>
     );
   }

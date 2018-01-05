@@ -7,7 +7,8 @@ const mapStateToProps = state => {
   return {
     loggedIn: Boolean(state.session.currentUser),
     errors: state.errors,
-    profileDropDownActive: state.ui.profileDropDownActive
+    profileDropDownActive: state.ui.profileDropDownActive,
+    currentUser: state.session.currentUser
   };
 };
 

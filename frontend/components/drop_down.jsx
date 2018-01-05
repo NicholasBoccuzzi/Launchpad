@@ -1,4 +1,5 @@
 import React from 'react';
+import onClickOutside from 'react-onclickoutside';
 
 
 class DropDown extends React.Component {
@@ -6,10 +7,16 @@ class DropDown extends React.Component {
     super(props);
   }
 
-  render () {
 
+  handleClickOutside (e) {
+    this.props.toggleProfileDropDown();
+  }
+
+
+  render () {
     return (
       <main className={this.props.class}>
+        <div className="profile-dropdown-header">Welcome, {this.props.currentUser.username}!</div>
         <div className="logout-dropdown-box">
           <button onClick={() => { return (
               this.props.toggleProfileDropDown(),
@@ -25,4 +32,4 @@ class DropDown extends React.Component {
   }
 }
 
-export default DropDown;
+export default onClickOutside(DropDown);
