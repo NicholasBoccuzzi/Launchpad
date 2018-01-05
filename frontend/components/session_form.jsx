@@ -51,12 +51,13 @@ class SessionForm extends React.Component {
     }
   }
 
+
   loginLink() {
     if (this.props.formType === 'signup') {
       return(
       <div className="signup-button-container">
         <h2 className="new-login">Already registered? &nbsp;
-         <Link className ="login-link login-signup-link" to="/login">LOGIN</Link>
+         <Link className="login-link login-signup-link" onClick={this.props.clearSessionErrors} to="/login">LOGIN</Link>
         </h2>
       </div>
       );
