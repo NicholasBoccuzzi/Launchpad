@@ -78,29 +78,6 @@ class SessionForm extends React.Component {
     }
   }
 
-  displayModal() {
-    if (this.props.errorModalActive) {
-      return <Modal />;
-    }
-  }
-
-  renderErrors() {
-    if (this.props.formType === "signup") {
-      if (this.props.errors.length > 0) {
-        return (
-          <ul className="errors-list">
-            {this.props.errors.map((error, i) => (
-              <li className="signup-errors" key={`error-${i}`}>
-                {error}
-              </li>
-            ))}
-          </ul>
-        );
-      }
-    } else {
-      this.props.toggleErrorModal();
-    }
-  }
 
   renderSubmit() {
       if (this.props.formType === 'signup')
@@ -152,45 +129,72 @@ class SessionForm extends React.Component {
   }
 
 
+  displayModal() {
+    if (this.props.errorModalActive) {
+      return <Modal />;
+    }
+  }
+
+  renderErrors() {
+    if (this.props.errors.length > 0) {
+      if (this.props.formType === "signup") {
+        return (
+          <ul className="errors-list">
+            {this.props.errors.map((error, i) => (
+              <li className="signup-errors" key={`error-${i}`}>
+                {error}
+              </li>
+            ))}
+          </ul>
+        );
+      } else {
+          if (!this.props.errorModalActive) {
+            this.props.toggleErrorModal();
+        }
+      }
+    }
+  }
 
 
   render() {
     return (
-      <div className="login-signup-container">
+      <div className="hello">
         {this.displayModal()}
-        {this.loginLink()}
-        <form onSubmit={this.handleSubmit} className="login-form-box">
-          <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
-          { this.renderErrors()}
-          <div className="login-form">
-            <br/>
-            <label>
-              <input type="text"
-                value={this.state.username}
-                onChange={this.update('username')}
-                className="login-input"
-                placeholder="Username"
-              />
-            {this.renderEmail()}
+        <div className="login-signup-container">
+          {this.loginLink()}
+          <form onSubmit={this.handleSubmit} className="login-form-box">
+            <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
+            {this.renderErrors()}
+            <div className="login-form">
+              <br/>
+              <label>
+                <input type="text"
+                  value={this.state.username}
+                  onChange={this.update('username')}
+                  className="login-input"
+                  placeholder="Username"
+                  />
+                {this.renderEmail()}
 
-            </label>
-            <br/>
-            <label>
-              <input type="password"
-                value={this.state.password}
-                onChange={this.update('password')}
-                className="login-input"
-                placeholder="Password"
-              />
-            </label>
-            <br/>
-            {this.renderSubmit()}
-            <br/>
-            {this.renderOr()}
-            <br/>
-          </div>
-        </form>
-        {this.signUpLink()}
+              </label>
+              <br/>
+              <label>
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  className="login-input"
+                  placeholder="Password"
+                  />
+              </label>
+              <br/>
+              {this.renderSubmit()}
+              <br/>
+              {this.renderOr()}
+              <br/>
+            </div>
+          </form>
+          {this.signUpLink()}
+        </div>
       </div>
     );
   }

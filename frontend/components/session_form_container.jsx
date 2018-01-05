@@ -10,7 +10,8 @@ const mapStateToProps = (state, { location }) => {
   return {
     loggedIn: Boolean(state.session.currentUser),
     errors: state.errors.session,
-    formType: formType
+    formType: formType,
+    errorModalActive: state.ui.errorModalActive
   };
 };
 
