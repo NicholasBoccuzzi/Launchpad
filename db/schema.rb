@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105144930) do
+ActiveRecord::Schema.define(version: 20180105172752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180105144930) do
 
   create_table "projects", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "current_funding", null: false
+    t.integer "current_funding", default: 0, null: false
     t.integer "funding_goal", null: false
     t.boolean "funded", default: false
     t.string "summary", null: false
