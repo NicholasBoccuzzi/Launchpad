@@ -3,7 +3,6 @@
   height: 446px;
   background: white;
   border-top: 2px solid #9B9E9E;
-  border-bottom: 2px solid #9B9E9E;
 }
 
 .footer-block-top {
@@ -28,7 +27,8 @@
   font-family: 'Muli', sans-serif;
   height: 42px;
   padding-bottom: 4px;
-  margin: 0px 14px -18px 0px;
+  padding-right: 26px;
+  margin: 0px 0px -18px 0px;
   font-size: 14px;
   background: transparent;
   color: black;
@@ -40,4 +40,83 @@
   color: #137c5b;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.footer-info-button {
+  border: 0px;
+  font-family: 'Muli', sans-serif;
+  height: 20px;
+  padding-bottom: 0px;
+  margin: 0px 14px 0px 0px;
+  font-size: 14px;
+  background: transparent;
+  color: black;
+  display: inline-block;
+  width: auto;
+}
+
+.footer-info-button:hover {
+  color: #137c5b;
+  cursor: pointer;
+}
+
+.footer-info-container {
+  margin: 0px 50px 0px 50px;
+  display: flex;
+}
+
+.footer-info-title {
+  font-weight: 700;
+  font-size: 13px;
+  padding-bottom: 12px;
+}
+
+.footer-info-ul {
+  width: 25%;
+  padding: 0px 12px;
+}
+
+.footer-trademark {
+  padding: 48px 0px;
+}
+
+.footer-trademark-container {
+  padding: 0px 60px;
+  display: flex;
+}
+
+.footer-trademark-title {
+  font-size: 30px;
+  font-family: 'Modak', sans-serif;
+  color: black;
+  margin-bottom: 6px;
+  padding: 10px 20px 0px 6px;
+}
+
+.footer-trademark-text {
+  height:20px;
+  padding-top: 16px;
+  font-size: 13px;
+}
+
+.footer-bottom {
+  border-top: 2px solid #DCDEDD;
+}
+
+.footer-terms-container {
+  display: flex;
+  padding: 25px 60px 25px 60px;
+}
+
+.footer-terms-button {
+  border: 0px;
+  font-family: 'Muli', sans-serif;
+  padding-bottom: 4px;
+  padding-right: 26px;
+  margin: 0px 0px -18px 0px;
+  font-size: 13px;
+  background: transparent;
+  color: black;
+  display: inline-block;
+  width: auto;
 }
