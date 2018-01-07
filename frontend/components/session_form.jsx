@@ -57,7 +57,7 @@ class SessionForm extends React.Component {
       return(
       <div className="signup-button-container">
         <h2 className="new-login">Already registered? &nbsp;
-         <Link className="login-link login-signup-link" onClick={this.props.clearSessionErrors} to="/login">LOGIN</Link>
+         <Link className="login-link login-signup-link" onClick={this.props.clearSessionErrors} to="/login">Log In</Link>
         </h2>
       </div>
       );
@@ -116,11 +116,11 @@ class SessionForm extends React.Component {
       <div>
         <div className="inline">
           <h3 className="strike">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </h3>
           <h3 >&nbsp;OR&nbsp;</h3>
           <h3 className="strike">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </h3>
         </div>
         <button className="login-input demo-account-button"
@@ -161,7 +161,7 @@ class SessionForm extends React.Component {
       return (
         <form onSubmit={this.handleSubmit}
           className="login-form-box signup-container">
-          <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
+          <h2 className="form-title">Sign up</h2>
           {this.renderErrors()}
           <br/>
           <div className="login-form">
@@ -197,7 +197,7 @@ class SessionForm extends React.Component {
       return (
         <form onSubmit={this.handleSubmit}
           className="login-form-box login-container">
-          <h2 className="form-title">{this.props.formType.toUpperCase()}</h2>
+          <h2 className="form-title">Log in</h2>
           {this.renderErrors()}
           <br/>
           <div className="login-form">

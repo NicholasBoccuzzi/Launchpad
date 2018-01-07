@@ -1,6 +1,6 @@
 .login-signup-container {
   height: 800px;
-  background: #ededed;
+  background: #F0F0F0;
   text-align: center;
   align-content: center;
   padding-top: 4rem;
@@ -8,13 +8,13 @@
 }
 
 .login-container {
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  border-top-right-radius: 1px;
+  border-top-left-radius: 1px;
 }
 
 .signup-container {
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 1px;
+  border-bottom-left-radius: 1px;
 }
 
 .login-form-box{
@@ -37,12 +37,12 @@
   width: 376px;
   background: #f9f9f9;
   border-bottom: 1px solid #ededed;
-  font-family: 'Changa', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 16px;
   text-align: center;
   padding: 14px 12px 14px 12px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border-top-left-radius: 1px;
+  border-top-right-radius: 1px;
 }
 
 .new-signup {
@@ -51,18 +51,18 @@
   width: 376px;
   background: #f9f9f9;
   border-top: 1px solid #ededed;
-  font-family: 'Changa', sans-serif;
+  font-family: 'Muli', sans-serif;
   font-size: 16px;
   text-align: center;
   padding: 14px 12px 14px 12px;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 1px;
+  border-bottom-left-radius: 1px;
 }
 
 .strike{
   text-decoration: line-through;
   font-size: 12px;
-  color: lightgrey;
+  color: #e8e8e8;
 }
 
 .inline {
@@ -78,19 +78,20 @@
   left: 20px;
   top: 15px;
   text-align: left;
-  font-size: 34px;
-  padding: 10px 0px 30px 0px;
+  font-size: 30px;
+  padding: 4px 0px 40px 0px;
   margin: 0px;
 }
 
 .login-input{
   position: relative;
   top: -30px;
-  width: 350px;
-  padding: 8px 5px 8px 5px;
+  width: 346px;
+  padding: 12px 5px 12px 5px;
   margin: 10px;
   font-size: 14px;
-  font-family: 'Changa', sans-serif;
+
+  font-family: 'Muli', sans-serif;
 }
 
 .login-input:focus {
@@ -99,7 +100,7 @@
 }
 
 .demo-account-button {
-  width: 364px;
+  width: 360px;
   background: #3B5898;
   color: white;
   font-size: 14px;
@@ -117,7 +118,7 @@
 }
 
 .new-account-button {
-  width: 364px;
+  width: 360px;
   background:#009E74;
   color: white;
   font-size: 14px;
@@ -135,7 +136,7 @@
 }
 
 .signup-errors {
-  font-family: 'Changa', sans-serif;
+  font-family: 'Muli', sans-serif;
   width: 300px;
   background: #FA0E41;
   color:white;

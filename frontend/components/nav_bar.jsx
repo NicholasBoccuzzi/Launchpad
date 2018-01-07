@@ -33,7 +33,7 @@ class Navbar extends React.Component {
     return (
       <nav className="main-nav">
         <section className="top-nav-left">
-          <button className="nav-button" to="#"></button>
+          <Link className="nav-button right" to={"/discover"}>Explore</Link>
           <a href="#" className="new-project nav-button"></a>
         </section>
         <section className="top-nav-middle">

@@ -12,15 +12,12 @@ class projectList extends React.Component {
 
   projectList () {
 
-    debugger
-    
     if (this.props.projects.length > 0) {
       const mappedProjectList = this.props.projects.map((project) => {
         return (
-        <li>
+        <li key={project.id}>
           <h3 className="project-title">{project.title}</h3>
-          <h3 className="project-summary">{project.summary}</h3>
-          <Link to={`project/${project.id}`}>Learn More</Link>
+          <Link to={`project/${project.id}`}><h3>{project.summary}</h3></Link>
         </li>
         );
       });
