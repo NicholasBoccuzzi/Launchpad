@@ -7,14 +7,20 @@
 }
 
 .footer-block-top {
+  border-bottom: 2px solid #DCDEDD;
   display:block;
   height: 70px;
+  margin-bottom: 48px;
 }
 
 .footer-project-categories {
   display: flex;
-  padding: 20px 60px 20px 60px;
+  padding: 25px 60px 25px 60px;
   width: 100%
+}
+
+.footer-project-li {
+  margin: 0px 5px 0px 0px;
 }
 
 .footer-nav-button {
