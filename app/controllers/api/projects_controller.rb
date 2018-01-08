@@ -48,7 +48,8 @@ class Api::ProjectsController < ApplicationController
       :creator_id,
       :deadline,
       :category,
-      :subcategory
+      :subcategory,
+      :image
     )
   end
 end
