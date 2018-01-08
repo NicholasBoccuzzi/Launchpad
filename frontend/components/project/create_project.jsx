@@ -12,8 +12,15 @@ class createProjectForm extends React.Component {
       summary: "",
       body: "",
       deadline: "",
-      category: ""
+      category: "",
+      image: {
+      imageUrl: null,
+      imageFile: null
+      }
     };
+
+    this.handlePictureUpload = this.handlePictureUpload.bind(this);
+    this.handlePicturePreview = this.handlePicturePreview.bind(this);
   }
 
   handleSubmit (e) {
@@ -26,6 +33,34 @@ class createProjectForm extends React.Component {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
+  }
+
+  handlePicturePreview(e) {
+    const reader = new FileReader();
+    const file = e.currentTarget.files[0];
+    reader.onloadend = () => {
+      this.setState({
+        image: {
+          imageUrl: reader.result,
+          imageFile: file
+        }
+      });
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+      this.handlePictureUpload();
+    }
+  }
+
+  handlePictureUpload () {
+    const file = this.state.image;
+
+    const formData = new FormData();
+
+    if (file) {
+      formData.append("project[image]", file);
+    }
   }
 
   doNothing() {
@@ -51,14 +86,15 @@ class createProjectForm extends React.Component {
                 <h3 className="project-form-input-title">Project Image</h3>
               </div>
               <div className="project-input-container">
-                <button className="project-button-container" onClick={this.doNothing}>
+                <label>
+                  <input type="file" onChange={this.handlePicturePreview} />
                   <div className="project-image-button">
                     <h3 className="project-upload-image-header">Choose an image from your computer</h3>
                     <p className="small-font">This is the main image associated with your project. Make it count!</p>
                     <p className="small-font">JPEG, PNG, GIF, or BMP</p>
                     <p className="small-font">16:9 aspect ratio</p>
                   </div>
-                </button>
+                </label>
                 <p className="project-form-explanations">
                   This is the first thing that people will see when
                   they come across your project. Choose an image that’s crisp
@@ -146,7 +182,7 @@ class createProjectForm extends React.Component {
             </div>
             <div className="project-form-input-box">
               <div className="project-form-input-title-box">
-                <h3 className="project-form-input-title">Funding duration</h3>
+                <h3 className="project-form-input-title">Funding Deadline</h3>
               </div>
               <div className="project-input-container">
                 <input

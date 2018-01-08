@@ -38,8 +38,10 @@ class Api::ProjectsController < ApplicationController
     render :index
   end
 
+private
 
   def project_params
+    debugger
     params.require(:project).permit(
       :title,
       :funding_goal,
