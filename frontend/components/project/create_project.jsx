@@ -211,7 +211,23 @@ class createProjectForm extends React.Component {
             </div>
           </form>
           <section className="project-current-summary">
+            <div className="helpful-tips-box">
+                <i className="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;&nbsp;
+                <div className="helpful-tips-box-content">
+                  <h2 className="small-font">How to:</h2>
+                  <br/>
+                <Link className="link-text" to="#">Make an awesome project</Link>
+              </div>
+            </div>
 
+            <div className="text-left">
+              <div className="basic-black">Need Advice?</div>
+              <div className="project-form-explanations ">
+                Visit Campus to read discussions about preparing
+                for a project and more.
+              </div>
+
+            </div>
           </section>
         </main>
       </main>
