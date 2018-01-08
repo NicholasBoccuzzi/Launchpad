@@ -32,6 +32,8 @@ gem 'jquery-rails'
 
 gem 'pry-rails'
 gem 'aws-sdk', '< 3.0'
+gem "paperclip", '~> 5.0.0'
+gem 'figaro'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
