@@ -1,5 +1,5 @@
 .footer-container {
-  width: 100%;
+  width: auto;
   height: 446px;
   background: white;
   border-top: 2px solid #9B9E9E;
@@ -14,7 +14,7 @@
 
 .footer-project-categories {
   display: flex;
-  padding: 25px 60px 25px 60px;
+  padding: 25px 0px 25px 0px;
   width: 100%
 }
 
@@ -119,4 +119,9 @@
   color: black;
   display: inline-block;
   width: auto;
+}
+
+.footer-project-categories-container {
+  display: flex;
+  padding: 0px 60px 0px 60px;
 }

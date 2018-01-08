@@ -18,7 +18,7 @@ p1 = Project.create!(
   body: "longer than seed summary",
   creator_id: u1.id,
   deadline: "2020/02/05",
-  category: "Games"
+  category: "Games",
 )
 
 p2 = Project.create!(
@@ -29,7 +29,7 @@ p2 = Project.create!(
   body: "longer explanation of puppy seed project",
   creator_id: u2.id,
   deadline: "2020/11/16",
-  category: "Tech"
+  category: "Tech",
 )
 
 p3 = Project.create!(
@@ -41,5 +41,5 @@ p3 = Project.create!(
   body: "longer body of text to summarize film",
   creator_id: u3.id,
   deadline: "2025/05/20",
-  category: "Movie"
+  category: "Movie",
 )

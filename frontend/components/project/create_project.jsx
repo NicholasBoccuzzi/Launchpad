@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Line, Circle } from 'rc-progress';
 
 class createProjectForm extends React.Component {
   constructor (props) {
@@ -7,7 +8,7 @@ class createProjectForm extends React.Component {
     this.state = {
       creator_id: this.props.currentUser.id,
       title: "",
-      funding_goal: "$0",
+      funding_goal: "0",
       summary: "",
       body: "",
       deadline: "",
@@ -38,7 +39,7 @@ class createProjectForm extends React.Component {
         <nav className="project-nav">
         </nav>
         <header className="get-started-container">
-          <h1 className="get-started-title">Let's Get Started</h1>
+          <h1 className="get-started-title">Let's get started.</h1>
           <h2 className="get-started-body">Make a great first impression
           with your project's title and image, and set your funding goal,
         campaign duration, and project category.</h2>
@@ -46,9 +47,18 @@ class createProjectForm extends React.Component {
         <main className="new-project-container">
           <form onSubmit={this.handleSubmit} className="project-form">
             <div className="project-form-input-box">
-              <h3 className="project-form-input-title">Project Image</h3>
+              <div className="project-form-input-title-box">
+                <h3 className="project-form-input-title">Project Image</h3>
+              </div>
               <div className="project-input-container">
-                <button className="project-image-button" onClick={this.doNothing}></button>
+                <button className="project-button-container" onClick={this.doNothing}>
+                  <div className="project-image-button">
+                    <h3 className="project-upload-image-header">Choose an image from your computer</h3>
+                    <p className="small-font">This is the main image associated with your project. Make it count!</p>
+                    <p className="small-font">JPEG, PNG, GIF, or BMP</p>
+                    <p className="small-font">16:9 aspect ratio</p>
+                  </div>
+                </button>
                 <p className="project-form-explanations">
                   This is the first thing that people will see when
                   they come across your project. Choose an image that’s crisp
@@ -57,12 +67,14 @@ class createProjectForm extends React.Component {
               </div>
             </div>
             <div className="project-form-input-box">
-              <h3 className="project-form-input-title">Project Title</h3>
-              <div className="project-subject-container">
+              <div className="project-form-input-title-box">
+                <h3 className="project-form-input-title">Project Title</h3>
+              </div>
+              <div className="project-input-container">
                 <input type="text"
                   value={this.state.title}
                   onChange={this.update('title')}
-                  className="project-form-title-input"
+                  className="project-form-input input-title"
                   placeholder=""
                   />
                 <p className="project-form-explanations">
@@ -77,24 +89,29 @@ class createProjectForm extends React.Component {
               </div>
             </div>
             <div className="project-form-input-box">
-              <h3 className="project-form-input-title">Short blurb</h3>
-              <div className="project-subject-container">
-                <textarea
+              <div className="project-form-input-title-box">
+                <h3 className="project-form-input-title">Short blurb</h3>
+              </div>
+              <div className="project-input-container">
+                <input
                   value={this.state.summary}
                   onChange={this.update('summary')}
-                  className="project-form-summary-input"
+                  className="project-form-input input-summary"
                   placeholder=""
                   />
-                <p>
+                <p className="project-form-explanations">
                   Give people a sense of what you’re doing.
                   Skip “Help me” and focus on what you’re making.
                 </p>
               </div>
             </div>
             <div className="project-form-input-box">
-              <h3 className="project-form-input-title">Category</h3>
-              <div className="project-subject-container">
-                <select onChange={this.update('category')}>
+              <div className="project-form-input-title-box">
+                <h3 className="project-form-input-title">Category</h3>
+              </div>
+              <div className="project-categories-container">
+                <select className=" input-categories"
+                  onChange={this.update('category')}>
                   <option value="Art">Art</option>
                   <option value="Comics">Comics</option>
                   <option value="Crafts">Crafts</option>
@@ -114,36 +131,45 @@ class createProjectForm extends React.Component {
               </div>
             </div>
             <div className="project-form-input-box">
-              <h3 className="project-form-input-title">Project Location</h3>
-              <div className="project-subject-container">
+              <div className="project-form-input-title-box">
+                <h3 className="project-form-input-title">Project Location</h3>
+              </div>
+              <div className="project-input-container">
                 <input
                   type="text"
                   value={this.state.location}
                   onChange={this.update('location')}
-                  className="project-form-location-input"
+                  className="project-form-input input-location"
                   placeholder=""
                   />
               </div>
             </div>
             <div className="project-form-input-box">
-              <h3 className="project-form-input-title">Funding duration</h3>
-              <div className="project-subject-container">
+              <div className="project-form-input-title-box">
+                <h3 className="project-form-input-title">Funding duration</h3>
+              </div>
+              <div className="project-input-container">
                 <input
                   type="date"
                   value={this.state.deadline}
                   onChange={this.update('deadline')}
-                  className="project-form-deadline-input"
+                  className="project-form-input input-deadline"
                   />
+                <p className="project-form-explanations">Projects with shorter durations have higher success rates.
+                  You won’t be able to adjust your duration after you launch.
+                </p>
               </div>
             </div>
             <div className="project-form-input-box">
-              <h3 className="project-form-input-title">Funding goal</h3>
-              <div className="project-subject-container">
+              <div className="project-form-input-title-box">
+                <h3 className="project-form-input-title">Funding goal</h3>
+              </div>
+              <div className="project-input-container">
                 <input
                   type="text"
                   value={this.state.funding_goal}
                   onChange={this.update('funding_goal')}
-                  className="project-form-funding-goal-input"
+                  className="project-form-input input-goal"
                   />
               </div>
             </div>

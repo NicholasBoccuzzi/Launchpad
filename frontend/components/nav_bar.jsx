@@ -13,11 +13,23 @@ class Navbar extends React.Component {
   isSession () {
 
     if (this.props.currentUser) {
-      return <button onClick={this.props.toggleProfileDropDown} to="#"
+      return(
+        <div>
+          <button className="nav-button search-button-loggined-in">
+          </button>
+          <button onClick={this.props.toggleProfileDropDown} to="#"
             className="nav-button main-profile-button">
-          </button>;
+          </button>
+        </div>
+      );
       } else {
-        return <Link className="nav-button" to="/login">Sign In</Link>;
+        return (
+          <div>
+            <button className="nav-button search-button-no-login">
+            </button>
+            <Link className="nav-button left" to="/login">Sign In</Link>
+          </div>
+        );
       }
   }
 
@@ -34,15 +46,13 @@ class Navbar extends React.Component {
       <nav className="main-nav">
         <section className="top-nav-left">
           <Link className="nav-button right" to={"/discover"}>Explore</Link>
-          <a href="#" className="new-project nav-button"></a>
+          <Link className="nav-button" to={"/startproject"}>Start a project</Link>
         </section>
         <section className="top-nav-middle">
           <a href="#" className="title-link">LAUNCHPAD</a>
         </section>
         {this.displayDrowDown()}
         <section className="top-nav-right">
-          <button className="nav-button search-button">
-          </button>
           {this.isSession()}
         </section>
       </nav>

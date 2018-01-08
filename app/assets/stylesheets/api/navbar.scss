@@ -1,5 +1,5 @@
 .main-nav {
-  width: 100%;
+  width: auto;
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #7a7a7a;
@@ -11,7 +11,7 @@
 
 .top-nav-left {
   font-family: 'Muli', sans-serif;
-    padding: 10px 0px 20px 35px;
+  padding: 10px 0px 20px 0px;
 }
 
 .new-project {
@@ -37,7 +37,7 @@
 .top-nav-right {
   font-family: 'Muli', sans-serif;
   text-align: right;
-  padding: 0px 10px 4px 25px;
+  padding: 0px 10px 4px 60px;
 }
 
 .nav-button {
@@ -60,15 +60,16 @@
 }
 
 .right {
-  padding: 0px 11px 7px 1px;
+  padding: 16px 13px 7px 37px;
+  margin: 0px 0px -18px 0px;
 }
 .right:focus {
   outline: none;
 }
 
 .main-profile-button {
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   padding: 0px 0px 0px 0px;
   margin-top: 15px;
   margin-right: 17.5px;
@@ -76,6 +77,9 @@
   border: 1px solid black;
 }
 
+.search-button {
+  padding: 0px 0px 0px 0px;
+}
 // to remove!
 .search-button:hover {
   cursor:auto;
@@ -84,4 +88,12 @@
 // to remove!
 .search-button:focus {
   outline: none;
+}
+
+.search-button-loggined-in {
+  padding: 0px 0px 0px 51px;
+}
+
+.left {
+  padding: 0px 0px 0px 35px;
 }
