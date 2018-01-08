@@ -41,7 +41,6 @@ class Api::ProjectsController < ApplicationController
 private
 
   def project_params
-    debugger
     params.require(:project).permit(
       :title,
       :funding_goal,
