@@ -1,0 +1,70 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+class Main extends React.Component {
+
+  constructor (props) {
+    super(props);
+
+  }
+
+  setDate() {
+    const today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth() + 1;
+    const yyyy = today.getFullYear();
+
+    if (dd < 10){
+        dd = '0' + dd;
+    }
+
+    if (mm < 10) {
+      mm = '0' + mm;
+    }
+
+    return `${mm}/${dd}/${yyyy}`;
+  }
+
+  componentDidMount () {
+    this.props.fetchProjects();
+  }
+
+  displayInfo () {
+
+    return (
+      <nav className="Launchpad-info-container">
+        <div className="top-info-box">
+          <div className="top-info heading">{this.setDate()}</div>
+          <div className="top-info bold">Sky is the limit.</div>
+        </div>
+        <div className="top-info-box">
+          <div className="top-info heading">Total Users</div>
+          <div className="top-info bold"></div>
+        </div>
+        <div className="top-info-box">
+          <div className="top-info heading">Total Projects</div>
+          <div className="top-info bold"></div>
+        </div>
+        <div className="top-info-box">
+          <div className="top-info-heading">Funded Projects</div>
+          <div className="top-info bold"></div>
+        </div>
+      </nav>
+    );
+  }
+
+  render () {
+
+    return (
+      <div>
+        {this.displayInfo()}
+
+
+      </div>
+    );
+  }
+
+
+}
+
+export default Main;

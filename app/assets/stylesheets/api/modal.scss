@@ -31,3 +31,52 @@
   left: 0;
   opacity: 0.8;
 }
+
+.submit-project-bar {
+  width: 100%;
+  height: 60px;
+  background: white;
+  display: block;
+  position: fixed;
+  bottom: 0px;
+  padding-top: 14px;
+  border-top: 1px solid #E7E7E7;
+}
+
+.project-save-button {
+width: 75px;
+margin: auto;
+text-align: center;
+height: 38px;
+padding-top: 0px;
+background:#0E7360;
+color: white;
+font-size: 14px;
+border: none;
+position:absolute;
+right: 172px;
+bottom: 17px;
+}
+
+.discard-project-changes {
+width: auto;
+height: 38px;
+padding-top: 0px;
+background: white;
+color: black;
+font-size: 14px;
+border: none;
+position:absolute;
+right: 270px;
+bottom: 5px;
+}
+
+.project-save-button:hover {
+transition: all 0.25s ease-in-out;
+transition-property: all;
+transition-duration: 0.25s;
+transition-timing-function: ease-in-out;
+transition-delay: initial;
+background: #064852;
+cursor: pointer;
+}

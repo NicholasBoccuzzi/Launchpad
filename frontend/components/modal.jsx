@@ -1,16 +1,20 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 
 class Modal extends React.Component {
   constructor (props) {
     super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillUnmount () {
-    this.props.clearSessionErrors();
+    if (this.props.location === "login") {
+      this.props.clearSessionErrors();
+    }
   }
 
-  renderIfActive () {
+  renderIfErrorActive () {
     if (this.props.errorModalActive) {
       return (
         <div>
@@ -30,14 +34,39 @@ class Modal extends React.Component {
     }
   }
 
+  handleSubmit (e) {
+    e.preventDefault;
+    const project = this.props.state;
+    project.funding_goal = parseInt(project.funding_goal);
+    debugger
+    this.props.createProject(project);
+  }
+
+  renderIfCreateProjectActive () {
+    if (this.props.createProjectModalActive) {
+      return (
+        <div className="submit-project-bar">
+          <Link className="discard-project-changes" to="/createproject">Discard changes</Link>
+          <input type="submit" className="project-save-button" value="Save" onClick={this.handleSubmit}></input>
+        </div>
+      );
+    }
+  }
+
   render () {
-
-
-    return (
-    <div>
-      {this.renderIfActive()}
-    </div>
-    );
+    if (this.props.location === "login") {
+      return (
+        <div>
+          {this.renderIfErrorActive()}
+        </div>
+      );
+    } else if (this.props.location === "startproject") {
+      return (
+          <div>
+            {this.renderIfCreateProjectActive()}
+          </div>
+      );
+    }
   }
 }
 

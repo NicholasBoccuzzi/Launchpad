@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Line, Circle } from 'rc-progress';
+import Modal from '../modal_container';
 
 class createProjectForm extends React.Component {
   constructor (props) {
@@ -10,7 +11,7 @@ class createProjectForm extends React.Component {
       title: "",
       funding_goal: "0",
       summary: "",
-      body: "",
+      body: "temp",
       deadline: "",
       category: "",
       image: {
@@ -19,6 +20,7 @@ class createProjectForm extends React.Component {
       }
     };
 
+    this.renderSubmit = this.renderSubmit.bind(this);
     this.current_funding = this.current_funding.bind(this);
     this.handlePictureUpload = this.handlePictureUpload.bind(this);
     this.handlePicturePreview = this.handlePicturePreview.bind(this);
@@ -27,13 +29,32 @@ class createProjectForm extends React.Component {
   handleSubmit (e) {
     e.preventDefault();
     const project = this.state;
-    this.props.createProject({project});
+    this.props.createProject(project);
+  }
+
+  componentDidMount () {
+    if (this.props.createProjectModalActive) {
+      this.props.toggleCreateProjectModal();
+    }
   }
 
   update(field) {
-    return e => this.setState({
-      [field]: e.currentTarget.value
-    });
+    return e => {
+      this.setState({
+        [field]: e.currentTarget.value
+      });
+      if (!this.props.createProjectModalActive) {
+        this.props.toggleCreateProjectModal();
+      }
+    };
+  }
+
+  renderSubmit () {
+    if (this.props.createProjectModalActive) {
+      return <Modal state={this.state} location={this.props.location}/>;
+    } else {
+      return;
+    }
   }
 
   current_funding () {
@@ -156,6 +177,7 @@ class createProjectForm extends React.Component {
               <div className="project-categories-container">
                 <select className=" input-categories"
                   onChange={this.update('category')}>
+                  <option value="">--</option>
                   <option value="Art">Art</option>
                   <option value="Comics">Comics</option>
                   <option value="Crafts">Crafts</option>
@@ -253,6 +275,7 @@ class createProjectForm extends React.Component {
             </div>
           </section>
         </main>
+        {this.renderSubmit()}
       </main>
     );
   }

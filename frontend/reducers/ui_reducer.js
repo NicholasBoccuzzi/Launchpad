@@ -1,9 +1,10 @@
-import { TOGGLE_PROFILE_DROPDOWN, TOGGLE_ERROR_MODAL} from '../actions/ui_actions.js';
+import { TOGGLE_CREATE_PROJECT_MODAL, TOGGLE_PROFILE_DROPDOWN, TOGGLE_ERROR_MODAL} from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
 const initialState = {
   profileDropDownActive: false,
-  errorModalActive: false
+  errorModalActive: false,
+  createProjectModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +18,11 @@ export default (state = initialState, action) => {
     let newErrorState = merge({}, state);
     newErrorState.errorModalActive = !newErrorState.errorModalActive;
     return newErrorState;
+  case TOGGLE_CREATE_PROJECT_MODAL:
+    let newProjectState = merge({}, state);
+    newProjectState.createProjectModalActive = !newProjectState.createProjectModalActive;
+    return newProjectState;
+
   default:
     return state;
   }

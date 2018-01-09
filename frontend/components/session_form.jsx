@@ -132,7 +132,7 @@ class SessionForm extends React.Component {
 
   displayModal() {
     if (this.props.errorModalActive) {
-      return <Modal />;
+      return <Modal location={this.props.formType}/>;
     }
   }
 
