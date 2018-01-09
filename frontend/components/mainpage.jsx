@@ -33,19 +33,19 @@ class Main extends React.Component {
 
     return (
       <nav className="Launchpad-info-container">
-        <div className="top-info-box">
+        <div className="top-info-box-left">
           <div className="top-info heading">{this.setDate()}</div>
           <div className="top-info bold">Sky is the limit.</div>
         </div>
         <div className="top-info-box">
-          <div className="top-info heading">Total Users</div>
+          <div className="top-info heading">Total Backers</div>
           <div className="top-info bold"></div>
         </div>
         <div className="top-info-box">
           <div className="top-info heading">Total Projects</div>
           <div className="top-info bold"></div>
         </div>
-        <div className="top-info-box">
+        <div className="top-info-box-right">
           <div className="top-info-heading">Funded Projects</div>
           <div className="top-info bold"></div>
         </div>

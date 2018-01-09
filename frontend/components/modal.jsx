@@ -38,7 +38,6 @@ class Modal extends React.Component {
     e.preventDefault;
     const project = this.props.state;
     project.funding_goal = parseInt(project.funding_goal);
-    debugger
     this.props.createProject(project);
   }
 

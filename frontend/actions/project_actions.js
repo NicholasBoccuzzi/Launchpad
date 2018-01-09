@@ -33,10 +33,16 @@ export const receiveProjectErrors = errors => {
   });
 };
 
-export const fetchProjects = () => dispatch => {
-  return (
-    ProjectAPIUtil.fetchProjects().then(projects => dispatch(receiveAllProjects(projects)))
-  );
+export const fetchProjects = (category) => dispatch => {
+  if (category) {
+    return (
+      ProjectAPIUtil.fetchProjectByCategory(category).then(projects => dispatch(receiveAllProjects(projects)))
+    );
+  } else {
+    return (
+      ProjectAPIUtil.fetchProjects().then(projects => dispatch(receiveAllProjects(projects)))
+    );
+  }
 };
 
 export const fetchProject = (id) => dispatch => {

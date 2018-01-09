@@ -33,7 +33,7 @@ class projectList extends React.Component {
   }
 
 
-  render () {
+  render () {    
     return (
     <div>
       {this.projectList()}

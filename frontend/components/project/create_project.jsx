@@ -15,8 +15,8 @@ class createProjectForm extends React.Component {
       deadline: "",
       category: "",
       image: {
-      imageUrl: null,
-      imageFile: null
+        imageUrl: null,
+        imageFile: null
       }
     };
 

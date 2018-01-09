@@ -5,6 +5,14 @@ export const fetchProjects = () => {
   });
 };
 
+export const fetchProjectByCategory = (category) => {
+  return $.ajax({
+      method: "GET",
+      url: `api/projects`,
+      data: {project: {category: category}}
+  });
+};
+
 export const fetchProject = (id) => {
   return $.ajax({
       method: "GET",

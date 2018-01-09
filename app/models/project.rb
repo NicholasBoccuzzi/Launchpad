@@ -19,7 +19,7 @@ class Project < ApplicationRecord
     end
   end
 
-  def find_by_category(category)
+  def self.find_by_category(category)
     projects = Project.where('project.category = ?', category)
     # Project where project.category is equal to category
     return projects
