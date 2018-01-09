@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import CreateProjectForm from './project/create_project_container';
 
 class Modal extends React.Component {
   constructor (props) {
@@ -45,7 +46,7 @@ class Modal extends React.Component {
     if (this.props.createProjectModalActive) {
       return (
         <div className="submit-project-bar">
-          <Link className="discard-project-changes" to="/createproject">Discard changes</Link>
+          <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
           <input type="submit" className="project-save-button" value="Save" onClick={this.handleSubmit}></input>
         </div>
       );

@@ -39,15 +39,15 @@ class Main extends React.Component {
         </div>
         <div className="top-info-box">
           <div className="top-info heading">Total Backers</div>
-          <div className="top-info bold"></div>
+          <div className="top-info bold">3</div>
         </div>
         <div className="top-info-box">
           <div className="top-info heading">Total Projects</div>
-          <div className="top-info bold"></div>
+          <div className="top-info bold">3</div>
         </div>
         <div className="top-info-box-right">
           <div className="top-info-heading">Funded Projects</div>
-          <div className="top-info bold"></div>
+          <div className="top-info bold">0</div>
         </div>
       </nav>
     );

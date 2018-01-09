@@ -1,10 +1,8 @@
 class Project < ApplicationRecord
-
-
-
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
+  validate :everythingIsFilled
   validate :deadline_date_cannot_be_in_the_past
   validates :title, :current_funding, :funding_goal, :summary, :body,
     :creator_id, :deadline, :category, presence: true
@@ -18,6 +16,23 @@ class Project < ApplicationRecord
       errors.add(:deadline, "can't be in the past")
     end
   end
+
+  def everythingIsFilled
+    if title == ""
+      errors.add(:title, "Title can't be blank")
+    elsif funding_goal >= 100
+      errors.add(:funding_goal, "must be more than $100")
+    elsif summary == ""
+      errors.add(:summary, "Summary can't be blank")
+    elsif body == ""
+      errors.add(:body, "Body can't be blank")
+    elsif deadline deadline.blank?
+      errors.add(:deadline, "Deadline must be filled in")
+    elsif category == "--" || category == ""
+      errors.add(:cateogry, "Your project must have a category")
+    end
+  end
+
 
   def self.find_by_category(category)
     projects = Project.where('project.category = ?', category)
