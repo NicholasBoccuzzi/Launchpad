@@ -1,4 +1,4 @@
-json.extract! user, :id, :username
+json.extract! user, :id, :username, :image
 
 # json.user do
 #   json.id user.id

@@ -50,6 +50,10 @@ margin: auto;
   padding: 20px;
 }
 
+.big-button {
+  border: 1px dashed blue;
+}
+
 .project-button-container:hover {
   cursor: pointer;
   background: #F8F9FD;
@@ -177,4 +181,51 @@ margin: auto;
 
 .text-left {
   text-align: left;
+}
+
+.small-preview-container {
+  min-height: 400px;
+  max-width: 90%;
+  border: 1px solid #DCDEDD;
+  border-radius: 4px;
+  margin: auto;
+  margin-top: 40px;
+  text-align: left;
+  padding: 4px;
+  font-size: 12px;
+}
+
+.preview-photo {
+  background: black;
+  height: 150px;
+}
+
+.small-preview-item {
+  width: 200px;
+  margin: auto;
+  height: 8px;
+}
+
+.small-preview-info-container {
+  height: 200px;
+  width: 100%;
+  background: white;
+}
+
+.small-preview-funding {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.small-preview-funding-item {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  font-weight: 800;
+  padding: 5px;
+}
+
+.flexed {
+  display: flex;
 }
