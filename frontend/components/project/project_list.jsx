@@ -41,7 +41,7 @@ class projectList extends React.Component {
           </div>
         </div>
         <ul className="flex-children">
-          {mappedProjectList}
+          {mappedProjectList.reverse()}
         </ul>
       </ul>
       );

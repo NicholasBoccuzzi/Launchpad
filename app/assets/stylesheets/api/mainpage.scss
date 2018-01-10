@@ -1,23 +1,189 @@
 .Launchpad-info-container {
   width: 100%;
   border-bottom: 1px solid #7a7a7a;
-  display: flex;
   margin: auto;
+  padding: 0px 0px;
+}
+
+.Launchpad-info-nav {
+  display: flex;
   padding: 0px 60px;
 }
 
 .top-info-box {
   width: 20%;
-  padding: 30px 10px 30px 30px;
+  padding: 30px 10px 24px 30px;
   border-right: 2px solid #DCDEDD
 }
 
 .top-info-box-left {
   width: 25%;
-  padding: 30px 0px;
+  padding: 30px 0px 24px 0px;
   border-right: 2px solid #DCDEDD
 }
 
 .top-info-box-right{
-  padding: 30px 10px 30px 30px;
+  padding: 30px 10px 24px 30px;
+}
+
+.top-info {
+  font-size: 14px;
+  padding-bottom: 4px;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.mainpage-projects-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flexed {
+  display: flex;
+  padding: 0px 60px;
+}
+
+.featured-project-container {
+  width: 100%;
+  max-height: 600px;
+  padding: 50px 10px 0px 10px;
+}
+
+.category-tabs-container {
+  width: 100%;
+  padding: 50px 10px 20px 10px;
+}
+
+.block {
+  display: block;
+}
+
+.featured-image-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align:center;
+  margin:auto;
+}
+
+.featured-image-container:hover {
+  color: #0F7262;
+  cursor: pointer;
+}
+
+.featured-image{
+  max-width: 100%;
+  max-height: 100%;
+  object-fit:scale-down;
+  margin: auto;
+}
+
+.featured-title {
+  width: auto;
+  position: relative;
+  bottom: 0px;
+  font-size: 30px;
+}
+
+.featured-author {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.featured-funded {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.white-background {
+  background: white;
+  display: inline-block;
+  padding: 10px;
+}
+
+.main-info-containers {
+  display: block;
+  position: relative;
+  bottom: 200px;
+  left: 0px;
+  text-align: left;
+  padding: 10px;
+}
+
+.mainpage-projects-header {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.mainpage-li-container {
+  min-height: 70px;
+  height: auto;
+  max-height: 100px;
+  width: 100%;
+  padding: 10px 0px;
+  display: flex;
+  border-bottom: 1px solid #DCDEDD;
+}
+
+.mainpage-li-container:first-child {
+  border-top: 1px solid #DCDEDD;
+}
+
+.mainpage-li-image-container {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.mainpage-li-image {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.mainpage-li-info {
+  padding: 20px 30px 6px 30px;
+  font-size: 14px;
+}
+
+.mainpage-li-funding-info {
+  font-size: 12px;
+  padding: 0px 30px;
+}
+
+@media (max-width: 800px) {
+  .featured-title {
+    width: auto;
+    position: relative;
+    bottom: 0px;
+    font-size: 16px;
+  }
+
+  .featured-author {
+    font-weight: 600;
+    margin-bottom: 3px;
+    font-size: 8px;
+  }
+
+  .featured-funded {
+    font-size: 6px;
+    font-weight: 700;
+  }
+
+  .white-background {
+    background: white;
+    display: inline-block;
+    padding: 6px;
+  }
+
+  .main-info-containers {
+    position: relative;
+    bottom: 100px;
+    left: 0px;
+    text-align: left;
+    padding: 10px;
+  }
 }

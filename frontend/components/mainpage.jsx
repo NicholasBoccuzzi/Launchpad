@@ -5,6 +5,9 @@ class Main extends React.Component {
 
   constructor (props) {
     super(props);
+
+    this.displayProjects = this.displayProjects.bind(this);
+    this.setDate = this.setDate.bind(this);
   }
 
   setDate() {
@@ -28,28 +31,98 @@ class Main extends React.Component {
     this.props.fetchProjects();
   }
 
-  displayProject () {
+  percentFunded (cur, goal) {
+    return Math.floor((cur/goal) * 100);
+  }
+
+  displayProjects () {
+    let latestList;
+    let latest;
+
+    if (this.props.projects.length > 0) {
+      let projects = Array.from(this.props.projects);
+      projects = projects.reverse();
+      latest = projects[0];
+
+      latestList = projects.slice(1,5);
+
+      latestList = latestList.map(project => {
+        return (
+          <ul key={project.id} className="mainpage-li-container">
+            <li className="mainpage-li-image-container">
+              <img className="mainpage-li-image" src={project.image}/>
+            </li>
+            <li>
+              <h2 className="mainpage-li-info">{project.title}</h2>
+              <h2 className="mainpage-li-funding-info">
+                {this.percentFunded(project.current_funding, project.funding_goal)}% funded</h2>
+            </li>
+          </ul>
+        );
+      });
+    } else {
+      latest = <div></div>;
+      latestList = [<div>Missing Projects</div>];
+    }
+
+
+    return (
+      <main className="mainpage-projects-container">
+        <div className="flexed">
+          <section className="featured-project-container">
+            <h2 className="mainpage-projects-header">Latest Project</h2>
+              <div className="featured-image-container">
+                <img className="featured-image" src={latest.image}></img>
+                <div className="main-info-containers">
+                  <div className="white-background featured-title">
+                    <p>{latest.title}</p>
+                  </div>
+                  <br></br>
+
+                  <div className="white-background featured-author">
+                    <p>BY CREATOR #{latest.creator_id}</p>
+                  </div>
+                  <br></br>
+                  <div className="white-background featured-author">
+                    <p className="white-background featured-funded">
+                    {this.percentFunded(latest.current_funding, latest.funding_goal)}% FUNDED
+                    </p>
+                  </div>
+                </div>
+              </div>
+          </section>
+          <section className="category-tabs-container">
+            <h2 className="mainpage-projects-header">Most Recent Projects</h2>
+            {latestList}
+          </section>
+        </div>
+
+
+      </main>
+    );
   }
 
   displayInfo () {
 
     return (
       <nav className="Launchpad-info-container">
-        <div className="top-info-box-left">
-          <div className="top-info heading">{this.setDate()}</div>
-          <div className="top-info bold">Sky is the limit.</div>
-        </div>
-        <div className="top-info-box">
-          <div className="top-info heading">Total Backers</div>
-          <div className="top-info bold">3</div>
-        </div>
-        <div className="top-info-box">
-          <div className="top-info heading">Total Projects</div>
-          <div className="top-info bold">3</div>
-        </div>
-        <div className="top-info-box-right">
-          <div className="top-info-heading">Funded Projects</div>
-          <div className="top-info bold">0</div>
+        <div className="Launchpad-info-nav">
+          <div className="top-info-box-left">
+            <div className="top-info heading">{this.setDate()}</div>
+            <div className="top-info bold">Sky is the limit.</div>
+          </div>
+          <div className="top-info-box">
+            <div className="top-info heading">Total Backers</div>
+            <div className="top-info bold">3</div>
+          </div>
+          <div className="top-info-box">
+            <div className="top-info heading">Total Projects</div>
+            <div className="top-info bold">3</div>
+          </div>
+          <div className="top-info-box-right">
+            <div className="top-info-heading">Funded Projects</div>
+            <div className="top-info bold">0</div>
+          </div>
         </div>
       </nav>
     );
@@ -60,13 +133,11 @@ class Main extends React.Component {
     return (
       <div>
         {this.displayInfo()}
-        (this.displayProject())
+        {this.displayProjects()}
 
       </div>
     );
   }
-
-
 }
 
 export default Main;
