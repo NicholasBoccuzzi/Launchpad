@@ -37,7 +37,7 @@
 .top-nav-right {
   font-family: 'Muli', sans-serif;
   text-align: right;
-  padding: 0px 10px 4px 60px;
+  padding: 0px 10px 10px 60px;
 }
 
 .nav-button {
@@ -68,13 +68,16 @@
 }
 
 .main-profile-button {
-  width: 38px;
-  height: 38px;
-  padding: 0px 0px 0px 0px;
+  width: 36px;
+  height: 36px;
   margin-top: 15px;
-  margin-right: 17.5px;
+  margin-right: 17px;
   border-radius: 360px;
+  padding: 0px;
   border: 1px solid black;
+  background: transparent;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .search-button {
@@ -96,4 +99,14 @@
 
 .left {
   padding: 0px 0px 0px 35px;
+}
+
+.profile-icon {
+  width: 50px;
+  height: 50px;
+  padding: 0px 0px 0px 0px;
+  position: relative;
+  bottom: 5px;
+  right: 5px;
+  border: none;
 }

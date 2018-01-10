@@ -54,7 +54,9 @@ private
       :deadline,
       :category,
       :subcategory,
-      :image
+      :image,
+      :imageFile,
+      :imageUrl
     )
   end
 end

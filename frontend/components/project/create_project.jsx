@@ -69,6 +69,7 @@ class createProjectForm extends React.Component {
   handlePicturePreview(e) {
     const reader = new FileReader();
     const file = e.currentTarget.files[0];
+
     reader.onloadend = () => {
       this.setState({
         image: {
@@ -117,6 +118,7 @@ class createProjectForm extends React.Component {
                 <h3 className="project-form-input-title">Project Image</h3>
               </div>
               <div className="project-input-container">
+                <img className="larger-input-preview" src={this.state.image.imageUrl} />
                 <div className="big-button">
                   <input type="file" onChange={this.handlePicturePreview}></input>
                   <h3 className="project-upload-image-header">Choose an image from your computer</h3>
@@ -259,7 +261,9 @@ class createProjectForm extends React.Component {
             </div>
 
             <div className="small-preview-container">
-              <div className="preview-photo"><img src={this.state.image.url}></img></div>
+              <div className="preview-photo">
+                <img className="preview-photo-image" src={this.state.image.imageUrl}></img>
+              </div>
               <div className="small-preview-info-container">
                 <div className="small-preview-item">{this.state.title}</div>
                 <div className="small-preview-item">{this.state.summary}</div>

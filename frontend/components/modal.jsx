@@ -37,6 +37,7 @@ class Modal extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault;
+
     const project = this.props.state;
     project.funding_goal = parseInt(project.funding_goal);
     this.props.createProject(project);

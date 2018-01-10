@@ -196,8 +196,15 @@ margin: auto;
 }
 
 .preview-photo {
-  background: black;
-  height: 150px;
+  display: block;
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.preview-photo-image {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: cover;
 }
 
 .small-preview-item {
@@ -228,4 +235,8 @@ margin: auto;
 
 .flexed {
   display: flex;
+}
+
+.larger-input-preview {
+  max-width: 400px;
 }

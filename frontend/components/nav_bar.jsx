@@ -17,9 +17,10 @@ class Navbar extends React.Component {
         <div>
           <button className="nav-button search-button-loggined-in">
           </button>
-          <button onClick={this.props.toggleProfileDropDown} to="#"
-            className="nav-button main-profile-button">
-          </button>
+          <div className="nav-button main-profile-button" onClick={this.props.toggleProfileDropDown}>
+            <img className="profile-icon" src={this.props.currentUser.image}>
+            </img>
+          </div>
         </div>
       );
       } else {

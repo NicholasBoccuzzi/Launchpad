@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+Project.destroy_all
+
 u1 = User.create!(username: "demo", password: "password", email: "demo@gmail.com", location: "New York")
 u2 = User.create!(username: "winnie", password: "ilovetreats", email: "cutepuppy@yahoo.com", location: "Naples")
 u3 = User.create!(username: "luke", password: "starwars", email: "thelastjedi@hotmail.com", location: "Tatooine")
@@ -42,4 +45,28 @@ p3 = Project.create!(
   creator_id: u3.id,
   deadline: "2025/05/20",
   category: "Movie",
+)
+
+p4 = Project.create!(
+  title: "Seed App Project",
+  current_funding: 12345,
+  funding_goal: 100000,
+  funded: false,
+  summary: "an app that does seeding for rails",
+  body: "longer body of text to summarize the app",
+  creator_id: u1.id,
+  deadline: "2020/02/02",
+  category: "Tech",
+)
+
+p5 = Project.create!(
+  title: "Seed Art Project",
+  current_funding: 1,
+  funding_goal: 1000,
+  funded: false,
+  summary: "an art project that features colors",
+  body: "longer body of text to summarize the art project",
+  creator_id: u2.id,
+  deadline: "2019/01/01",
+  category: "Art",
 )

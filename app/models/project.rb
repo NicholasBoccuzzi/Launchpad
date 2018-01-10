@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "missing.png"
+  has_attached_file :image, default_url: "missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   validate :everythingIsFilled
@@ -20,13 +20,13 @@ class Project < ApplicationRecord
   def everythingIsFilled
     if title == ""
       errors.add(:title, "Title can't be blank")
-    elsif funding_goal >= 100
+    elsif funding_goal <= 100
       errors.add(:funding_goal, "must be more than $100")
     elsif summary == ""
       errors.add(:summary, "Summary can't be blank")
     elsif body == ""
       errors.add(:body, "Body can't be blank")
-    elsif deadline deadline.blank?
+    elsif deadline.blank?
       errors.add(:deadline, "Deadline must be filled in")
     elsif category == "--" || category == ""
       errors.add(:cateogry, "Your project must have a category")
