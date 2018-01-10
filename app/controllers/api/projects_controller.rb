@@ -12,7 +12,6 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    debugger
     @project = Project.create!(project_params)
 
     if @project.save

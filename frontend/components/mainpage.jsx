@@ -5,7 +5,6 @@ class Main extends React.Component {
 
   constructor (props) {
     super(props);
-
   }
 
   setDate() {
@@ -27,6 +26,9 @@ class Main extends React.Component {
 
   componentDidMount () {
     this.props.fetchProjects();
+  }
+
+  displayProject () {
   }
 
   displayInfo () {
@@ -58,7 +60,7 @@ class Main extends React.Component {
     return (
       <div>
         {this.displayInfo()}
-
+        (this.displayProject())
 
       </div>
     );

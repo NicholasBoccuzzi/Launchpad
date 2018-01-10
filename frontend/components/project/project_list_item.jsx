@@ -14,8 +14,20 @@ class ProjectListItem extends React.Component {
   }
 
   dateMath () {
-    return;
-    // new Date((this.props.project.deadline - new Date(Date.now())));
+    const time = {
+      days: Math.floor((new Date(this.props.project.deadline) - new Date(Date.now()))/1000/60/60/24),
+      hours: Math.floor((new Date(this.props.project.deadline) - new Date(Date.now()))/1000/60/60/24%10)
+    };
+
+    if (time.hours > 0){
+      return (
+        <h1 className="li-percent-stats">{time.days} days {time.hours} hours remaining</h1>
+      );
+    } else {
+      return (
+        <h1 className="li-percent-stats">{time.days} days remaining</h1>
+      );
+    }
   }
 
   render () {
@@ -36,8 +48,11 @@ class ProjectListItem extends React.Component {
             <br/>
             <h1 className="li-percent-stats green">${this.props.project.current_funding} pledged</h1>
             <h1 className="li-percent-stats">{this.percentMath()}% funded</h1>
-            <h1 className="li-percent-stats">{this.dateMath()}</h1>
+            {this.dateMath()}
+            <br/>
+            <Link className="li-percent-stats li-category-link" to="#">{this.props.project.category}</Link>
           </div>
+
         </li>
       </div>
     );

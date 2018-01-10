@@ -59,7 +59,7 @@
   min-width: 280px;
   max-height: 100%;
   max-width: 100%;
-  object-fit:fill;
+  object-fit:scale-down;
 }
 
 .flex-children {
@@ -76,7 +76,7 @@
 .li-title-link {
   font-size: 18px;
   color: black;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .li-title-link:hover {
@@ -86,19 +86,39 @@
 .li-bot-container{
   text-align: center;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .li-percent-indicator {
-  width: 300px;
+  width: 90%;
   height: 3px;
+  margin-bottom: 10px;
+}
 
+.small-text {
+  font-size: 12px;
 }
 
 .li-percent-stats {
   font-size: 12px;
   text-align:left;
-  margin: 4px 30px;
+  margin: 4px 5%;
 }
+
+.li-category-link {
+  color: #656969;
+  text-align: left;
+  padding-right: 90%;
+  position: relative;
+  padding-bottom: 40px;
+  text-decoration: underline;
+}
+
+.li-category-link:hover {
+  color: black;
+}
+
+
 
 
 // @media (max-width: 1025px)  {
