@@ -26,26 +26,40 @@
 .green {
   font-weight: 700;
   color: #169D74;
-  display: inline;
+  text-align: left;
+  font-size: 14px;
+  padding-bottom: 8px;
 }
 
 .num-projects-container {
   padding: 0px 0px 20px 0px;
 }
 
+.li-image-container {
+  min-width: 250px;
+  max-height: 200px;
+  overflow: hidden;
+}
+
 .list-item-container {
   min-width: 250px;
-  width: 350px;
-  max-width: 350px;
+  max-width: 355px;
+  max-height: 530px;
+  min-height: 440px;
   margin: 0px 20px 20px 20px;
   border: 1px solid #DCDEDD;
-  flex-grow: 2;
+}
+
+.li-mid-container {
+  padding: 30px 20px;
 }
 
 .list-item-image {
+  position: relative;
+  min-width: 280px;
   max-height: 100%;
   max-width: 100%;
-  object-fit: cover;
+  object-fit:fill;
 }
 
 .flex-children {
@@ -54,3 +68,52 @@
   flex-wrap: wrap;
   justify-content:flex-start;
 }
+
+.li-text {
+  font-size: 16px;
+}
+
+.li-title-link {
+  font-size: 18px;
+  color: black;
+  padding-bottom: 30px;
+}
+
+.li-title-link:hover {
+  text-decoration: underline;
+}
+
+.li-bot-container{
+  text-align: center;
+  padding-top: 30px;
+}
+
+.li-percent-indicator {
+  width: 300px;
+  height: 3px;
+
+}
+
+.li-percent-stats {
+  font-size: 12px;
+  text-align:left;
+  margin: 4px 30px;
+}
+
+
+// @media (max-width: 1025px)  {
+//   .list-item-container {
+//     min-width: 250px;
+//     max-width: 400px;
+//     max-height: 530px;
+//     min-height: 440px;
+//     margin: 0px 20px 20px 20px;
+//     border: 1px solid #DCDEDD;
+//   }
+//
+//   .li-image-container {
+//     min-width: 250px;
+//     max-height: 250px;
+//     overflow: hidden;
+//   }
+// }

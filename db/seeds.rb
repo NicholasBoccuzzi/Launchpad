@@ -26,7 +26,7 @@ p1 = Project.create!(
 
 p2 = Project.create!(
   title: "Seed Puppy Project",
-  current_funding: 500,
+  current_funding: 50000,
   funding_goal: 1000000,
   summary: "tracks puppy location",
   body: "longer explanation of puppy seed project",
@@ -37,7 +37,7 @@ p2 = Project.create!(
 
 p3 = Project.create!(
   title: "Seed Star Wars Project",
-  current_funding: 1200,
+  current_funding: 1000,
   funding_goal: 1000,
   funded: true,
   summary: "star wars fan film",
@@ -61,7 +61,7 @@ p4 = Project.create!(
 
 p5 = Project.create!(
   title: "Seed Art Project",
-  current_funding: 1,
+  current_funding: 250,
   funding_goal: 1000,
   funded: false,
   summary: "an art project that features colors",

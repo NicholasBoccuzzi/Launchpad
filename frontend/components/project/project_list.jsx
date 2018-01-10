@@ -34,9 +34,9 @@ class projectList extends React.Component {
         <div className="num-projects-container">
           <div className="discover-header-container">
             <h1 className="discover-header">
-              Explore <h2 className="discover-header green">
+              Explore <div className="discover-header green">
               {this.props.projects.length} projects
-            </h2>
+            </div>
           </h1>
           </div>
         </div>

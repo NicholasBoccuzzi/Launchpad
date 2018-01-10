@@ -14,12 +14,17 @@ class createProjectForm extends React.Component {
       body: "temp",
       deadline: "",
       category: "",
+      location: "",
       image: {
         imageUrl: null,
         imageFile: null
       }
     };
 
+    this.formData = new FormData();
+    this.formData.set(`project[body]`, "blah");
+    this.formData.set(`project[creator_id]`, this.props.currentUser.id);
+    this.update = this.update.bind(this);
     this.renderSubmit = this.renderSubmit.bind(this);
     this.current_funding = this.current_funding.bind(this);
     this.handlePictureUpload = this.handlePictureUpload.bind(this);
@@ -39,19 +44,29 @@ class createProjectForm extends React.Component {
   }
 
   update(field) {
+    const that = this;
     return e => {
-      this.setState({
+      that.setState({
         [field]: e.currentTarget.value
       });
-      if (!this.props.createProjectModalActive) {
-        this.props.toggleCreateProjectModal();
+
+      if (!that.props.createProjectModalActive) {
+        that.props.toggleCreateProjectModal();
+      }
+
+      if (!that.formData[field]) {
+        if (field === "funding_goal") {
+          that.formData.set(`project[${field}]`, parseInt(e.currentTarget.value));
+        } else {
+          that.formData.set(`project[${field}]`, e.currentTarget.value);
+        }
       }
     };
   }
 
   renderSubmit () {
     if (this.props.createProjectModalActive) {
-      return <Modal state={this.state} location={this.props.location}/>;
+      return <Modal state={this.state} formData={this.formData} location={this.props.location}/>;
     } else {
       return;
     }
@@ -81,22 +96,14 @@ class createProjectForm extends React.Component {
 
     if (file) {
       reader.readAsDataURL(file);
-      this.handlePictureUpload();
     }
   }
 
   handlePictureUpload () {
-    const file = this.state.image;
-
-    const formData = new FormData();
-
+    const file = this.state.image.imageFile;
     if (file) {
-      formData.append("project[image]", file);
+      this.formData.append("project[image]", file);
     }
-  }
-
-  doNothing() {
-    return;
   }
 
   render () {

@@ -24,7 +24,9 @@ export const createProject = (project) => {
   return $.ajax({
       method: "POST",
       url: `api/projects`,
-      data: { project }
+      processData: false,
+      contentType: false,
+      data: project,
   });
 };
 
