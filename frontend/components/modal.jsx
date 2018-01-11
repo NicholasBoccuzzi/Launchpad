@@ -38,9 +38,12 @@ class Modal extends React.Component {
   handleSubmit (e) {
     e.preventDefault;
 
+    debugger
+
     this.props.formData.set(`project[image]`, this.props.state.image.imageFile);
     const project = this.props.formData;
     this.props.createProject(project);
+
   }
 
   renderIfCreateProjectActive () {

@@ -39,7 +39,7 @@ p2 = Project.create!(
 
 p3 = Project.create!(
   title: "Seed Star Wars Project",
-  current_funding: 1000,
+  current_funding: 1100,
   funding_goal: 1000,
   funded: true,
   summary: "star wars fan film",

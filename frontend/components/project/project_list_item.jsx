@@ -10,7 +10,12 @@ class ProjectListItem extends React.Component {
   }
 
   percentMath () {
-    return ((this.props.project.current_funding/this.props.project.funding_goal)*100);
+      let percent = (this.props.project.current_funding/this.props.project.funding_goal)*100;
+      if (percent > 100) {
+        return 100;
+      } else {
+        return percent;
+      }
   }
 
   dateMath () {
@@ -38,10 +43,10 @@ class ProjectListItem extends React.Component {
             <img className="list-item-image" src={this.props.project.image}/>
           </div>
           <div className="li-mid-container">
-            <Link className="li-title-link" to={`project/${this.props.project.id}`}>
+            <Link className="li-title-link" to={`projects/${this.props.project.id}`}>
               <h3 className="li-title-link">{this.props.project.title}</h3>
             </Link>
-            <h3 className="small-text">by creator #{this.props.project.creator_id}</h3>
+            <h3 className="small-text">by {this.props.project.user.username}</h3>
           </div>
           <div className="li-bot-container">
             <Line className="li-percent-indicator" trailColor="#F1EEEA" percent={this.percentMath()} strokeWidth=".1" strokeColor="#169D74" />
