@@ -1,10 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class Main extends React.Component {
 
   constructor (props) {
     super(props);
+
+    this.state = {
+
+    };
 
     this.displayProjects = this.displayProjects.bind(this);
     this.setDate = this.setDate.bind(this);
@@ -35,6 +39,7 @@ class Main extends React.Component {
     return Math.floor((cur/goal) * 100);
   }
 
+
   displayProjects () {
     let latestList;
     let latest;
@@ -42,6 +47,7 @@ class Main extends React.Component {
     if (this.props.projects.length > 0) {
       let projects = Array.from(this.props.projects);
       projects = projects.reverse();
+      this.projectCount = projects.length;
       latest = projects[0];
 
       latestList = projects.slice(1,5);
@@ -49,9 +55,9 @@ class Main extends React.Component {
       latestList = latestList.map(project => {
         return (
           <ul key={project.id} className="mainpage-li-container">
-            <li className="mainpage-li-image-container">
+            <Link to={`/projects/${project.id}`} className="mainpage-li-image-container">
               <img className="mainpage-li-image" src={project.image}/>
-            </li>
+            </Link>
             <li>
               <h2 className="mainpage-li-info">{project.title}</h2>
               <h2 className="mainpage-li-funding-info">
@@ -66,12 +72,13 @@ class Main extends React.Component {
     }
 
 
+
     return (
       <main className="mainpage-projects-container">
         <div className="flexed">
           <section className="featured-project-container">
             <h2 className="mainpage-projects-header">Latest Project</h2>
-              <div className="featured-image-container">
+              <Link to={`/projects/${latest.id}`} className="featured-image-container">
                 <img className="featured-image" src={latest.image}></img>
                 <div className="main-info-containers">
                   <div className="white-background featured-title">
@@ -89,7 +96,7 @@ class Main extends React.Component {
                     </p>
                   </div>
                 </div>
-              </div>
+              </Link>
           </section>
           <section className="category-tabs-container">
             <h2 className="mainpage-projects-header">Most Recent Projects</h2>
@@ -117,7 +124,7 @@ class Main extends React.Component {
           </div>
           <div className="top-info-box">
             <div className="top-info heading">Total Projects</div>
-            <div className="top-info bold">3</div>
+            <div className="top-info bold">{this.projectCount}</div>
           </div>
           <div className="top-info-box-right">
             <div className="top-info-heading">Funded Projects</div>

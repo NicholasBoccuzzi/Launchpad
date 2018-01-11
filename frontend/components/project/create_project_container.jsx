@@ -11,7 +11,7 @@ const mapStateToProps = (state, { location }) => {
   return {
     location: curPath,
     currentUser: state.session.currentUser,
-    createProjectModalActive: state.ui.createProjectModalActive,
+    projectCreateUpdateModalActive: state.ui.projectCreateUpdateModalActive,
   };
 };
 

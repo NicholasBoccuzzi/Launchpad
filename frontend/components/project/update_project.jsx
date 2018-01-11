@@ -7,6 +7,7 @@ class createProjectForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
+      id: parseInt(this.props.projectId),
       creator_id: this.props.currentUser.id,
       title: "",
       funding_goal: "0",
@@ -18,11 +19,13 @@ class createProjectForm extends React.Component {
       image: {
         imageUrl: null,
         imageFile: null
-      }
+      },
+      modalVisible: false
     };
 
     this.formData = new FormData();
     this.formData.set(`project[body]`, "blah");
+    this.formData.set(`project[id]`, this.props.projectId);
     this.formData.set(`project[creator_id]`, this.props.currentUser.id);
     this.update = this.update.bind(this);
     this.renderSubmit = this.renderSubmit.bind(this);
@@ -33,13 +36,41 @@ class createProjectForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
-    const project = this.state;
-    this.props.createProject(project);
+
   }
 
   componentDidMount () {
-    if (this.props.createProjectModalActive) {
-      this.props.toggleCreateProjectModal();
+    if (this.props.modalVisible) {
+      this.setState({modalVisible: false});
+    }
+    this.props.fetchProject(parseInt(this.props.projectId));
+  }
+
+  componentWillUnmount() {
+    this.setState({modalVisible: false});
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!this.state.modalVisible) {
+
+      if (nextProps.project) {
+        this.setState({
+          title: nextProps.project.title,
+          funding_goal: nextProps.project.funding_goal,
+          summary: nextProps.project.summary,
+          deadline:  nextProps.project.deadline.slice(0, 10),
+          category: nextProps.project.category,
+          location: nextProps.project.location,
+          image: {imageUrl: nextProps.project.image}
+        });
+
+        this.formData.set(`project[title]`, nextProps.project.title);
+        this.formData.set(`project[funding_goal]`, nextProps.project.funding_goal);
+        this.formData.set(`project[summary]`, nextProps.project.summary);
+        this.formData.set(`project[deadline]`, nextProps.project.deadline.slice(0, 10));
+        this.formData.set(`project[category]`, nextProps.project.category);
+        this.formData.set(`project[location]`, nextProps.project.location);
+      }
     }
   }
 
@@ -47,26 +78,33 @@ class createProjectForm extends React.Component {
     const that = this;
     return e => {
       that.setState({
-        [field]: e.currentTarget.value
+        [field]: e.target.value
       });
 
-      if (!that.props.createProjectModalActive) {
-        that.props.toggleCreateProjectModal();
+      if (!that.state.modalVisible) {
+        that.setState({modalVisible: true});
       }
 
-      if (!that.formData[field]) {
-        if (field === "funding_goal") {
-          that.formData.set(`project[${field}]`, parseInt(e.currentTarget.value));
-        } else {
-          that.formData.set(`project[${field}]`, e.currentTarget.value);
-        }
+      if (field === "funding_goal") {
+        that.formData.set(`project[${field}]`, parseInt(e.currentTarget.value));
+      } else {
+        that.formData.set(`project[${field}]`, e.currentTarget.value);
       }
+
     };
   }
 
   renderSubmit () {
-    if (this.props.createProjectModalActive) {
-      return <Modal state={this.state} formData={this.formData} location={this.props.location}/>;
+    if (this.state.modalVisible) {
+      return (
+        <Modal
+          modalVisible={this.state.modalVisible}
+          image={this.state.image}
+          formData={this.formData}
+          location={this.props.location}
+          id={this.state.id}
+          />
+      );
     } else {
       return;
     }
@@ -96,18 +134,18 @@ class createProjectForm extends React.Component {
 
     if (file) {
       reader.readAsDataURL(file);
+      this.setState({modalVisible: true});
     }
   }
 
   handlePictureUpload () {
     const file = this.state.image.imageFile;
     if (file) {
-      this.formData.append("project[image]", file);
+      this.formData.set("project[image]", file);
     }
   }
 
   render () {
-
     return (
       <main className="largest-project-container">
         <nav className="project-nav">
@@ -184,7 +222,7 @@ class createProjectForm extends React.Component {
                 <h3 className="project-form-input-title">Category</h3>
               </div>
               <div className="project-categories-container">
-                <select className=" input-categories"
+                <select value={this.state.category} className=" input-categories"
                   onChange={this.update('category')}>
                   <option value="">--</option>
                   <option value="Art">Art</option>
@@ -193,14 +231,14 @@ class createProjectForm extends React.Component {
                   <option value="Dance">Dance</option>
                   <option value="Design">Design</option>
                   <option value="Fashion">Fashion</option>
-                  <option value="Film & Video">Film & Video</option>
-                  <option value="Food ">Food</option>
+                  <option value='FilmVideo'>Film & Video</option>
+                  <option value="Food">Food</option>
                   <option value="Games">Games</option>
                   <option value="Journalism">Journalism</option>
                   <option value="Music">Music</option>
                   <option value="Photography">Photography</option>
                   <option value="Publishing">Publishing</option>
-                  <option value="Technology">Technology</option>
+                  <option value="Tech">Technology</option>
                   <option value="Theater">Theater</option>
                 </select>
               </div>

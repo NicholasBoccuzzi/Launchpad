@@ -12,7 +12,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create!(project_params)
+    @project = Project.new(project_params)
 
     if @project.save
       render :show
@@ -26,7 +26,7 @@ class Api::ProjectsController < ApplicationController
   end
 
   def update
-    @project = Project.find(project_params[:project][:id])
+    @project = Project.find(project_params[:id])
 
     if @project.update_attributes(project_params)
       render :show
@@ -46,7 +46,9 @@ private
 
   def project_params
     params.require(:project).permit(
+      :id,
       :title,
+      :location,
       :funding_goal,
       :summary,
       :body,
@@ -56,7 +58,8 @@ private
       :subcategory,
       :image,
       :imageFile,
-      :imageUrl
+      :imageUrl,
+      :funded
     )
   end
 end

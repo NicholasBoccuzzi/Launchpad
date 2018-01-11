@@ -3,22 +3,25 @@ import Modal from './modal';
 import { toggleErrorModal } from '../actions/ui_actions.js';
 import { clearSessionErrors} from '../actions/session_actions';
 import { toggleCreateProjectModal } from '../actions/ui_actions.js';
-import { createProject } from '../actions/project_actions';
-const mapStateToProps = state => {
+import { createProject, updateProject } from '../actions/project_actions';
+import { withRouter } from 'react-router-dom';
+
+const mapStateToProps = (state, ownProps) => {
   return {
     errors: state.errors.session,
     errorModalActive: state.ui.errorModalActive,
-    createProjectModalActive: state.ui.createProjectModalActive
+    projectCreateUpdateModalActive: state.ui.projectCreateUpdateModalActive,
   };
 };
 
 const mapDispatchToProps = dispatch => ({
+  updateProject: (project, id) => dispatch(updateProject(project, id)),
   createProject: (project) => dispatch(createProject(project)),
   toggleErrorModal: () => dispatch(toggleErrorModal()),
   clearSessionErrors: () => dispatch(clearSessionErrors())
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Modal);
+)(Modal));

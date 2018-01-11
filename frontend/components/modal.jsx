@@ -1,11 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import CreateProjectForm from './project/create_project_container';
+import { Redirect } from 'react-router-dom';
 
 class Modal extends React.Component {
   constructor (props) {
     super(props);
-
+    this.state = {
+      redirect: false
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -36,28 +39,55 @@ class Modal extends React.Component {
   }
 
   handleSubmit (e) {
-    e.preventDefault;
+    e.preventDefault();
+    const that = this;
 
-    debugger
-
-    this.props.formData.set(`project[image]`, this.props.state.image.imageFile);
-    const project = this.props.formData;
-    this.props.createProject(project);
-
+    if (that.props.location === "startproject"){
+      that.props.formData.set(`project[image]`, that.props.state.image.imageFile);
+      const project = that.props.formData;
+      that.props.createProject(project).then(() => {
+        that.setState({ redirect: !that.state.redirect });
+      });
+    } else if (that.props.location.pathname.includes("edit")
+    && that.props.location.pathname.includes("projects")) {
+      if (that.props.image.imageFile) {
+        that.props.formData.set(`project[image]`, that.props.image.imageFile);
+      }
+      const project = that.props.formData;
+      that.props.updateProject(project, that.props.id).then(() => {
+        that.setState({ redirect: !that.state.redirect });
+        // that.props.location.pathname = '/projects/81'
+      });
+    }
   }
 
   renderIfCreateProjectActive () {
-    if (this.props.createProjectModalActive) {
+    if (this.props.projectCreateUpdateModalActive) {
       return (
         <div className="submit-project-bar">
           <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
           <input type="submit" className="project-save-button" value="Save" onClick={this.handleSubmit}></input>
         </div>
       );
+    } else {
+      return (
+        <div className="submit-project-bar">
+          <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
+          <input type="submit" className="project-save-button" value="Create" onClick={this.handleSubmit}></input>
+        </div>
+      );
     }
   }
 
+
+
   render () {
+    let redirected;
+    if (!this.state.redirect) {
+      redirected = null;
+    } else {
+      redirected = <Redirect to={`/projects/${this.props.id}`} />;
+    }
     if (this.props.location === "login") {
       return (
         <div>
@@ -67,8 +97,17 @@ class Modal extends React.Component {
     } else if (this.props.location === "startproject") {
       return (
           <div>
+            {redirected}
             {this.renderIfCreateProjectActive()}
           </div>
+      );
+    } else if (this.props.location.pathname.includes("edit")
+    && this.props.location.pathname.includes("projects")) {
+      return (
+        <div>
+          {redirected}
+          {this.renderIfCreateProjectActive()}
+        </div>
       );
     }
   }

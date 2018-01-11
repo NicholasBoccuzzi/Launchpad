@@ -4,7 +4,7 @@ import { merge } from 'lodash';
 const initialState = {
   profileDropDownActive: false,
   errorModalActive: false,
-  createProjectModalActive: false,
+  projectCreateUpdateModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     return newErrorState;
   case TOGGLE_CREATE_PROJECT_MODAL:
     let newProjectState = merge({}, state);
-    newProjectState.createProjectModalActive = !newProjectState.createProjectModalActive;
+    newProjectState.projectCreateUpdateModalActive = !newProjectState.projectCreateUpdateModalActive;
     return newProjectState;
 
   default:

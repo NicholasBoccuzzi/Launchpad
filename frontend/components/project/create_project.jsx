@@ -33,12 +33,11 @@ class createProjectForm extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault();
-    const project = this.state;
-    this.props.createProject(project);
+
   }
 
   componentDidMount () {
-    if (this.props.createProjectModalActive) {
+    if (this.props.projectCreateUpdateModalActive) {
       this.props.toggleCreateProjectModal();
     }
   }
@@ -50,7 +49,7 @@ class createProjectForm extends React.Component {
         [field]: e.currentTarget.value
       });
 
-      if (!that.props.createProjectModalActive) {
+      if (!that.props.projectCreateUpdateModalActive) {
         that.props.toggleCreateProjectModal();
       }
 
@@ -65,7 +64,7 @@ class createProjectForm extends React.Component {
   }
 
   renderSubmit () {
-    if (this.props.createProjectModalActive) {
+    if (this.props.projectCreateUpdateModalActive) {
       return <Modal state={this.state} formData={this.formData} location={this.props.location}/>;
     } else {
       return;

@@ -9,12 +9,20 @@ import {
 } from '../../actions/project_actions';
 
 
-const mapStateToProps = (state, { location }) => {
-  const curPath = location.pathname.slice(1);
+const mapStateToProps = (state, ownProps) => {
+  let project;
+  if (!state.entities.propjects) {
+    project = state.entities.projects[ownProps.match.params.projectId];
+  } else {
+    project = null;
+  }
+
   return {
-    location: curPath,
+    location: ownProps.location,
+    projectId: ownProps.match.params.projectId,
     currentUser: state.session.currentUser,
-    createProjectModalActive: state.ui.createProjectModalActive,
+    projectCreateUpdateModalActive: state.ui.projectCreateUpdateModalActive,
+    project: project
   };
 };
 
@@ -23,7 +31,6 @@ const mapDispatchToProps = dispatch => {
     fetchProject: (id) => dispatch(fetchProject(id)),
     toggleCreateProjectModal: () => dispatch(toggleCreateProjectModal()),
     updateProject: (project) => dispatch(updateProject(project)),
-
   };
 };
 
