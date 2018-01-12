@@ -55,6 +55,19 @@ class projectShow extends React.Component {
             </Link>
           </section>
         );
+      } else {
+        return (
+          <section className="project-show-creator-info">
+            <div className="project-show-creator-icon-box">
+              <img className="project-show-creator-icon"
+                src={this.props.project.user_image}>
+              </img>
+            </div>
+            <div className="small-text">
+              By {this.props.project.user.username}
+            </div>
+          </section>
+        );
       }
     } else {
       return (
