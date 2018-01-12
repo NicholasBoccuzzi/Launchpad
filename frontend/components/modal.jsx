@@ -126,7 +126,7 @@ class Modal extends React.Component {
         redirected = <Redirect to={`/projects/${this.props.id}`} />;
       }
       else {
-        redirected = <Redirect to={`/projects`} />;
+        redirected = <Redirect to={`/discover`} />;
       }
     }
 

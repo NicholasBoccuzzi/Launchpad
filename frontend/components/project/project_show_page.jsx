@@ -45,15 +45,17 @@ class projectShow extends React.Component {
   }
 
   renderUser() {
-    if (this.props.currentUser.id == this.props.project.creator_id) {
-      return (
-        <section className="project-show-creator-info">
-          <Link className="edit-button"
-            to={`/projects/${this.props.project.id}/edit`}>
-            Edit Project
-          </Link>
-        </section>
-      );
+    if (this.props.currentUser) {
+      if (this.props.currentUser.id == this.props.project.creator_id) {
+        return (
+          <section className="project-show-creator-info">
+            <Link className="edit-button"
+              to={`/projects/${this.props.project.id}/edit`}>
+              Edit Project
+            </Link>
+          </section>
+        );
+      }
     } else {
       return (
         <section className="project-show-creator-info">
@@ -107,8 +109,26 @@ class projectShow extends React.Component {
               </div>
             </div>
             <div className="show-page-buttons">
-              <h1 className="show-main-button">Category: {this.props.project.category}</h1> &nbsp;
-              <h1 >{this.props.project.location}</h1>
+              <div className="show-main-button-container">
+                <div className="show-main-button">
+                  <div className="launchpad-loves">L</div>&nbsp;&nbsp;
+                    <div className="small-text">
+                      Project We Love
+                    </div>
+                  </div>
+                  <div className="show-main-button">
+                    <i class="fa fa-compass" aria-hidden="true"></i>&nbsp;&nbsp;
+                      <div className="small-text">
+                        {this.props.project.category.toUpperCase()}
+                      </div>
+                    </div>
+                    <div className="show-main-button">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;
+                        <div className="small-text">
+                          {this.props.project.location.toUpperCase()}
+                        </div>
+                    </div>
+              </div>
             </div>
           </div>
         </main>

@@ -31,18 +31,20 @@ class projectList extends React.Component {
 
     return (
       <ul className="project-index-container">
-        <div className="num-projects-container">
-          <div className="discover-header-container">
-            <h1 className="discover-header">
-              Explore <div className="discover-header green">
-              {this.props.projects.length} projects
+        <div className="center">
+          <div className="num-projects-container">
+            <div className="discover-header-container">
+              <h1 className="discover-header">
+                Explore <div className="discover-header green">
+                {this.props.projects.length} projects
+                </div>
+              </h1>
             </div>
-          </h1>
+            <ul className="flex-children">
+              {mappedProjectList.reverse()}
+            </ul>
           </div>
         </div>
-        <ul className="flex-children">
-          {mappedProjectList.reverse()}
-        </ul>
       </ul>
       );
     } else {

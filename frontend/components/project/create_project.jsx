@@ -13,7 +13,7 @@ class createProjectForm extends React.Component {
       summary: "",
       body: "temp",
       deadline: "",
-      category: "",
+      category: "Art",
       location: "",
       image: {
         imageUrl: null,
@@ -23,6 +23,7 @@ class createProjectForm extends React.Component {
 
     this.formData = new FormData();
     this.formData.set(`project[body]`, "blah");
+    this.formData.set(`project[category]`, "Art");
     this.formData.set(`project[creator_id]`, this.props.currentUser.id);
     this.update = this.update.bind(this);
     this.renderSubmit = this.renderSubmit.bind(this);
@@ -125,20 +126,24 @@ class createProjectForm extends React.Component {
               <div className="project-form-input-title-box">
                 <h3 className="project-form-input-title">Project Image</h3>
               </div>
-              <div className="project-input-container">
+              <div className="flexed-columns">
                 <img className="larger-input-preview" src={this.state.image.imageUrl} />
-                <div className="big-button">
-                  <input type="file" onChange={this.handlePicturePreview}></input>
-                  <h3 className="project-upload-image-header">Choose an image from your computer</h3>
-                  <h3 className="small-font">This is the main image associated with your project. Make it count!</h3>
-                  <h3 className="small-font">JPEG, PNG, GIF, or BMP</h3>
-                  <h3 className="small-font">16:9 aspect ratio</h3>
+                <div className="project-input-container">
+                  <div className="big-button">
+                    <label for="file-input" className="file-input">
+                      <h3 className="project-upload-image-header">Choose an image from your computer</h3>
+                      <h3 className="small-font background-white">This is the main image associated with your project. Make it count!</h3>
+                      <h3 className="small-font background-white">JPEG, PNG, GIF, or BMP</h3>
+                      <h3 className="small-font-last background-white">16:9 aspect ratio</h3>
+                      <input type="file" id="file-input" className="file-input-button" onChange={this.handlePicturePreview}></input>
+                    </label>
+                  </div>
+                  <p className="project-form-explanations">
+                    This is the first thing that people will see when
+                    they come across your project. Choose an image that’s crisp
+                    and text-free.
+                  </p>
                 </div>
-                <p className="project-form-explanations">
-                  This is the first thing that people will see when
-                  they come across your project. Choose an image that’s crisp
-                  and text-free.
-                </p>
               </div>
             </div>
             <div className="project-form-input-box">
@@ -187,7 +192,6 @@ class createProjectForm extends React.Component {
               <div className="project-categories-container">
                 <select className=" input-categories"
                   onChange={this.update('category')}>
-                  <option value="">--</option>
                   <option value="Art">Art</option>
                   <option value="Comics">Comics</option>
                   <option value="Crafts">Crafts</option>

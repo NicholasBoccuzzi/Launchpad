@@ -52,6 +52,10 @@ margin: auto;
 
 .big-button {
   border: 1px dashed blue;
+  align-content: center;
+  text-align: center;
+  width: 400px;
+  border-radius: 7px;
 }
 
 .project-button-container:hover {
@@ -65,6 +69,9 @@ margin: auto;
 
 .project-upload-image-header {
   font-size: 13px;
+  background: white;
+  padding: 22px 10px 4px 10px;
+  font-weight: 600;
 }
 
 .project-input-container {
@@ -84,6 +91,13 @@ margin: auto;
 .small-font {
   font-size: 10px;
   line-height: 16px;
+  padding-bottom: 4px;
+}
+
+.small-font-last{
+  font-size: 10px;
+  line-height: 16px;
+  padding-bottom: 16px;
 }
 
 .project-form-input-title {
@@ -199,6 +213,8 @@ margin: auto;
   display: block;
   height: 130px;
   max-width: 200px;
+  margin: auto;
+  text-align: center;
 }
 
 .preview-photo-image {
@@ -211,6 +227,8 @@ margin: auto;
   width: 200px;
   margin: auto;
   height: 8px;
+  padding-top: 4px;
+  padding-bottom:4px;
 }
 
 .small-preview-info-container {
@@ -239,4 +257,23 @@ margin: auto;
 
 .larger-input-preview {
   max-width: 400px;
+}
+
+.file-input {
+  text-align: center;
+  align-content: center;
+  cursor: pointer;
+}
+
+.file-input-button {
+  display: none;
+}
+
+.flexed-columns {
+  display: flex;
+  flex-direction: column;
+}
+
+.background-white {
+  background: white;
 }
