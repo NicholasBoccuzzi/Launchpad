@@ -154,6 +154,11 @@
   padding: 0px 30px;
 }
 
+.mainpage-li-info:hover {
+  color: #0F7262;
+  cursor: pointer;
+}
+
 @media (max-width: 800px) {
   .featured-title {
     width: auto;
@@ -186,4 +191,14 @@
     text-align: left;
     padding: 10px;
   }
+}
+
+.hidden {
+  color: white;
+}
+
+.animated-construction {
+  font-size: 40px;
+  margin: auto;
+  padding: 100px 200px;
 }

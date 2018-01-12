@@ -65,9 +65,11 @@ class createProjectForm extends React.Component {
 
   renderSubmit () {
     if (this.props.projectCreateUpdateModalActive) {
-      return <Modal state={this.state} formData={this.formData} location={this.props.location}/>;
-    } else {
-      return;
+      return <Modal
+        state={this.state}
+        formData={this.formData}
+        location={this.props.location}
+        />;
     }
   }
 
@@ -254,7 +256,7 @@ class createProjectForm extends React.Component {
                 <div className="helpful-tips-box-content">
                   <h2 className="small-font">How to:</h2>
                   <br/>
-                <Link className="link-text" to="#">Make an awesome project</Link>
+                <a className="link-text" href="https://www.kickstarter.com/help/handbook/getting_started?ref=build_basics">Make an awesome project</a>
               </div>
             </div>
 
@@ -276,7 +278,7 @@ class createProjectForm extends React.Component {
               </div>
               <div className="small-preview-funding">
                 <Line className="small-preview-item" trailColor="#F1EEEA" percent="0" strokeWidth="1" strokeColor="#169D74" />
-                <div className="flexed">
+                <div className="create-flexed">
                   <div className="small-preview-funding-item">{this.current_funding()}%<p>funded</p></div>
                   <div className="small-preview-funding-item">${this.state.funding_goal}<p>pledged</p></div>
                 </div>

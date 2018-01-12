@@ -9,7 +9,7 @@ class Project < ApplicationRecord
 
   belongs_to :user,
   foreign_key: :creator_id,
-  class_name: :User
+  class_name: "User"
 
   def deadline_date_cannot_be_in_the_past
     if !deadline.blank? and deadline < Date.today

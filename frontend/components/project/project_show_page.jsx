@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 class projectShow extends React.Component {
   constructor(props) {
     super(props);
-
     this.dateMath = this.dateMath.bind(this);
   }
 
@@ -74,7 +73,6 @@ class projectShow extends React.Component {
 
 
   render () {
-
     if (this.props.project) {
       return (
         <main className="show-page-container">

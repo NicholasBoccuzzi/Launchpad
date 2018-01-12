@@ -18,6 +18,11 @@ class ProjectListItem extends React.Component {
       }
   }
 
+  percentDisplayMath() {
+    let percent = (this.props.project.current_funding/this.props.project.funding_goal)*100;
+    return Math.floor(percent);
+  }
+
   dateMath () {
     const time = {
       days: Math.floor((new Date(this.props.project.deadline) - new Date(Date.now()))/1000/60/60/24),
@@ -40,7 +45,9 @@ class ProjectListItem extends React.Component {
       <div className="animated fadeIn">
         <li className="list-item-container" key={this.props.project.id}>
           <div className="li-image-container">
-            <img className="list-item-image" src={this.props.project.image}/>
+            <Link className="list-item-image" to={`projects/${this.props.project.id}`}>
+              <img className="list-item-image" src={this.props.project.image}/>
+            </Link>
           </div>
           <div className="li-mid-container">
             <Link className="li-title-link" to={`projects/${this.props.project.id}`}>
@@ -52,7 +59,7 @@ class ProjectListItem extends React.Component {
             <Line className="li-percent-indicator" trailColor="#F1EEEA" percent={this.percentMath()} strokeWidth=".1" strokeColor="#169D74" />
             <br/>
             <h1 className="li-percent-stats green">${this.props.project.current_funding} pledged</h1>
-            <h1 className="li-percent-stats">{this.percentMath()}% funded</h1>
+            <h1 className="li-percent-stats">{this.percentDisplayMath()}% funded</h1>
             {this.dateMath()}
             <br/>
             <Link className="li-percent-stats li-category-link" to="#">{this.props.project.category}</Link>

@@ -59,7 +59,7 @@ class Main extends React.Component {
               <img className="mainpage-li-image" src={project.image}/>
             </Link>
             <li>
-              <h2 className="mainpage-li-info">{project.title}</h2>
+              <Link className="mainpage-li-info" to={`/projects/${project.id}`}>{project.title}</Link>
               <h2 className="mainpage-li-funding-info">
                 {this.percentFunded(project.current_funding, project.funding_goal)}% funded</h2>
             </li>

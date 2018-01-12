@@ -9,7 +9,11 @@ class Modal extends React.Component {
     this.state = {
       redirect: false
     };
+
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.forLogin = this.forLogin.bind(this);
+    this.forCreate = this.forCreate.bind(this);
+    this.forUpdate = this.forUpdate.bind(this);
   }
 
   componentWillUnmount () {
@@ -42,7 +46,7 @@ class Modal extends React.Component {
     e.preventDefault();
     const that = this;
 
-    if (that.props.location === "startproject"){
+    if (that.props.location.pathname === "/startproject"){
       that.props.formData.set(`project[image]`, that.props.state.image.imageFile);
       const project = that.props.formData;
       that.props.createProject(project).then(() => {
@@ -56,60 +60,85 @@ class Modal extends React.Component {
       const project = that.props.formData;
       that.props.updateProject(project, that.props.id).then(() => {
         that.setState({ redirect: !that.state.redirect });
-        // that.props.location.pathname = '/projects/81'
       });
     }
   }
 
   renderIfCreateProjectActive () {
-    if (this.props.projectCreateUpdateModalActive) {
-      return (
-        <div className="submit-project-bar">
-          <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
-          <input type="submit" className="project-save-button" value="Save" onClick={this.handleSubmit}></input>
-        </div>
-      );
-    } else {
+    if (this.props.projectCreateUpdateModalActive && this.props.location.pathname === "/startproject") {
       return (
         <div className="submit-project-bar">
           <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
           <input type="submit" className="project-save-button" value="Create" onClick={this.handleSubmit}></input>
         </div>
       );
+    } else if (this.props.projectCreateUpdateModalActive && this.props.location.pathname.includes("edit")){
+      return (
+        <div className="submit-project-bar">
+          <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
+          <input type="submit" className="project-save-button" value="Save" onClick={this.handleSubmit}></input>
+        </div>
+      );
     }
   }
 
 
-
-  render () {
-    let redirected;
-    if (!this.state.redirect) {
-      redirected = null;
-    } else {
-      redirected = <Redirect to={`/projects/${this.props.id}`} />;
-    }
-    if (this.props.location === "login") {
-      return (
-        <div>
-          {this.renderIfErrorActive()}
-        </div>
-      );
-    } else if (this.props.location === "startproject") {
-      return (
+    forLogin () {
+      if (this.props.location.pathname === "/login") {
+        return (
           <div>
-            {redirected}
+            {this.renderIfErrorActive()}
+          </div>
+        );
+      }
+    }
+
+    forCreate() {
+      if (this.props.location.pathname === "/startproject") {
+        return (
+            <div>
+              {this.renderIfCreateProjectActive()}
+            </div>
+          );
+        }
+      }
+
+    forUpdate() {
+      if (this.props.location.pathname.includes("edit")
+      && this.props.location.pathname.includes("projects")) {
+        return (
+          <div>
+
             {this.renderIfCreateProjectActive()}
           </div>
-      );
-    } else if (this.props.location.pathname.includes("edit")
-    && this.props.location.pathname.includes("projects")) {
-      return (
-        <div>
-          {redirected}
-          {this.renderIfCreateProjectActive()}
-        </div>
-      );
+        );
+      }
     }
+
+
+
+
+  render () {
+
+    let redirected;
+    if (this.state.redirect) {
+      if (this.props.id) {
+        redirected = <Redirect to={`/projects/${this.props.id}`} />;
+      }
+      else {
+        redirected = <Redirect to={`/projects`} />;
+      }
+    }
+
+    return (
+      <div>
+        {redirected}
+        {this.forLogin()}
+        {this.forCreate()}
+        {this.forUpdate()}
+      </div>
+
+    );
   }
 }
 

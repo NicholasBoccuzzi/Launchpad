@@ -10,7 +10,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, length: {minimum: 5}
   validates :password, length: { minimum: 6 }, allow_nil: true
 
-  has_many :projects
+  has_many :projects,
+  foreign_key: :creator_id
 
   after_initialize :ensure_session_token
 

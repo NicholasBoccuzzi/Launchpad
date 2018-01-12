@@ -8,9 +8,6 @@
   height: 500px;
   background: white;
   border: 1px solid #474747;
-  display:flex;
-  justify-content: space-around;
-  flex-direction:column;
   z-index: 9999;
 
   @media (max-width: 1025px) {
@@ -20,21 +17,20 @@
 }
 
 .logout-dropdown-box {
-  bottom: 500px;
-  left: 40px;
-  width: 100%;
+  padding-top: 20px;
+  max-width: 100%;
   text-align: left;
-
 }
 
 .logout-dropdown {
   width: 80%;
-  margin: 20px;
   border: 0px;
-  font-family: 'Muli', sans-serif;
-  padding: 0px;
-  font-size: 16px;
+  padding: 30px 36px 0px 36px;
+  font-size: 13px;
   color: black;
+  text-align: left;
+  border-top: 1px solid #DCDEDD;
+
 }
 
 .logout-dropdown:hover {
@@ -55,6 +51,45 @@
 }
 
 .profile-dropdown-header {
-  width: 100%;
-  margin: 50px;
+  max-width: 100%;
+  padding-bottom: 20px;
+  padding: 30px 36px 18px 36px;
+}
+
+.dd-sections {
+  height: 340px;
+  max-height: 340px;
+  display: flex;
+}
+
+.dd-user-info {
+  width: 157px;
+  padding: 22px 36px 18px 36px;
+}
+
+.dd-settings {
+  width: 82px;
+  padding: 22px 36px 18px 36px;
+
+}
+
+.dd-backed-projects {
+  width: 270px;
+  padding: 22px 36px 18px 36px;
+}
+
+.dd-my-projects {
+  width: 270px;
+  padding: 22px 36px 18px 36px;
+
+}
+
+.dd-welcome {
+  font-weight: 400;
+  position: relative;
+}
+
+.dd-section-header {
+  font-weight: 600;
+  font-size: 13px;
 }

@@ -15,15 +15,31 @@ class DropDown extends React.Component {
 
   render () {
     return (
-      <main className={this.props.class}>
-        <div className="profile-dropdown-header">Welcome, {this.props.currentUser.username}!</div>
+      <main className="current-user-dropdown">
+        <div className="profile-dropdown-header">
+          <h2 className="dd-welcome"> Welcome, {this.props.currentUser.username}! </h2>
+        </div>
+        <div className="dd-sections">
+          <section className="dd-user-info dd-bold">
+            <h1 className="dd-section-header">MY STUFF</h1>
+          </section>
+          <section className="dd-settings dd-bold">
+            <h1 className="dd-section-header">SETTINGS</h1>
+          </section>
+          <section className="dd-backed-projects dd-bold">
+            <h1 className="dd-section-header">BACKED PROJECTS</h1>
+          </section>
+          <section className="dd-my-projects dd-bold">
+            <h1 className="dd-section-header">MY PROJECTS</h1>
+          </section>
+        </div>
         <div className="logout-dropdown-box">
           <button onClick={() => { return (
               this.props.toggleProfileDropDown(),
               this.props.logout()
               );
             }}
-            className="logout-dropdown">LOGOUT
+            className="logout-dropdown">Log out
           </button>
 
         </div>

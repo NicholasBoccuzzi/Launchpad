@@ -8,28 +8,28 @@ const footer = () => (
       <div className="footer-project-categories">
         <ul className="footer-project-categories-container">
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Arts</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Arts</Link>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Comics & Illustration</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Comics & Illustration</Link>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Design & Tech</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Design & Tech</Link>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Film</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Film</Link>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Food & Craft</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Food & Craft</Link>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Games</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Games</Link>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Music</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Music</Link>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="#">Publishing</Link>
+            <Link className="footer-nav-button" to="/underconstruction">Publishing</Link>
             </li>
         </ul>
       </div>
@@ -39,37 +39,37 @@ const footer = () => (
         <h3 className="footer-info-title">
           ABOUT
         </h3>
-        <li><Link className="footer-info-button" to="#">About us</Link></li>
-        <li><Link className="footer-info-button" to="#">Our charter</Link></li>
-        <li><Link className="footer-info-button" to="#">Stats</Link></li>
-        <li><Link className="footer-info-button" to="#">Press</Link></li>
-        <li><Link className="footer-info-button" to="#">Jobs</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">About us</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Our charter</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Stats</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Press</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Jobs</Link></li>
       </ul>
       <ul className="footer-info-ul">
         <h3 className="footer-info-title">
           HELP
         </h3>
-        <li><Link className="footer-info-button" to="#">Help Center</Link></li>
-        <li><Link className="footer-info-button" to="#">Support</Link></li>
-        <li><Link className="footer-info-button" to="#">Our Rules</Link></li>
-        <li><Link className="footer-info-button" to="#">Creator Handbook</Link></li>
-        <li><Link className="footer-info-button" to="#">Campus</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Help Center</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Support</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Our Rules</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Creator Handbook</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Campus</Link></li>
       </ul>
       <ul className="footer-info-ul">
         <h3 className="footer-info-title">
           HELLO
         </h3>
-        <li><Link className="footer-info-button" to="#">Launchpad Blog</Link></li>
-        <li><Link className="footer-info-button" to="#">Engineering Blog</Link></li>
-        <li><Link className="footer-info-button" to="#">Newsletters</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Launchpad Blog</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Engineering Blog</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Newsletters</Link></li>
       </ul>
       <ul className="footer-info-ul">
         <h3 className="footer-info-title">
           MORE FROM LAUNCHPAD
         </h3>
-        <li><Link className="footer-info-button" to="#">App Academy</Link></li>
-        <li><Link className="footer-info-button" to="#">Github</Link></li>
-        <li><Link className="footer-info-button" to="#">LinkedIn</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">App Academy</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">Github</Link></li>
+        <li><Link className="footer-info-button" to="/underconstruction">LinkedIn</Link></li>
       </ul>
     </div>
     <div className="footer-trademark">
@@ -79,10 +79,10 @@ const footer = () => (
     </div>
     <div className="footer-bottom">
       <ul className="footer-terms-container">
-        <li><Link className="footer-terms-button" to="#">Trust and Safety</Link></li>
-        <li><Link className="footer-terms-button" to="#">Terms of Use</Link></li>
-        <li><Link className="footer-terms-button" to="#">Privacy Policy</Link></li>
-        <li><Link className="footer-terms-button" to="#">Cookie Policy</Link></li>
+        <li><Link className="footer-terms-button" to="/underconstruction">Trust and Safety</Link></li>
+        <li><Link className="footer-terms-button" to="/underconstruction">Terms of Use</Link></li>
+        <li><Link className="footer-terms-button" to="/underconstruction">Privacy Policy</Link></li>
+        <li><Link className="footer-terms-button" to="/underconstruction">Cookie Policy</Link></li>
       </ul>
     </div>
   </main>

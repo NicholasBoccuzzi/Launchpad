@@ -36,7 +36,7 @@ class Navbar extends React.Component {
 
   displayDrowDown () {
     if (this.props.profileDropDownActive) {
-      return <DropDown class={"current-user-dropdown"}/>;
+      return <DropDown />;
     }
   }
 

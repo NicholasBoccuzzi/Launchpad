@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Line, Circle } from 'rc-progress';
 import Modal from '../modal_container';
+import { Redirect } from 'react-router-dom';
 
 class createProjectForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       id: parseInt(this.props.projectId),
-      creator_id: this.props.currentUser.id,
+      creator_id: "",
       title: "",
       funding_goal: "0",
       summary: "",
@@ -20,7 +21,9 @@ class createProjectForm extends React.Component {
         imageUrl: null,
         imageFile: null
       },
-      modalVisible: false
+      modalVisible: false,
+      wrongUser: false
+
     };
 
     this.formData = new FormData();
@@ -51,11 +54,20 @@ class createProjectForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let projectUser;
+    if (nextProps.project) {
+      projectUser = nextProps.project.creator_id;
+      if (this.props.currentUser.id != projectUser) {
+        this.setState({wrongUser: true});
+      }
+    }
+
     if (!this.state.modalVisible) {
 
       if (nextProps.project) {
         this.setState({
           title: nextProps.project.title,
+          creator_id: nextProps.project.creator_id,
           funding_goal: nextProps.project.funding_goal,
           summary: nextProps.project.summary,
           deadline:  nextProps.project.deadline.slice(0, 10),
@@ -105,8 +117,6 @@ class createProjectForm extends React.Component {
           id={this.state.id}
           />
       );
-    } else {
-      return;
     }
   }
 
@@ -146,8 +156,15 @@ class createProjectForm extends React.Component {
   }
 
   render () {
+    let redirect;
+    if (this.state.wrongUser) {
+      redirect = <Redirect to={`/projects/${this.state.id}`} />;
+    }
+
     return (
       <main className="largest-project-container">
+        {redirect}
+
         <nav className="project-nav">
         </nav>
         <header className="get-started-container">
@@ -315,7 +332,7 @@ class createProjectForm extends React.Component {
               </div>
               <div className="small-preview-funding">
                 <Line className="small-preview-item" trailColor="#F1EEEA" percent="0" strokeWidth="1" strokeColor="#169D74" />
-                <div className="flexed">
+                <div className="create-flexed">
                   <div className="small-preview-funding-item">{this.current_funding()}%<p>funded</p></div>
                   <div className="small-preview-funding-item">${this.state.funding_goal}<p>pledged</p></div>
                 </div>
