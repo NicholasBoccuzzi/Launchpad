@@ -20,9 +20,11 @@ Launchpad is a full-stack application that allows a User to create projects simi
 # STRUCTURE
 
 **Back End**
+
 Launchpad is built utilizing a Ruby on Rails framework and PostgreSQL database. Launchpad's architecture is RESTful with all AJAX requests being received through JSON API.
 
 **Front End**
+
 Launchpad has a front end built with React.js. By choosing React, Launchpad allows a User to use the majority of the site without having to receive new webpages from the backend. By breaking down the site into React components, the User experience remains quick and efficient.
 
 **Libraries**
