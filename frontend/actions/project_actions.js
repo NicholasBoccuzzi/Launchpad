@@ -4,6 +4,7 @@ export const RECEIVE_ALL_PROJECTS = "RECEIVE_ALL_PROJECTS";
 export const RECEIVE_PROJECT = "RECEIVE_PROJECT";
 export const REMOVE_PROJECT = "REMOVE_PROJECT";
 export const RECEIVE_PROJECT_ERRORS = "RECEIVE_PROJECT_ERRORS";
+export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
 export const receiveAllProjects = (projects) => {
   return {
@@ -33,38 +34,48 @@ export const receiveProjectErrors = errors => {
   });
 };
 
+export const clearProjectErrors = () => ({
+  type: CLEAR_SESSION_ERRORS,
+});
+
 export const fetchProjects = (category) => dispatch => {
   if (category) {
     return (
-      ProjectAPIUtil.fetchProjectByCategory(category).then(projects => dispatch(receiveAllProjects(projects)))
+      ProjectAPIUtil.fetchProjectByCategory(category).then(projects => dispatch(receiveAllProjects(projects)),
+    err => dispatch(receiveProjectErrors))
     );
   } else {
     return (
-      ProjectAPIUtil.fetchProjects().then(projects => dispatch(receiveAllProjects(projects)))
+      ProjectAPIUtil.fetchProjects().then(projects => dispatch(receiveAllProjects(projects)),
+      err => dispatch(receiveProjectErrors))
     );
   }
 };
 
 export const fetchProject = (id) => dispatch => {
   return (
-    ProjectAPIUtil.fetchProject(id).then(project => dispatch(receiveProject(project)))
+    ProjectAPIUtil.fetchProject(id).then(project => dispatch(receiveProject(project)),
+  err => dispatch(receiveProjectErrors))
   );
 };
 
 export const createProject = (project) => dispatch => {
   return (
-    ProjectAPIUtil.createProject(project).then(project => dispatch(receiveProject(project)))
+    ProjectAPIUtil.createProject(project).then(project => dispatch(receiveProject(project)),
+    err => dispatch(receiveProjectErrors))
   );
 };
 
 export const updateProject = (project) => dispatch => {
   return (
-    ProjectAPIUtil.updateProject(project).then(project => dispatch(receiveProject(project)))
+    ProjectAPIUtil.updateProject(project).then(project => dispatch(receiveProject(project)),
+  err => dispatch(receiveProjectErrors))
   );
 };
 
 export const deleteProject = (project) => dispatch => {
   return (
-    ProjectAPIUtil.deleteProject(project).then(project => dispatch(receiveProject(project)))
+    ProjectAPIUtil.deleteProject(project).then(project => dispatch(receiveProject(project)),
+  err => dispatch(receiveProjectErrors))
   );
 };

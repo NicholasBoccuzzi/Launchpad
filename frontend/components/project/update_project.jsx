@@ -32,7 +32,7 @@ class createProjectForm extends React.Component {
     this.formData.set(`project[creator_id]`, this.props.currentUser.id);
     this.update = this.update.bind(this);
     this.renderSubmit = this.renderSubmit.bind(this);
-    this.current_funding = this.current_funding.bind(this);
+    this.currentFunding = this.currentFunding.bind(this);
     this.handlePictureUpload = this.handlePictureUpload.bind(this);
     this.handlePicturePreview = this.handlePicturePreview.bind(this);
   }
@@ -110,6 +110,7 @@ class createProjectForm extends React.Component {
     if (this.state.modalVisible) {
       return (
         <Modal
+          fundingGoal={this.state.funding_goal}
           modalVisible={this.state.modalVisible}
           image={this.state.image}
           formData={this.formData}
@@ -120,7 +121,7 @@ class createProjectForm extends React.Component {
     }
   }
 
-  current_funding () {
+  currentFunding () {
 
     if (this.state.funding_goal > 0) {
       return Math.floor("0"/this.state.funding_goal);
@@ -337,7 +338,7 @@ class createProjectForm extends React.Component {
               <div className="small-preview-funding">
                 <Line className="small-preview-item" trailColor="#F1EEEA" percent="0" strokeWidth="1" strokeColor="#169D74" />
                 <div className="create-flexed">
-                  <div className="small-preview-funding-item">{this.current_funding()}%<p>funded</p></div>
+                  <div className="small-preview-funding-item">{this.currentFunding()}%<p>funded</p></div>
                   <div className="small-preview-funding-item">${this.state.funding_goal}<p>pledged</p></div>
                 </div>
               </div>

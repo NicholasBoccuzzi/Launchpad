@@ -46,7 +46,7 @@ class Modal extends React.Component {
     e.preventDefault();
     const that = this;
 
-    if (that.props.location.pathname === "/startproject"){
+    if (that.props.location.pathname === "/startproject") {
       that.props.formData.set(`project[image]`, that.props.state.image.imageFile);
       const project = that.props.formData;
       that.props.createProject(project).then(() => {

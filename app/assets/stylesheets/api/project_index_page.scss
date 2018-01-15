@@ -34,7 +34,7 @@
 
 .num-projects-container {
   padding: 0px 0px 20px 0px;
-  width: 1366px;
+  width: auto;
 }
 
 .li-image-container {
@@ -44,8 +44,7 @@
 }
 
 .list-item-container {
-  min-width: 250px;
-  max-width: 355px;
+  width: 355px;
   max-height: 530px;
   min-height: 440px;
   margin: 0px 20px 20px 20px;
@@ -63,11 +62,10 @@
 }
 
 .flex-children {
-  margin: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content:flex-start;
-  width: 1366px;
+  max-width: 1366px;
 
 }
 
