@@ -28,6 +28,8 @@ Launchpad is built utilizing a Ruby on Rails framework and PostgreSQL database. 
 Launchpad has a front end built with React.js. By choosing React, Launchpad allows a User to use the majority of the site without having to receive new webpages from the backend. By breaking down the site into React components, the User experience remains quick and efficient.
 
 **Libraries**
+
+
 Launchpad uses:
 
 * [React.js](https://facebook.github.io/react/)

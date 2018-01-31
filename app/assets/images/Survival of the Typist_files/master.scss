@@ -1,0 +1,74 @@
+body {
+  margin: 0;
+}
+
+.black {
+  background: black;
+  color:white;
+}
+
+.text {
+  font-family: 'Press Start 2P', sans-serif;
+  color: white;
+  font-size: 50px;
+  margin-bottom: 60px;
+  width: auto;
+}
+
+.canvas {
+margin: auto;
+border: 2px solid white;
+}
+
+.keyboard-input {
+  width: 598px;
+  height: 40px;
+  font-size: 20px;
+  font-family: 'Press Start 2P', sans-serif;
+  text-align: center;
+  border: 2px solid white;
+  border-top: none;
+  background: white;
+  color: black;
+  margin: auto;
+}
+
+.keyboard-input:focus {
+  background: black;
+  outline: white;
+  color: white;
+}
+
+.game-container {
+  margin: 40px 20%;
+}
+
+.sound-button {
+  background: black;
+
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.flash {
+  position: relative;
+  bottom: -564px;
+  left: 0%;
+  background: black;
+  border: 2px solid lightgreen;
+  width: 500px;
+  height: 40px;
+}
