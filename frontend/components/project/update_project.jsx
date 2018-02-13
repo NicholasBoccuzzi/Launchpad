@@ -35,18 +35,24 @@ class updateProjectForm extends React.Component {
     this.currentFunding = this.currentFunding.bind(this);
     this.handlePictureUpload = this.handlePictureUpload.bind(this);
     this.handlePicturePreview = this.handlePicturePreview.bind(this);
+    this.switchSelectedTab = this.switchSelectedTab.bind(this);
   }
 
   handleSubmit (e) {
     e.preventDefault();
+  }
 
+  switchSelectedTab (e) {
+    let curSelected = document.getElementsByClassName("selected-project-tab-li");
+    curSelected[0].classList.remove("selected-project-tab-li");
+    e.currentTarget.classList.add("selected-project-tab-li");
   }
 
   componentDidMount () {
     if (this.props.modalVisible) {
       this.setState({modalVisible: false});
     }
-    
+
     this.props.fetchProject(parseInt(this.props.projectId));
     this.props.toggleUpdateProjectModal();
   }
@@ -172,6 +178,45 @@ class updateProjectForm extends React.Component {
         {redirect}
 
         <nav className="project-nav">
+          <div className="project-nav-tabs-container">
+            <div className="project-nav-tabs-li selected-project-tab-li"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>Hello</div>
+            </div>
+            <div className="project-nav-tabs-li"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>Rewards</div>
+            </div>
+            <div className="project-nav-tabs-li"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              Story
+            </div>
+            <div className="project-nav-tabs-li"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>About you</div>
+            </div>
+            <div className="project-nav-tabs-li no-border"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>Account</div>
+            </div>
+          </div>
+
+          <div className="project-nav-tabs-container small-margin-left">
+            <div className="project-nav-tabs-li no-border" onClick={this.switchSelectedTab}>
+              <div>Preview</div>
+            </div>
+          </div>
+
+          <div className="project-nav-tabs-container small-margin-left">
+            <div className="project-nav-tabs-li no-border">
+              <div>Activate the Project</div>
+            </div>
+          </div>
         </nav>
         <header className="get-started-container">
           <h1 className="get-started-title">Let's get started.</h1>
@@ -189,7 +234,7 @@ class updateProjectForm extends React.Component {
                 <img className="larger-input-preview" src={this.state.image.imageUrl} />
                 <div className="project-input-container">
                   <div className="big-button">
-                    <label for="file-input" className="file-input">
+                    <label htmlFor="file-input" className="file-input">
                       <h3 className="project-upload-image-header">Choose an image from your computer</h3>
                       <h3 className="small-font background-white">This is the main image associated with your project. Make it count!</h3>
                       <h3 className="small-font background-white">JPEG, PNG, GIF, or BMP</h3>

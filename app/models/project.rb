@@ -36,6 +36,10 @@ class Project < ApplicationRecord
   foreign_key: :creator_id,
   class_name: "User"
 
+  has_many :rewards
+
+  accepts_nested_attributes_for :rewards
+
   def deadline_date_cannot_be_in_the_past
     if !deadline.blank? and deadline < Date.today
       errors.add(:deadline, "can't be in the past")

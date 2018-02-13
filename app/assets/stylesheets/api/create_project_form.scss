@@ -2,7 +2,7 @@
   background: #F0F0F0;
   width: auto;
   height: auto;
-  padding: 50px 0px;
+  padding: 38px 0px;
 }
 
 .get-started-container {
@@ -276,4 +276,66 @@ margin: auto;
 
 .background-white {
   background: white;
+}
+
+.project-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.project-nav-tabs-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #DCDEDD;
+  margin-bottom: 60px;
+  border-radius: 2px;
+}
+
+.project-nav-tabs-li {
+  display: flex;
+  flex-direction: row;
+  height: 40px;
+  width: 80px;
+  border-radius: none;
+  background-color: #FFFFFF;
+  font-size: 14px;
+  border-right: 1px solid #DCDEDD;
+  color: #3D3D66;
+  padding: 22px 20px;
+  width: auto;
+  align-items: center;
+  height: auto;
+  font-weight: 700;
+  outline: none;
+}
+
+.project-nav-tabs-li:hover {
+  color: #2752ff;
+  background-color: #FFFFFF;
+  cursor: pointer;
+}
+
+.selected-project-tab-li:hover {
+  outline: 1px dotted black;
+}
+
+.selected-project-tab-li {
+  background-color: rgba(240,240,240,0.6);
+  color: #2752ff;
+}
+
+.no-border {
+border: none;
+}
+
+.project-tab-li-checkbox {
+  color: #CECBC7;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.small-margin-left {
+  margin-left: 12px;
 }
