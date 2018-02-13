@@ -3,7 +3,7 @@ import UpdateProjectForm from './update_project';
 import {
   updateProject
 } from '../../actions/project_actions';
-import { toggleCreateProjectModal } from '../../actions/ui_actions.js';
+import { toggleUpdateProjectModal } from '../../actions/ui_actions.js';
 import {
   fetchProject,
 } from '../../actions/project_actions';
@@ -11,7 +11,7 @@ import {
 
 const mapStateToProps = (state, ownProps) => {
   let project;
-  if (!state.entities.propjects) {
+  if (state.entities.projects) {
     project = state.entities.projects[ownProps.match.params.projectId];
   } else {
     project = null;
@@ -29,7 +29,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchProject: (id) => dispatch(fetchProject(id)),
-    toggleCreateProjectModal: () => dispatch(toggleCreateProjectModal()),
+    toggleUpdateProjectModal: () => dispatch(toggleUpdateProjectModal()),
     updateProject: (project) => dispatch(updateProject(project)),
   };
 };

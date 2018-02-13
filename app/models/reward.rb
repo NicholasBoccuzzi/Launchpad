@@ -21,5 +21,4 @@ class Reward < ApplicationRecord
     through: :backings,
     source: :user_id
 
-
 end

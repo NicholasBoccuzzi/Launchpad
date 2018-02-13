@@ -59,7 +59,8 @@ private
       :image,
       :imageFile,
       :imageUrl,
-      :funded
+      :funded,
+      reward_attributes: [:title, :amount, :project_id, :body, :delivery_date]
     )
   end
 end

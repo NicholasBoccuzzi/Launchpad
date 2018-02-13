@@ -1,4 +1,4 @@
-import { TOGGLE_CREATE_PROJECT_MODAL, TOGGLE_PROFILE_DROPDOWN, TOGGLE_ERROR_MODAL} from '../actions/ui_actions.js';
+import { TOGGLE_CREATE_PROJECT_MODAL, TOGGLE_PROFILE_DROPDOWN, TOGGLE_ERROR_MODAL, TOGGLE_UPDATE_PROJECT_MODAL} from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
 const initialState = {
@@ -22,6 +22,10 @@ export default (state = initialState, action) => {
     let newProjectState = merge({}, state);
     newProjectState.projectCreateUpdateModalActive = !newProjectState.projectCreateUpdateModalActive;
     return newProjectState;
+  case TOGGLE_UPDATE_PROJECT_MODAL:
+    let editProjectState = merge({}, state);
+    editProjectState.projectCreateUpdateModalActive = !editProjectState.projectCreateUpdateModalActive;
+    return editProjectState;
 
   default:
     return state;

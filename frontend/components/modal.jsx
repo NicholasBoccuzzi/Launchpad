@@ -67,14 +67,14 @@ class Modal extends React.Component {
   renderIfCreateProjectActive () {
     if (this.props.projectCreateUpdateModalActive && this.props.location.pathname === "/startproject") {
       return (
-        <div className="submit-project-bar">
+        <div className="submit-project-bar animated slideInUp">
           <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
           <input type="submit" className="project-save-button" value="Create" onClick={this.handleSubmit}></input>
         </div>
       );
     } else if (this.props.projectCreateUpdateModalActive && this.props.location.pathname.includes("edit")){
       return (
-        <div className="submit-project-bar">
+        <div className="submit-project-bar animated slideInUp">
           <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
           <input type="submit" className="project-save-button" value="Save" onClick={this.handleSubmit}></input>
         </div>

@@ -18,7 +18,8 @@ class createProjectForm extends React.Component {
       image: {
         imageUrl: null,
         imageFile: null
-      }
+      },
+      modalVisible: false,
     };
 
     this.formData = new FormData();
@@ -38,9 +39,21 @@ class createProjectForm extends React.Component {
   }
 
   componentDidMount () {
+    if (this.state.modalVisible) {
+      this.setState({modalVisible: false});
+    }
+
     if (this.props.projectCreateUpdateModalActive) {
       this.props.toggleCreateProjectModal();
     }
+  }
+
+  componentWillUnmount () {
+    if (this.props.projectCreateUpdateModalActive) {
+      this.props.toggleCreateProjectModal();
+    }
+
+    this.setState({modalVisible: false});
   }
 
   update(field) {
@@ -49,6 +62,10 @@ class createProjectForm extends React.Component {
       that.setState({
         [field]: e.currentTarget.value
       });
+
+      if (!that.state.modalVisible) {
+        that.setState({modalVisible: true});
+      }
 
       if (!that.props.projectCreateUpdateModalActive) {
         that.props.toggleCreateProjectModal();
@@ -65,12 +82,14 @@ class createProjectForm extends React.Component {
   }
 
   renderSubmit () {
-    if (this.props.projectCreateUpdateModalActive) {
-      return <Modal
-        state={this.state}
-        formData={this.formData}
-        location={this.props.location}
-        />;
+    if (this.state.modalVisible) {
+      if (this.props.projectCreateUpdateModalActive) {
+        return <Modal
+          state={this.state}
+          formData={this.formData}
+          location={this.props.location}
+          />;
+      }
     }
   }
 

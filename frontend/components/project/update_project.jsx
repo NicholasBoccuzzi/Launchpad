@@ -4,7 +4,7 @@ import { Line, Circle } from 'rc-progress';
 import Modal from '../modal_container';
 import { Redirect } from 'react-router-dom';
 
-class createProjectForm extends React.Component {
+class updateProjectForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -46,11 +46,15 @@ class createProjectForm extends React.Component {
     if (this.props.modalVisible) {
       this.setState({modalVisible: false});
     }
+    
     this.props.fetchProject(parseInt(this.props.projectId));
+    this.props.toggleUpdateProjectModal();
   }
 
   componentWillUnmount() {
     this.setState({modalVisible: false});
+
+    this.props.toggleUpdateProjectModal();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -108,6 +112,7 @@ class createProjectForm extends React.Component {
 
   renderSubmit () {
     if (this.state.modalVisible) {
+
       return (
         <Modal
           fundingGoal={this.state.funding_goal}
@@ -352,4 +357,4 @@ class createProjectForm extends React.Component {
   }
 }
 
-export default createProjectForm;
+export default updateProjectForm;
