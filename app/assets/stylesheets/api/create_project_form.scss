@@ -54,7 +54,7 @@ margin: auto;
   border: 1px dashed blue;
   align-content: center;
   text-align: center;
-  width: 400px;
+  width: 406px;
   border-radius: 7px;
 }
 
@@ -131,7 +131,7 @@ margin: auto;
 
 .project-form-input:focus {
   outline: none;
-  transition-duration: 0.25s;
+  transition-duration: 0.4s;
   border: 1px solid black;
 }
 
@@ -337,4 +337,9 @@ margin: auto;
 
 .no-overflow {
   overflow:hidden;
+}
+
+.flexed-rows {
+  display: flex;
+  flex-direction: row;
 }

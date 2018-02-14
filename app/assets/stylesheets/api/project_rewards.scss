@@ -1,0 +1,71 @@
+.project-rewards-info-container {
+  width: 450px;
+  max-width: 450px;
+  height: 200px;
+  border-radius: 4px;
+  border: 1px solid #DCDEDD;
+  background-color:white;
+}
+
+.reward-form-input-title-box {
+  width: 160px;
+}
+
+.reward-form-input-title {
+    width: 150px;
+    padding: 12px 0px 0px 0px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.reward-form-input-box {
+    background: #F8F9FD;
+    display: flex;
+    padding: 5px 2px 14px 14px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 98%;
+}
+
+.reward-input-container {
+  border-bottom: 1px solid #DCDEDD;
+}
+
+.reward-input-title {
+  display: inline-flex;
+  font-size: 12px;
+  width: 160px;
+  max-width: 160px;
+  margin: 12px 0px 12px 10px;
+  align-items: center;
+}
+
+.reward-user-input {
+  border: none;
+  width: 100%;
+  padding-left: 10px;
+  padding-top: 4px;
+  font-size: 14px;
+  border-left: 1px solid #DCDEDD;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    font-weight: 300;
+    opacity: 1; /* Firefox */
+}
+
+.reward-user-input:focus {
+  outline: none;
+  transition-duration: 1s;
+  border: 1px solid black;
+}
+
+.reward-description {
+  height: 100px;
+  max-height: 100px;
+}
+
+.textarea {
+  resize: none;
+}

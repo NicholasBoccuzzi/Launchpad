@@ -3,7 +3,10 @@ import UpdateProjectForm from './update_project';
 import {
   updateProject
 } from '../../actions/project_actions';
-import { toggleUpdateProjectModal } from '../../actions/ui_actions.js';
+import {
+  toggleUpdateProjectModal,
+  switchTabs
+} from '../../actions/ui_actions.js';
 import {
   fetchProject,
 } from '../../actions/project_actions';
@@ -31,6 +34,7 @@ const mapDispatchToProps = dispatch => {
     fetchProject: (id) => dispatch(fetchProject(id)),
     toggleUpdateProjectModal: () => dispatch(toggleUpdateProjectModal()),
     updateProject: (project) => dispatch(updateProject(project)),
+    switchTabs: () => dispatch(switchTabs())
   };
 };
 
