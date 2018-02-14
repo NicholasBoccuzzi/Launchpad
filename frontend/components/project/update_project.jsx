@@ -46,6 +46,8 @@ class updateProjectForm extends React.Component {
     let curSelected = document.getElementsByClassName("selected-project-tab-li");
     curSelected[0].classList.remove("selected-project-tab-li");
     e.currentTarget.classList.add("selected-project-tab-li");
+
+    console.log(e.currentTarget)
   }
 
   componentDidMount () {
@@ -182,7 +184,7 @@ class updateProjectForm extends React.Component {
             <div className="project-nav-tabs-li selected-project-tab-li"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
-              <div>Hello</div>
+              <div>Basics</div>
             </div>
             <div className="project-nav-tabs-li"
               onClick={this.switchSelectedTab}>

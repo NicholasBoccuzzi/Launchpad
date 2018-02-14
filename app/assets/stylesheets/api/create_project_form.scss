@@ -313,21 +313,16 @@ margin: auto;
 
 .project-nav-tabs-li:hover {
   color: #2752ff;
-  background-color: #FFFFFF;
   cursor: pointer;
 }
 
-.selected-project-tab-li:hover {
-  outline: 1px dotted black;
-}
-
 .selected-project-tab-li {
-  background-color: rgba(240,240,240,0.6);
+  background-color: #F6F6F6;
   color: #2752ff;
 }
 
 .no-border {
-border: none;
+  border: none;
 }
 
 .project-tab-li-checkbox {
@@ -338,4 +333,8 @@ border: none;
 
 .small-margin-left {
   margin-left: 12px;
+}
+
+.no-overflow {
+  overflow:hidden;
 }
