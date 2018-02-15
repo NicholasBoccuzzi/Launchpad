@@ -1,11 +1,20 @@
-import { SWITCH_TABS, TOGGLE_CREATE_PROJECT_MODAL, TOGGLE_PROFILE_DROPDOWN, TOGGLE_ERROR_MODAL, TOGGLE_UPDATE_PROJECT_MODAL} from '../actions/ui_actions.js';
+import {
+  SWITCH_TABS,
+  TOGGLE_CREATE_PROJECT_MODAL,
+  TOGGLE_PROFILE_DROPDOWN,
+  TOGGLE_ERROR_MODAL,
+  TOGGLE_UPDATE_PROJECT_MODAL,
+  CHECK_REWARD_COUNT
+} from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
 const initialState = {
   profileDropDownActive: false,
   errorModalActive: false,
   projectCreateUpdateModalActive: false,
-  switchedTabs: false
+  switchedTabs: false,
+  rewardCount: false,
+  loadedRewards: false,
 };
 
 export default (state = initialState, action) => {
@@ -31,6 +40,11 @@ export default (state = initialState, action) => {
     let switchTabs = merge({}, state);
     switchTabs.switchedTabs = !switchTabs.switchedTabs;
     return switchTabs;
+  case CHECK_REWARD_COUNT:
+    let rewardsCounter = merge({}, state);
+    rewardsCounter.rewardsCount = !rewardsCounter.rewardsCount;
+    rewardsCounter.loadedRewards = true;
+    return rewardsCounter;
   default:
     return state;
   }

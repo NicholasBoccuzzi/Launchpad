@@ -156,6 +156,7 @@ margin: auto;
 
 .helpful-tips-box {
   background: #F0F0F0;
+  max-width: 205px;
   width: 220px;
   border-radius: 5px;
   padding: 10px 0px 10px 10px;
@@ -183,7 +184,7 @@ margin: auto;
 
 .helpful-tips-box-content {
   display: block;
-  line-height: 6px;
+  line-height: 0px;
 }
 
 .basic-black {
@@ -333,4 +334,8 @@ margin: auto;
 
 .small-margin-left {
   margin-left: 12px;
+}
+
+.font-twelve {
+  font-size: 12px;
 }

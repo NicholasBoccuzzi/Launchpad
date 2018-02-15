@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Line, Circle } from 'rc-progress';
 import Modal from '../modal_container';
-import RewardsTab from './rewards_tab';
+import RewardsTab from './rewards_tab_container';
 
 class createProjectForm extends React.Component {
   constructor (props) {
@@ -141,7 +141,7 @@ class createProjectForm extends React.Component {
   displayProjectRewards() {
     if (this.activeTab === "Rewards") {
       return (
-        <RewardsTab state={this.state}/>
+        <RewardsTab state={this.state} location={this.props.location} />
       );
     }
   }
@@ -296,7 +296,7 @@ class createProjectForm extends React.Component {
                   <div className="helpful-tips-box-content">
                     <h2 className="small-font">How to:</h2>
                     <br/>
-                    <a className="link-text" href="https://www.kickstarter.com/help/handbook/getting_started?ref=build_basics">Make an awesome project</a>
+                    <a className="link-text font-twelve" href="https://www.kickstarter.com/help/handbook/getting_started?ref=build_basics">Make an awesome project</a>
                   </div>
                 </div>
 

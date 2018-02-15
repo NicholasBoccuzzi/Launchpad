@@ -3,6 +3,7 @@ export const TOGGLE_ERROR_MODAL = "TOGGLE_ERROR_MODAL";
 export const TOGGLE_CREATE_PROJECT_MODAL = "TOGGLE_CREATE_PROJECT_MODAL";
 export const TOGGLE_UPDATE_PROJECT_MODAL = "TOGGLE_UPDATE_PROJECT_MODAL";
 export const SWITCH_TABS = "SWITCH_TABS";
+export const CHECK_REWARD_COUNT = "CHECK_REWARD_COUNT";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -31,5 +32,11 @@ export const toggleUpdateProjectModal = () => {
 export const switchTabs = () => {
   return {
     type: SWITCH_TABS
+  };
+};
+
+export const checkRewardCount = () => {
+  return {
+    type: CHECK_REWARD_COUNT
   };
 };

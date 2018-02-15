@@ -4,10 +4,99 @@ import { Link } from 'react-router-dom';
 class rewardsTab extends React.Component {
   constructor () {
     super();
-    this.currentRewardCount = 1;
+    this.rewards = [];
+    this.newRewardBox = this.newRewardBox.bind(this);
+    this.displayRewardsBoxes = this.displayRewardsBoxes.bind(this);
+    this.removeReward = this.removeReward.bind(this);
+    this.loaded = false;
   }
 
+  newRewardBox(num) {
+    return (
+    <div className="reward-form-input-box">
+      <div className="reward-form-input-title-box">
+        <h3 className="reward-form-input-title">Reward #{num}</h3>
+      </div>
+      <div className="flex-col">
+        <div className="flexed-columns">
+          <div className="project-rewards-info-container flexed-columns">
+            <div className="flexed-rows reward-input-container">
+              <div className="reward-input-title">Title</div>
+              <input className="reward-user-input"></input>
+            </div>
+            <div className="flexed-rows reward-input-container">
+              <div className="reward-input-title">Pledge Amount</div>
+              <input
+                className="reward-user-input"
+                placeholder="$0">
+              </input>
+            </div>
+            <div className="flexed-rows reward-input-container">
+              <div className="reward-input-title reward-description">Description</div>
+              <textarea className="reward-user-input textarea"></textarea>
+            </div>
+            <div className="flexed-rows reward-input-container">
+              <div className="reward-input-title">Estimated <br/> delivery</div>
+              <div className="reward-month-select-container">
+                <select className="reward-month-year-select no-border"
+                  onChange={""}>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="April">April</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
+              </div>
+              <div className="reward-month-select-container">
+                <select className="reward-month-year-select year-width no-border"
+                  onChange={""}>
+                  <option value="2018">2018</option>
+                  <option value="2019">2019</option>
+                  <option value="2020">2020</option>
+                  <option value="2021">2021</option>
+                  <option value="2022">2022</option>
+                  <option value="2023">2023</option>
+                  <option value="2024">2024</option>
+                  <option value="2025">2025</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="delete-reward" onClick={ () => {this.removeReward(num - 1);} }>
+          <i className="fa fa-times big-x"></i>
+          <div>Delete</div>
+        </div>
+      </div>
+    </div>
+    );
+  }
+
+  removeReward(num) {
+    console.log(this.rewards);
+    this.rewards.splice(num, 1);
+    this.props.checkRewardCount();
+    console.log(this.rewards);
+  }
+
+  displayRewardsBoxes() {
+    if (this.props.location === "startproject" && this.props.loadedRewards === false) {
+      this.rewards.push(this.newRewardBox(this.rewards.length + 1));
+    }
+  }
+
+
+
   render () {
+
+    this.displayRewardsBoxes();
 
     return (
       <div>
@@ -19,69 +108,7 @@ class rewardsTab extends React.Component {
         </header>
         <main className="new-project-container no-overflow">
           <form className="reward-form animated slideInLeft">
-            <div className="reward-form-input-box">
-              <div className="reward-form-input-title-box">
-                <h3 className="reward-form-input-title">Reward #{this.currentRewardCount}</h3>
-              </div>
-              <div className="flex-col">
-                <div className="flexed-columns">
-                  <div className="project-rewards-info-container flexed-columns">
-                    <div className="flexed-rows reward-input-container">
-                      <div className="reward-input-title">Title</div>
-                      <input className="reward-user-input"></input>
-                    </div>
-                    <div className="flexed-rows reward-input-container">
-                      <div className="reward-input-title">Pledge Amount</div>
-                      <input
-                        className="reward-user-input"
-                        placeholder="$0">
-                      </input>
-                    </div>
-                    <div className="flexed-rows reward-input-container">
-                      <div className="reward-input-title reward-description">Description</div>
-                      <textarea className="reward-user-input textarea"></textarea>
-                    </div>
-                    <div className="flexed-rows reward-input-container">
-                      <div className="reward-input-title">Estimated <br/> delivery</div>
-                      <div className="reward-month-select-container">
-                        <select className="reward-month-year-select no-border"
-                          onChange={""}>
-                          <option value="January">January</option>
-                          <option value="February">February</option>
-                          <option value="March">March</option>
-                          <option value="April">April</option>
-                          <option value="May">May</option>
-                          <option value="June">June</option>
-                          <option value="July">July</option>
-                          <option value="August">August</option>
-                          <option value="September">September</option>
-                          <option value="October">October</option>
-                          <option value="November">November</option>
-                          <option value="December">December</option>
-                        </select>
-                      </div>
-                      <div className="reward-month-select-container">
-                        <select className="reward-month-year-select year-width no-border"
-                          onChange={""}>
-                          <option value="2018">2018</option>
-                          <option value="2019">2019</option>
-                          <option value="2020">2020</option>
-                          <option value="2021">2021</option>
-                          <option value="2022">2022</option>
-                          <option value="2023">2023</option>
-                          <option value="2024">2024</option>
-                          <option value="2025">2025</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="delete-reward">
-                  <i className="fa fa-times big-x"></i>
-                  <div>Delete</div>
-                </div>
-              </div>
-            </div>
+            {this.rewards}
 
             <div className="new-reward-button-container">
               <i className="fa fa-plus"></i>
@@ -89,15 +116,15 @@ class rewardsTab extends React.Component {
                 Add a new reward
               </div>
             </div>
-
           </form>
+
           <section className="project-current-summary animated fadeIn">
             <div className="helpful-tips-box">
               <i className="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;&nbsp;
                 <div className="helpful-tips-box-content">
                   <h2 className="small-font">How to:</h2>
                   <br/>
-                  <a className="link-text" href="https://www.kickstarter.com/help/handbook/getting_started?ref=build_basics">Create great Rewards</a>
+                  <a className="link-text font-twelve" href="https://www.kickstarter.com/help/handbook/getting_started?ref=build_basics">Create great Rewards</a>
                 </div>
               </div>
 
