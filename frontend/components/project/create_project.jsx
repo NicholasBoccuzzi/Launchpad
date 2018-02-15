@@ -46,7 +46,7 @@ class createProjectForm extends React.Component {
     curSelected[0].classList.remove("selected-project-tab-li");
     e.currentTarget.classList.add("selected-project-tab-li");
     this.activeTab = e.currentTarget.id;
-    this.props.toggleCreateProjectModal();
+    this.props.switchTabs();
   }
 
   componentDidMount () {
@@ -141,7 +141,7 @@ class createProjectForm extends React.Component {
   displayProjectRewards() {
     if (this.activeTab === "Rewards") {
       return (
-        <RewardsTab />
+        <RewardsTab state={this.state}/>
       );
     }
   }

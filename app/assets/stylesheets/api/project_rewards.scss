@@ -35,7 +35,7 @@
   display: inline-flex;
   font-size: 12px;
   width: 160px;
-  max-width: 160px;
+  max-width: 112px;
   margin: 12px 0px 12px 10px;
   align-items: center;
 }
@@ -49,16 +49,16 @@
   border-left: 1px solid #DCDEDD;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: black;
-    font-weight: 300;
-    opacity: 1; /* Firefox */
-}
 
 .reward-user-input:focus {
   outline: none;
-  transition-duration: 1s;
   border: 1px solid black;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  font-weight: 300;
+  opacity: 1; /* Firefox */
 }
 
 .reward-description {
@@ -68,4 +68,48 @@
 
 .textarea {
   resize: none;
+}
+
+.no-bottom {
+  border-bottom: none;
+}
+
+.reward-month-year-select {
+  outline: none;
+  border: none;
+  width: 155px;
+  max-width: 180px;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+
+.reward-year-select {
+  outline: none;
+  border: none;
+  width: 100%;
+  background-color: white;
+  color: black;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.reward-month-select-container {
+  border-left: 1px solid #DCDEDD;
+  border-bottom: none;
+  border-radius: 0px;
+
+}
+
+.year-width {
+  width: 124px;
+  max-width: 124px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
 }

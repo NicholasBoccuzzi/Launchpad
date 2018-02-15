@@ -1,10 +1,11 @@
-import { TOGGLE_CREATE_PROJECT_MODAL, TOGGLE_PROFILE_DROPDOWN, TOGGLE_ERROR_MODAL, TOGGLE_UPDATE_PROJECT_MODAL} from '../actions/ui_actions.js';
+import { SWITCH_TABS, TOGGLE_CREATE_PROJECT_MODAL, TOGGLE_PROFILE_DROPDOWN, TOGGLE_ERROR_MODAL, TOGGLE_UPDATE_PROJECT_MODAL} from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
 const initialState = {
   profileDropDownActive: false,
   errorModalActive: false,
   projectCreateUpdateModalActive: false,
+  switchedTabs: false
 };
 
 export default (state = initialState, action) => {
@@ -26,7 +27,10 @@ export default (state = initialState, action) => {
     let editProjectState = merge({}, state);
     editProjectState.projectCreateUpdateModalActive = !editProjectState.projectCreateUpdateModalActive;
     return editProjectState;
-
+  case SWITCH_TABS:
+    let switchTabs = merge({}, state);
+    switchTabs.switchedTabs = !switchTabs.switchedTabs;
+    return switchTabs;
   default:
     return state;
   }
