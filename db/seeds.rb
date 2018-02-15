@@ -23,7 +23,8 @@ p1 = Project.create!(
   creator_id: u1.id,
   deadline: "2020/02/05",
   category: "Games",
-  image: File.open('app/assets/images/seeds.jpg')
+  image: File.open('app/assets/images/seeds.jpg'),
+  live: true,
 )
 
 p2 = Project.create!(
@@ -36,7 +37,8 @@ p2 = Project.create!(
   creator_id: u2.id,
   deadline: "2020/11/16",
   category: "Tech",
-  image: File.open('app/assets/images/pumpkin.jpg')
+  image: File.open('app/assets/images/pumpkin.jpg'),
+  live: true,
 )
 
 p3 = Project.create!(
@@ -50,7 +52,8 @@ p3 = Project.create!(
   creator_id: u3.id,
   deadline: "2025/05/20",
   category: "Movie",
-  image: File.open('app/assets/images/sunflower.jpg')
+  image: File.open('app/assets/images/sunflower.jpg'),
+  live: true,
 )
 
 p4 = Project.create!(
@@ -64,7 +67,8 @@ p4 = Project.create!(
   creator_id: u1.id,
   deadline: "2020/02/02",
   category: "Tech",
-  image: File.open('app/assets/images/acorn.jpg')
+  image: File.open('app/assets/images/acorn.jpg'),
+  live: true,
 )
 
 p5 = Project.create!(
@@ -78,5 +82,6 @@ p5 = Project.create!(
   creator_id: u2.id,
   deadline: "2019/01/01",
   category: "Art",
-  image: File.open('app/assets/images/flex.jpg')
+  image: File.open('app/assets/images/flex.jpg'),
+  live: false,
 )

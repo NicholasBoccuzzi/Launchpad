@@ -7,11 +7,12 @@ class Main extends React.Component {
     super(props);
 
     this.state = {
-
     };
 
+    this.displayInfo = this.displayInfo.bind(this);
     this.displayProjects = this.displayProjects.bind(this);
     this.setDate = this.setDate.bind(this);
+    this.displayProjectsInfo = this.displayProjectsInfo.bind(this);
   }
 
   setDate() {
@@ -43,14 +44,32 @@ class Main extends React.Component {
   displayProjects () {
     let latestList;
     let latest;
+    let latestCount = 0;
 
     if (this.props.projects.length > 0) {
       let projects = Array.from(this.props.projects);
+      let that = this;
+      projects = projects.map(project => {
+
+        if (project.live) {
+          return project;
+        }
+      });
+
       projects = projects.reverse();
       this.projectCount = projects.length;
-      latest = projects[0];
+        projects.forEach(project => {
+          if (project && latestCount === 0) {
+            latestCount += 1;
+            latest = project;
+          }
+        });
 
-      latestList = projects.slice(1,5);
+      if (this.projectCount > 5) {
+        latestList = projects.slice(1,5);
+      } else {
+        latestList = projects.slice(1, this.projectCount);
+      }
 
       latestList = latestList.map(project => {
         return (
@@ -109,7 +128,27 @@ class Main extends React.Component {
     );
   }
 
+  displayProjectsInfo() {
+    let projects = {
+      funded: 0,
+      total: 0,
+    };
+
+    this.props.projects.forEach((project) => {
+      projects.total += 1;
+
+      if (project.funded) {
+        projects.funded += 1;
+      }
+
+    });
+
+    return projects;
+  }
+
   displayInfo () {
+    let projectsInfo = this.displayProjectsInfo();
+
 
     return (
       <nav className="Launchpad-info-container">
@@ -124,11 +163,11 @@ class Main extends React.Component {
           </div>
           <div className="top-info-box">
             <div className="top-info heading">Total Projects</div>
-            <div className="top-info bold">{this.projectCount}</div>
+            <div className="top-info bold">{projectsInfo.total}</div>
           </div>
           <div className="top-info-box-right">
             <div className="top-info-heading">Funded Projects</div>
-            <div className="top-info bold">0</div>
+            <div className="top-info bold">{projectsInfo.funded}</div>
           </div>
         </div>
       </nav>

@@ -1,4 +1,5 @@
 json.id project.id
+json.live project.live
 json.title project.title
 json.current_funding project.current_funding
 json.funding_goal project.funding_goal

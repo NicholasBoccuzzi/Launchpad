@@ -9,8 +9,6 @@ class rewardsTab extends React.Component {
 
   render () {
 
-    debugger
-
     return (
       <div>
         <header className="get-started-container animated fadeIn">
@@ -20,7 +18,7 @@ class rewardsTab extends React.Component {
             a special experience, or a behind-the-scenes look into your process.</h2>
         </header>
         <main className="new-project-container no-overflow">
-          <form className="project-form animated slideInLeft">
+          <form className="reward-form animated slideInLeft">
             <div className="reward-form-input-box">
               <div className="reward-form-input-title-box">
                 <h3 className="reward-form-input-title">Reward #{this.currentRewardCount}</h3>
@@ -78,11 +76,20 @@ class rewardsTab extends React.Component {
                     </div>
                   </div>
                 </div>
-                <button className="delete-reward">
-                  Delete
-                </button>
+                <div className="delete-reward">
+                  <i className="fa fa-times big-x"></i>
+                  <div>Delete</div>
+                </div>
               </div>
             </div>
+
+            <div className="new-reward-button-container">
+              <i className="fa fa-plus"></i>
+              <div className="new-reward-button-text">
+                Add a new reward
+              </div>
+            </div>
+
           </form>
           <section className="project-current-summary animated fadeIn">
             <div className="helpful-tips-box">

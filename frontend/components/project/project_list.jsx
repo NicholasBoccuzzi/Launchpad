@@ -5,6 +5,8 @@ import ProjectListItem from './project_list_item';
 class projectList extends React.Component {
   constructor(props) {
     super(props);
+    this.liveCount = 0;
+    this.projectList = this.projectList.bind(this);
   }
 
   componentDidMount() {
@@ -24,9 +26,12 @@ class projectList extends React.Component {
 
     if (this.props.projects.length > 0) {
       const mappedProjectList = this.props.projects.map((project) => {
-        return (
-          <ProjectListItem key={project.id} project={project} />
-        );
+        if (project.live) {
+          this.liveCount += 1;
+          return (
+            <ProjectListItem key={project.id} project={project} />
+          );
+        }
       });
 
     return (
@@ -36,7 +41,7 @@ class projectList extends React.Component {
             <div className="discover-header-container">
               <h1 className="discover-header">
                 Explore <div className="discover-header green">
-                {this.props.projects.length} projects
+                {this.liveCount} projects
                 </div>
               </h1>
             </div>
@@ -48,7 +53,7 @@ class projectList extends React.Component {
       </ul>
       );
     } else {
-      return <h1> hi </h1>;
+      return <h1> Loading Projects </h1>;
     }
   }
 
