@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
     return switchTabs;
   case CHECK_REWARD_COUNT:
     let rewardsCounter = merge({}, state);
-    rewardsCounter.rewardsCount = !rewardsCounter.rewardsCount;
+    rewardsCounter.rewardCount = !rewardsCounter.rewardCount;
     rewardsCounter.loadedRewards = true;
     return rewardsCounter;
   default:

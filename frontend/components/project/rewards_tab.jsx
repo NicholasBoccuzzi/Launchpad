@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Modal from '../modal_container';
 
 class rewardsTab extends React.Component {
   constructor () {
@@ -8,14 +9,15 @@ class rewardsTab extends React.Component {
     this.newRewardBox = this.newRewardBox.bind(this);
     this.displayRewardsBoxes = this.displayRewardsBoxes.bind(this);
     this.removeReward = this.removeReward.bind(this);
-    this.loaded = false;
+    this.updateRewards = this.updateRewards.bind(this);
   }
 
   newRewardBox(num) {
+    let rewardNumber = num;
     return (
     <div className="reward-form-input-box">
       <div className="reward-form-input-title-box">
-        <h3 className="reward-form-input-title">Reward #{num}</h3>
+        <h3 className="reward-form-input-title ">Reward #{rewardNumber}</h3>
       </div>
       <div className="flex-col">
         <div className="flexed-columns">
@@ -35,7 +37,7 @@ class rewardsTab extends React.Component {
               <div className="reward-input-title reward-description">Description</div>
               <textarea className="reward-user-input textarea"></textarea>
             </div>
-            <div className="flexed-rows reward-input-container">
+            <div className="flexed-rows reward-input-container no-bottom">
               <div className="reward-input-title">Estimated <br/> delivery</div>
               <div className="reward-month-select-container">
                 <select className="reward-month-year-select no-border"
@@ -70,7 +72,7 @@ class rewardsTab extends React.Component {
             </div>
           </div>
         </div>
-        <div className="delete-reward" onClick={ () => {this.removeReward(num - 1);} }>
+        <div id={rewardNumber} className="delete-reward" onClick={ (e) => {this.removeReward(e);} }>
           <i className="fa fa-times big-x"></i>
           <div>Delete</div>
         </div>
@@ -79,17 +81,29 @@ class rewardsTab extends React.Component {
     );
   }
 
-  removeReward(num) {
-    console.log(this.rewards);
-    this.rewards.splice(num, 1);
+  updateRewards() {
+    this.rewards.forEach(reward => {
+      console.log(reward);
+    });
+  }
+
+  removeReward(e) {
+
+    this.rewards.splice(parseInt(e.currentTarget.id - 1), 1);
     this.props.checkRewardCount();
-    console.log(this.rewards);
   }
 
   displayRewardsBoxes() {
-    if (this.props.location === "startproject" && this.props.loadedRewards === false) {
+    if (this.props.location === "startproject"
+    && this.props.loadedRewards === false
+  ) {
       this.rewards.push(this.newRewardBox(this.rewards.length + 1));
     }
+  }
+
+  addReward(num) {
+    this.rewards.push(this.newRewardBox(num));
+    this.props.checkRewardCount();
   }
 
 
@@ -110,7 +124,7 @@ class rewardsTab extends React.Component {
           <form className="reward-form animated slideInLeft">
             {this.rewards}
 
-            <div className="new-reward-button-container">
+            <div className="new-reward-button-container" onClick={() => {this.addReward(this.rewards.length + 1); } } >
               <i className="fa fa-plus"></i>
               <div className="new-reward-button-text">
                 Add a new reward
