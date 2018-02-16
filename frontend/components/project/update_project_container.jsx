@@ -21,6 +21,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
+    switchedTabs: state.ui.switchedTabs,
     location: ownProps.location,
     projectId: ownProps.match.params.projectId,
     currentUser: state.session.currentUser,

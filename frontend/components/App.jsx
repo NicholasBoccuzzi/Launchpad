@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Navbar from './nav_bar_container';
+import CreateProjectNavBar from './create_project_nav_bar_container';
 import Mainpage from './mainpage_container';
 import SessionFormContainer from './session_form_container';
 import ProjectList from './project/project_list_container';
@@ -19,8 +20,10 @@ import UnderConstruction from './underconstruction';
 
 const App = () => (
   <div>
-    <Navbar />
-
+    <Switch>
+      <Route path='/startproject' component={CreateProjectNavBar} exact/>
+      <Route path='/'   component={Navbar}/>
+    </Switch>
     <Route exact path="/underconstruction" component={UnderConstruction}/>
     <Route exact path="/projects/:projectId" component={ProjectShow}></Route>
     <Route exact path="/" component={Mainpage}></Route>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Line, Circle } from 'rc-progress';
 import Modal from '../modal_container';
 import { Redirect } from 'react-router-dom';
+import RewardsTab from './rewards_tab_container';
 
 class updateProjectForm extends React.Component {
   constructor (props) {
@@ -26,6 +27,7 @@ class updateProjectForm extends React.Component {
 
     };
 
+    this.activeTab = "Basics";
     this.formData = new FormData();
     this.formData.set(`project[body]`, "blah");
     this.formData.set(`project[id]`, this.props.projectId);
@@ -36,6 +38,9 @@ class updateProjectForm extends React.Component {
     this.handlePictureUpload = this.handlePictureUpload.bind(this);
     this.handlePicturePreview = this.handlePicturePreview.bind(this);
     this.switchSelectedTab = this.switchSelectedTab.bind(this);
+    this.displayProjectBasics = this.displayProjectBasics.bind(this);
+    this.displayProjectRewards = this.displayProjectRewards.bind(this);
+
   }
 
   handleSubmit (e) {
@@ -169,57 +174,18 @@ class updateProjectForm extends React.Component {
     }
   }
 
-  render () {
-    let redirect;
-    if (this.state.wrongUser) {
-      redirect = <Redirect to={`/projects/${this.state.id}`} />;
+  displayProjectRewards() {
+    if (this.activeTab === "Rewards") {
+      return (
+        <RewardsTab state={this.state} location={this.props.location} />
+      );
     }
+  }
 
-    return (
-      <main className="largest-project-container">
-        {redirect}
-
-        <nav className="project-nav">
-          <div className="project-nav-tabs-container">
-            <div className="project-nav-tabs-li selected-project-tab-li"
-              onClick={this.switchSelectedTab}>
-              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
-              <div>Basics</div>
-            </div>
-            <div className="project-nav-tabs-li"
-              onClick={this.switchSelectedTab}>
-              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
-              <div>Rewards</div>
-            </div>
-            <div className="project-nav-tabs-li"
-              onClick={this.switchSelectedTab}>
-              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
-              Story
-            </div>
-            <div className="project-nav-tabs-li"
-              onClick={this.switchSelectedTab}>
-              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
-              <div>About you</div>
-            </div>
-            <div className="project-nav-tabs-li no-border"
-              onClick={this.switchSelectedTab}>
-              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
-              <div>Account</div>
-            </div>
-          </div>
-
-          <div className="project-nav-tabs-container small-margin-left">
-            <div className="project-nav-tabs-li no-border" onClick={this.switchSelectedTab}>
-              <div>Preview</div>
-            </div>
-          </div>
-
-          <div className="project-nav-tabs-container small-margin-left">
-            <div className="project-nav-tabs-li no-border">
-              <div>Activate the Project</div>
-            </div>
-          </div>
-        </nav>
+  displayProjectBasics () {
+    if (this.activeTab === "Basics") {
+      return (
+      <div>
         <header className="get-started-container">
           <h1 className="get-started-title">Let's get started.</h1>
           <h2 className="get-started-body">Make a great first impression
@@ -398,6 +364,70 @@ class updateProjectForm extends React.Component {
             </div>
           </section>
         </main>
+      </div>
+      );
+    }
+  }
+
+  render () {
+    let redirect;
+    if (this.state.wrongUser) {
+      redirect = <Redirect to={`/projects/${this.state.id}`} />;
+    }
+
+    return (
+      <main className="largest-project-container">
+        {redirect}
+
+        <nav className="project-nav">
+          <div className="project-nav-tabs-container">
+            <div className="project-nav-tabs-li selected-project-tab-li"
+              id="Basics"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>Basics</div>
+            </div>
+            <div className="project-nav-tabs-li"
+              id="Rewards"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>Rewards</div>
+            </div>
+            <div className="project-nav-tabs-li"
+              id="Story"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              Story
+            </div>
+            <div className="project-nav-tabs-li"
+              id="About you"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>About you</div>
+            </div>
+            <div className="project-nav-tabs-li no-border"
+              id="Account"
+              onClick={this.switchSelectedTab}>
+              <i className="fa fa-check-circle project-tab-li-checkbox"></i>
+              <div>Account</div>
+            </div>
+          </div>
+
+          <div className="project-nav-tabs-container small-margin-left">
+            <div className="project-nav-tabs-li no-border" id="Preview" onClick={this.switchSelectedTab}>
+              <div>Preview</div>
+            </div>
+          </div>
+
+          <div className="project-nav-tabs-container small-margin-left">
+            <div className="project-nav-tabs-li no-border">
+              <div>Activate the Project</div>
+            </div>
+          </div>
+        </nav>
+
+        {this.displayProjectRewards()}
+        {this.displayProjectBasics()}
         {this.renderSubmit()}
       </main>
     );

@@ -94,7 +94,7 @@ class rewardsTab extends React.Component {
   }
 
   displayRewardsBoxes() {
-    if (this.props.location === "startproject"
+    if (this.props.location.pathname.includes("edit")
     && this.props.loadedRewards === false
   ) {
       this.rewards.push(this.newRewardBox(this.rewards.length + 1));
