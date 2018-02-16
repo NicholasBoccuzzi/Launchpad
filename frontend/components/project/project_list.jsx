@@ -25,9 +25,11 @@ class projectList extends React.Component {
   projectList () {
 
     if (this.props.projects.length > 0) {
+      this.liveCount = this.props.projects.length;
       const mappedProjectList = this.props.projects.map((project) => {
-        if (project.live) {
-          this.liveCount += 1;
+        if (!project.live) {
+          this.liveCount -= 1;
+        } else {
           return (
             <ProjectListItem key={project.id} project={project} />
           );
