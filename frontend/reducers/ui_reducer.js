@@ -4,6 +4,7 @@ import {
   TOGGLE_PROFILE_DROPDOWN,
   TOGGLE_ERROR_MODAL,
   TOGGLE_UPDATE_PROJECT_MODAL,
+  TOGGLE_CATEGORY_CHOICES,
   CHECK_REWARD_COUNT
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
@@ -15,6 +16,7 @@ const initialState = {
   switchedTabs: false,
   rewardCount: false,
   loadedRewards: false,
+  categoryChoicesActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -40,6 +42,10 @@ export default (state = initialState, action) => {
     let switchTabs = merge({}, state);
     switchTabs.switchedTabs = !switchTabs.switchedTabs;
     return switchTabs;
+  case TOGGLE_CATEGORY_CHOICES:
+    let categoryChoices = merge({}, state);
+    categoryChoices.categoryChoicesActive = !categoryChoices.categoryChoicesActive;
+    return categoryChoices;
   case CHECK_REWARD_COUNT:
     let rewardsCounter = merge({}, state);
     rewardsCounter.rewardCount = !rewardsCounter.rewardCount;

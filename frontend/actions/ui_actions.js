@@ -4,6 +4,7 @@ export const TOGGLE_CREATE_PROJECT_MODAL = "TOGGLE_CREATE_PROJECT_MODAL";
 export const TOGGLE_UPDATE_PROJECT_MODAL = "TOGGLE_UPDATE_PROJECT_MODAL";
 export const SWITCH_TABS = "SWITCH_TABS";
 export const CHECK_REWARD_COUNT = "CHECK_REWARD_COUNT";
+export const TOGGLE_CATEGORY_CHOICES = "TOGGLE_CATEGORY_CHOICES";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -38,5 +39,11 @@ export const switchTabs = () => {
 export const checkRewardCount = () => {
   return {
     type: CHECK_REWARD_COUNT
+  };
+};
+
+export const toggleCategoryChoices = () => {
+  return {
+    type: TOGGLE_CATEGORY_CHOICES
   };
 };
