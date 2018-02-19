@@ -24,6 +24,7 @@ const App = () => (
       <Route path='/startproject' component={CreateProjectNavBar} exact/>
       <Route path='/'   component={Navbar}/>
     </Switch>
+
     <Route exact path="/underconstruction" component={UnderConstruction}/>
     <Route exact path="/projects/:projectId" component={ProjectShow}></Route>
     <Route exact path="/" component={Mainpage}></Route>
@@ -32,7 +33,10 @@ const App = () => (
     <Route exact path="/discover" component={ProjectList} />
     <AuthRoute path="/login" component={SessionFormContainer}/>
     <AuthRoute path="/signup" component={SessionFormContainer} />
-    <Footer />
+      <Switch>
+        <Route path='/startproject' exact/>
+        <Route path='/'   component={Footer}/>
+      </Switch>
   </div>
 );
 

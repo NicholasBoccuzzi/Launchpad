@@ -44,19 +44,21 @@ class Navbar extends React.Component {
   render () {
 
     return (
-      <nav className="main-nav">
-        <section className="top-nav-left">
-          <Link className="nav-button right" to={"/discover"}>Explore</Link>
-          <Link className="nav-button" to={"/startproject"}>Start a project</Link>
-        </section>
-        <section className="top-nav-middle">
-          <a href="#" className="title-link">LAUNCHPAD</a>
-        </section>
+      <div>
+        <nav className="main-nav">
+          <section className="top-nav-left">
+            <Link className="nav-button right" to={"/discover"}>Explore</Link>
+            <Link className="nav-button" to={"/startproject"}>Start a project</Link>
+          </section>
+          <section className="top-nav-middle">
+            <a href="#" className="title-link">LAUNCHPAD</a>
+          </section>
+          <section className="top-nav-right">
+            {this.isSession()}
+          </section>
+        </nav>
         {this.displayDrowDown()}
-        <section className="top-nav-right">
-          {this.isSession()}
-        </section>
-      </nav>
+      </div>
     );
   }
 }

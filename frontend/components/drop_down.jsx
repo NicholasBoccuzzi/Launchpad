@@ -12,31 +12,38 @@ class DropDown extends React.Component {
     this.props.toggleProfileDropDown();
   }
 
+  dropDownContent() {
 
-  render () {
-    return (
-      <main className="current-user-dropdown">
-        <div className="profile-dropdown-header">
-          <h2 className="dd-welcome"> Welcome, {this.props.currentUser.username}! </h2>
+    if (this.props.location === "/startproject") {
+      return (
+        <div className="start-project-modal">
+
         </div>
-        <div className="dd-sections">
-          <section className="dd-user-info dd-bold">
-            <h1 className="dd-section-header">MY STUFF</h1>
-          </section>
-          <section className="dd-settings dd-bold">
-            <h1 className="dd-section-header">SETTINGS</h1>
-          </section>
-          <section className="dd-backed-projects dd-bold">
-            <h1 className="dd-section-header">BACKED PROJECTS</h1>
-          </section>
-          <section className="dd-my-projects dd-bold">
-            <h1 className="dd-section-header">MY PROJECTS</h1>
-          </section>
-        </div>
-        <div className="logout-dropdown-box">
-          <button onClick={() => { return (
-              this.props.toggleProfileDropDown(),
-              this.props.logout()
+      );
+    } else {
+      return (
+        <main className="current-user-dropdown">
+          <div className="profile-dropdown-header">
+            <h2 className="dd-welcome"> Welcome, {this.props.currentUser.username}! </h2>
+          </div>
+          <div className="dd-sections">
+            <section className="dd-user-info dd-bold">
+              <h1 className="dd-section-header">MY STUFF</h1>
+            </section>
+            <section className="dd-settings dd-bold">
+              <h1 className="dd-section-header">SETTINGS</h1>
+            </section>
+            <section className="dd-backed-projects dd-bold">
+              <h1 className="dd-section-header">BACKED PROJECTS</h1>
+            </section>
+            <section className="dd-my-projects dd-bold">
+              <h1 className="dd-section-header">MY PROJECTS</h1>
+            </section>
+          </div>
+          <div className="logout-dropdown-box">
+            <button onClick={() => { return (
+                this.props.toggleProfileDropDown(),
+                this.props.logout()
               );
             }}
             className="logout-dropdown">Log out
@@ -44,6 +51,16 @@ class DropDown extends React.Component {
 
         </div>
       </main>
+      );
+    }
+  }
+
+
+  render () {
+    return (
+      <div>
+        {this.dropDownContent()}
+      </div>
     );
   }
 }

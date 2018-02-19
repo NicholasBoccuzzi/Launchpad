@@ -8,7 +8,6 @@ import { toggleCreateProjectModal, switchTabs } from '../../actions/ui_actions.j
 
 const mapStateToProps = (state, { location }) => {
   const curPath = location.pathname.slice(1);
-  debugger
   return {
     location: curPath,
     currentUser: state.session.currentUser,

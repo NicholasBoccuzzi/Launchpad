@@ -3,40 +3,41 @@ import { Link } from 'react-router-dom';
 import DropDown from './drop_down_container';
 
 class CreateProjectNavbar extends React.Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.isSession = this.isSession.bind(this);
     this.displayDrowDown = this.displayDrowDown.bind(this);
+    this.activeBorder = false;
+    this.profileIcon = document.getElementById("cp-icon");
   }
 
+  activeBorder() {
+    if (this.activeBorder) {
+
+      this.activeBorder = false;
+    } else {
+
+      this.activeBorder = true;
+    }
+  }
 
   isSession () {
 
     if (this.props.currentUser) {
       return(
-        <div>
-          <button className="nav-button search-button-loggined-in">
-          </button>
-          <div className="nav-button main-profile-button" onClick={this.props.toggleProfileDropDown}>
-            <img className="profile-icon" src={this.props.currentUser.image}>
+        <div id="cp-icon" className="cp-icon" onClick={this.activeBorder}>
+          <div className="cp-nav-button cp-profile-button" onClick={this.props.toggleProfileDropDown}>
+            <img className="profile-icon cp-icon" src={this.props.currentUser.image}>
             </img>
           </div>
         </div>
       );
-      } else {
-        return (
-          <div>
-            <button className="nav-button search-button-no-login">
-            </button>
-            <Link className="nav-button left" to="/login">Sign In</Link>
-          </div>
-        );
-      }
+    }
   }
 
   displayDrowDown () {
     if (this.props.profileDropDownActive) {
-      return <DropDown />;
+      return <DropDown location={this.props.location.pathname}/>;
     }
   }
 
@@ -44,16 +45,13 @@ class CreateProjectNavbar extends React.Component {
   render () {
 
     return (
-      <nav className="main-nav">
-        <section className="top-nav-left">
-        </section>
-        <section className="top-nav-middle">
-          <a href="#" className="title-link">LAUNCHPAD</a>
-        </section>
+      <nav className="cp-main-nav">
+        <div className="centered-cp-nav">
+            <div></div>
+            <a href="#" className="title-link cp-centered-title">LAUNCHPAD</a>
+            {this.isSession()}
+        </div>
         {this.displayDrowDown()}
-        <section className="top-nav-right">
-          {this.isSession()}
-        </section>
       </nav>
     );
   }
