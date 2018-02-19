@@ -18,6 +18,7 @@ class createProjectForm extends React.Component {
     this.currentPage = 1;
     this.randomQuote = this.randomQuote.bind(this);
     this.displayCategoryChoices = this.displayCategoryChoices.bind(this);
+    this.selectCategory = this.selectCategory.bind(this);
   }
 
   randomQuote () {
@@ -29,6 +30,14 @@ class createProjectForm extends React.Component {
     ];
 
     return quotes[choice];
+  }
+
+  selectCategory(e) {
+    let checkbox = `<i class="fa fa-check-circle green-checked"></i>`;
+    debugger
+    this.state.category = e.currentTarget.id;
+    debugger
+    this.props.toggleCategoryChoices();
   }
 
   categorySelected() {
@@ -53,50 +62,77 @@ class createProjectForm extends React.Component {
       return (
         <div className="cp-category-selection-container">
           <div className="cp-categories">
-            <div className="cp-category-selection">
-              <div>Art</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Art">
+              <div id="Art">Art</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Comics</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Comics">
+              <div id="Comics">Comics</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Crafts</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Crafts">
+              <div id="Crafts">Crafts</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Dance</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Dance">
+              <div id="Dance">Dance</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Design</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Design">
+              <div id="Design">Design</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Fashion</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Fashion">
+              <div id="Fashion">Fashion</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Film & Video</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Film & Video">
+              <div id="Film & Video">Film & Video</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Food</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Food">
+              <div id="Food">Food</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Games</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Games">
+              <div id="Games">Games</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Journalism</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Journalism">
+              <div id="Journalism">Journalism</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Music</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Music">
+              <div id="Music">Music</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Photography</div>
+            <div className="cp-category-selection"
+              onClick={this.selectCategory}
+              id="Photography">
+              <div id="Photography">Photography</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Publishing</div>
+            <div className="cp-category-selection"
+              id="Publishing">
+              <div id="Publishing">Publishing</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Technology</div>
+            <div className="cp-category-selection"
+              id="Technology">
+              <div id="Technology">Technology</div>
             </div>
-            <div className="cp-category-selection">
-              <div>Theater</div>
+            <div className="cp-category-selection"
+              id="Theater">
+              <div id="Theater">Theater</div>
             </div>
           </div>
         </div>
@@ -136,7 +172,7 @@ class createProjectForm extends React.Component {
                 className="cp-page-category-choice-text">
                 Select your category
               </div>
-              <i class="fa fa-caret-down black cp-carrot"></i>
+              <i className="fa fa-caret-down black cp-carrot"></i>
             </div>
             {this.displayCategoryChoices()}
           </div>

@@ -356,11 +356,11 @@ margin: auto;
 .cp-page-title {
   font-size: 28px;
   margin: 0 auto;
+  margin-top: 105px;
   font-family: 'Muli', sans-serif;
   font-weight: 400;
   letter-spacing: .5px;
   line-height: 25px;
-  flex: 1 0 auto;
 }
 
 .cp-page-description{
@@ -426,6 +426,7 @@ margin: auto;
 .cp-categories {
   padding: 6px;
   align-items: center;
+  margin-bottom: 60px;
 }
 
 .cp-category-selection {
@@ -439,6 +440,7 @@ margin: auto;
   transition: .2s;
   background: white;
 }
+
 
 .cp-category-selection:hover {
   transition: .2s;
@@ -491,4 +493,9 @@ margin: auto;
 
 .center-project-button {
   padding-top: 14px;
+}
+
+.green-checked {
+  margin-left: 8px;
+  color: #169D74;
 }

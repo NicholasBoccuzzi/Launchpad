@@ -96,9 +96,36 @@
 
 .start-project-modal {
   position: fixed;
-  top: 50px;
-  right: 20px;
-  width: 250px;
-  height: 400px;
+  top: 48px;
+  right: 42px;
+  width: 164px;
+  max-width: 180px;
+  height: 140px;
+  max-height: 164px;
   background: white;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  text-align: left;
+}
+
+.cp-modal-options-container {
+  text-align: left;
+  margin: 4px;
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+.cp-modal-options {
+  background: white;
+  font-size: 14px;
+  align-self: center;
+  padding: 10px;
+  color: #2B2B2B;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.cp-modal-options:hover {
+  background: #E8E8E8;
 }
