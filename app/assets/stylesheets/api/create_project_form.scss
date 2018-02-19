@@ -1,3 +1,8 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
 .largest-project-container {
   background: #F0F0F0;
   width: auto;
@@ -351,11 +356,11 @@ margin: auto;
 .cp-page-title {
   font-size: 28px;
   margin: 0 auto;
-  margin-top: 105px;
   font-family: 'Muli', sans-serif;
   font-weight: 400;
   letter-spacing: .5px;
   line-height: 25px;
+  flex: 1 0 auto;
 }
 
 .cp-page-description{
@@ -371,6 +376,7 @@ margin: auto;
 
 .cp-page-container {
   width: 44%;
+  max-width: 608px;
   margin: 0 auto;
   text-align: center;
 }
@@ -438,4 +444,51 @@ margin: auto;
   transition: .2s;
   background: #E8E8E8;
   cursor: pointer;
+}
+
+.cp-category-submit {
+  margin-top: 83px;
+  border-top: 1px solid #E8E8E8;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.cp-category-selected-button {
+  transition: .25s;
+  max-height: 42px;
+  height: 42px;
+  max-width: 151px;
+  width: 151px;
+  background: #282828;
+  color: white;
+  font-size: 14px;
+  font-weight: 200;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 18px;
+}
+
+.not-selected {
+  cursor: not-allowed;
+  opacity: .2;
+}
+
+.cp-category-button-container {
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+}
+
+.cp-category-quotes {
+  font-size: 14px;
+  font-weight: 300;
+  color: #656969;
+  width: 80%;
+  margin: auto;
+  text-align: left;
+  margin-top: 30px;
+}
+
+.center-project-button {
+  padding-top: 14px;
 }

@@ -12,10 +12,40 @@ class createProjectForm extends React.Component {
       summary: "",
       body: "",
       deadline: "",
-      category: "Art",
+      category: "",
       location: "",
     };
     this.currentPage = 1;
+    this.randomQuote = this.randomQuote.bind(this);
+    this.displayCategoryChoices = this.displayCategoryChoices.bind(this);
+  }
+
+  randomQuote () {
+    let choice = Math.floor(Math.random()*3);
+    let quotes = [
+      "Welcome back.",
+        "You're back. This is major.",
+        "Hello, Super Creator."
+    ];
+
+    return quotes[choice];
+  }
+
+  categorySelected() {
+    if (this.state.category) {
+      return (
+        <div onClick={this.props.switchTabs}
+          className="cp-category-selected-button">
+          <div className="centered">Next: Project Idea</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="cp-category-selected-button not-selected">
+          <div className="center-project-button">Next: Project Idea</div>
+        </div>
+      );
+    }
   }
 
   displayCategoryChoices() {
@@ -68,6 +98,17 @@ class createProjectForm extends React.Component {
             <div className="cp-category-selection">
               <div>Theater</div>
             </div>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="cp-category-submit flex-row">
+          <div className="cp-category-quotes">
+            {this.randomQuote()}
+          </div>
+          <div className="cp-category-button-container">
+            {this.categorySelected()}
           </div>
         </div>
       );
