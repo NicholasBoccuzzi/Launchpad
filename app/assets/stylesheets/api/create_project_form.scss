@@ -649,6 +649,27 @@ margin: auto;
   width: 100%;
 }
 
-.green {
+.green-text{
   color: green;
+  margin-bottom: none;
+
+}
+
+.cp-black-text {
+  color: black;
+  font-weight: 400;
+  margin-bottom: none;
+}
+
+.cp-checkbox-li {
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+}
+
+.cp-checkbox-li:hover {
+  cursor: pointer;
+  width: 100%;
+  height: 50px;
+
 }

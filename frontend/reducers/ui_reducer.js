@@ -8,7 +8,9 @@ import {
   TOGGLE_COUNTRY_CHOICES,
   CHECK_REWARD_COUNT,
   UPDATE_PAGE,
-  UPDATE_AGE
+  UPDATE_AGE,
+  UPDATE_CARD,
+  UPDATE_BANK
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
@@ -71,6 +73,14 @@ export default (state = initialState, action) => {
     let updateAge = merge({}, state);
     updateAge.ageVerified = !updateAge.ageVerified;
     return updateAge;
+  case UPDATE_CARD:
+    let updateCard = merge({}, state);
+    updateCard.cardVerified = !updateCard.cardVerified;
+    return updateCard;
+  case UPDATE_BANK:
+    let updateBank = merge({}, state);
+    updateBank.bankVerified = !updateBank.bankVerified;
+    return updateBank;
   default:
     return state;
   }

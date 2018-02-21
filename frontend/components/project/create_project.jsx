@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Line, Circle } from 'rc-progress';
+import CreateProjectCheckboxes from './create_project_checkboxes_container';
 
 class createProjectForm extends React.Component {
   constructor(props) {
@@ -19,6 +20,8 @@ class createProjectForm extends React.Component {
       cardVerified: false
     };
 
+
+    this.checkboxesLoaded = false;
     this.currentPage = 1;
     this.randomQuote = this.randomQuote.bind(this);
     this.displayCategoryChoices = this.displayCategoryChoices.bind(this);
@@ -30,11 +33,7 @@ class createProjectForm extends React.Component {
     this.updateSummary = this.updateSummary.bind(this);
     this.summaryWritten = this.summaryWritten.bind(this);
     this.displayPreviousTab = this.displayPreviousTab.bind(this);
-    this.updateBank = this.updateBank.bind(this);
-    this.updateCard = this.updateCard.bind(this);
-    this.displayCardCheckbox = this.displayCardCheckbox.bind(this);
-    this.displayAgeCheckbox = this.displayAgeCheckbox.bind(this);
-    this.displayBankCheckbox = this.displayBankCheckbox.bind(this);
+    this.displayCheckboxes = this.displayCheckboxes.bind(this);
   }
 
 
@@ -59,18 +58,6 @@ class createProjectForm extends React.Component {
     ];
 
     return quotes[choice];
-  }
-
-  updateBank() {
-    let result = !this.state.bankVerified;
-    this.setState({bankVerified: result});
-    this.props.switchTabs();
-  }
-
-  updateCard() {
-    let result = !this.state.cardVerified;
-    this.setState({cardVerified: result});
-    this.props.switchTabs();
   }
 
   randomSummary() {
@@ -301,31 +288,23 @@ class createProjectForm extends React.Component {
           </section>
         </main>
       );
-    } else {
-      let ageCheckbox = this.displayAgeCheckbox();
-      let bankCheckbox = this.displayBankCheckbox();
-      let cardCheckbox = this.displayCardCheckbox();
+    }
+  }
 
+  displayCheckboxes () {
+    if (this.checkboxesLoaded === false) {
+      this.props.updatePage();
+    }
+    this.checkboxesLoaded = true;
+
+    if (!this.props.countryChoicesActive) {
       return (
         <main>
           <div className="cp-country-question-container" >
-            <i class="far fa-question-circle question-mark-margin"></i>
+            <i className="far fa-question-circle question-mark-margin"></i>
             <div>What if my country is not listed?</div>
           </div>
-          <section className="cp-checkboxes">
-            <div className="cp-checkbox-li flex-row" onClick={this.props.updateAge}>
-              {ageCheckbox}
-              <div>I am at least 18 years old.</div>
-            </div>
-            <li className="cp-checkbox-li flex-row" onClick={this.updateBank}>
-              {bankCheckbox}
-              <div>I can verify a bank account and government-issued ID.</div>
-            </li>
-            <li className="cp-checkbox-li flex-row" onClick={this.updateCard}>
-              {cardCheckbox}
-              <div>I have a debit and/or credit card.</div>
-            </li>
-          </section>
+          <CreateProjectCheckboxes />
           <div className="cp-country-submit">
             <div className="cp-summary-button-container flex-row">
               <div className="cp-previous-tab flex-row" onClick={this.displayPreviousTab}>
@@ -534,6 +513,7 @@ class createProjectForm extends React.Component {
             </div>
 
             {this.displayCountryChoices()}
+            {this.displayCheckboxes()}
           </div>
         </div>
       );
@@ -543,49 +523,10 @@ class createProjectForm extends React.Component {
     }
   }
 
-  displayCardCheckbox () {
-    if (this.state.cardVerified) {
-      return(
-        <i class="fas fa-check-square"></i>
-      );
-    } else {
-      return(
-        <i className="far fa-check-circle"></i>
-      );
-    }
-  }
-
-  displayBankCheckbox () {
-    if (this.state.bankVerified) {
-      return(
-        <i className="fas fa-check-circle"></i>
-      );
-    } else {
-      return(
-        <i className="far fa-check-circle"></i>
-      );
-    }
-  }
-
-  displayAgeCheckbox () {
-    if (this.props.updatedAge) {
-      debugger
-      return(
-        <i className="fas fa-check-circle"></i>
-      );
-    } else {
-      return(
-        <i className="far fa-check-circle"></i>
-      );
-    }
-  }
-
   render () {
-
     return (
       <div>
         {this.displayCreateProjectForm()}
-        {this.addGreenCheckbox()}
       </div>
     );
   }

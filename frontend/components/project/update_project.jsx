@@ -329,7 +329,7 @@ class updateProjectForm extends React.Component {
           </form>
           <section className="project-current-summary">
             <div className="helpful-tips-box">
-                <i className="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;&nbsp;
+              <i class="far fa-lightbulb"  aria-hidden="true"></i>&nbsp;&nbsp;
                 <div className="helpful-tips-box-content">
                   <h2 className="small-font">How to:</h2>
                   <br/>

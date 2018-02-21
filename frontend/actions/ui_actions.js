@@ -8,6 +8,8 @@ export const TOGGLE_CATEGORY_CHOICES = "TOGGLE_CATEGORY_CHOICES";
 export const TOGGLE_COUNTRY_CHOICES = "TOGGLE_COUNTRY_CHOICES";
 export const UPDATE_PAGE = "UPDATE_PAGE";
 export const UPDATE_AGE = "UPDATE_AGE";
+export const UPDATE_CARD = "UPDATE_CARD";
+export const UPDATE_BANK = "UPDATE_BANK";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -66,5 +68,15 @@ export const updatePage = () => {
 export const updateAge = () => {
   return {
     type: UPDATE_AGE
+  };
+};
+export const updateCard = () => {
+  return {
+    type: UPDATE_CARD
+  };
+};
+export const updateBank = () => {
+  return {
+    type: UPDATE_BANK
   };
 };
