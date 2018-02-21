@@ -5,6 +5,9 @@ export const TOGGLE_UPDATE_PROJECT_MODAL = "TOGGLE_UPDATE_PROJECT_MODAL";
 export const SWITCH_TABS = "SWITCH_TABS";
 export const CHECK_REWARD_COUNT = "CHECK_REWARD_COUNT";
 export const TOGGLE_CATEGORY_CHOICES = "TOGGLE_CATEGORY_CHOICES";
+export const TOGGLE_COUNTRY_CHOICES = "TOGGLE_COUNTRY_CHOICES";
+export const UPDATE_PAGE = "UPDATE_PAGE";
+export const UPDATE_AGE = "UPDATE_AGE";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -45,5 +48,23 @@ export const checkRewardCount = () => {
 export const toggleCategoryChoices = () => {
   return {
     type: TOGGLE_CATEGORY_CHOICES
+  };
+};
+
+export const toggleCountryChoices = () => {
+  return {
+    type: TOGGLE_COUNTRY_CHOICES
+  };
+};
+
+export const updatePage = () => {
+  return {
+    type: UPDATE_PAGE
+  };
+};
+
+export const updateAge = () => {
+  return {
+    type: UPDATE_AGE
   };
 };

@@ -5,7 +5,10 @@ import {
   TOGGLE_ERROR_MODAL,
   TOGGLE_UPDATE_PROJECT_MODAL,
   TOGGLE_CATEGORY_CHOICES,
-  CHECK_REWARD_COUNT
+  TOGGLE_COUNTRY_CHOICES,
+  CHECK_REWARD_COUNT,
+  UPDATE_PAGE,
+  UPDATE_AGE
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
@@ -17,6 +20,11 @@ const initialState = {
   rewardCount: false,
   loadedRewards: false,
   categoryChoicesActive: false,
+  countryChoicesActive: false,
+  updatedPage: false,
+  ageVerified: false,
+  bankVerified: false,
+  cardVerified: false
 };
 
 export default (state = initialState, action) => {
@@ -51,6 +59,18 @@ export default (state = initialState, action) => {
     rewardsCounter.rewardCount = !rewardsCounter.rewardCount;
     rewardsCounter.loadedRewards = true;
     return rewardsCounter;
+  case TOGGLE_COUNTRY_CHOICES:
+    let countryChoices = merge({}, state);
+    countryChoices.countryChoicesActive = !countryChoices.countryChoicesActive;
+    return countryChoices;
+  case UPDATE_PAGE:
+    let updatePage = merge({}, state);
+    updatePage.updatedPage = !updatePage.updatedPage;
+    return updatePage;
+  case UPDATE_AGE:
+    let updateAge = merge({}, state);
+    updateAge.ageVerified = !updateAge.ageVerified;
+    return updateAge;
   default:
     return state;
   }

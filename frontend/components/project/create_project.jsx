@@ -14,11 +14,40 @@ class createProjectForm extends React.Component {
       deadline: "",
       category: "",
       location: "",
+      bankVerified: false,
+      ageVerified: false,
+      cardVerified: false
     };
+
     this.currentPage = 1;
     this.randomQuote = this.randomQuote.bind(this);
     this.displayCategoryChoices = this.displayCategoryChoices.bind(this);
+    this.displayCurrentCategory = this.displayCurrentCategory.bind(this);
+    this.displayCurrentCountry = this.displayCurrentCountry.bind(this);
     this.selectCategory = this.selectCategory.bind(this);
+    this.selectCountry = this.selectCountry.bind(this);
+    this.displayNextTab = this.displayNextTab.bind(this);
+    this.updateSummary = this.updateSummary.bind(this);
+    this.summaryWritten = this.summaryWritten.bind(this);
+    this.displayPreviousTab = this.displayPreviousTab.bind(this);
+    this.updateBank = this.updateBank.bind(this);
+    this.updateCard = this.updateCard.bind(this);
+    this.displayCardCheckbox = this.displayCardCheckbox.bind(this);
+    this.displayAgeCheckbox = this.displayAgeCheckbox.bind(this);
+    this.displayBankCheckbox = this.displayBankCheckbox.bind(this);
+  }
+
+
+  hitTheLimit() {
+    if (this.state.summary.length === 135) {
+      return (
+        "You've hit the limit."
+      );
+    } else {
+      return (
+        ""
+      );
+    }
   }
 
   randomQuote () {
@@ -32,20 +61,63 @@ class createProjectForm extends React.Component {
     return quotes[choice];
   }
 
+  updateBank() {
+    let result = !this.state.bankVerified;
+    this.setState({bankVerified: result});
+    this.props.switchTabs();
+  }
+
+  updateCard() {
+    let result = !this.state.cardVerified;
+    this.setState({cardVerified: result});
+    this.props.switchTabs();
+  }
+
+  randomSummary() {
+    let choice = Math.floor(Math.random()*3);
+    let quotes = [
+      "A documentary about the history of shoes.",
+      "A short claymation about boba.",
+      "A novel written in three languages.",
+      "A set of handmade greeting cards and stationary.",
+      "An album of songs based on Pablo Neruda poems."
+
+    ];
+
+    return quotes[choice];
+  }
+
   selectCategory(e) {
-    let checkbox = `<i class="fa fa-check-circle green-checked"></i>`;
-    debugger
     this.state.category = e.currentTarget.id;
-    debugger
     this.props.toggleCategoryChoices();
+  }
+
+  selectCountry(e) {
+    this.state.location = e.currentTarget.id;
+    this.props.toggleCountryChoices();
+  }
+
+  updateSummary(e) {
+    this.state.summary = e.currentTarget.value;
+    this.props.updatePage();
+  }
+
+  displayNextTab() {
+    this.currentPage += 1;
+    this.props.switchTabs();
+  }
+
+  displayPreviousTab() {
+    this.currentPage -= 1;
+    this.props.switchTabs();
   }
 
   categorySelected() {
     if (this.state.category) {
       return (
-        <div onClick={this.props.switchTabs}
+        <div onClick={this.displayNextTab}
           className="cp-category-selected-button">
-          <div className="centered">Next: Project Idea</div>
+          <div className="center-project-button">Next: Project Idea</div>
         </div>
       );
     } else {
@@ -57,85 +129,302 @@ class createProjectForm extends React.Component {
     }
   }
 
+  summaryWritten() {
+    if (this.state.summary) {
+      return (
+        <div onClick={this.displayNextTab}
+          className="cp-summary-selected-button">
+          <div className="center-project-button">Next: Location</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="cp-summary-selected-button not-selected">
+          <div className="center-project-button">Next: Location</div>
+        </div>
+      );
+    }
+  }
+
+  countrySelected() {
+    if (this.state.location) {
+      return (
+        <div onClick={this.displayNextTab}
+          className="cp-country-selected-button">
+          <div className="center-project-button">Continue</div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="cp-country-selected-button not-selected">
+          <div className="center-project-button">Continue</div>
+        </div>
+      );
+    }
+  }
+
+  addGreenCheckbox() {
+    if (this.props.categoryChoicesActive && this.state.category) {
+      let element = document.getElementById(this.state.category);
+    }
+  }
+
+  displayCurrentCategory() {
+    if (this.state.category) {
+      return this.state.category;
+    } else {
+      return "Select your category";
+    }
+  }
+
+  displayCurrentCountry() {
+    if (this.state.location) {
+      return this.state.location;
+    } else {
+      return "Select your country";
+    }
+  }
+
+  displayCountryChoices() {
+    if (this.props.countryChoicesActive) {
+      return (
+        <main className="cp-selection-container">
+          <section className="cp-categories">
+            <div className="cp-selection" onClick={this.selectCountry} id="Australia">
+              <div id="Australia">Australia</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Austria">
+              <div id="Austria">Austria</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Belgium">
+              <div id="Belgium">Belgium</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Canada">
+              <div id="Canada">Canada</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Denmark">
+              <div id="Denmark">Denmark</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="France">
+              <div id="France">France</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Germany">
+              <div id="Germany">Germany</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Hong Kong">
+              <div id="Hong Kong">Hong Kong</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Ireland">
+              <div id="Ireland">Ireland</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Italy">
+              <div id="Italy">Italy</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Japan">
+              <div id="Japan">Japan</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Luxembourg">
+              <div id="Luxembourg">Luxembourg</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Mexico">
+              <div id="Mexico">Mexico</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="New Zealand">
+              <div id="New Zealand">New Zealand</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Norway">
+              <div id="Norway">Norway</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Singapore">
+              <div id="Singapore">Singapore</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Spain">
+              <div id="Spain">Spain</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Sweden">
+              <div id="Sweden">Sweden</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="Switzerland">
+              <div id="Switzerland">Switzerland</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="the Netherlands">
+              <div id="the Netherlands">the Netherlands</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="the United Kingdom">
+              <div id="the United Kingdom">the United Kingdom</div>
+            </div>
+            <div className="cp-selection"
+              onClick={this.selectCountry}
+              id="the United States">
+              <div id="the United States">the United States</div>
+            </div>
+          </section>
+        </main>
+      );
+    } else {
+      let ageCheckbox = this.displayAgeCheckbox();
+      let bankCheckbox = this.displayBankCheckbox();
+      let cardCheckbox = this.displayCardCheckbox();
+
+      return (
+        <main>
+          <div className="cp-country-question-container" >
+            <i class="far fa-question-circle question-mark-margin"></i>
+            <div>What if my country is not listed?</div>
+          </div>
+          <section className="cp-checkboxes">
+            <div className="cp-checkbox-li flex-row" onClick={this.props.updateAge}>
+              {ageCheckbox}
+              <div>I am at least 18 years old.</div>
+            </div>
+            <li className="cp-checkbox-li flex-row" onClick={this.updateBank}>
+              {bankCheckbox}
+              <div>I can verify a bank account and government-issued ID.</div>
+            </li>
+            <li className="cp-checkbox-li flex-row" onClick={this.updateCard}>
+              {cardCheckbox}
+              <div>I have a debit and/or credit card.</div>
+            </li>
+          </section>
+          <div className="cp-country-submit">
+            <div className="cp-summary-button-container flex-row">
+              <div className="cp-previous-tab flex-row" onClick={this.displayPreviousTab}>
+                <i className="fas fa-long-arrow-alt-left"></i>
+                &nbsp;
+                <div className="cp-previous-idea">Project Idea</div>
+              </div>
+              <div className="cp-button-space">
+              </div>
+              {this.countrySelected()}
+            </div>
+          </div>
+        </main>
+      );
+    }
+  }
+
   displayCategoryChoices() {
     if (this.props.categoryChoicesActive) {
       return (
-        <div className="cp-category-selection-container">
-          <div className="cp-categories">
-            <div className="cp-category-selection"
+        <main className="cp-selection-container">
+          <section className="cp-categories">
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Art">
               <div id="Art">Art</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Comics">
               <div id="Comics">Comics</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Crafts">
               <div id="Crafts">Crafts</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Dance">
               <div id="Dance">Dance</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Design">
               <div id="Design">Design</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Fashion">
               <div id="Fashion">Fashion</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Film & Video">
               <div id="Film & Video">Film & Video</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Food">
               <div id="Food">Food</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Games">
               <div id="Games">Games</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Journalism">
               <div id="Journalism">Journalism</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Music">
               <div id="Music">Music</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
               onClick={this.selectCategory}
               id="Photography">
               <div id="Photography">Photography</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
+              onClick={this.selectCategory}
               id="Publishing">
               <div id="Publishing">Publishing</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
+              onClick={this.selectCategory}
               id="Technology">
               <div id="Technology">Technology</div>
             </div>
-            <div className="cp-category-selection"
+            <div className="cp-selection"
+              onClick={this.selectCategory}
               id="Theater">
               <div id="Theater">Theater</div>
             </div>
-          </div>
-        </div>
+          </section>
+        </main>
       );
     } else {
       return (
@@ -170,7 +459,7 @@ class createProjectForm extends React.Component {
               <div
                 id="cp-selection"
                 className="cp-page-category-choice-text">
-                Select your category
+                {this.displayCurrentCategory()}
               </div>
               <i className="fa fa-caret-down black cp-carrot"></i>
             </div>
@@ -180,17 +469,123 @@ class createProjectForm extends React.Component {
       );
     } else if (this.currentPage === 2) {
 
-    } else {
+      return (
+        <div className="flex-col">
+          <div className="cp-page-count">
+            2 of 3
+          </div>
+          <div className="cp-page-container">
+            <div className="cp-page-title">
+              Describe what you’ll be creating.
+            </div>
+            <div className="cp-page-description">
+              And don’t worry, you can edit this later, too.
+            </div>
+            <textarea
+              maxLength="135"
+              placeholder={this.randomSummary()}
+              className="cp-textarea"
+              onChange={this.updateSummary}>
+            </textarea>
+            <div className="cp-character-count-container" >
+              <div className="hit-the-limit">
+                {this.hitTheLimit()}
+              </div>
+              <div className="cp-character-count">
+                {this.state.summary.length}/135
+              </div>
+            </div>
+            <div className="cp-summary-submit flex-row">
+              <div className="cp-summary-button-container flex-row">
+                <div className="cp-previous-tab flex-row" onClick={this.displayPreviousTab}>
+                  <i className="fas fa-long-arrow-alt-left"></i>
+                  &nbsp;
+                  <div>Category</div>
+                </div>
+                <div className="cp-button-space"></div>
+                {this.summaryWritten()}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.currentPage === 3) {
 
+      return(
+        <div className="flex-col">
+          <div className="cp-page-count">
+            3 of 3
+          </div>
+          <div className="cp-page-container">
+            <div className="cp-page-title smaller-top-margin">
+              Finally, let’s confirm your eligibility.
+            </div>
+            <div className="cp-page-description">
+              Tell us where you’re based and confirm a few other details before we proceed.
+            </div>
+            <div className="cp-page-category-choice"
+              onClick={this.props.toggleCountryChoices}>
+              <div
+                id="cp-selection"
+                className="cp-page-category-choice-text">
+                {this.displayCurrentCountry()}
+              </div>
+              <i className="fa fa-caret-down black cp-carrot"></i>
+            </div>
+
+            {this.displayCountryChoices()}
+          </div>
+        </div>
+      );
+    } else {
+      this.currentPage = 3;
+      this.props.switchTabs();
     }
   }
 
+  displayCardCheckbox () {
+    if (this.state.cardVerified) {
+      return(
+        <i class="fas fa-check-square"></i>
+      );
+    } else {
+      return(
+        <i className="far fa-check-circle"></i>
+      );
+    }
+  }
+
+  displayBankCheckbox () {
+    if (this.state.bankVerified) {
+      return(
+        <i className="fas fa-check-circle"></i>
+      );
+    } else {
+      return(
+        <i className="far fa-check-circle"></i>
+      );
+    }
+  }
+
+  displayAgeCheckbox () {
+    if (this.props.updatedAge) {
+      debugger
+      return(
+        <i className="fas fa-check-circle"></i>
+      );
+    } else {
+      return(
+        <i className="far fa-check-circle"></i>
+      );
+    }
+  }
 
   render () {
 
     return (
       <div>
         {this.displayCreateProjectForm()}
+        {this.addGreenCheckbox()}
       </div>
     );
   }

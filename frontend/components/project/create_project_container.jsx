@@ -6,7 +6,10 @@ import {
 import {
   toggleCreateProjectModal,
   toggleCategoryChoices,
-  switchTabs
+  toggleCountryChoices,
+  switchTabs,
+  updatePage,
+  updateAge
 } from '../../actions/ui_actions.js';
 
 
@@ -18,6 +21,9 @@ const mapStateToProps = (state, { location }) => {
     projectCreateUpdateModalActive: state.ui.projectCreateUpdateModalActive,
     switchedTabs: state.ui.switchedTabs,
     categoryChoicesActive: state.ui.categoryChoicesActive,
+    countryChoicesActive: state.ui.countryChoicesActive,
+    updatedPage: state.ui.updatedPage,
+    updatedAge: state.ui.ageVerified
   };
 };
 
@@ -25,8 +31,11 @@ const mapDispatchToProps = dispatch => {
   return {
     toggleCreateProjectModal: () => dispatch(toggleCreateProjectModal()),
     toggleCategoryChoices: () => dispatch(toggleCategoryChoices()),
+    toggleCountryChoices: () => dispatch(toggleCountryChoices()),
     switchTabs: () => dispatch(switchTabs()),
     createProject: (project) => dispatch(createProject(project)),
+    updatePage: () => dispatch(updatePage()),
+    updateAge: () => dispatch(updateAge())
   };
 };
 
