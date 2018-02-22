@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180222042252) do
+ActiveRecord::Schema.define(version: 20180222171753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20180222042252) do
     t.boolean "live", default: false
     t.string "location"
     t.index ["category"], name: "index_projects_on_category"
-    t.index ["title"], name: "index_projects_on_title", unique: true
+    t.index ["title"], name: "index_projects_on_title"
   end
 
   create_table "rewards", force: :cascade do |t|

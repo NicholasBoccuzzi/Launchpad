@@ -57,7 +57,7 @@ class Project < ApplicationRecord
     elsif deadline.blank?
       errors.add(:deadline, "Deadline must be filled in")
     elsif category == "--" || category == ""
-      errors.add(:cateogry, "Your project must have a category")
+      errors.add(:category, "Your project must have a category")
     end
   end
 

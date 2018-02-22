@@ -14,6 +14,7 @@ export const receiveAllProjects = (projects) => {
 };
 
 export const receiveProject = (project) => {
+  debugger
   return ({
     type: RECEIVE_PROJECT,
     project
@@ -60,10 +61,13 @@ export const fetchProject = (id) => dispatch => {
 };
 
 export const createProject = (project) => dispatch => {
-  debugger
   return (
     ProjectAPIUtil.createProject(project).then(project => dispatch(receiveProject(project)),
-    err => dispatch(receiveProjectErrors))
+    err => dispatch(receiveProjectErrors)).then((project) => {
+      let origin = window.location.origin + "/#/";
+      let projectEdit = `projects/${project.project.id}/edit`;
+      window.location.assign(origin + projectEdit);
+    })
   );
 };
 
