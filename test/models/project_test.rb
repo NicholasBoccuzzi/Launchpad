@@ -3,14 +3,14 @@
 # Table name: projects
 #
 #  id                 :integer          not null, primary key
-#  title              :string           not null
-#  current_funding    :integer          default(0), not null
-#  funding_goal       :integer          not null
+#  title              :string           default("untitled")
+#  current_funding    :integer          default(0)
+#  funding_goal       :integer
 #  funded             :boolean          default(FALSE)
 #  summary            :string           not null
-#  body               :string           not null
+#  body               :string
 #  creator_id         :integer          not null
-#  deadline           :datetime         not null
+#  deadline           :datetime
 #  category           :string           not null
 #  subcategory        :string
 #  created_at         :datetime         not null

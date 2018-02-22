@@ -48,30 +48,32 @@ class Main extends React.Component {
 
     if (this.props.projects.length > 0) {
       let projects = Array.from(this.props.projects);
+      let liveProjects = [];
       let that = this;
-      projects = projects.map(project => {
-
+      projects.forEach(project => {
         if (project.live) {
-          return project;
+          liveProjects.push(project);
         }
       });
 
-      projects = projects.reverse();
-      this.projectCount = projects.length;
-        projects.forEach(project => {
-          if (project && latestCount === 0) {
-            latestCount += 1;
-            latest = project;
-          }
-        });
+      let reversedProjects = [];
+      for (var i = liveProjects.length - 1; i >= 0; i--) {
+        if (latestCount === 0) {
+          latest = liveProjects[i];
 
-      if (this.projectCount > 5) {
-        latestList = projects.slice(1,5);
+        }
+          latestCount += 1;
+          reversedProjects.push(liveProjects[i]);
+      }
+
+      if (latestCount > 5) {
+        latestList = reversedProjects.slice(1,5);
       } else {
-        latestList = projects.slice(1, this.projectCount);
+        latestList = reversedProjects.slice(1, latestCount);
       }
 
       latestList = latestList.map(project => {
+
         return (
           <ul key={project.id} className="mainpage-li-container">
             <Link to={`/projects/${project.id}`} className="mainpage-li-image-container">
@@ -89,8 +91,6 @@ class Main extends React.Component {
       latest = <div></div>;
       latestList = [<div>Missing Projects</div>];
     }
-
-
 
     return (
       <main className="mainpage-projects-container">

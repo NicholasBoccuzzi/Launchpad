@@ -135,8 +135,16 @@ class createProjectForm extends React.Component {
 
   countrySelected() {
     if (this.state.location && this.props.updatedAge && this.props.updatedBank && this.props.updatedCard) {
+      let project = {project: {
+        category: this.state.category,
+        summary: this.state.summary,
+        location: this.state.location,
+        creator_id: this.props.currentUser.id
+        }
+      };
+
       return (
-        <div onClick={this.displayNextTab}
+        <div onClick={() => { this.props.createProject(project); } }
           className="cp-country-selected-button">
           <div className="center-project-button">Continue</div>
         </div>

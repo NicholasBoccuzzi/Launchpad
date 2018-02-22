@@ -3,14 +3,14 @@
 # Table name: projects
 #
 #  id                 :integer          not null, primary key
-#  title              :string           not null
-#  current_funding    :integer          default(0), not null
-#  funding_goal       :integer          not null
+#  title              :string           default("untitled")
+#  current_funding    :integer          default(0)
+#  funding_goal       :integer
 #  funded             :boolean          default(FALSE)
 #  summary            :string           not null
-#  body               :string           not null
+#  body               :string
 #  creator_id         :integer          not null
-#  deadline           :datetime         not null
+#  deadline           :datetime
 #  category           :string           not null
 #  subcategory        :string
 #  created_at         :datetime         not null
@@ -27,10 +27,9 @@ class Project < ApplicationRecord
   has_attached_file :image, default_url: "missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
-  validate :everythingIsFilled
-  validate :deadline_date_cannot_be_in_the_past
-  validates :title, :current_funding, :funding_goal, :summary, :body,
-    :creator_id, :deadline, :category, presence: true
+  # validate :everythingIsFilled
+  # validate :deadline_date_cannot_be_in_the_past
+  validates :summary, :location, :creator_id, presence: true
 
   belongs_to :user,
   foreign_key: :creator_id,

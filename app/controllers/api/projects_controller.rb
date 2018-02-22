@@ -3,7 +3,7 @@ class Api::ProjectsController < ApplicationController
     if params[:category]
       @projects = Project.find_by_category(project_params[:category])
     else
-      @projects = Project.all
+      @projects = Project.select("*").from("projects").where("live = ?", "true")
     end
   end
 

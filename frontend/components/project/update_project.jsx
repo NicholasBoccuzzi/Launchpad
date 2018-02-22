@@ -82,23 +82,59 @@ class updateProjectForm extends React.Component {
     if (!this.state.modalVisible) {
 
       if (nextProps.project) {
+        if (nextProps.project.title) {
+          this.setState({title: nextProps.project.title});
+          this.formData.set(`project[title]`, nextProps.project.title);
+        } else {
+          this.setState({title: ""});
+          this.formData.set(`project[title]`, "");
+        }
+
+        if (nextProps.project.funding_goal) {
+          this.setState({funding_goal: nextProps.project.funding_goal});
+          this.formData.set(`project[funding_goal]`, nextProps.project.funding_goal);
+        } else {
+          this.setState({funding_goal: ""});
+          this.formData.set(`project[funding_goal]`, "");
+        }
+
+        if (nextProps.project.summary) {
+          this.setState({summary: nextProps.project.summary});
+          this.formData.set(`project[summary]`, nextProps.project.summary);
+        } else {
+          this.setState({summary: ""});
+          this.formData.set(`project[summary]`, "");
+        }
+
+        if (nextProps.project.deadline) {
+          this.setState({deadline: nextProps.project.deadline});
+          this.formData.set(`project[deadline]`, nextProps.project.deadline);
+        } else {
+          this.setState({deadline: ""});
+          this.formData.set(`project[deadline]`, "");
+        }
+        // deadline:  nextProps.project.deadline.slice(0, 10),
+
+        if (nextProps.project.category) {
+          this.setState({category: nextProps.project.category});
+          this.formData.set(`project[category]`, nextProps.project.category);
+        } else {
+          this.setState({category: ""});
+          this.formData.set(`project[category]`, "");
+        }
+
+        if (nextProps.project.location) {
+          this.setState({location: nextProps.project.location});
+          this.formData.set(`project[location]`, nextProps.project.location);
+        } else {
+          this.setState({location: ""});
+          this.formData.set(`project[location]`, "");
+        }
+
         this.setState({
-          title: nextProps.project.title,
           creator_id: nextProps.project.creator_id,
-          funding_goal: nextProps.project.funding_goal,
-          summary: nextProps.project.summary,
-          deadline:  nextProps.project.deadline.slice(0, 10),
-          category: nextProps.project.category,
-          location: nextProps.project.location,
           image: {imageUrl: nextProps.project.image}
         });
-
-        this.formData.set(`project[title]`, nextProps.project.title);
-        this.formData.set(`project[funding_goal]`, nextProps.project.funding_goal);
-        this.formData.set(`project[summary]`, nextProps.project.summary);
-        this.formData.set(`project[deadline]`, nextProps.project.deadline.slice(0, 10));
-        this.formData.set(`project[category]`, nextProps.project.category);
-        this.formData.set(`project[location]`, nextProps.project.location);
       }
     }
   }
