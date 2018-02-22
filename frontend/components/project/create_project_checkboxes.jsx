@@ -11,16 +11,16 @@ class createProjectCheckboxes extends React.Component {
   renderAgeCheckbox () {
     if (this.props.updatedAge) {
       return(
-        <div className="cp-checkbox-li flex-row green-text" onClick={this.props.updateAge}>
-          <i className="fas fa-check-circle"></i>
+        <div className="cp-checkbox-li flex-row cp-green-text" onClick={this.props.updateAge}>
+          <i className="far fa-check-circle bigger-checkbox"></i>
           <div className="cp-black-text">I am at least 18 years old.</div>
         </div>
       );
     } else {
       return(
-        <div className="cp-checkbox-li flex-row" onClick={this.props.updateAge}>
-          <i className="far fa-check-circle"></i>
-          <div>I am at least 18 years old.</div>
+        <div className="cp-checkbox-li flex-row cp-black-text" onClick={this.props.updateAge}>
+          <i class="far fa-check-circle bigger-checkbox"></i>
+          <div className="cp-black-text">I am at least 18 years old.</div>
         </div>
       );
     }
@@ -29,16 +29,16 @@ class createProjectCheckboxes extends React.Component {
   renderBankCheckbox () {
     if (this.props.updatedBank) {
       return(
-        <div className="cp-checkbox-li flex-row" onClick={this.props.updateBank}>
-          <i className="fas fa-check-circle"></i>
-          <div>I can verify a bank account and government-issued ID.</div>
+        <div className="cp-checkbox-li flex-row cp-green-text" onClick={this.props.updateBank}>
+          <i className="far fa-check-circle bigger-checkbox"></i>
+          <div className="cp-black-text">I can verify a bank account and government-issued ID.</div>
         </div>
       );
     } else {
       return(
-        <div className="cp-checkbox-li flex-row" onClick={this.props.updateBank}>
-          <i className="far fa-check-circle"></i>
-          <div>I can verify a bank account and government-issued ID.</div>
+        <div className="cp-checkbox-li flex-row cp-black-text" onClick={this.props.updateBank}>
+          <i className="far fa-check-circle bigger-checkbox"></i>
+          <div className="cp-black-text">I can verify a bank account and government-issued ID.</div>
         </div>
       );
     }
@@ -47,16 +47,16 @@ class createProjectCheckboxes extends React.Component {
   renderCardCheckbox () {
     if (this.props.updatedCard) {
       return(
-        <div className="cp-checkbox-li flex-row" onClick={this.props.updateCard}>
-          <i className="fas fa-check-circle"></i>
-          <div>I have a debit and/or credit card.</div>
+        <div className="cp-checkbox-li flex-row cp-green-text" onClick={this.props.updateCard}>
+          <i className="far fa-check-circle bigger-checkbox"></i>
+          <div className="cp-black-text">I have a debit and/or credit card.</div>
         </div>
       );
     } else {
       return(
-        <div className="cp-checkbox-li flex-row" onClick={this.props.updateCard}>
-          <i className="far fa-check-circle"></i>
-          <div>I have a debit and/or credit card.</div>
+        <div className="cp-checkbox-li flex-row cp-black-text" onClick={this.props.updateCard}>
+          <i className="far fa-check-circle bigger-checkbox"></i>
+          <div className="cp-black-text">I have a debit and/or credit card.</div>
         </div>
       );
     }

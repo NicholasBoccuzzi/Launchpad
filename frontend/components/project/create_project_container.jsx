@@ -23,7 +23,9 @@ const mapStateToProps = (state, { location }) => {
     categoryChoicesActive: state.ui.categoryChoicesActive,
     countryChoicesActive: state.ui.countryChoicesActive,
     updatedPage: state.ui.updatedPage,
-    updatedAge: state.ui.ageVerified
+    updatedAge: state.ui.ageVerified,
+    updatedCard: state.ui.cardVerified,
+    updatedBank: state.ui.bankVerified
   };
 };
 

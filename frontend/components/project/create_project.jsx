@@ -134,7 +134,7 @@ class createProjectForm extends React.Component {
   }
 
   countrySelected() {
-    if (this.state.location) {
+    if (this.state.location && this.props.updatedAge && this.props.updatedBank && this.props.updatedCard) {
       return (
         <div onClick={this.displayNextTab}
           className="cp-country-selected-button">
@@ -306,7 +306,7 @@ class createProjectForm extends React.Component {
           </div>
           <CreateProjectCheckboxes />
           <div className="cp-country-submit">
-            <div className="cp-summary-button-container flex-row">
+            <div className="cp-country-button-container flex-row">
               <div className="cp-previous-tab flex-row" onClick={this.displayPreviousTab}>
                 <i className="fas fa-long-arrow-alt-left"></i>
                 &nbsp;

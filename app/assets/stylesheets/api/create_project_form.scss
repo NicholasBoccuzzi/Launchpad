@@ -612,6 +612,14 @@ margin: auto;
     text-align: center;
 }
 
+.cp-country-button-container {
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    margin-top: 18px;
+}
+
 .cp-previous-idea {
   width: 100px;
 }
@@ -629,15 +637,16 @@ margin: auto;
     font-weight: 200;
     text-align: center;
     cursor: pointer;
-    margin-top: 18px;
     margin-left: 10px;
 }
 
 .cp-country-submit {
-    margin-top: 83px;
+    margin-top: 60px;
+    margin-bottom: 20px;
     border-top: 1px solid #E8E8E8;
     width: 100%;
     justify-content: space-between;
+
 }
 
 .smaller-top-margin {
@@ -645,11 +654,11 @@ margin: auto;
 }
 
 .cp-checkboxes {
-  margin-top: 40px;
+  margin-top: 20px;
   width: 100%;
 }
 
-.green-text{
+.cp-green-text{
   color: green;
   margin-bottom: none;
 
@@ -665,11 +674,28 @@ margin: auto;
   cursor: pointer;
   width: 100%;
   height: 50px;
+  padding-left: 16px;
+  align-items: center;
 }
 
 .cp-checkbox-li:hover {
   cursor: pointer;
   width: 100%;
   height: 50px;
+  outline: 1px solid #E8E8E8;
+}
 
+.cp-checkbox-li:focus {
+  outline: 1px solid #169d74;
+}
+
+.cp-white-text {
+  color: white;
+  outline: blue;
+}
+
+.bigger-checkbox {
+  font-size: 24px;
+  margin-right: 16px;
+  font-weight: 200;
 }
