@@ -5,11 +5,43 @@ import onClickOutside from 'react-onclickoutside';
 class DropDown extends React.Component {
   constructor (props) {
     super(props);
+
+    this.displayMyProjects = this.displayMyProjects.bind(this);
   }
 
 
   handleClickOutside (e) {
     this.props.toggleProfileDropDown();
+  }
+
+  displayMyProjects() {
+    if (this.props.currentUser) {
+      let projects = this.props.currentUser.projects.slice(
+        this.props.currentUser.projects.length - 5,
+        this.props.currentUser.projects.length
+      );
+
+      let result = [];
+
+      debugger
+
+      for (var i =  projects.length - 1; i >= 0; i--) {
+
+        result.push (
+          <div className="dd-projects-li-container">
+            <div className="dd-projects-li-image">
+              <img src={`${projects[i].imageUrl}`}></img>
+            </div>
+
+            <div className="dd-projects-li-title">
+              {`${projects[i].title}`}
+            </div>
+          </div>
+        );
+      }
+
+      return result;
+    }
   }
 
   dropDownContent() {
@@ -53,6 +85,9 @@ class DropDown extends React.Component {
               </section>
               <section className="dd-my-projects dd-bold">
                 <h1 className="dd-section-header">MY PROJECTS</h1>
+                <div className="dd-my-projects-container">
+                  {this.displayMyProjects()}
+                </div>
               </section>
             </div>
             <div className="logout-dropdown-box">

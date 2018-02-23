@@ -129,3 +129,22 @@
 .cp-modal-options:hover {
   background: #E8E8E8;
 }
+
+.dd-projects-li-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction:row;
+  justify-content: flex-start;
+}
+
+.dd-projects-li-image {
+  overflow:hidden;
+  width: 50px;
+  object-fit: fill;
+}
+
+.dd-projects-li-title {
+  margin-left: 20px;
+  color: black;
+}

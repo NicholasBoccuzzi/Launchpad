@@ -1,6 +1,7 @@
 import * as ProjectAPIUtil from '../util/project_api_util.js';
 
 export const RECEIVE_ALL_PROJECTS = "RECEIVE_ALL_PROJECTS";
+export const RECEIVE_CURRENT_USER_PROJECTS = "RECEIVE_CURRENT_USER_PROJECTS";
 export const RECEIVE_PROJECT = "RECEIVE_PROJECT";
 export const REMOVE_PROJECT = "REMOVE_PROJECT";
 export const RECEIVE_PROJECT_ERRORS = "RECEIVE_PROJECT_ERRORS";
@@ -13,8 +14,14 @@ export const receiveAllProjects = (projects) => {
   };
 };
 
+export const receiveCurrentUserProjects = (projects) => {
+  return {
+    type: RECEIVE_ALL_PROJECTS,
+    currentUserProjects: projects
+  };
+};
+
 export const receiveProject = (project) => {
-  debugger
   return ({
     type: RECEIVE_PROJECT,
     project
@@ -51,6 +58,13 @@ export const fetchProjects = (category) => dispatch => {
       err => dispatch(receiveProjectErrors))
     );
   }
+};
+
+export const fetchCurrentUserProjects = () => dispatch => {
+  return (
+    ProjectAPIUtil.fetchCurrentUserProjects().then(projects => dispatch(receiveCurrentUserProjects(projects)),
+    err => dispatch(receiveProjectErrors))
+  );
 };
 
 export const fetchProject = (id) => dispatch => {
