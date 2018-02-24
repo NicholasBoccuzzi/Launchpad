@@ -9,6 +9,10 @@ class DropDown extends React.Component {
     this.displayMyProjects = this.displayMyProjects.bind(this);
   }
 
+  componentDidMount() {
+    this.props.fetchCurrentUserProjects(this.props.currentUser.id);
+  }
+
 
   handleClickOutside (e) {
     this.props.toggleProfileDropDown();
@@ -22,8 +26,6 @@ class DropDown extends React.Component {
       );
 
       let result = [];
-
-      debugger
 
       for (var i =  projects.length - 1; i >= 0; i--) {
 

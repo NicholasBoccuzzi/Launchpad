@@ -9,7 +9,7 @@ export const fetchProjectByCategory = (category) => {
   return $.ajax({
       method: "GET",
       url: `api/projects`,
-      data: {project: {category: category}}
+      data: {category: category}
   });
 };
 
@@ -17,7 +17,7 @@ export const fetchCurrentUserProjects = (id) => {
   return $.ajax({
       method: "GET",
       url: `api/projects`,
-      data: {project: {creator_id: id}}
+      data: {creator_id: id}
   });
 };
 

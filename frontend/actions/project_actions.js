@@ -16,7 +16,7 @@ export const receiveAllProjects = (projects) => {
 
 export const receiveCurrentUserProjects = (projects) => {
   return {
-    type: RECEIVE_ALL_PROJECTS,
+    type: RECEIVE_CURRENT_USER_PROJECTS,
     currentUserProjects: projects
   };
 };
@@ -60,9 +60,9 @@ export const fetchProjects = (category) => dispatch => {
   }
 };
 
-export const fetchCurrentUserProjects = () => dispatch => {
+export const fetchCurrentUserProjects = (id) => dispatch => {
   return (
-    ProjectAPIUtil.fetchCurrentUserProjects().then(projects => dispatch(receiveCurrentUserProjects(projects)),
+    ProjectAPIUtil.fetchCurrentUserProjects(id).then(currentUserProjects => dispatch(receiveCurrentUserProjects(currentUserProjects)),
     err => dispatch(receiveProjectErrors))
   );
 };
