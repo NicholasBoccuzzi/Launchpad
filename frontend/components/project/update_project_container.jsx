@@ -15,7 +15,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
   let project;
-  if (state.entities.projects) {
+  if (state.entities.projects !== {}) {
     project = state.entities.projects[ownProps.match.params.projectId];
   } else {
     project = null;

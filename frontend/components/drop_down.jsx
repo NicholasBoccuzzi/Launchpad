@@ -7,6 +7,7 @@ class DropDown extends React.Component {
   constructor (props) {
     super(props);
 
+    this.dropDownContent = this.dropDownContent.bind(this);
     this.displayMyProjects = this.displayMyProjects.bind(this);
     this.switchProjects = this.switchProjects.bind(this);
   }
@@ -25,7 +26,6 @@ class DropDown extends React.Component {
   switchProjects () {
     this.props.toggleProfileDropDown();
     this.props.updatePage();
-    document.body.forceUpdate();
   }
 
   displayMyProjects() {
@@ -66,25 +66,28 @@ class DropDown extends React.Component {
 
   dropDownContent() {
 
-    if (this.props.location === "/startproject") {
+    if (this.props.location.pathname === "/startproject") {
       return (
-        <div className="animated fadeIn start-project-modal">
-          <div>
-            <div className="cp-modal-options">
-              Profile
-            </div>
-            <div className="cp-modal-options">
-              My projects
-            </div>
-            <div className="cp-modal-options">
-              Account
-            </div>
-            <div className="cp-modal-options"
-              onClick={this.props.logout}>
-              Logout
+        <main className="start-project-modal-container">
+          <div className="animated fadeIn start-project-modal">
+            <div>
+              <div className="cp-modal-options">
+                Profile
+              </div>
+              <div className="cp-modal-options">
+                My projects
+              </div>
+              <div className="cp-modal-options">
+                Account
+              </div>
+              <div className="cp-modal-options"
+                onClick={this.props.logout}>
+                Logout
+              </div>
             </div>
           </div>
-        </div>
+
+        </main>
       );
     } else {
       if (this.props.currentUser) {

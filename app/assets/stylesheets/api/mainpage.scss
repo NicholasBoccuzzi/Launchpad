@@ -152,6 +152,7 @@
 }
 
 .mainpage-li-funding-info {
+  margin-top: 5px;
   font-size: 12px;
   padding: 0px 30px;
 }
@@ -162,6 +163,8 @@
 }
 
 @media (max-width: 800px) {
+
+
   .featured-title {
     width: auto;
     position: relative;
@@ -203,4 +206,23 @@
   font-size: 40px;
   margin: auto;
   padding: 100px 200px;
+}
+
+.mainpage-li-info-margin {
+  margin-top: 20px;
+}
+
+.mainpage-centered-content {
+  width: 72%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+
+  @media (max-width: 1380px) {
+    width: 100%;
+  }
+}
+
+.ten-px-bottom {
+  margin-bottom: 10px;
 }

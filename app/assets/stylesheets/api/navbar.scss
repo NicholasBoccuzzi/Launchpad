@@ -137,13 +137,26 @@
 }
 
 .centered-cp-nav {
+  position: relative;
   font-size: 30px;
   font-family: 'Modak', sans-serif;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   border-bottom: 2px solid #F0F0F0;
-  width: 90.5%;
+  width: 100%;
+  max-width: 1248px;
+  align-items:center;
+}
+
+.centered-cp-nav-list {
+  font-size: 30px;
+  font-family: 'Modak', sans-serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1248px;
   align-items:center;
 }
 

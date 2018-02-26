@@ -71,6 +71,10 @@ class updateProjectForm extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (this.props.projectId !== nextProps.projectId) {
+      this.props.fetchProject(parseInt(nextProps.projectId));
+    }
+
     let projectUser;
     if (nextProps.project) {
       projectUser = nextProps.project.creator_id;

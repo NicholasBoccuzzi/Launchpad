@@ -533,7 +533,7 @@ class createProjectForm extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="cp-biggest-box">
         {this.displayCreateProjectForm()}
       </div>
     );

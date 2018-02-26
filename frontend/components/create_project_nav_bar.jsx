@@ -46,12 +46,17 @@ class CreateProjectNavbar extends React.Component {
 
     return (
       <nav className="cp-main-nav">
-        <div className="centered-cp-nav">
-            <div></div>
-            <a href="#" className="title-link cp-centered-title">LAUNCHPAD</a>
-            {this.isSession()}
-        </div>
-        {this.displayDrowDown()}
+
+          <div className="centered-cp-nav">
+            <div className="centered-cp-nav-list">
+              <div></div>
+              <a href="#" className="title-link cp-centered-title">LAUNCHPAD</a>
+              {this.isSession()}
+            </div>
+            {this.displayDrowDown()}
+          </div>
+
+
       </nav>
     );
   }

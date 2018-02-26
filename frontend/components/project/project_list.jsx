@@ -37,22 +37,24 @@ class projectList extends React.Component {
       });
 
     return (
-      <ul className="project-index-container">
-        <div className="center">
-          <div className="num-projects-container">
-            <div className="discover-header-container">
-              <h1 className="discover-header">
-                Explore <div className="discover-header green">
-                {this.liveCount} projects
+      <div className="pl-flex-center">
+        <ul className="project-index-container">
+          <div className="center">
+            <div className="num-projects-container">
+              <div className="discover-header-container">
+                <h1 className="discover-header">
+                  Explore <div className="discover-header green">
+                  {this.liveCount} projects
                 </div>
-              </h1>
+                </h1>
+              </div>
+              <ul className="flex-children">
+                {mappedProjectList.reverse()}
+              </ul>
             </div>
-            <ul className="flex-children">
-              {mappedProjectList.reverse()}
-            </ul>
           </div>
-        </div>
-      </ul>
+        </ul>
+      </div>
       );
     } else {
       return <h1> Loading Projects </h1>;

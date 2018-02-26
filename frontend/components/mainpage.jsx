@@ -84,7 +84,7 @@ class Main extends React.Component {
             <Link to={`/projects/${project.id}`} className="mainpage-li-image-container">
               <img className="mainpage-li-image" src={project.image}/>
             </Link>
-            <li>
+            <li className="mainpage-li-info-margin">
               <Link className="mainpage-li-info" to={`/projects/${project.id}`}>{project.title}</Link>
               <h2 className="mainpage-li-funding-info">
                 {this.percentFunded(project.current_funding, project.funding_goal)}% funded</h2>
@@ -101,7 +101,7 @@ class Main extends React.Component {
       <main className="mainpage-projects-container">
         <div className="flexed">
           <section className="featured-project-container">
-            <h2 className="mainpage-projects-header">Latest Project</h2>
+            <h2 className="mainpage-projects-header ten-px-bottom">Latest Project</h2>
               <Link to={`/projects/${latest.id}`} className="featured-image-container">
                 <img className="featured-image" src={latest.image}></img>
                 <div className="main-info-containers">
@@ -184,7 +184,9 @@ class Main extends React.Component {
     return (
       <div>
         {this.displayInfo()}
-        {this.displayProjects()}
+        <div className="mainpage-centered-content">
+          {this.displayProjects()}
+        </div>
 
       </div>
     );
