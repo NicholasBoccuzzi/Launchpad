@@ -60,7 +60,7 @@ class updateProjectForm extends React.Component {
       this.setState({modalVisible: false});
     }
 
-    this.props.fetchProject(parseInt(this.props.projectId));
+    this.props.fetchProject(parseInt(location.hash.split('/')[2]));
     this.props.toggleUpdateProjectModal();
   }
 

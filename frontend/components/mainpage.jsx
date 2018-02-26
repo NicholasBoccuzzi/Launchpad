@@ -34,6 +34,11 @@ class Main extends React.Component {
 
   componentDidMount () {
     this.props.fetchProjects();
+    this.loaded = true;
+  }
+
+  componentWillUnmount () {
+    this.loaded = false;
   }
 
   percentFunded (cur, goal) {
@@ -46,7 +51,7 @@ class Main extends React.Component {
     let latest;
     let latestCount = 0;
 
-    if (this.props.projects.length > 0) {
+    if (this.props.projects.length > 0 && this.loaded === true) {
       let projects = Array.from(this.props.projects);
       let liveProjects = [];
       let that = this;

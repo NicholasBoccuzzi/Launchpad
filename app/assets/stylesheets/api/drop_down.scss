@@ -12,7 +12,7 @@
 
   @media (max-width: 1025px) {
     width: 350px;
-    height: 500px;
+    height: auto;
   }
 }
 
@@ -23,7 +23,7 @@
 }
 
 .logout-dropdown {
-  width: 80%;
+  width: 100%;
   border: 0px;
   padding: 30px 36px 0px 36px;
   font-size: 13px;
@@ -60,27 +60,33 @@
   height: 340px;
   max-height: 340px;
   display: flex;
+
+  @media (max-width: 1025px) {
+    flex-direction: column;
+    height: auto;
+    max-height: none;
+  }
 }
 
 .dd-user-info {
   width: 157px;
-  padding: 22px 36px 18px 36px;
+  padding: 26px 36px 18px 36px;
 }
 
 .dd-settings {
   width: 82px;
-  padding: 22px 36px 18px 36px;
+  padding: 26px 36px 18px 36px;
 
 }
 
 .dd-backed-projects {
   width: 270px;
-  padding: 22px 36px 18px 36px;
+  padding: 26px 36px 18px 36px;
 }
 
 .dd-my-projects {
   width: 270px;
-  padding: 22px 36px 18px 36px;
+  padding: 26px 36px 18px 36px;
 
 }
 
@@ -91,7 +97,7 @@
 
 .dd-section-header {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .start-project-modal {
@@ -130,12 +136,17 @@
   background: #E8E8E8;
 }
 
+.dd-my-projects-container {
+  margin-top: 22px;
+}
+
 .dd-projects-li-container {
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction:row;
   justify-content: flex-start;
+  margin-bottom: 12px;
 }
 
 .dd-projects-li-image {
@@ -144,7 +155,38 @@
   object-fit: fill;
 }
 
+.dd-projects-li-image-container{
+  overflow:hidden;
+  width: 50px;
+  object-fit: fill;
+  height: 30px;
+}
+
 .dd-projects-li-title {
-  margin-left: 20px;
+  margin-left: 15px;
   color: black;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.dd-link {
+  color: black;
+}
+
+.dd-link:hover {
+  color: #137c5b;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.dd-view-all {
+  text-decoration: underline;
+  color: black;
+  margin-top: 34px;
+  font-size: 13px;
+}
+
+.dd-view-all:hover {
+  color: #137c5b;
+  cursor: pointer;
 }

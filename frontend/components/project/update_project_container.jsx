@@ -10,6 +10,7 @@ import {
 import {
   fetchProject,
 } from '../../actions/project_actions';
+import { withRouter } from 'react-router-dom';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -39,4 +40,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UpdateProjectForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UpdateProjectForm));

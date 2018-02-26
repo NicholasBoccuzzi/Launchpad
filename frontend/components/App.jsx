@@ -14,6 +14,7 @@ import SessionFormContainer from './session_form_container';
 import ProjectList from './project/project_list_container';
 import CreateProjectForm from './project/create_project_container';
 import UpdateProjectForm from './project/update_project_container';
+import ProfilePage from './user/profile_page_container';
 import Footer from './footer';
 import ProjectShow from './project/project_show_page_container';
 import UnderConstruction from './underconstruction';
@@ -25,6 +26,7 @@ const App = () => (
       <Route path='/'   component={Navbar}/>
     </Switch>
 
+    <Route path="/user/:userId" component={ProfilePage} />
     <Route exact path="/underconstruction" component={UnderConstruction}/>
     <Route exact path="/projects/:projectId" component={ProjectShow}></Route>
     <Route exact path="/" component={Mainpage}></Route>

@@ -1,5 +1,6 @@
 import React from 'react';
 import onClickOutside from 'react-onclickoutside';
+import { Link } from 'react-router-dom';
 
 
 class DropDown extends React.Component {
@@ -7,36 +8,53 @@ class DropDown extends React.Component {
     super(props);
 
     this.displayMyProjects = this.displayMyProjects.bind(this);
+    this.switchProjects = this.switchProjects.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchCurrentUserProjects(this.props.currentUser.id);
+    let projectImages = this.props.fetchCurrentUserProjects(this.props.currentUser.id);
   }
 
+  componentWillReceiveProps(nextProps) {
+  }
 
   handleClickOutside (e) {
     this.props.toggleProfileDropDown();
   }
 
+  switchProjects () {
+    this.props.toggleProfileDropDown();
+    this.props.updatePage();
+    document.body.forceUpdate();
+  }
+
   displayMyProjects() {
-    if (this.props.currentUser) {
+    if (this.props.currentUser && this.props.currentUserProjects) {
       let projects = this.props.currentUser.projects.slice(
         this.props.currentUser.projects.length - 5,
         this.props.currentUser.projects.length
       );
 
+
+
+
       let result = [];
 
       for (var i =  projects.length - 1; i >= 0; i--) {
+        let url = `#/projects/${this.props.currentUserProjects[i].id}/edit`;
 
         result.push (
           <div className="dd-projects-li-container">
-            <div className="dd-projects-li-image">
-              <img src={`${projects[i].imageUrl}`}></img>
-            </div>
+            <a href={url} className="dd-projects-li-image-container" onClick={this.switchProjects}>
+              <img className="dd-projects-li-image"
+                src={`${this.props.currentUserProjects[i].image}`}></img>
+            </a>
 
             <div className="dd-projects-li-title">
-              {`${projects[i].title}`}
+              <a href={url} className="dd-projects-li-image-container dd-link"
+                onClick={this.switchProjects}>
+                {`${projects[i].title}`}
+              </a>
             </div>
           </div>
         );
@@ -89,6 +107,9 @@ class DropDown extends React.Component {
                 <h1 className="dd-section-header">MY PROJECTS</h1>
                 <div className="dd-my-projects-container">
                   {this.displayMyProjects()}
+                  <a href={`/user/${this.props.currentUser.id}/projects`} className="dd-view-all">
+                    View all
+                  </a>
                 </div>
               </section>
             </div>
