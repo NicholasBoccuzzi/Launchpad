@@ -28,6 +28,20 @@ class DropDown extends React.Component {
     this.props.updatePage();
   }
 
+  displayMyStuff() {
+    if (this.props.currentUser) {
+      let url = `#/user/${this.props.currentUser.id}`;
+
+      return (
+        <ul className="dd-my-blank-container">
+          <a href={url} className="dd-link small-text">
+            Profile
+          </a>
+        </ul>
+      );
+    }
+  }
+
   displayMyProjects() {
     if (this.props.currentUser && this.props.currentUserProjects) {
       let projects = this.props.currentUser.projects.slice(
@@ -99,6 +113,7 @@ class DropDown extends React.Component {
             <div className="dd-sections">
               <section className="dd-user-info dd-bold">
                 <h1 className="dd-section-header">MY STUFF</h1>
+                {this.displayMyStuff()}
               </section>
               <section className="dd-settings dd-bold">
                 <h1 className="dd-section-header">SETTINGS</h1>
@@ -108,11 +123,13 @@ class DropDown extends React.Component {
               </section>
               <section className="dd-my-projects dd-bold">
                 <h1 className="dd-section-header">MY PROJECTS</h1>
-                <div className="dd-my-projects-container">
+                <div className="dd-my-blank-container">
                   {this.displayMyProjects()}
+                <div className="dd-view-all">
                   <a href={`/user/${this.props.currentUser.id}/projects`} className="dd-view-all">
                     View all
                   </a>
+                </div>
                 </div>
               </section>
             </div>

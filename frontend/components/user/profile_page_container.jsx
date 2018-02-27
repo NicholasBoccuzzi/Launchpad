@@ -2,9 +2,10 @@ import { connect } from 'react-redux';
 import ProfilePage from './profile_page';
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.session.currentUser,
+    location: ownProps.location,
   };
 };
 
