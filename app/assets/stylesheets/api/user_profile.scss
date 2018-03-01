@@ -104,9 +104,10 @@
 
 .pro-tabs-container {
   display: flex;
-  justify-content:space-around;
+  justify-content:center;
   width: 80%;
-  height: 41px;
+  height: 61px;
+  max-height: 61px;
   margin: 0 auto;
   align-items: center;
   font-size: 14px;
@@ -120,6 +121,7 @@
   outline: none;
   height: 100%;
   color: #80809D;
+  margin-right: 40px;
 }
 
 .pro-tab:hover {
@@ -142,7 +144,7 @@
 
 .pro-selected-tab {
   color: black;
-  margin-top: 5px;
-  height: 80%;
+  margin-top: 4px;
+  height: 90%;
   border-bottom: 4px solid #169D74;
 }

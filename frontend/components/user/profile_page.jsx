@@ -46,13 +46,14 @@ class profilePage extends React.Component {
   }
 
   currentTab() {
-    if (this.state.currentTab === "created") {
+    if (this.state.currentTab === "Created") {
       return (
         <main className="pro-tabs-container">
           <div
             className="pro-tab"
             id="About"
-            onClick={this.switchLocalTab}>
+            onClick={this.switchLocalTab}
+            >
             <div>
               About
             </div>
@@ -60,13 +61,22 @@ class profilePage extends React.Component {
           <div
             className="pro-tab pro-selected-tab"
             id="Created"
-            onClick={this.switchLocalTab}>
-
+            onClick={this.switchLocalTab}
+            >
             <div>
               Created
             </div>
             <div className="pro-tab-num">
               {this.props.user.projects.length}
+            </div>
+          </div>
+          <div
+            className="pro-tab"
+            id="Comments"
+            onClick={this.switchLocalTab}
+            >
+            <div>
+              Comments
             </div>
           </div>
         </main>
@@ -77,7 +87,10 @@ class profilePage extends React.Component {
   }
 
    switchLocalTab (e) {
-
+     let selected = document.getElementsByClassName("pro-selected-tab");
+     selected[0].classList.remove("pro-selected-tab");
+     e.currentTarget.classList.add("pro-selected-tab");
+     this.props.updatePage();
    }
 
   selectMonth(string) {
