@@ -10,6 +10,7 @@ class DropDown extends React.Component {
     this.dropDownContent = this.dropDownContent.bind(this);
     this.displayMyProjects = this.displayMyProjects.bind(this);
     this.switchProjects = this.switchProjects.bind(this);
+    this.loadUserInfo = this.loadUserInfo.bind(this);
   }
 
   componentDidMount() {
@@ -19,8 +20,14 @@ class DropDown extends React.Component {
   componentWillReceiveProps(nextProps) {
   }
 
+
   handleClickOutside (e) {
     this.props.toggleProfileDropDown();
+  }
+
+  loadUserInfo() {
+    this.props.toggleProfileDropDown();
+    // this.props.loadCurrentUserInfo();
   }
 
   switchProjects () {
@@ -34,7 +41,7 @@ class DropDown extends React.Component {
 
       return (
         <ul className="dd-my-blank-container">
-          <a href={url} className="dd-link small-text">
+          <a href={url} className="dd-link small-text" onClick={this.loadUserInfo}>
             Profile
           </a>
         </ul>

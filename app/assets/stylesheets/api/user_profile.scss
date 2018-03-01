@@ -55,6 +55,7 @@
   border: 1px solid white;
   border-radius: 360px;
   object-fit: fill;
+  margin: auto;
   overflow: hidden;
 }
 
@@ -64,9 +65,84 @@
 }
 
 .pro-top-center {
-  padding-top: 10px;
+  padding-top: 12px;
   display: block;
   text-align: center;
   margin: auto;
   justify-content: center;
+}
+
+.pro-top-name {
+  padding-top: 25px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.pro-top-info {
+  margin-top: 15px;
+  color: #80809D;
+  margin-bottom: 40px;
+}
+
+.pro-user-small-info {
+  display: flex;
+  font-size: 13px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pro-top-color {
+  background: #F7F7F9;
+}
+
+.pro-no-edit {
+  display: block;
+  height: 32px;
+}
+
+.pro-tabs-container {
+  display: flex;
+  justify-content:space-around;
+  width: 80%;
+  height: 41px;
+  margin: 0 auto;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pro-tab {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  height: 100%;
+  color: #80809D;
+}
+
+.pro-tab:hover {
+  color: black;
+}
+
+.pro-loading {
+  margin: auto;
+  font-size: 40px;
+  color: black;
+}
+
+.pro-tab-num {
+  margin-left: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #0E7360;
+  margin-bottom: 10px;
+}
+
+.pro-selected-tab {
+  color: black;
+  margin-top: 5px;
+  height: 80%;
+  border-bottom: 4px solid #169D74;
 }

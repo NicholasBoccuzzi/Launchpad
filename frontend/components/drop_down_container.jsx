@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { logout } from '../actions/session_actions';
 import DropDown from './drop_down';
-import { toggleProfileDropDown, updatePage } from '../actions/ui_actions.js';
+import { toggleProfileDropDown, updatePage, loadCurrentUserInfo } from '../actions/ui_actions.js';
 import { fetchCurrentUserProjects } from '../actions/project_actions.js';
 import { withRouter } from 'react-router-dom';
 
@@ -30,6 +30,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout()),
   toggleProfileDropDown: () => dispatch(toggleProfileDropDown()),
+  // loadCurrentUserInfo: () => dispatch(loadCurrentUserInfo()),
   fetchCurrentUserProjects: (id) => dispatch(fetchCurrentUserProjects(id)),
   updatePage: (project) => dispatch(updatePage(project)),
 });

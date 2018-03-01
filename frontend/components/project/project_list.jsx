@@ -10,7 +10,9 @@ class projectList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchProjects();
+    if (this.props.location.pathname.includes("discover")) {
+      this.props.fetchProjects();
+    }
   }
 
   renderSearchNav () {
@@ -56,6 +58,14 @@ class projectList extends React.Component {
         </ul>
       </div>
       );
+    } else if (this.props.user) {
+      const mappedProjectList = this.props.user.projects.map((project) => {
+        return (
+          <ProjectListItem key={project.id} project={project} />
+        );
+      });
+
+      debugger
     } else {
       return <h1> Loading Projects </h1>;
     }

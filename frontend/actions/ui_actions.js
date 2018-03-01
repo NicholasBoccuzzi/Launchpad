@@ -10,6 +10,7 @@ export const UPDATE_PAGE = "UPDATE_PAGE";
 export const UPDATE_AGE = "UPDATE_AGE";
 export const UPDATE_CARD = "UPDATE_CARD";
 export const UPDATE_BANK = "UPDATE_BANK";
+export const LOAD_CURRENT_USER_INFO = "LOAD_CURRENT_USER_INFO";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -78,5 +79,11 @@ export const updateCard = () => {
 export const updateBank = () => {
   return {
     type: UPDATE_BANK
+  };
+};
+
+export const loadCurrentUserInfo = () => {
+  return {
+    type: LOAD_CURRENT_USER_INFO
   };
 };

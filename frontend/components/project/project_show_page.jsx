@@ -59,9 +59,11 @@ class projectShow extends React.Component {
         return (
           <section className="project-show-creator-info">
             <div className="project-show-creator-icon-box">
-              <img className="project-show-creator-icon"
-                src={this.props.project.user_image}>
-              </img>
+              <a href={`#/user/${this.props.project.creator_id}`}>
+                <img className="project-show-creator-icon"
+                  src={this.props.project.user_image}>
+                </img>
+              </a>
             </div>
             <div className="small-text">
               By {this.props.project.user.username}

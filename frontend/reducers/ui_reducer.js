@@ -10,7 +10,8 @@ import {
   UPDATE_PAGE,
   UPDATE_AGE,
   UPDATE_CARD,
-  UPDATE_BANK
+  UPDATE_BANK,
+  LOAD_CURRENT_USER_INFO
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
@@ -26,7 +27,8 @@ const initialState = {
   updatedPage: false,
   ageVerified: false,
   bankVerified: false,
-  cardVerified: false
+  cardVerified: false,
+  loadCurrentUserInfo: false,
 };
 
 export default (state = initialState, action) => {
@@ -81,6 +83,10 @@ export default (state = initialState, action) => {
     let updateBank = merge({}, state);
     updateBank.bankVerified = !updateBank.bankVerified;
     return updateBank;
+  case LOAD_CURRENT_USER_INFO:
+    let infoLoaded = merge({}, state);
+    infoLoaded.loadCurrentUserInfo = !infoLoaded.loadCurrentUserInfo;
+    return infoLoaded;
   default:
     return state;
   }

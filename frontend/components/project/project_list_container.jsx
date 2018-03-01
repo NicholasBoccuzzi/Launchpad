@@ -5,8 +5,9 @@ import {
 } from '../../actions/project_actions';
 
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    location: ownProps.location,
     projects: Object.values(state.entities.projects)
   };
 };
