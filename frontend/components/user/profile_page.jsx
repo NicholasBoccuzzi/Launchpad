@@ -7,9 +7,15 @@ class profilePage extends React.Component {
 
     this.renderTopInfo = this.renderTopInfo.bind(this);
     this.editProfileButton = this.editProfileButton.bind(this);
+    this.profileNumber = parseInt(this.props.location.pathname.split("/")[2]);
+    this.renderProfileImage = this.renderProfileImage.bind(this);
   }
 
   componentDidMount() {
+    this.props.fetchUser(this.profileNumber);
+  }
+
+  componentWillReceiveProps(nextProps) {
   }
 
 
@@ -33,6 +39,13 @@ class profilePage extends React.Component {
   }
 
 
+  renderProfileImage () {
+    if (this.props.user) {
+      return (
+        <img className="pro-top-image" src={this.props.user.image}></img>
+      );
+    }
+  }
 
   renderTopInfo () {
 
@@ -41,10 +54,10 @@ class profilePage extends React.Component {
         {this.editProfileButton()}
         <section className="pro-top-center">
           <div className="pro-top-image-container">
-            <img className="pro-top-image" src={this.props.currentUser.image}></img>
+            {this.renderProfileImage()}
           </div>
           <div>
-            this.props.
+
           </div>
         </section>
       </main>
