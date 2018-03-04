@@ -148,3 +148,29 @@
   height: 90%;
   border-bottom: 4px solid #169D74;
 }
+
+.pro-projects-center {
+
+  @media (min-width: 1025px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  @media (min-width: 795px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+}
+
+.pro-flexed-projects {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  width: auto;
+}
+
+.pro-projects-border {
+  padding: 50px;
+  border-top: 1px solid #DCDEDD;
+}

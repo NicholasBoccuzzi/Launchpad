@@ -43,11 +43,11 @@ class ProjectListItem extends React.Component {
   render () {
     return (
       <div className="animated fadeIn">
-        <li className="list-item-container" key={this.props.project.id}>
+        <main className="list-item-container" key={this.props.project.id}>
           <div className="li-image-container">
-            <Link className="list-item-image" to={`projects/${this.props.project.id}`}>
+            <a className="list-item-image" href={`#/projects/${this.props.project.id}`}>
               <img className="list-item-image" src={this.props.project.image}/>
-            </Link>
+            </a>
           </div>
           <div className="li-mid-container">
             <Link className="li-title-link" to={`projects/${this.props.project.id}`}>
@@ -62,10 +62,10 @@ class ProjectListItem extends React.Component {
             <h1 className="li-percent-stats">{this.percentDisplayMath()}% funded</h1>
             {this.dateMath()}
             <br/>
-            <Link className="li-percent-stats li-category-link" to="#">{this.props.project.category}</Link>
+            <a className="li-percent-stats li-category-link" href="#">{this.props.project.category}</a>
           </div>
 
-        </li>
+        </main>
       </div>
     );
   }

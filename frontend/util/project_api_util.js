@@ -21,6 +21,14 @@ export const fetchCurrentUserProjects = (id) => {
   });
 };
 
+export const fetchUserProjects = (id) => {
+  return $.ajax({
+      method: "GET",
+      url: `api/projects`,
+      data: {creator_id: id}
+  });
+};
+
 export const fetchProject = (id) => {
   return $.ajax({
       method: "GET",

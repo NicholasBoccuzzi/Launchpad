@@ -3,6 +3,7 @@ import ProfilePage from './profile_page';
 import { fetchUser } from '../../actions/user_actions.js';
 import { updatePage } from '../../actions/ui_actions.js';
 import { withRouter } from 'react-router-dom';
+import { fetchUserProjects } from '../../actions/project_actions.js';
 
 
 

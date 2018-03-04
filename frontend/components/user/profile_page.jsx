@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ProjectList } from '../project/project_list_container';
+import ProjectList from '../project/project_list_container';
 
 class profilePage extends React.Component {
   constructor (props) {
@@ -22,10 +22,19 @@ class profilePage extends React.Component {
     this.selectMonth = this.selectMonth.bind(this);
     this.currentTab = this.currentTab.bind(this);
     this.switchLocalTab = this.switchLocalTab.bind(this);
+    this.tabs = this.tabs.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchUser(this.profileNumber);
+  }
+
+  currentTab () {
+    if (this.state.currentTab === "Created" && this.props.user) {
+      return (
+        <ProjectList location={this.props.location} user={this.props.user} currentTab={this.state.currentTab}/>
+      );
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -45,45 +54,41 @@ class profilePage extends React.Component {
     this.refreshed = false;
   }
 
-  currentTab() {
-    if (this.state.currentTab === "Created") {
-      return (
-        <main className="pro-tabs-container">
-          <div
-            className="pro-tab"
-            id="About"
-            onClick={this.switchLocalTab}
-            >
-            <div>
-              About
-            </div>
+  tabs () {
+    return (
+      <main className="pro-tabs-container">
+        <div
+          className="pro-tab"
+          id="About"
+          onClick={this.switchLocalTab}
+          >
+          <div>
+            About
           </div>
-          <div
-            className="pro-tab pro-selected-tab"
-            id="Created"
-            onClick={this.switchLocalTab}
-            >
-            <div>
-              Created
-            </div>
-            <div className="pro-tab-num">
-              {this.props.user.projects.length}
-            </div>
+        </div>
+        <div
+          className="pro-tab pro-selected-tab"
+          id="Created"
+          onClick={this.switchLocalTab}
+          >
+          <div>
+            Created
           </div>
-          <div
-            className="pro-tab"
-            id="Comments"
-            onClick={this.switchLocalTab}
-            >
-            <div>
-              Comments
-            </div>
+          <div className="pro-tab-num">
+            {this.props.user.projects.length}
           </div>
-        </main>
-      );
-    } else {
-
-    }
+        </div>
+        <div
+          className="pro-tab"
+          id="Comments"
+          onClick={this.switchLocalTab}
+          >
+          <div>
+            Comments
+          </div>
+        </div>
+      </main>
+    );
   }
 
    switchLocalTab (e) {
@@ -231,6 +236,9 @@ class profilePage extends React.Component {
         <div className="pro-content-container">
           <section className="pro-top-color">
             {this.renderTopInfo()}
+          </section>
+          <section>
+            {this.tabs()}
           </section>
           <section>
             {this.currentTab()}

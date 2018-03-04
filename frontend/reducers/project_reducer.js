@@ -3,6 +3,7 @@ import merge from 'lodash/merge';
 import {
   RECEIVE_ALL_PROJECTS,
   RECEIVE_CURRENT_USER_PROJECTS,
+  RECEIVE_USER_PROJECTS,
   RECEIVE_PROJECT,
   REMOVE_PROJECT
 } from '../actions/project_actions';
@@ -15,6 +16,8 @@ const projectsReducer = (state = {}, action) => {
       return action.projects;
     case RECEIVE_CURRENT_USER_PROJECTS:
       return merge({}, state, {currentUserProjects: action.currentUserProjects});
+    case RECEIVE_USER_PROJECTS:
+      return merge({}, state, {userProjects: action.userProjects});
     case RECEIVE_PROJECT:
       return merge({}, state, {[action.project.id]: action.project });
     case REMOVE_PROJECT:

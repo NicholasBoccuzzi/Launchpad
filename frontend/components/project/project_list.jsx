@@ -7,11 +7,40 @@ class projectList extends React.Component {
     super(props);
     this.liveCount = 0;
     this.projectList = this.projectList.bind(this);
+    this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
   }
 
   componentDidMount() {
     if (this.props.location.pathname.includes("discover")) {
       this.props.fetchProjects();
+    } else if (this.props.location.pathname.includes("user")) {
+      this.props.fetchUserProjects(this.props.user.id);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+  }
+
+  displayProfilePageProjects() {
+    if (
+      this.props.location.pathname.includes("user")
+      && this.props.currentTab === "Created"
+      && this.props.userProjects
+    ){
+
+      let mappedProjectList = this.props.userProjects.map((project) => {
+        return (
+          <ProjectListItem key={project.id} project={project} />
+        );
+      });
+
+      return (
+        <div className="pro-project-list pro-projects-border">
+          <div className="pro-projects-center flex-children">
+            {mappedProjectList}
+          </div>
+        </div>
+      );
     }
   }
 
@@ -65,7 +94,6 @@ class projectList extends React.Component {
         );
       });
 
-      debugger
     } else {
       return <h1> Loading Projects </h1>;
     }
@@ -73,13 +101,20 @@ class projectList extends React.Component {
 
 
   render () {
-
-    return (
-    <div>
-      {this.renderSearchNav()}
-      {this.projectList()}
-    </div>
-  );
+    if (this.props.location.pathname.includes("discover")) {
+      return (
+        <div>
+          {this.renderSearchNav()}
+          {this.projectList()}
+        </div>
+      );
+    } else if (this.props.location.pathname.includes("user")) {
+      return (
+        <div>
+          {this.displayProfilePageProjects()}
+        </div>
+      );
+    }
   }
 }
 
