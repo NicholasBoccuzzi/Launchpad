@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import DropDown from './drop_down_container';
+import Modal from './modal_container';
 
 class Navbar extends React.Component {
   constructor () {
     super();
     this.isSession = this.isSession.bind(this);
     this.displayDrowDown = this.displayDrowDown.bind(this);
+    this.displayExploreModal = this.displayExploreModal.bind(this);
   }
 
 
@@ -40,6 +42,18 @@ class Navbar extends React.Component {
     }
   }
 
+  displayExploreModal () {
+    if (this.props.exploreModalActive) {
+      return <Modal explore={true}/>;
+    }
+  }
+
+  toggleExploreModal () {
+
+  }
+
+
+// explore should end up at {"/discover"}
 
   render () {
 
@@ -47,8 +61,8 @@ class Navbar extends React.Component {
       <div>
         <nav className="main-nav">
           <section className="top-nav-left">
-            <Link className="nav-button right" to={"/discover"}>Explore</Link>
-            <Link className="nav-button" to={"/startproject"}>Start a project</Link>
+            <div className="nav-button right" onClick={this.activateExploreModal}>Explore</div>
+            <a className="nav-button" href={"#/startproject"}>Start a project</a>
           </section>
           <section className="top-nav-middle">
             <a href="#" className="title-link">LAUNCHPAD</a>
@@ -58,6 +72,7 @@ class Navbar extends React.Component {
           </section>
         </nav>
         {this.displayDrowDown()}
+        {this.displayExploreModal()}
       </div>
     );
   }

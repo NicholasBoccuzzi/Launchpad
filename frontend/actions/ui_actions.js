@@ -1,4 +1,6 @@
 export const TOGGLE_PROFILE_DROPDOWN = "TOGGLE_PROFILE_DROPDOWN";
+export const ACTIVATE_EXPLORE_MODAL = "ACTIVATE_EXPLORE_MODAL";
+export const DEACTIVATE_EXPLORE_MODAL = "DEACTIVATE_EXPLORE_MODAL";
 export const TOGGLE_ERROR_MODAL = "TOGGLE_ERROR_MODAL";
 export const TOGGLE_CREATE_PROJECT_MODAL = "TOGGLE_CREATE_PROJECT_MODAL";
 export const TOGGLE_UPDATE_PROJECT_MODAL = "TOGGLE_UPDATE_PROJECT_MODAL";
@@ -15,6 +17,18 @@ export const LOAD_CURRENT_USER_INFO = "LOAD_CURRENT_USER_INFO";
 export const toggleProfileDropDown = () => {
   return {
     type: TOGGLE_PROFILE_DROPDOWN
+  };
+};
+
+export const activateExploreModal = () => {
+  return {
+    type: ACTIVATE_EXPLORE_MODAL
+  };
+};
+
+export const deactivateExploreModal = () => {
+  return {
+    type: DEACTIVATE_EXPLORE_MODAL
   };
 };
 

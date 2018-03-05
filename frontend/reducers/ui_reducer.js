@@ -1,4 +1,6 @@
 import {
+  ACTIVATE_EXPLORE_MODAL,
+  DEACTIVATE_EXPLORE_MODAL,
   SWITCH_TABS,
   TOGGLE_CREATE_PROJECT_MODAL,
   TOGGLE_PROFILE_DROPDOWN,
@@ -17,6 +19,7 @@ import { merge } from 'lodash';
 
 const initialState = {
   profileDropDownActive: false,
+  exploreModalActive: false,
   errorModalActive: false,
   projectCreateUpdateModalActive: false,
   switchedTabs: false,
@@ -87,6 +90,14 @@ export default (state = initialState, action) => {
     let infoLoaded = merge({}, state);
     infoLoaded.loadCurrentUserInfo = !infoLoaded.loadCurrentUserInfo;
     return infoLoaded;
+  case ACTIVATE_EXPLORE_MODAL:
+    let activeExplore = merge({}, state);
+    activeExplore.exploreModalActive = true;
+    return activeExplore;
+  case DEACTIVATE_EXPLORE_MODAL:
+    let deactiveExplore = merge({}, state);
+    deactiveExplore.exploreModalActive = false;
+    return deactiveExplore;
   default:
     return state;
   }

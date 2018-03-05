@@ -115,6 +115,16 @@ class Modal extends React.Component {
       }
     }
 
+    forExplore() {
+      if (this.props.explore) {
+        return (
+          <div className="exp-full-container">
+            Hello
+          </div>
+        );
+      }
+    }
+
 
 
 
@@ -136,6 +146,7 @@ class Modal extends React.Component {
         {this.forLogin()}
         {this.forCreate()}
         {this.forUpdate()}
+        {this.forExplore()}
       </div>
 
     );
