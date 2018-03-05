@@ -19,6 +19,11 @@ class projectList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.userProjects){
+      if (nextProps.userProjects[0].creator_id !== this.props.user.id) {
+        this.props.fetchUserProjects(this.props.user.id);
+      }
+    }
   }
 
   displayProfilePageProjects() {
