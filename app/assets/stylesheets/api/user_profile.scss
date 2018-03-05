@@ -152,6 +152,8 @@
 .pro-projects-center {
 
   @media (min-width: 1025px) {
+    margin: 0 auto;
+    max-width: 1366px;
     padding-left: 0px;
     padding-right: 0px;
   }

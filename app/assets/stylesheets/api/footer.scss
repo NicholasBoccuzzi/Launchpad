@@ -15,7 +15,9 @@
 .footer-project-categories {
   display: flex;
   padding: 25px 0px 25px 0px;
-  width: 100%
+  width: 100%;
+  margin: auto;
+  max-width: 1366px;
 }
 
 .footer-project-li {
@@ -34,6 +36,7 @@
   color: black;
   display: inline-block;
   width: auto;
+
 }
 
 .footer-nav-button:hover {
@@ -63,6 +66,13 @@
 .footer-info-container {
   margin: 0px 50px 0px 50px;
   display: flex;
+  margin: auto;
+  max-width: 1270px;
+
+  @media (max-width: 1366px) {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
 }
 
 .footer-info-title {
@@ -78,6 +88,8 @@
 
 .footer-trademark {
   padding: 48px 0px;
+  max-width: 1366px;
+  margin: auto;
 }
 
 .footer-trademark-container {
@@ -106,6 +118,8 @@
 .footer-terms-container {
   display: flex;
   padding: 25px 60px 35px 60px;
+  max-width: 1270px;
+  margin: auto;
 }
 
 .footer-terms-button {
@@ -119,9 +133,13 @@
   color: black;
   display: inline-block;
   width: auto;
+
 }
 
 .footer-project-categories-container {
   display: flex;
   padding: 0px 60px 0px 60px;
+}
+
+.footer-max-width {
 }

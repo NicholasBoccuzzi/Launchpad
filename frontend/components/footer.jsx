@@ -30,7 +30,7 @@ const footer = () => (
           </li>
           <li className="footer-project-li">
             <Link className="footer-nav-button" to="/underconstruction">Publishing</Link>
-            </li>
+          </li>
         </ul>
       </div>
     </div>
@@ -67,9 +67,9 @@ const footer = () => (
         <h3 className="footer-info-title">
           MORE FROM LAUNCHPAD
         </h3>
-        <li><Link className="footer-info-button" to="/underconstruction">App Academy</Link></li>
-        <li><Link className="footer-info-button" to="/underconstruction">Github</Link></li>
-        <li><Link className="footer-info-button" to="/underconstruction">LinkedIn</Link></li>
+        <li><a className="footer-info-button" to="https://www.appacademy.io/">App Academy</a></li>
+        <li><a className="footer-info-button" href="https://github.com/NicholasBoccuzzi/Launchpad">Github</a></li>
+        <li><a className="footer-info-button" href="https://www.linkedin.com/in/nicholas-r-boccuzzi/">LinkedIn</a></li>
       </ul>
     </div>
     <div className="footer-trademark">
