@@ -23,16 +23,73 @@ class profilePage extends React.Component {
     this.currentTab = this.currentTab.bind(this);
     this.switchLocalTab = this.switchLocalTab.bind(this);
     this.tabs = this.tabs.bind(this);
+    this.displayBio = this.displayBio.bind(this);
+    this.displayWebsites = this.displayWebsites.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchUser(this.profileNumber);
   }
 
+  displayBio() {
+    if (this.props.user && this.props.user.biography) {
+      return (
+        <div>
+          {this.props.user.biography}
+        </div>
+      );
+    } else {
+      return (
+        <main>
+          <div className="pro-more-info">
+            Let people know more about you.
+          </div>
+
+          <a href="#/">
+            Add a biography
+          </a>
+        </main>
+      );
+    }
+  }
+
+  displayWebsites() {
+    if (this.props.user && this.props.user.websites) {
+      return (
+        <div>
+          {this.props.user.websites}
+        </div>
+      );
+    } else {
+      return (
+        <main>
+          <a href="#/">
+            Add websites
+          </a>
+        </main>
+      );
+    }
+  }
+
   currentTab () {
     if (this.state.currentTab === "Created" && this.props.user) {
       return (
         <ProjectList location={this.props.location} user={this.props.user} currentTab={this.state.currentTab}/>
+      );
+    } else {
+      return (
+          <main className="pro-small-border">
+            <div className="pro-about-margins">
+              <section className="pro-about-flexed">
+                <div className="pro-about-text pro-about-header">Biography</div>
+                <div className="pro-about-bio pro-about-bottom-margin">{this.displayBio()}</div>
+              </section>
+              <section className="pro-about-flexed pro-about-top-margin">
+                <div className="pro-about-text pro-about-header">Websites</div>
+                <div className="pro-about-bio">{this.displayWebsites()}</div>
+              </section>
+            </div>
+          </main>
       );
     }
   }
@@ -95,6 +152,7 @@ class profilePage extends React.Component {
      let selected = document.getElementsByClassName("pro-selected-tab");
      selected[0].classList.remove("pro-selected-tab");
      e.currentTarget.classList.add("pro-selected-tab");
+     this.setState({currentTab: e.currentTarget.id});
      this.props.updatePage();
    }
 

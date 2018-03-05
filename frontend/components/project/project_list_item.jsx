@@ -50,9 +50,9 @@ class ProjectListItem extends React.Component {
             </a>
           </div>
           <div className="li-mid-container">
-            <Link className="li-title-link" to={`projects/${this.props.project.id}`}>
+            <a className="li-title-link" href={`#/projects/${this.props.project.id}`}>
               <h3 className="li-title-link">{this.props.project.title}</h3>
-            </Link>
+            </a>
             <h3 className="small-text">by {this.props.project.user.username}</h3>
           </div>
           <div className="li-bot-container">
