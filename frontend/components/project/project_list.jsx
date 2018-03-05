@@ -11,6 +11,7 @@ class projectList extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     if (this.props.location.pathname.includes("discover")) {
       this.props.fetchProjects();
     } else if (this.props.location.pathname.includes("user")) {

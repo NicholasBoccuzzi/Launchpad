@@ -14,7 +14,9 @@ class DropDown extends React.Component {
   }
 
   componentDidMount() {
-    let projectImages = this.props.fetchCurrentUserProjects(this.props.currentUser.id);
+    if (this.props.currentUser) {
+      let projectImages = this.props.fetchCurrentUserProjects(this.props.currentUser.id);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -101,10 +103,11 @@ class DropDown extends React.Component {
               <div className="cp-modal-options">
                 Account
               </div>
-              <div className="cp-modal-options"
-                onClick={this.props.logout}>
+              <a className="cp-modal-options"
+                onClick={this.props.logout}
+                href="#/">
                 Logout
-              </div>
+              </a>
             </div>
           </div>
 

@@ -25,6 +25,9 @@ class profilePage extends React.Component {
     this.tabs = this.tabs.bind(this);
     this.displayBio = this.displayBio.bind(this);
     this.displayWebsites = this.displayWebsites.bind(this);
+    this.selectedAbout = this.selectedAbout.bind(this);
+    this.selectedCreated = this.selectedCreated.bind(this);
+    this.selectedComments = this.selectedComments.bind(this);
   }
 
   componentDidMount() {
@@ -45,7 +48,7 @@ class profilePage extends React.Component {
             Let people know more about you.
           </div>
 
-          <a href="#/">
+          <a className="pro-blue-link" href="#/">
             Add a biography
           </a>
         </main>
@@ -63,7 +66,7 @@ class profilePage extends React.Component {
     } else {
       return (
         <main>
-          <a href="#/">
+          <a className="pro-blue-link" href="#/">
             Add websites
           </a>
         </main>
@@ -76,7 +79,7 @@ class profilePage extends React.Component {
       return (
         <ProjectList location={this.props.location} user={this.props.user} currentTab={this.state.currentTab}/>
       );
-    } else {
+    } else if (this.state.currentTab === "About" && this.props.user) {
       return (
           <main className="pro-small-border">
             <div className="pro-about-margins">
@@ -90,6 +93,16 @@ class profilePage extends React.Component {
               </section>
             </div>
           </main>
+      );
+    } else if (this.state.currentTab === "Comments" && this.props.user) {
+      return (
+        <main className="pro-small-border">
+          <div className="pro-about-margins">
+            <section className="pro-about-flexed">
+              <div className="pro-about-text pro-about-header">Coming Soon</div>
+            </section>
+          </div>
+        </main>
       );
     }
   }
@@ -115,7 +128,7 @@ class profilePage extends React.Component {
     return (
       <main className="pro-tabs-container">
         <div
-          className="pro-tab"
+          className={this.selectedAbout()}
           id="About"
           onClick={this.switchLocalTab}
           >
@@ -124,10 +137,9 @@ class profilePage extends React.Component {
           </div>
         </div>
         <div
-          className="pro-tab pro-selected-tab"
+          className={this.selectedCreated()}
           id="Created"
-          onClick={this.switchLocalTab}
-          >
+          onClick={this.switchLocalTab}>
           <div>
             Created
           </div>
@@ -136,10 +148,9 @@ class profilePage extends React.Component {
           </div>
         </div>
         <div
-          className="pro-tab"
+          className={this.selectedComments()}
           id="Comments"
-          onClick={this.switchLocalTab}
-          >
+          onClick={this.switchLocalTab}>
           <div>
             Comments
           </div>
@@ -149,11 +160,32 @@ class profilePage extends React.Component {
   }
 
    switchLocalTab (e) {
-     let selected = document.getElementsByClassName("pro-selected-tab");
-     selected[0].classList.remove("pro-selected-tab");
-     e.currentTarget.classList.add("pro-selected-tab");
      this.setState({currentTab: e.currentTarget.id});
      this.props.updatePage();
+   }
+
+   selectedAbout() {
+     if (this.state.currentTab === "About") {
+       return "pro-tab pro-selected-tab";
+     } else {
+       return "pro-tab";
+     }
+   }
+
+   selectedCreated() {
+     if (this.state.currentTab === "Created") {
+       return "pro-tab pro-selected-tab";
+     } else {
+       return "pro-tab";
+     }
+   }
+
+   selectedComments() {
+     if (this.state.currentTab === "Comments") {
+       return "pro-tab pro-selected-tab";
+     } else {
+       return "pro-tab";
+     }
    }
 
   selectMonth(string) {
@@ -187,6 +219,7 @@ class profilePage extends React.Component {
 
   editProfileButton () {
     if (
+      this.props.currentUser &&
       parseInt(
         this.props.location.pathname.split("/")[2]) ===  this.props.currentUser.id
       ) {
@@ -307,7 +340,6 @@ class profilePage extends React.Component {
       return (
         <div className="pro-content-container">
           LOADING
-          <i className="fas fa-circle-o-notch pro-loading"></i>
         </div>
       );
     }
