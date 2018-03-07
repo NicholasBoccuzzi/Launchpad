@@ -2,7 +2,10 @@ import { connect } from 'react-redux';
 import Modal from './modal';
 import { toggleErrorModal } from '../actions/ui_actions.js';
 import { clearSessionErrors} from '../actions/session_actions';
-import { toggleCreateProjectModal } from '../actions/ui_actions.js';
+import {
+  toggleCreateProjectModal,
+  deactivateExploreModal
+} from '../actions/ui_actions.js';
 import { createProject, updateProject } from '../actions/project_actions';
 import { withRouter } from 'react-router-dom';
 
@@ -18,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
   updateProject: (project, id) => dispatch(updateProject(project, id)),
   createProject: (project) => dispatch(createProject(project)),
   toggleErrorModal: () => dispatch(toggleErrorModal()),
-  clearSessionErrors: () => dispatch(clearSessionErrors())
+  clearSessionErrors: () => dispatch(clearSessionErrors()),
+  deactivateExploreModal: () => dispatch(deactivateExploreModal())
 });
 
 export default withRouter(connect(

@@ -7,18 +7,62 @@ class Modal extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      redirect: false
+      redirect: false,
+      currentScrollPosition: 0
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.forLogin = this.forLogin.bind(this);
     this.forCreate = this.forCreate.bind(this);
     this.forUpdate = this.forUpdate.bind(this);
+    this.expDisplayCollection = this.expDisplayCollection.bind(this);
+    this.expMarginCheck = this.expMarginCheck.bind(this);
+    this.expCollectionMargin = this.expCollectionMargin.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.explore) {
+      let modal = document.getElementById("modal");
+      modal.addEventListener('scroll', (e) => {
+      this.setState({currentScrollPosition: e.currentTarget.scrollTop});
+      });
+      modal.focus();
+    }
   }
 
   componentWillUnmount () {
     if (this.props.location === "login") {
       this.props.clearSessionErrors();
+    }
+  }
+
+  expDisplayCollection () {
+    if (this.state.currentScrollPosition > 0) {
+      return (
+        "exp-col-collection"
+      );
+    } else {
+      return (
+        "exp-col-container"
+      );
+    }
+  }
+
+  expCollectionMargin () {
+    if (this.state.currentScrollPosition > 0) {
+      return {top: this.state.currentScrollPosition};
+    }
+  }
+
+  expMarginCheck () {
+    if (this.state.currentScrollPosition < 1) {
+      return (
+        "exp-list"
+      );
+    } else {
+      return (
+        "exp-list exp-first-margin"
+      );
     }
   }
 
@@ -118,9 +162,36 @@ class Modal extends React.Component {
     forExplore() {
       if (this.props.explore) {
         return (
-          <div className="exp-full-container">
-            Hello
-          </div>
+          <main id="modal" className="exp-full-container">
+            <div className="animated slideInUp exp-centered-container">
+              <div style={this.expCollectionMargin()} className={this.expDisplayCollection()}>
+                <div className="exp-col-title">
+                  Collections
+                </div>
+                <div className="exp-bigger-x" onClick={this.props.deactivateExploreModal}>
+                  <i className="fas fa-times"></i>
+                </div>
+              </div>
+              <section className={this.expMarginCheck()}>
+                <div className="exp-list-item">Recommended For You</div>
+                <div className="exp-list-item">Projects We Love</div>
+                <div className="exp-list-item">Trending Projects</div>
+                <div className="exp-list-item">Nearly Funded</div>
+                <div className="exp-list-item">Recommended For You</div>
+                <div className="exp-list-item">Projects We Love</div>
+                <div className="exp-list-item">Trending Projects</div>
+                <div className="exp-list-item">Nearly Funded</div>
+                <div className="exp-list-item">Recommended For You</div>
+                <div className="exp-list-item">Projects We Love</div>
+                <div className="exp-list-item">Trending Projects</div>
+                <div className="exp-list-item">Nearly Funded</div>
+                <div className="exp-list-item">Recommended For You</div>
+                <div className="exp-list-item">Projects We Love</div>
+                <div className="exp-list-item">Trending Projects</div>
+                <div className="exp-list-item exp-bottom">Nearly Funded</div>
+              </section>
+            </div>
+          </main>
         );
       }
     }

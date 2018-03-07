@@ -48,10 +48,6 @@ class Navbar extends React.Component {
     }
   }
 
-  toggleExploreModal () {
-
-  }
-
 
 // explore should end up at {"/discover"}
 
@@ -61,7 +57,7 @@ class Navbar extends React.Component {
       <div>
         <nav className="main-nav">
           <section className="top-nav-left">
-            <div className="nav-button right" onClick={this.activateExploreModal}>Explore</div>
+            <div className="nav-button right" onClick={this.props.activateExploreModal}>Explore</div>
             <a className="nav-button" href={"#/startproject"}>Start a project</a>
           </section>
           <section className="top-nav-middle">
