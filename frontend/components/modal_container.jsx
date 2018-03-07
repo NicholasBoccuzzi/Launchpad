@@ -22,7 +22,6 @@ const mapDispatchToProps = dispatch => ({
   createProject: (project) => dispatch(createProject(project)),
   toggleErrorModal: () => dispatch(toggleErrorModal()),
   clearSessionErrors: () => dispatch(clearSessionErrors()),
-  deactivateExploreModal: () => dispatch(deactivateExploreModal())
 });
 
 export default withRouter(connect(

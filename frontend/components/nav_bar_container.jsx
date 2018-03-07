@@ -19,6 +19,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   activateExploreModal: () => dispatch(activateExploreModal()),
   toggleProfileDropDown: () => dispatch(toggleProfileDropDown()),
+  deactivateExploreModal: () => dispatch(deactivateExploreModal()),
   logout: () => dispatch(logout())
 });
 
