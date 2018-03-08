@@ -7,7 +7,8 @@ class Navbar extends React.Component {
   constructor () {
     super();
     this.state = {
-      currentScrollPosition: 0
+      currentScrollPosition: 0,
+      currentScreenSize: window.outerWidth
     };
 
     this.isSession = this.isSession.bind(this);
@@ -22,12 +23,16 @@ class Navbar extends React.Component {
     this.scrollToCollection = this.scrollToCollection.bind(this);
     this.scrollToSections = this.scrollToSections.bind(this);
     this.scrollToCategories = this.scrollToCategories.bind(this);
+    this.expCorrectLength = this.expCorrectLength.bind(this);
   }
 
   componentDidMount() {
     if (this.props.exploreModalActive) {
       window.addEventListener("scroll", (e) => {
       this.setState({currentScrollPosition: Math.ceil(e.currentTarget.scrollY)});
+      });
+      window.addEventListener("resize", (e) => {
+        this.setState({currentScreenSize: window.outerWidth});
       });
     }
   }
@@ -38,6 +43,13 @@ class Navbar extends React.Component {
   componentWillUnmount() {
     if (this.props.exploreModalActive) {
       this.props.deactivateExploreModal();
+    }
+  }
+
+  expCorrectLength() {
+    if (this.state.currentScreenSize >= 1244 && this.state.currentScreenSize < 1370) {
+      let currentWidth = (120 - (this.state.currentScreenSize - 1244));
+      return ({"width": `calc(100% - ${currentWidth}px)`});
     }
   }
 
@@ -67,7 +79,6 @@ class Navbar extends React.Component {
 
   expDisplayCollection () {
     if (this.state.currentScrollPosition > 0) {
-      console.log(this.state.currentScrollPosition);
       return (
         "exp-col-collection"
       );
@@ -184,7 +195,7 @@ class Navbar extends React.Component {
       return (
         <main id="modal" className="exp-full-container">
           <div className="exp-centered-container">
-            <div className={this.expDisplayCollection()} onClick={this.scrollToCollection}>
+            <div style={this.expCorrectLength()} className={this.expDisplayCollection()} onClick={this.scrollToCollection}>
               <div className="exp-col-title">
                 Collections
               </div>
@@ -202,7 +213,7 @@ class Navbar extends React.Component {
               <div className="exp-list-item">Backed By People You Follow</div>
               <div className="exp-list-item exp-bottom-item">Everything</div>
             </section>
-            <div className={this.expDisplaySections()} onClick={this.scrollToSections}>
+            <div style={this.expCorrectLength()} className={this.expDisplaySections()} onClick={this.scrollToSections}>
               <div className="exp-col-title">
                 Sections
               </div>
@@ -217,7 +228,7 @@ class Navbar extends React.Component {
               <div className="exp-list-item">Music</div>
               <div className="exp-list-item exp-bottom-item">Publishing</div>
             </section>
-            <div className={this.expDisplayCategories()}>
+            <div style={this.expCorrectLength()} className={this.expDisplayCategories()}>
               <div className="exp-col-title" onClick={this.scrollToCategories}>
                 Categories
               </div>
