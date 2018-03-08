@@ -206,8 +206,9 @@
   width: 100%;
   z-index: 10;
   max-width: 100%;
+  overflow: hidden;
   background: #FBFBFA;
-  margin: auto;
+  margin: 0 auto;
   max-height: 100%;
 }
 
@@ -229,10 +230,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 100%;
+  max-width: 1244px;
   margin: auto;
   position: relative;
   animation: slideInFromBottom .5s ease-out 0s 1, fadein .7s ease-in 0s 1;
+
+
 }
 
 .exp-col-container {
@@ -253,6 +256,11 @@
     margin-left: 60px;
     margin-right: 60px;
   }
+
+  @media (min-width: 1370px) {
+    margin-left: 0px;
+  }
+
 }
 
 .exp-col-title {
@@ -277,25 +285,25 @@
   cursor: pointer;
   padding-bottom: 8px;
   padding-top: 30px;
-
+  width: 100%;
   border-bottom: 1px solid #DCDEDD;
   align-items: center;
   position: fixed;
   top: 0;
-  left: 0;
-  margin: auto;
+  margin: 0 auto;
   width: calc(100% - 120px);
   max-width: 1244px;
   background: #FBFBFA;
   z-index: 50;
-
-
   margin-left: 60px;
   margin-right: 60px;
 
   @media (min-width: 1025px) {
     margin-left: 60px;
-    margin-right: 60px;
+  }
+
+  @media (min-width: 1244px) {
+    margin-left: 0px;
   }
 }
 
@@ -309,11 +317,20 @@
   margin: auto;
   width: calc(100% - 120px);
   max-width: 1244px;
-  z-index: 50;
+  z-index: 40;
+  background: #FBFBFA;
 
   @media (min-width: 1025px) {
     margin-left: 60px;
     margin-right: 60px;
+  }
+
+  @media (min-width: 1370px) {
+    width: 100%;
+  }
+
+  @media (min-width: 1370px) {
+    margin-left: 0px;
   }
 }
 
@@ -325,13 +342,26 @@
   text-align: left;
   margin-top: 22px;
   margin-left: 60px;
-  margin-right: 60px;
   z-index: 1;
   transition-delay: 0s;
+
+  @media (min-width: 1370px) {
+    margin-left: 0px;
+  }
 }
 
 .exp-first-margin {
   padding-top: 74px;
+  position: relative;
+}
+
+.exp-second-margin {
+  padding-top: 110px;
+  position: relative;
+}
+
+.exp-third-margin {
+  padding-top: 146px;
   position: relative;
 }
 
@@ -351,12 +381,29 @@
 }
 
 .exp-bottom {
-  height: 1000px;
+  height: 200px;
   background: #FBFBFA;
 }
 
 .exp-sec {
   position: fixed;
-  top: 90px;
+  top: 60px;
+  padding-top:30px;
   margin-left: 60px;
+
+  @media (min-width: 1370px) {
+    margin-left: 0px;
+  }
+}
+
+.exp-cat {
+  position: fixed;
+  top: 110px;
+  padding-top:30px;
+  margin-left: 60px;
+  z-index: 30;
+
+  @media (min-width: 1370px) {
+    margin-left: 0px;
+  }
 }

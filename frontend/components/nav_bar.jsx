@@ -18,21 +18,51 @@ class Navbar extends React.Component {
     this.expCollectionMargin = this.expCollectionMargin.bind(this);
     this.expSectionMargin = this.expSectionMargin.bind(this);
     this.expDisplaySections = this.expDisplaySections.bind(this);
+    this.expDisplayCategories = this.expDisplayCategories.bind(this);
+    this.scrollToCollection = this.scrollToCollection.bind(this);
+    this.scrollToSections = this.scrollToSections.bind(this);
+    this.scrollToCategories = this.scrollToCategories.bind(this);
   }
 
   componentDidMount() {
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.exploreModalActive) {
+    if (this.props.exploreModalActive) {
       window.addEventListener("scroll", (e) => {
       this.setState({currentScrollPosition: Math.ceil(e.currentTarget.scrollY)});
       });
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+  }
+
   componentWillUnmount() {
-    this.props.deactivateExploreModal();
+    if (this.props.exploreModalActive) {
+      this.props.deactivateExploreModal();
+    }
+  }
+
+  scrollToCollection (e) {
+    window.scroll({
+    top: 0,
+    left: 0,
+    behavior: 'smooth'
+    });
+  }
+
+  scrollToSections (e) {
+    window.scroll({
+    top: 470,
+    left: 0,
+    behavior: 'smooth'
+    });
+  }
+
+  scrollToCategories(e) {
+    window.scroll({
+    top: 940,
+    left: 0,
+    behavior: 'smooth'
+    });
   }
 
   expDisplayCollection () {
@@ -52,6 +82,18 @@ class Navbar extends React.Component {
     if (this.state.currentScrollPosition > 470) {
       return (
         "exp-title-container exp-sec"
+      );
+    } else {
+      return (
+        "exp-title-container"
+      );
+    }
+  }
+
+  expDisplayCategories () {
+    if (this.state.currentScrollPosition > 940) {
+      return (
+        "exp-title-container exp-cat"
       );
     } else {
       return (
@@ -86,9 +128,17 @@ class Navbar extends React.Component {
       return (
         "exp-list"
       );
-    } else {
+    } else if (this.state.currentScrollPosition <= 470) {
       return (
         "exp-list exp-first-margin"
+      );
+    } else if (this.state.currentScrollPosition <= 940) {
+      return (
+        "exp-list exp-second-margin"
+      );
+    } else {
+      return (
+        "exp-list exp-third-margin"
       );
     }
   }
@@ -134,7 +184,7 @@ class Navbar extends React.Component {
       return (
         <main id="modal" className="exp-full-container">
           <div className="exp-centered-container">
-            <div className={this.expDisplayCollection()}>
+            <div className={this.expDisplayCollection()} onClick={this.scrollToCollection}>
               <div className="exp-col-title">
                 Collections
               </div>
@@ -152,11 +202,43 @@ class Navbar extends React.Component {
               <div className="exp-list-item">Backed By People You Follow</div>
               <div className="exp-list-item exp-bottom-item">Everything</div>
             </section>
-            <div className={this.expDisplaySections()}>
+            <div className={this.expDisplaySections()} onClick={this.scrollToSections}>
               <div className="exp-col-title">
                 Sections
               </div>
             </div>
+            <section className="exp-list">
+              <div className="exp-list-item">Arts</div>
+              <div className="exp-list-item">Comics & Illustration</div>
+              <div className="exp-list-item">Design & Tech</div>
+              <div className="exp-list-item">Film</div>
+              <div className="exp-list-item">Food & Craft</div>
+              <div className="exp-list-item">Games</div>
+              <div className="exp-list-item">Music</div>
+              <div className="exp-list-item exp-bottom-item">Publishing</div>
+            </section>
+            <div className={this.expDisplayCategories()}>
+              <div className="exp-col-title" onClick={this.scrollToCategories}>
+                Categories
+              </div>
+            </div>
+            <section className="exp-list">
+              <div className="exp-list-item">Arts</div>
+              <div className="exp-list-item">Comics</div>
+              <div className="exp-list-item">Crafts</div>
+              <div className="exp-list-item">Dance</div>
+              <div className="exp-list-item">Design</div>
+              <div className="exp-list-item">Fashion</div>
+              <div className="exp-list-item">Film & Video</div>
+              <div className="exp-list-item">Food</div>
+              <div className="exp-list-item">Games</div>
+              <div className="exp-list-item">Journalism</div>
+              <div className="exp-list-item">Music</div>
+              <div className="exp-list-item">Photography</div>
+              <div className="exp-list-item">Publishing</div>
+              <div className="exp-list-item">Technology</div>
+              <div className="exp-list-item exp-bottom-item">Theater</div>
+            </section>
             <section className="exp-bottom">
             </section>
           </div>

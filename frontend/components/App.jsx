@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import {
   Route,
   Redirect,
@@ -18,28 +19,52 @@ import ProfilePage from './user/profile_page_container';
 import Footer from './footer';
 import ProjectShow from './project/project_show_page_container';
 import UnderConstruction from './underconstruction';
+import { withRouter } from 'react-router-dom';
 
-const App = () => (
-  <div>
-    <Switch>
-      <Route path='/startproject' component={CreateProjectNavBar} exact/>
-      <Route path='/'   component={Navbar}/>
-    </Switch>
+const mapStateToProps = state => {
+  return {
+    exploreModalActive: state.ui.exploreModalActive
+  };
+};
 
-    <Route path="/user/:userId" component={ProfilePage} />
-    <Route exact path="/underconstruction" component={UnderConstruction}/>
-    <Route exact path="/projects/:projectId" component={ProjectShow}></Route>
-    <Route exact path="/" component={Mainpage}></Route>
-    <ProtectedRoute exact path="/startproject" component={CreateProjectForm} />
-    <ProtectedRoute exact path="/projects/:projectId/edit" component={UpdateProjectForm}/>
-    <Route exact path="/discover" component={ProjectList} />
-    <AuthRoute path="/login" component={SessionFormContainer}/>
-    <AuthRoute path="/signup" component={SessionFormContainer} />
-      <Switch>
-        <Route path='/startproject' exact/>
-        <Route path='/'   component={Footer}/>
-      </Switch>
-  </div>
-);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-export default App;
+
+  render() {
+
+    if (this.props.exploreModalActive) {
+      return (
+        <Route path='/'   component={Navbar}/>
+      );
+    } else {
+      return (
+        <div>
+          <Switch>
+            <Route path='/startproject' component={CreateProjectNavBar} exact/>
+            <Route path='/'   component={Navbar}/>
+          </Switch>
+
+          <Route path="/user/:userId" component={ProfilePage} />
+          <Route exact path="/underconstruction" component={UnderConstruction}/>
+          <Route exact path="/projects/:projectId" component={ProjectShow}></Route>
+          <Route exact path="/" component={Mainpage}></Route>
+          <ProtectedRoute exact path="/startproject" component={CreateProjectForm} />
+          <ProtectedRoute exact path="/projects/:projectId/edit" component={UpdateProjectForm}/>
+          <Route exact path="/discover" component={ProjectList} />
+          <AuthRoute path="/login" component={SessionFormContainer}/>
+          <AuthRoute path="/signup" component={SessionFormContainer} />
+          <Switch>
+            <Route path='/startproject' exact/>
+            <Route path='/'   component={Footer}/>
+          </Switch>
+        </div>
+      );
+    }
+  }
+
+}
+
+export default withRouter(connect(mapStateToProps)(App));
