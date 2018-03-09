@@ -11,9 +11,15 @@ class projectList extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.location.pathname.includes("discover")) {
-      this.props.fetchProjects();
-    } else if (this.props.location.pathname.includes("user")) {
+    let location = this.props.location.pathname.split("/");
+
+    if (location[1] === ("discover")) {
+      if (location[2] === "category") {
+        this.props.fetchProjects(location[3]);
+      } else {
+        this.props.fetchProjects();
+      }
+    } else if (location[1] === ("user")) {
       this.props.fetchUserProjects(this.props.user.id);
     }
   }

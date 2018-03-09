@@ -204,14 +204,30 @@ class Navbar extends React.Component {
               </div>
             </div>
             <section className={this.expMarginCheck()}>
-              <div className="exp-list-item">Recommended For You</div>
-              <div className="exp-list-item">Projects We Love</div>
-              <div className="exp-list-item">Saved Projects</div>
-              <div className="exp-list-item">Trending</div>
-              <div className="exp-list-item">Nearly Funded</div>
-              <div className="exp-list-item">Just Launched</div>
-              <div className="exp-list-item">Backed By People You Follow</div>
-              <div className="exp-list-item exp-bottom-item">Everything</div>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Recommended For You</a>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Projects We Love</a>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Saved Projects</a>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Trending</a>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Nearly Funded</a>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Just Launched</a>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Backed By People You Follow</a>
+              <a href="#/discover"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item exp-bottom-item">Everything</a>
             </section>
             <div style={this.expCorrectLength()} className={this.expDisplaySections()} onClick={this.scrollToSections}>
               <div className="exp-col-title">
@@ -219,14 +235,30 @@ class Navbar extends React.Component {
               </div>
             </div>
             <section className="exp-list">
-              <div className="exp-list-item">Arts</div>
-              <div className="exp-list-item">Comics & Illustration</div>
-              <div className="exp-list-item">Design & Tech</div>
-              <div className="exp-list-item">Film</div>
-              <div className="exp-list-item">Food & Craft</div>
-              <div className="exp-list-item">Games</div>
-              <div className="exp-list-item">Music</div>
-              <div className="exp-list-item exp-bottom-item">Publishing</div>
+              <a href="#/discover/category/Arts"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Arts</a>
+              <a href="#/discover/category/Comics+Illustration"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Comics & Illustration</a>
+              <a href="#/discover/category/Design+Tech"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Design & Tech</a>
+              <a href="#/discover/category/Film"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Film</a>
+              <a href="#/discover/category/Food+craft"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Food & Craft</a>
+              <a href="#/discover/category/Games"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Games</a>
+              <a href="#/discover/category/Music"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Music</a>
+              <a href="#/discover/category/Publishing"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item exp-bottom-item">Publishing</a>
             </section>
             <div style={this.expCorrectLength()} className={this.expDisplayCategories()}>
               <div className="exp-col-title" onClick={this.scrollToCategories}>
@@ -234,21 +266,51 @@ class Navbar extends React.Component {
               </div>
             </div>
             <section className="exp-list">
-              <div className="exp-list-item">Arts</div>
-              <div className="exp-list-item">Comics</div>
-              <div className="exp-list-item">Crafts</div>
-              <div className="exp-list-item">Dance</div>
-              <div className="exp-list-item">Design</div>
-              <div className="exp-list-item">Fashion</div>
-              <div className="exp-list-item">Film & Video</div>
-              <div className="exp-list-item">Food</div>
-              <div className="exp-list-item">Games</div>
-              <div className="exp-list-item">Journalism</div>
-              <div className="exp-list-item">Music</div>
-              <div className="exp-list-item">Photography</div>
-              <div className="exp-list-item">Publishing</div>
-              <div className="exp-list-item">Technology</div>
-              <div className="exp-list-item exp-bottom-item">Theater</div>
+              <a href="#/discover/search?=arts"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Arts</a>
+              <a href="#/discover/search?=comics"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Comics</a>
+              <a href="#/discover/search?=crafts"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Crafts</a>
+              <a href="#/discover/search?=dance"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Dance</a>
+              <a href="#/discover/search?=design"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Design</a>
+              <a href="#/discover/search?=fashion"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Fashion</a>
+              <a href="#/discover/search?=film+video"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Film & Video</a>
+              <a href="#/discover/search?=food"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Food</a>
+              <a href="#/discover/search?=games"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Games</a>
+              <a href="#/discover/search?=journalism"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Journalism</a>
+              <a href="#/discover/search?=music"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Music</a>
+              <a href="#/discover/search?=photography"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Photography</a>
+              <a href="#/discover/search?=publishing"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Publishing</a>
+              <a href="#/discover/search?=technology"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item">Technology</a>
+              <a href="#/discover/search?=theater"
+                onClick={this.props.deactivateExploreModal}
+                className="exp-list-item exp-bottom-item">Theater</a>
             </section>
             <section className="exp-bottom">
             </section>

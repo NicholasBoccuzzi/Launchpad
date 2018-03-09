@@ -1,7 +1,7 @@
 class Api::ProjectsController < ApplicationController
   def index
     if params[:category]
-      @projects = Project.find_by_category(project_params[:category])
+      @projects = Project.select("*").from("projects").where("category = ? AND live = ?", params[:category], "true")
     elsif params[:creator_id]
       @projects = Project.select("*").from("projects").where("creator_id = ?", params[:creator_id])
     else

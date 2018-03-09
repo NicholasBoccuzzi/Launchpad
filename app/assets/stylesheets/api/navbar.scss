@@ -319,7 +319,8 @@
 }
 
 .exp-list {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   font-size: 34px;
   color: black;
@@ -353,6 +354,7 @@
 
 .exp-bottom-item {
   padding-bottom: 32px;
+
 }
 
 .exp-list-item:hover {

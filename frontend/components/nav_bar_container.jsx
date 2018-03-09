@@ -6,7 +6,7 @@ import {
   activateExploreModal,
   deactivateExploreModal
 } from '../actions/ui_actions.js';
-
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
   return {
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(logout())
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Navbar);
+)(Navbar));
