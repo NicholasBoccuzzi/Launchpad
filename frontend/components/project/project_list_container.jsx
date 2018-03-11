@@ -4,6 +4,9 @@ import {
   fetchProjects,
   fetchUserProjects
 } from '../../actions/project_actions';
+import {
+  updatePage
+} from '../../actions/ui_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -26,7 +29,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchProjects: (category) => dispatch(fetchProjects(category)),
-    fetchUserProjects: (id) => dispatch(fetchUserProjects(id))
+    fetchUserProjects: (id) => dispatch(fetchUserProjects(id)),
+    updatePage: () => dispatch(updatePage())
   };
 };
 

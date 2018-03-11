@@ -8,18 +8,23 @@ class projectList extends React.Component {
     this.liveCount = 0;
     this.projectList = this.projectList.bind(this);
     this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
+    this.location = this.props.location.pathname.split("/");
+    this.showMe = this.showMe.bind(this);
+    this.sortedBy = this.sortedBy.bind(this);
+    this.fromWhere = this.fromWhere.bind(this);
+    this.toggleCategoryDropdown = this.toggleCategoryDropdown.bind(this);
+    this.categoryDropDownActive = false;
+    this.displayCategoryModal = this.displayCategoryModal.bind(this);
   }
 
   componentDidMount() {
-    let location = this.props.location.pathname.split("/");
-
-    if (location[1] === ("discover")) {
-      if (location[2] === "category") {
-        this.props.fetchProjects(location[3]);
+    if (this.location[1] === ("discover")) {
+      if (this.location[2] === "category") {
+        this.props.fetchProjects(this.location[3]);
       } else {
         this.props.fetchProjects();
       }
-    } else if (location[1] === ("user")) {
+    } else if (this.location[1] === ("user")) {
       this.props.fetchUserProjects(this.props.user.id);
     }
   }
@@ -29,6 +34,21 @@ class projectList extends React.Component {
       if (nextProps.userProjects[0].creator_id !== this.props.user.id) {
         this.props.fetchUserProjects(this.props.user.id);
       }
+    }
+  }
+
+  toggleCategoryDropdown() {
+    this.categoryDropDownActive = !this.categoryDropDownActive;
+    this.props.updatePage();
+  }
+
+  displayCategoryModal() {
+    if (this.categoryDropDownActive) {
+      return (
+        <div className="pl-sn-category-modal-container">
+          Hello
+        </div>
+      );
     }
   }
 
@@ -55,11 +75,113 @@ class projectList extends React.Component {
     }
   }
 
+  showMe() {
+    if (this.location[2] === "category") {
+      return (
+        <div className="pl-sn-flex-row pl-sn-box">
+          {this.location[3]}
+          <i className="fas fa-times pl-caret"></i>
+        </div>
+      );
+  } else if (this.location[2] === "advanced") {
+      return (
+        <div className="pl-sn-flex-row">
+          <div>
+            from &nbsp;
+          </div>
+          <div className="pl-sn-flex-row pl-sn-box">
+            "Everywhere"
+            <i className="fas fa-caret-down pl-caret"></i>
+          </div>
+        </div>
+      );
+    } else {
+        return (
+          <div className="pl-sn-flex-row pl-sn-box">
+            <div onClick={this.toggleCategoryDropdown}>
+              All &nbsp;
+            </div>
+            <i className="fas fa-caret-down pl-caret"></i>
+          </div>
+      );
+    }
+  }
+
+  fromWhere() {
+    if (this.location[2] === "advanced") {
+      return (
+        <div className="pl-sn-flex-row">
+          <div>
+            from &nbsp;
+          </div>
+          <div className="pl-sn-flex-row pl-sn-box">
+            "Everywhere"
+            <i className="fas fa-caret-down pl-caret"></i>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="pl-sn-flex-row">
+          <div>
+            on &nbsp;
+          </div>
+          <div className="pl-sn-flex-row pl-sn-box">
+            Earth
+            <i className="fas fa-caret-down pl-caret pl-mag"></i>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  sortedBy () {
+    if (this.location[2] === "advanced") {
+      return (
+        <div className="pl-sn-flex-row">
+          <div>
+            sorted by &nbsp;
+          </div>
+          <div className="pl-sn-flex-row pl-sn-box">
+            Magic
+            <i className="fas fa-caret-down pl-caret"></i>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="pl-sn-flex-row">
+          <div>
+             &nbsp; sorted by &nbsp;
+          </div>
+          <div className="pl-sn-flex-row pl-sn-box">
+            Magic
+            <i className="fas fa-caret-down pl-caret pl-mag"></i>
+          </div>
+        </div>
+      );
+    }
+  }
+
   renderSearchNav () {
     // to change when search is implemented
     return (
-      <nav className="search-nav">
-
+      <nav className="pl-search-nav">
+        <main className="pl-sn-container">
+          <div className="pl-sn-centered">
+            <main className="pl-sn-flex-row">
+              <div>
+                Show me &nbsp;
+              </div>
+              {this.showMe()}
+              <div>
+                &nbsp; projects &nbsp;
+              </div>
+              {this.fromWhere()}
+              {this.sortedBy()}
+            </main>
+          </div>
+        </main>
       </nav>
     );
   }
