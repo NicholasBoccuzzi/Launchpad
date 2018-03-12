@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Line, Circle } from 'rc-progress';
+import { withRouter } from 'react-router-dom';
 
 class ProjectListItem extends React.Component {
   constructor(props) {
@@ -71,4 +72,4 @@ class ProjectListItem extends React.Component {
   }
 }
 
-export default ProjectListItem;
+export default withRouter(ProjectListItem);

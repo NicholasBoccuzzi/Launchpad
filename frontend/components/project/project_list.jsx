@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProjectListItem from './project_list_item';
+import FontAwesome from 'react-fontawesome';
 
 class projectList extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class projectList extends React.Component {
     this.displayCategoryModal = this.displayCategoryModal.bind(this);
     this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
     this.activeCategoryClass = this.activeCategoryClass.bind(this);
+    this.loadingText = this.loadingText.bind(this);
   }
 
   componentDidMount() {
@@ -43,6 +45,10 @@ class projectList extends React.Component {
         this.props.fetchUserProjects(this.props.user.id);
       }
     }
+  }
+
+  loadingText () {
+    return "fas fa-circle-o-notch fa-spin";
   }
 
   activateCategoryDropdown() {
@@ -88,42 +94,90 @@ class projectList extends React.Component {
               <section className="pl-section-whitespace">
               </section>
               <section className="pl-sn-modal-section">
-                <a href="#/discover"
-                  className={this.activeCategoryClass(null)}>All Categories</a>
-                <a href="#/discover/category/Art"
-                  className={this.activeCategoryClass("Art")}>Art</a>
-                <a href="#/discover/category/Comics"
-                  className={this.activeCategoryClass("Comics")}>Comics</a>
-                <a href="#/discover/category/Crafts"
-                  className={this.activeCategoryClass("Crafts")}>Crafts</a>
-                <a href="#/discover/category/Dance"
-                  className={this.activeCategoryClass("Dance")}>Dance</a>
-                <a href="#/discover/category/Design"
-                  className={this.activeCategoryClass("Design")}>Design</a>
-                <a href="#/discover/category/Fashion"
-                  className={this.activeCategoryClass("Fashion")}>Fashion</a>
-                <a href="#/discover/category/Film+Video"
-                  className={this.activeCategoryClass("Film+Video")}>Film & Video</a>
+                <a
+                  href="#/discover"
+                  className={this.activeCategoryClass(null)}
+                  >
+                  All Categories</a>
+                <a
+                  href="#/discover/category/Art"
+                  className={this.activeCategoryClass("Art")}
+                  >
+                  Art</a>
+                <a
+                  href="#/discover/category/Comics"
+                  className={this.activeCategoryClass("Comics")}
+                  >
+                  Comics</a>
+                <a
+                  href="#/discover/category/Crafts"
+                  className={this.activeCategoryClass("Crafts")}
+                  >
+                  Crafts</a>
+                <a
+                  href="#/discover/category/Dance"
+                  className={this.activeCategoryClass("Dance")}
+                  >
+                  Dance</a>
+                <a
+                  href="#/discover/category/Design"
+                  className={this.activeCategoryClass("Design")}
+                  >
+                  Design</a>
+                <a
+                  href="#/discover/category/Fashion"
+                  className={this.activeCategoryClass("Fashion")}
+                  >
+                  Fashion</a>
+                <a
+                  href="#/discover/category/Film+Video"
+                  className={this.activeCategoryClass("Film+Video")}
+                  >
+                  Film & Video</a>
               </section>
               <section className="pl-section-whitespace">
               </section>
               <section className="pl-sn-modal-section">
-                <a href="#/discover/category/Food"
-                  className={this.activeCategoryClass("Food")}>Food</a>
-                <a href="#/discover/category/Games"
-                  className={this.activeCategoryClass("Games")}>Games</a>
-                <a href="#/discover/category/Journalism"
-                  className={this.activeCategoryClass("Journalism")}>Journalism</a>
-                <a href="#/discover/category/Music"
-                  className={this.activeCategoryClass("Music")}>Music</a>
-                <a href="#/discover/category/Photography"
-                  className={this.activeCategoryClass("Photography")}>Photography</a>
-                <a href="#/discover/category/Publishing"
-                  className={this.activeCategoryClass("Publishing")}>Publishing</a>
-                <a href="#/discover/category/Technology"
-                  className={this.activeCategoryClass("Technology")}>Technology</a>
-                <a href="#/discover/category/Theater"
-                  className={this.activeCategoryClass("Theater")}>Theater</a>
+                <a
+                  href="#/discover/category/Food"
+                  className={this.activeCategoryClass("Food")}
+                  >
+                  Food</a>
+                <a
+                  href="#/discover/category/Games"
+                  className={this.activeCategoryClass("Games")}
+                  >
+                  Games</a>
+                <a
+                  href="#/discover/category/Journalism"
+                  className={this.activeCategoryClass("Journalism")}
+                  >
+                  Journalism</a>
+                <a
+                  href="#/discover/category/Music"
+                  className={this.activeCategoryClass("Music")}
+                  >
+                  Music</a>
+                <a
+                  href="#/discover/category/Photography"
+                  className={this.activeCategoryClass("Photography")}
+                  >
+                  Photography</a>
+                <a
+                  href="#/discover/category/Publishing"
+                  className={this.activeCategoryClass("Publishing")}
+                  >
+                  Publishing</a>
+                <a
+                  href="#/discover/category/Technology"
+                  className={this.activeCategoryClass("Technology")}
+                  >
+                  Technology</a>
+                <a
+                  href="#/discover/category/Theater"
+                  className={this.activeCategoryClass("Theater")}
+                  >
+                  Theater</a>
               </section>
             </div>
           </div>
@@ -323,7 +377,27 @@ class projectList extends React.Component {
       });
 
     } else {
-      return <h1>Loading Projects</h1>;
+      return (
+        <main>
+          <section className="loading-screen">
+            <div className="loading-container">
+              <div className="loading-rocket-fire">
+                <div className="loading-rocket">
+                  <i className="fas fa-rocket"
+                    data-fa-transform="rotate-315"></i>
+                </div>
+                <div className="loading-fire">
+                  <i className="fab fa-gripfire"
+                    data-fa-transform="rotate-180"></i>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="loading-screen-whitespace">
+
+          </section>
+        </main>
+      );
     }
   }
 

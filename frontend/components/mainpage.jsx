@@ -34,11 +34,13 @@ class Main extends React.Component {
 
   componentDidMount () {
     this.props.fetchProjects();
-    this.loaded = true;
   }
 
   componentWillUnmount () {
-    this.loaded = false;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.loaded = true;
   }
 
   percentFunded (cur, goal) {
@@ -102,25 +104,25 @@ class Main extends React.Component {
         <div className="flexed">
           <section className="featured-project-container">
             <h2 className="mainpage-projects-header ten-px-bottom">Latest Project</h2>
-              <Link to={`/projects/${latest.id}`} className="featured-image-container">
-                <img className="featured-image" src={latest.image}></img>
-                <div className="main-info-containers">
-                  <div className="white-background featured-title">
-                    <p>{latest.title}</p>
-                  </div>
-                  <br></br>
-
-                  <div className="white-background featured-author">
-                    <p>BY CREATOR #{latest.creator_id}</p>
-                  </div>
-                  <br></br>
-                  <div className="white-background featured-author">
-                    <p className="white-background featured-funded">
-                    {this.percentFunded(latest.current_funding, latest.funding_goal)}% FUNDED
-                    </p>
-                  </div>
+            <Link to={`/projects/${latest.id}`} className="featured-image-container">
+              <img className="featured-image" src={latest.image}></img>
+              <div className="main-info-containers">
+                <div className="white-background featured-title">
+                  <p>{latest.title}</p>
                 </div>
-              </Link>
+                <br></br>
+
+                <div className="white-background featured-author">
+                  <p>BY CREATOR #{latest.creator_id}</p>
+                </div>
+                <br></br>
+                <div className="white-background featured-author">
+                  <p className="white-background featured-funded">
+                    {this.percentFunded(latest.current_funding, latest.funding_goal)}% FUNDED
+                  </p>
+                </div>
+              </div>
+            </Link>
           </section>
           <section className="category-tabs-container">
             <h2 className="mainpage-projects-header">Most Recent Projects</h2>
@@ -181,15 +183,39 @@ class Main extends React.Component {
 
   render () {
 
-    return (
-      <div>
-        {this.displayInfo()}
-        <div className="mainpage-centered-content">
-          {this.displayProjects()}
-        </div>
+    if (this.loaded === true) {
+      return (
+        <div>
+          {this.displayInfo()}
+          <div className="mainpage-centered-content">
+            {this.displayProjects()}
+          </div>
 
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return (
+        <main>
+          <section className="loading-screen">
+            <div className="loading-container">
+              <div className="loading-rocket-fire">
+                <div className="loading-rocket">
+                  <i className="fas fa-rocket"
+                    data-fa-transform="rotate-315"></i>
+                </div>
+                <div className="loading-fire">
+                  <i className="fab fa-gripfire"
+                    data-fa-transform="rotate-180"></i>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section className="loading-screen-whitespace">
+
+          </section>
+        </main>
+      );
+    }
   }
 }
 

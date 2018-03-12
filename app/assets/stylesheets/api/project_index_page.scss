@@ -282,6 +282,12 @@
   margin-left: 10px;
   position: relative;
   color: black;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.pl-caret:active {
+  border: 1px solid lightblue;
 }
 
 

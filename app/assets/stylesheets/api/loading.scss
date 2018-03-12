@@ -1,0 +1,77 @@
+@keyframes pulse {
+  0% {
+    color: red;
+    font-size: 30px;
+    margin-top: 0px;
+  }
+
+  50% {
+    color: yellow;
+  }
+
+  100% {
+    color: orange;
+    font-size: 150px;
+    margin-top: 30px;
+  }
+}
+
+@keyframes loadfade {
+  0% {
+    color: yellow;
+  }
+
+  100% {
+    color: blue;
+  }
+}
+
+.loading-rocket-fire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.loading-rocket {
+  font-size: 60px;
+}
+
+.loading-fire {
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-delay: 0s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-play-state:running;
+  height: 30px;
+  font-size: 30px;
+  width: 100%;
+}
+
+.loading-screen {
+  height: 300px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  letter-spacing: 0px;
+  opacity: .8;
+}
+
+.loading-screen-whitespace {
+  height: 300px;
+  width: 100%;
+}
