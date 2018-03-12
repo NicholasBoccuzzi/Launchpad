@@ -9,12 +9,20 @@ class projectList extends React.Component {
     this.projectList = this.projectList.bind(this);
     this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
     this.location = this.props.location.pathname.split("/");
+
+    if (this.location[3]) {
+      this.activeCategory = this.location[3];
+    }
+
     this.showMe = this.showMe.bind(this);
     this.sortedBy = this.sortedBy.bind(this);
     this.fromWhere = this.fromWhere.bind(this);
-    this.toggleCategoryDropdown = this.toggleCategoryDropdown.bind(this);
+    this.activateCategoryDropdown = this.activateCategoryDropdown.bind(this);
+    this.deactivateCategoryDropdown = this.deactivateCategoryDropdown.bind(this);
     this.categoryDropDownActive = false;
     this.displayCategoryModal = this.displayCategoryModal.bind(this);
+    this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
+    this.activeCategoryClass = this.activeCategoryClass.bind(this);
   }
 
   componentDidMount() {
@@ -37,17 +45,89 @@ class projectList extends React.Component {
     }
   }
 
-  toggleCategoryDropdown() {
-    this.categoryDropDownActive = !this.categoryDropDownActive;
+  activateCategoryDropdown() {
+    this.categoryDropDownActive = true;
     this.props.updatePage();
+  }
+
+  deactivateCategoryDropdown() {
+    this.categoryDropDownActive = false;
+    this.props.updatePage();
+  }
+
+  displayDeactivateModal() {
+    if (this.categoryDropDownActive) {
+      return (
+        <div
+          className="pl-sn-invis-background"
+          onClick={this.deactivateCategoryDropdown}>
+        </div>
+      );
+    }
+  }
+
+  activeCategoryClass (category) {
+    if (this.location[2] === "category" && this.activeCategory === category) {
+      return "pl-sn-modal-section-li pl-green";
+    } else if (this.location[1] === "discover" && !this.location[2] && category === null) {
+      return "pl-sn-modal-section-li pl-green";
+    } else {
+      return "pl-sn-modal-section-li";
+    }
   }
 
   displayCategoryModal() {
     if (this.categoryDropDownActive) {
       return (
-        <div className="pl-sn-category-modal-container">
-          Hello
-        </div>
+        <main className="pl-sn-category-modal">
+          <div className="pl-sn-category-modal-container">
+            <div className="pl-sn-modal-title">
+              CATEGORIES
+            </div>
+            <div className="pl-sn-modal-sections">
+              <section className="pl-section-whitespace">
+              </section>
+              <section className="pl-sn-modal-section">
+                <a href="#/discover"
+                  className={this.activeCategoryClass(null)}>All Categories</a>
+                <a href="#/discover/category/Art"
+                  className={this.activeCategoryClass("Art")}>Art</a>
+                <a href="#/discover/category/Comics"
+                  className={this.activeCategoryClass("Comics")}>Comics</a>
+                <a href="#/discover/category/Crafts"
+                  className={this.activeCategoryClass("Crafts")}>Crafts</a>
+                <a href="#/discover/category/Dance"
+                  className={this.activeCategoryClass("Dance")}>Dance</a>
+                <a href="#/discover/category/Design"
+                  className={this.activeCategoryClass("Design")}>Design</a>
+                <a href="#/discover/category/Fashion"
+                  className={this.activeCategoryClass("Fashion")}>Fashion</a>
+                <a href="#/discover/category/Film+Video"
+                  className={this.activeCategoryClass("Film+Video")}>Film & Video</a>
+              </section>
+              <section className="pl-section-whitespace">
+              </section>
+              <section className="pl-sn-modal-section">
+                <a href="#/discover/category/Food"
+                  className={this.activeCategoryClass("Food")}>Food</a>
+                <a href="#/discover/category/Games"
+                  className={this.activeCategoryClass("Games")}>Games</a>
+                <a href="#/discover/category/Journalism"
+                  className={this.activeCategoryClass("Journalism")}>Journalism</a>
+                <a href="#/discover/category/Music"
+                  className={this.activeCategoryClass("Music")}>Music</a>
+                <a href="#/discover/category/Photography"
+                  className={this.activeCategoryClass("Photography")}>Photography</a>
+                <a href="#/discover/category/Publishing"
+                  className={this.activeCategoryClass("Publishing")}>Publishing</a>
+                <a href="#/discover/category/Technology"
+                  className={this.activeCategoryClass("Technology")}>Technology</a>
+                <a href="#/discover/category/Theater"
+                  className={this.activeCategoryClass("Theater")}>Theater</a>
+              </section>
+            </div>
+          </div>
+        </main>
       );
     }
   }
@@ -75,12 +155,23 @@ class projectList extends React.Component {
     }
   }
 
+  classNameCheck (category) {
+    if (this.categoryDropDownActive) {
+      return "pl-sn-flex-row pl-sn-box pl-sn-active-box";
+    } else {
+      return "pl-sn-flex-row pl-sn-box";
+    }
+  }
+
   showMe() {
     if (this.location[2] === "category") {
       return (
-        <div className="pl-sn-flex-row pl-sn-box">
+        <div className="pl-sn-flex-row pl-sn-box" onClick={this.activateCategoryDropdown}>
           {this.location[3]}
-          <i className="fas fa-times pl-caret"></i>
+            {this.displayCategoryModal()}
+            <a href="#/discover" className="pl-fa-container">
+              <i className="fas fa-times pl-caret"></i>
+            </a>
         </div>
       );
   } else if (this.location[2] === "advanced") {
@@ -97,11 +188,14 @@ class projectList extends React.Component {
       );
     } else {
         return (
-          <div className="pl-sn-flex-row pl-sn-box">
-            <div onClick={this.toggleCategoryDropdown}>
+          <div
+            onClick={this.activateCategoryDropdown}
+            className={this.classNameCheck()}>
+            <div>
               All &nbsp;
             </div>
             <i className="fas fa-caret-down pl-caret"></i>
+            {this.displayCategoryModal()}
           </div>
       );
     }
@@ -182,6 +276,7 @@ class projectList extends React.Component {
             </main>
           </div>
         </main>
+        {this.displayDeactivateModal()}
       </nav>
     );
   }
@@ -228,7 +323,7 @@ class projectList extends React.Component {
       });
 
     } else {
-      return <h1> Loading Projects </h1>;
+      return <h1>Loading Projects</h1>;
     }
   }
 

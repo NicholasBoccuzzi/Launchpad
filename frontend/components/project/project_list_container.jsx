@@ -7,6 +7,8 @@ import {
 import {
   updatePage
 } from '../../actions/ui_actions';
+import onClickOutside from 'react-onclickoutside';
+
 
 
 const mapStateToProps = (state, ownProps) => {
