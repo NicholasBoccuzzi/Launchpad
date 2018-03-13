@@ -14,6 +14,7 @@ export const UPDATE_CARD = "UPDATE_CARD";
 export const UPDATE_BANK = "UPDATE_BANK";
 export const LOAD_CURRENT_USER_INFO = "LOAD_CURRENT_USER_INFO";
 export const TOGGLE_CATEGORY_MODAL = "TOGGLE_CATEGORY_MODAL";
+export const TOGGLE_LOCATION_MODAL = "TOGGLE_LOCATION_MODAL";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -106,5 +107,11 @@ export const loadCurrentUserInfo = () => {
 export const toggleCategoryModal = () => {
   return {
     type: TOGGLE_CATEGORY_MODAL
+  };
+};
+
+export const toggleLocationModal = () => {
+  return {
+    type: TOGGLE_LOCATION_MODAL
   };
 };

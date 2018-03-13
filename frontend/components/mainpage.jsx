@@ -13,6 +13,7 @@ class Main extends React.Component {
     this.displayProjects = this.displayProjects.bind(this);
     this.setDate = this.setDate.bind(this);
     this.displayProjectsInfo = this.displayProjectsInfo.bind(this);
+    this.calcMonth = this.calcMonth.bind(this);
   }
 
   setDate() {
@@ -25,11 +26,37 @@ class Main extends React.Component {
         dd = '0' + dd;
     }
 
-    if (mm < 10) {
-      mm = '0' + mm;
-    }
+    mm = this.calcMonth(mm);
 
-    return `${mm}/${dd}/${yyyy}`;
+    return `${mm} ${dd}, ${yyyy}`;
+  }
+
+  calcMonth (month) {
+    if (month === 1) {
+      return "January";
+    } else if (month === 2) {
+      return "February";
+    } else if (month === 3) {
+      return "March";
+    } else if (month === 4) {
+      return "April";
+    } else if (month === 5) {
+      return "May";
+    } else if (month === 6) {
+      return "June";
+    } else if (month === 7) {
+      return "July";
+    } else if (month === 8) {
+      return "August";
+    } else if (month === 9) {
+      return "September";
+    } else if (month === 10) {
+      return "October";
+    } else if (month === 11) {
+      return "November";
+    } else if (month === 12) {
+      return "December";
+    }
   }
 
   componentDidMount () {
@@ -125,7 +152,7 @@ class Main extends React.Component {
             </Link>
           </section>
           <section className="category-tabs-container">
-            <h2 className="mainpage-projects-header">Most Recent Projects</h2>
+            <h2 className="mainpage-projects-header">New & Noteworthy</h2>
             {latestList}
           </section>
         </div>
@@ -161,19 +188,19 @@ class Main extends React.Component {
       <nav className="Launchpad-info-container">
         <div className="Launchpad-info-nav">
           <div className="top-info-box-left">
-            <div className="top-info heading">{this.setDate()}</div>
+            <div className="top-info mp-heading">{this.setDate()}</div>
             <div className="top-info bold">Sky is the limit.</div>
           </div>
           <div className="top-info-box">
-            <div className="top-info heading">Total Backers</div>
+            <div className="top-info mp-heading">Total Backers</div>
             <div className="top-info bold">3</div>
           </div>
           <div className="top-info-box">
-            <div className="top-info heading">Total Projects</div>
+            <div className="top-info mp-heading">Total Projects</div>
             <div className="top-info bold">{projectsInfo.total}</div>
           </div>
           <div className="top-info-box-right">
-            <div className="top-info-heading">Funded Projects</div>
+            <div className="top-info mp-heading">Funded Projects</div>
             <div className="top-info bold">{projectsInfo.funded}</div>
           </div>
         </div>
@@ -185,13 +212,21 @@ class Main extends React.Component {
 
     if (this.loaded === true) {
       return (
-        <div>
+        <main className="animated fadeIn">
           {this.displayInfo()}
           <div className="mainpage-centered-content">
             {this.displayProjects()}
           </div>
+          <section className="mainpage-recommended-content">
+            <div className="mainpage-recommended-title">
+              Recommended For You
+            </div>
+            <div className="mainpage-project-list">
 
-        </div>
+            </div>
+          </section>
+
+        </main>
       );
     } else {
       return (

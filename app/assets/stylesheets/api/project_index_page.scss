@@ -33,6 +33,7 @@
   padding: 0px 0px 20px 0px;
   width: auto;
   max-width: 1366px;
+  margin:auto;
 }
 
 .li-image-container {
@@ -183,6 +184,7 @@
 
 .pl-sn-centered {
   max-width: 1366px;
+  margin: auto;
 
   @media (min-width: 1025px) {
     padding-left: 60px;
@@ -230,6 +232,7 @@
 .pl-sn-active-box {
   border: 1px solid black;
   box-shadow: none;
+  z-index: 400;
 }
 
 .pl-sn-modal-title {
@@ -288,6 +291,28 @@
 
 .pl-caret:active {
   border: 1px solid lightblue;
+}
+
+.pl-sn-location-modal-container {
+  width: 544px;
+  height: 300px;
+  max-height: 300px;
+  background: white;
+  border: 1px solid black;
+  z-index: 200;
+  top: 70px;
+  left: 0px;
+  position: absolute;
+}
+
+.pl-hundred-width {
+  width: 100%;
+}
+
+.pl-sn-location-modal-top {
+  border-bottom: 1px solid #DCDEDD;
+  height: 83px;
+  padding: 20px 20px 12px 20px;
 }
 
 

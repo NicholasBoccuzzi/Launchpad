@@ -5,6 +5,7 @@ import {
   fetchUserProjects
 } from '../../actions/project_actions';
 import {
+  toggleLocationModal,
   toggleCategoryModal,
   updatePage
 } from '../../actions/ui_actions';
@@ -26,7 +27,8 @@ const mapStateToProps = (state, ownProps) => {
     location: ownProps.location,
     projects: projects,
     userProjects: userProjects,
-    categoryModal: state.ui.plCategoryModalActive
+    categoryModal: state.ui.plCategoryModalActive,
+    locationModal: state.ui.plLocationModalActive
   };
 };
 
@@ -35,7 +37,8 @@ const mapDispatchToProps = dispatch => {
     fetchProjects: (category) => dispatch(fetchProjects(category)),
     fetchUserProjects: (id) => dispatch(fetchUserProjects(id)),
     updatePage: () => dispatch(updatePage()),
-    toggleCategoryModal: () => dispatch(toggleCategoryModal())
+    toggleCategoryModal: () => dispatch(toggleCategoryModal()),
+    toggleLocationModal: () => dispatch(toggleLocationModal())
   };
 };
 

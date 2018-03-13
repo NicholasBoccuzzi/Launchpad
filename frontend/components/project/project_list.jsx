@@ -18,13 +18,17 @@ class projectList extends React.Component {
     this.showMe = this.showMe.bind(this);
     this.sortedBy = this.sortedBy.bind(this);
     this.fromWhere = this.fromWhere.bind(this);
-    this.activateCategoryDropdown = this.activateCategoryDropdown.bind(this);
-    this.deactivateCategoryDropdown = this.deactivateCategoryDropdown.bind(this);
-    this.categoryDropDownActive = false;
     this.displayCategoryModal = this.displayCategoryModal.bind(this);
+    this.displayLocationModal = this.displayLocationModal.bind(this);
     this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
     this.activeCategoryClass = this.activeCategoryClass.bind(this);
     this.urlCheck = this.urlCheck.bind(this);
+    this.categoryClassCheck = this.categoryClassCheck.bind(this);
+    this.locationClassCheck = this.locationClassCheck.bind(this);
+    this.numProjectsCheck = this.numProjectsCheck.bind(this);
+    this.noProjectsResponse = this.noProjectsResponse.bind(this);
+    this.noProjects = false;
+
   }
 
   componentDidMount() {
@@ -40,6 +44,7 @@ class projectList extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.noProjects = false;
     if (nextProps.userProjects){
       if (nextProps.userProjects[0].creator_id !== this.props.user.id) {
         this.props.fetchUserProjects(this.props.user.id);
@@ -58,16 +63,29 @@ class projectList extends React.Component {
       }
     }
 
+    if (nextProps.projects.length === 0) {
+      this.noProjects = true;
+    }
   }
 
-  activateCategoryDropdown() {
-    this.categoryDropDownActive = true;
-    this.props.updatePage();
+  noProjectsResponse () {
+    if (this.noProjects) {
+      return (
+        <main>
+          <div className="loading-no-projects">It doesn't appear that there are any projects in this category yet!</div>
+          <br/> <br/>
+          <a className="loading-no-projects no-proj-right" href="#/startproject">Click here to make one yourself!</a>
+        </main>
+      );
+    }
   }
 
-  deactivateCategoryDropdown() {
-    this.categoryDropDownActive = false;
-    this.props.updatePage();
+  numProjectsCheck() {
+    if (this.props.projects > 1) {
+      return "project-index-container";
+    } else {
+      return "project-index-container pl-hundred-width";
+    }
   }
 
   urlCheck (e) {
@@ -85,6 +103,32 @@ class projectList extends React.Component {
           className="pl-sn-invis-background"
           onClick={this.props.toggleCategoryModal}>
         </div>
+      );
+    } else if (this.props.locationModal) {
+      return (
+        <div
+          className="pl-sn-invis-background"
+          onClick={this.props.toggleLocationModal}>
+        </div>
+      );
+    }
+  }
+
+  displayLocationModal() {
+    if (this.props.locationModal) {
+      return (
+        <main className="pl-sn-location-modal-container">
+          <section className="pl-sn-location-modal-top">
+            <input className="pl-sn-location-search"></input>
+            <div>
+              <div className="pl-sn-loc-header">Broader Locations</div>
+              <div className="pl-sn-loc-header">Nearby Locations</div>
+            </div>
+          </section>
+          <section className="pl-sn-location-modal-bottom">
+
+          </section>
+        </main>
       );
     }
   }
@@ -256,8 +300,16 @@ class projectList extends React.Component {
     }
   }
 
-  classNameCheck (category) {
+  categoryClassCheck (category) {
     if (this.props.categoryModal) {
+      return "pl-sn-flex-row pl-sn-box pl-sn-active-box";
+    } else {
+      return "pl-sn-flex-row pl-sn-box";
+    }
+  }
+
+  locationClassCheck () {
+    if (this.props.locationModal) {
       return "pl-sn-flex-row pl-sn-box pl-sn-active-box";
     } else {
       return "pl-sn-flex-row pl-sn-box";
@@ -291,7 +343,7 @@ class projectList extends React.Component {
         return (
           <div
             onClick={this.props.toggleCategoryModal}
-            className={this.classNameCheck()}>
+            className={this.categoryClassCheck()}>
             <div>
               All &nbsp;
             </div>
@@ -321,9 +373,11 @@ class projectList extends React.Component {
           <div>
             on &nbsp;
           </div>
-          <div className="pl-sn-flex-row pl-sn-box">
+          <div className={this.locationClassCheck()}
+            onClick={this.props.toggleLocationModal}>
             Earth
             <i className="fas fa-caret-down pl-caret pl-mag"></i>
+            {this.displayLocationModal()}
           </div>
         </div>
       );
@@ -398,7 +452,7 @@ class projectList extends React.Component {
 
     return (
       <div className="pl-flex-center">
-        <ul className="project-index-container">
+        <ul className={this.numProjectsCheck()}>
           <div className="center">
             <div className="num-projects-container">
               <div className="discover-header-container">
@@ -427,6 +481,7 @@ class projectList extends React.Component {
       return (
         <main>
           <section className="loading-screen">
+            {this.noProjectsResponse()}
             <div className="loading-container">
               <div className="loading-rocket-fire">
                 <div className="loading-rocket">

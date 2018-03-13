@@ -14,7 +14,8 @@ import {
   UPDATE_CARD,
   UPDATE_BANK,
   LOAD_CURRENT_USER_INFO,
-  TOGGLE_CATEGORY_MODAL
+  TOGGLE_CATEGORY_MODAL,
+  TOGGLE_LOCATION_MODAL,
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
@@ -34,6 +35,7 @@ const initialState = {
   cardVerified: false,
   loadCurrentUserInfo: false,
   plCategoryModalActive: false,
+  plLocationModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -104,6 +106,10 @@ export default (state = initialState, action) => {
     let plCategoryState = merge({}, state);
     plCategoryState.plCategoryModalActive = !plCategoryState.plCategoryModalActive;
     return plCategoryState;
+  case TOGGLE_LOCATION_MODAL:
+    let plLocationState = merge({}, state);
+    plLocationState.plLocationModalActive = !plLocationState.plLocationModalActive;
+    return plLocationState;
   default:
     return state;
   }
