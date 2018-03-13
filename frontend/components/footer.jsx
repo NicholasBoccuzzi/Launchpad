@@ -39,11 +39,11 @@ const footer = () => (
         <h3 className="footer-info-title">
           ABOUT
         </h3>
-        <li><Link className="footer-info-button" to="/underconstruction">About us</Link></li>
-        <li><Link className="footer-info-button" to="/underconstruction">Our charter</Link></li>
-        <li><Link className="footer-info-button" to="/underconstruction">Stats</Link></li>
-        <li><Link className="footer-info-button" to="/underconstruction">Press</Link></li>
-        <li><Link className="footer-info-button" to="/underconstruction">Jobs</Link></li>
+        <li><a className="footer-info-button" href="http://www.NicholasBoccuzzi.com">About us</a></li>
+        <li><a className="footer-info-button" href="http://www.NicholasBoccuzzi.com/#one">Our charter</a></li>
+        <li><a className="footer-info-button" href="http://www.NicholasBoccuzzi.com/#three">Stats</a></li>
+        <li><a className="footer-info-button" href="http://www.NicholasBoccuzzi.com/#two">Press</a></li>
+        <li><a className="footer-info-button" href="https://www.soul-cycle.com/instructors/10199/nicky%20b./">Jobs</a></li>
       </ul>
       <ul className="footer-info-ul">
         <h3 className="footer-info-title">
