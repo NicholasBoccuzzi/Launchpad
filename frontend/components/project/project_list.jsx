@@ -440,6 +440,13 @@ class projectList extends React.Component {
 
     if (this.props.projects.length > 0) {
       this.liveCount = this.props.projects.length;
+      let projectHeader;
+
+      if (this.liveCount > 1) {
+        projectHeader = "projects";
+      } else {
+        projectHeader = "project";
+      }
       const mappedProjectList = this.props.projects.map((project) => {
         if (!project.live) {
           this.liveCount -= 1;
@@ -458,7 +465,7 @@ class projectList extends React.Component {
               <div className="discover-header-container">
                 <h1 className="discover-header">
                   Explore <div className="discover-header green">
-                  {this.liveCount} projects
+                  {this.liveCount} {projectHeader}
                 </div>
                 </h1>
               </div>
