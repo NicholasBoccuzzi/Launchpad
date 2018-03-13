@@ -13,7 +13,8 @@ import {
   UPDATE_AGE,
   UPDATE_CARD,
   UPDATE_BANK,
-  LOAD_CURRENT_USER_INFO
+  LOAD_CURRENT_USER_INFO,
+  TOGGLE_CATEGORY_MODAL
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
@@ -32,6 +33,7 @@ const initialState = {
   bankVerified: false,
   cardVerified: false,
   loadCurrentUserInfo: false,
+  plCategoryModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -98,6 +100,10 @@ export default (state = initialState, action) => {
     let deactiveExplore = merge({}, state);
     deactiveExplore.exploreModalActive = false;
     return deactiveExplore;
+  case TOGGLE_CATEGORY_MODAL:
+    let plCategoryState = merge({}, state);
+    plCategoryState.plCategoryModalActive = !plCategoryState.plCategoryModalActive;
+    return plCategoryState;
   default:
     return state;
   }

@@ -247,7 +247,7 @@ class Navbar extends React.Component {
               <a href="#/discover/category/Film"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Film</a>
-              <a href="#/discover/category/Food+craft"
+              <a href="#/discover/category/Food+Craft"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Food & Craft</a>
               <a href="#/discover/category/Games"
@@ -266,49 +266,49 @@ class Navbar extends React.Component {
               </div>
             </div>
             <section className="exp-list">
-              <a href="#/discover/search?=arts"
+              <a href="#/discover/category/Arts"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Arts</a>
-              <a href="#/discover/search?=comics"
+              <a href="#/discover/category/Comics"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Comics</a>
-              <a href="#/discover/search?=crafts"
+              <a href="#/discover/category/Crafts"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Crafts</a>
-              <a href="#/discover/search?=dance"
+              <a href="#/discover/category/Dance"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Dance</a>
-              <a href="#/discover/search?=design"
+              <a href="#/discover/category/Design"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Design</a>
-              <a href="#/discover/search?=fashion"
+              <a href="#/discover/category/Fashion"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Fashion</a>
-              <a href="#/discover/search?=film+video"
+              <a href="#/discover/category/Film+Video"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Film & Video</a>
-              <a href="#/discover/search?=food"
+              <a href="#/discover/category/Food"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Food</a>
-              <a href="#/discover/search?=games"
+              <a href="#/discover/category/Games"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Games</a>
-              <a href="#/discover/search?=journalism"
+              <a href="#/discover/category/Journalism"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Journalism</a>
-              <a href="#/discover/search?=music"
+              <a href="#/discover/category/Music"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Music</a>
-              <a href="#/discover/search?=photography"
+              <a href="#/discover/category/Photography"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Photography</a>
-              <a href="#/discover/search?=publishing"
+              <a href="#/discover/category/Publishing"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Publishing</a>
-              <a href="#/discover/search?=technology"
+              <a href="#/discover/category/Tech"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Technology</a>
-              <a href="#/discover/search?=theater"
+              <a href="#/discover/category/Theater"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item exp-bottom-item">Theater</a>
             </section>

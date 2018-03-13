@@ -367,8 +367,8 @@ class createProjectForm extends React.Component {
             </div>
             <div className="cp-selection"
               onClick={this.selectCategory}
-              id="Film & Video">
-              <div id="Film & Video">Film & Video</div>
+              id="Film+Video">
+              <div id="Film+Video">Film & Video</div>
             </div>
             <div className="cp-selection"
               onClick={this.selectCategory}

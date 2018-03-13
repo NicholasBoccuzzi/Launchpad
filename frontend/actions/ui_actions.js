@@ -13,6 +13,7 @@ export const UPDATE_AGE = "UPDATE_AGE";
 export const UPDATE_CARD = "UPDATE_CARD";
 export const UPDATE_BANK = "UPDATE_BANK";
 export const LOAD_CURRENT_USER_INFO = "LOAD_CURRENT_USER_INFO";
+export const TOGGLE_CATEGORY_MODAL = "TOGGLE_CATEGORY_MODAL";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -99,5 +100,11 @@ export const updateBank = () => {
 export const loadCurrentUserInfo = () => {
   return {
     type: LOAD_CURRENT_USER_INFO
+  };
+};
+
+export const toggleCategoryModal = () => {
+  return {
+    type: TOGGLE_CATEGORY_MODAL
   };
 };

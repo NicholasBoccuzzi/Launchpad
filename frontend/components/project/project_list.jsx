@@ -24,7 +24,7 @@ class projectList extends React.Component {
     this.displayCategoryModal = this.displayCategoryModal.bind(this);
     this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
     this.activeCategoryClass = this.activeCategoryClass.bind(this);
-    this.loadingText = this.loadingText.bind(this);
+    this.urlCheck = this.urlCheck.bind(this);
   }
 
   componentDidMount() {
@@ -45,10 +45,19 @@ class projectList extends React.Component {
         this.props.fetchUserProjects(this.props.user.id);
       }
     }
-  }
 
-  loadingText () {
-    return "fas fa-circle-o-notch fa-spin";
+    if (
+    nextProps.location.pathname.includes("category") &&
+    nextProps.location.pathname.split("/")[3] !== this.location[3]
+  ) {
+      this.location = nextProps.location.pathname.split('/');
+
+      if (this.location[3]) {
+        this.activeCategory = this.location[3];
+        this.props.fetchProjects(this.location[3]);
+      }
+    }
+
   }
 
   activateCategoryDropdown() {
@@ -61,12 +70,20 @@ class projectList extends React.Component {
     this.props.updatePage();
   }
 
+  urlCheck (e) {
+    if (this.activeCategory && this.activeCategory !== e.currentTarget.id) {
+      this.props.fetchProjects(e.currentTarget.id);
+    }
+
+    this.props.updatePage();
+  }
+
   displayDeactivateModal() {
-    if (this.categoryDropDownActive) {
+    if (this.props.categoryModal) {
       return (
         <div
           className="pl-sn-invis-background"
-          onClick={this.deactivateCategoryDropdown}>
+          onClick={this.props.toggleCategoryModal}>
         </div>
       );
     }
@@ -83,7 +100,7 @@ class projectList extends React.Component {
   }
 
   displayCategoryModal() {
-    if (this.categoryDropDownActive) {
+    if (this.props.categoryModal) {
       return (
         <main className="pl-sn-category-modal">
           <div className="pl-sn-category-modal-container">
@@ -100,38 +117,52 @@ class projectList extends React.Component {
                   >
                   All Categories</a>
                 <a
+                  id="Art"
                   href="#/discover/category/Art"
                   className={this.activeCategoryClass("Art")}
+                  onClick={this.urlCheck}
                   >
                   Art</a>
                 <a
+                  id="Comics"
                   href="#/discover/category/Comics"
                   className={this.activeCategoryClass("Comics")}
+                  onClick={this.urlCheck}
                   >
                   Comics</a>
                 <a
+                  id="Crafts"
                   href="#/discover/category/Crafts"
                   className={this.activeCategoryClass("Crafts")}
+                  onClick={this.urlCheck}
                   >
                   Crafts</a>
                 <a
+                  id="Dance"
                   href="#/discover/category/Dance"
                   className={this.activeCategoryClass("Dance")}
+                  onClick={this.urlCheck}
                   >
                   Dance</a>
                 <a
+                  id="Design"
                   href="#/discover/category/Design"
                   className={this.activeCategoryClass("Design")}
+                  onClick={this.urlCheck}
                   >
                   Design</a>
                 <a
+                  id="Fashion"
                   href="#/discover/category/Fashion"
                   className={this.activeCategoryClass("Fashion")}
+                  onClick={this.urlCheck}
                   >
                   Fashion</a>
                 <a
+                  id="Film+Video"
                   href="#/discover/category/Film+Video"
                   className={this.activeCategoryClass("Film+Video")}
+                  onClick={this.urlCheck}
                   >
                   Film & Video</a>
               </section>
@@ -139,43 +170,59 @@ class projectList extends React.Component {
               </section>
               <section className="pl-sn-modal-section">
                 <a
+                  id="Food"
                   href="#/discover/category/Food"
                   className={this.activeCategoryClass("Food")}
+                  onClick={this.urlCheck}
                   >
                   Food</a>
                 <a
+                  id="Games"
                   href="#/discover/category/Games"
                   className={this.activeCategoryClass("Games")}
+                  onClick={this.urlCheck}
                   >
                   Games</a>
                 <a
+                  id="Journalism"
                   href="#/discover/category/Journalism"
                   className={this.activeCategoryClass("Journalism")}
+                  onClick={this.urlCheck}
                   >
                   Journalism</a>
                 <a
+                  id="Music"
                   href="#/discover/category/Music"
                   className={this.activeCategoryClass("Music")}
+                  onClick={this.urlCheck}
                   >
                   Music</a>
                 <a
+                  id="Photography"
                   href="#/discover/category/Photography"
                   className={this.activeCategoryClass("Photography")}
+                  onClick={this.urlCheck}
                   >
                   Photography</a>
                 <a
+                  id="Publishing"
                   href="#/discover/category/Publishing"
                   className={this.activeCategoryClass("Publishing")}
+                  onClick={this.urlCheck}
                   >
                   Publishing</a>
                 <a
-                  href="#/discover/category/Technology"
+                  id="Tech"
+                  href="#/discover/category/Tech"
                   className={this.activeCategoryClass("Technology")}
+                  onClick={this.urlCheck}
                   >
                   Technology</a>
                 <a
+                  id="Theater"
                   href="#/discover/category/Theater"
                   className={this.activeCategoryClass("Theater")}
+                  onClick={this.urlCheck}
                   >
                   Theater</a>
               </section>
@@ -210,7 +257,7 @@ class projectList extends React.Component {
   }
 
   classNameCheck (category) {
-    if (this.categoryDropDownActive) {
+    if (this.props.categoryModal) {
       return "pl-sn-flex-row pl-sn-box pl-sn-active-box";
     } else {
       return "pl-sn-flex-row pl-sn-box";
@@ -220,7 +267,7 @@ class projectList extends React.Component {
   showMe() {
     if (this.location[2] === "category") {
       return (
-        <div className="pl-sn-flex-row pl-sn-box" onClick={this.activateCategoryDropdown}>
+        <div className="pl-sn-flex-row pl-sn-box" onClick={this.props.toggleCategoryModal}>
           {this.location[3]}
             {this.displayCategoryModal()}
             <a href="#/discover" className="pl-fa-container">
@@ -243,7 +290,7 @@ class projectList extends React.Component {
     } else {
         return (
           <div
-            onClick={this.activateCategoryDropdown}
+            onClick={this.props.toggleCategoryModal}
             className={this.classNameCheck()}>
             <div>
               All &nbsp;

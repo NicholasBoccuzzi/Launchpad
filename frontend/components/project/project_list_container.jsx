@@ -5,6 +5,7 @@ import {
   fetchUserProjects
 } from '../../actions/project_actions';
 import {
+  toggleCategoryModal,
   updatePage
 } from '../../actions/ui_actions';
 import onClickOutside from 'react-onclickoutside';
@@ -24,7 +25,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     location: ownProps.location,
     projects: projects,
-    userProjects: userProjects
+    userProjects: userProjects,
+    categoryModal: state.ui.plCategoryModalActive
   };
 };
 
@@ -32,7 +34,8 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchProjects: (category) => dispatch(fetchProjects(category)),
     fetchUserProjects: (id) => dispatch(fetchUserProjects(id)),
-    updatePage: () => dispatch(updatePage())
+    updatePage: () => dispatch(updatePage()),
+    toggleCategoryModal: () => dispatch(toggleCategoryModal())
   };
 };
 
