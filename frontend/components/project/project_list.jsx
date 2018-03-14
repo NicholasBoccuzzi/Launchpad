@@ -6,6 +6,7 @@ import FontAwesome from 'react-fontawesome';
 class projectList extends React.Component {
   constructor(props) {
     super(props);
+    this.noProjects = false;
     this.liveCount = 0;
     this.projectList = this.projectList.bind(this);
     this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
@@ -27,8 +28,7 @@ class projectList extends React.Component {
     this.locationClassCheck = this.locationClassCheck.bind(this);
     this.numProjectsCheck = this.numProjectsCheck.bind(this);
     this.noProjectsResponse = this.noProjectsResponse.bind(this);
-    this.noProjects = false;
-
+    this.modalLocations = this.modalLocations.bind(this);
   }
 
   componentDidMount() {
@@ -63,8 +63,120 @@ class projectList extends React.Component {
       }
     }
 
-    if (nextProps.projects.length === 0) {
+    if (nextProps.projects && nextProps.projects.length === 0) {
       this.noProjects = true;
+    }
+  }
+
+  modalLocations (area) {
+    let locations = [
+      "Australia",
+      "Austria",
+      "Belgium",
+      "Canada",
+      "Denmark",
+      "France",
+      "Germany",
+      "Hong Kong",
+      "Ireland",
+      "Italy",
+      "Japan",
+      "Luxembourg",
+      "Mexico",
+      "New Zealand",
+      "Norway",
+      "Singapore",
+      "Spain",
+      "Sweden",
+      "Switzerland",
+      "the Netherlands",
+      "the United Kingdom",
+      "the United States"
+    ];
+
+    let broad = [
+      "Earth",
+      "the United States",
+      "the United Kingdom",
+      "Germany",
+      "Japan"
+    ];
+
+    let close = [
+      "the United States",
+      "Canada",
+      "Mexico",
+    ];
+
+    if (area === "broad") {
+      let broadLocations = broad.map((location) => {
+        if (location === "Earth") {
+          return (
+            <a
+              className="pl-sn-loc-li-right"
+              href={`#${this.location.join("/")}`}
+              onClick={this.props.toggleLocationModal}
+              >
+              {location}
+            </a>
+          );
+        } else if (location === "the United States"){
+          location = "theUnitedStates";
+          let display = "The United States";
+          return (
+            <a
+              className="pl-sn-loc-li-right"
+              href={`#${this.location.join("/")}?=${location}`}
+              onClick={this.props.toggleLocationModal}>
+              {display}
+            </a>
+          );
+        } else if (location === "the United Kingdom"){
+          location = "theUnitedKingdom";
+          let display = "The United Kingdom";
+          return (
+            <a
+              className="pl-sn-loc-li-right"
+              href={`#${this.location.join("/")}?=${location}`}
+              onClick={this.props.toggleLocationModal}>
+              {display}
+            </a>
+          );
+        } else {
+          return (
+            <a
+              className="pl-sn-loc-li-right"
+              href={`#${this.location.join("/")}?=${location}`}
+              onClick={this.props.toggleLocationModal}>
+              {location}
+            </a>
+          );
+        }
+      });
+
+      return(
+        <div className="pl-sn-loc-list">
+          {broadLocations}
+        </div>
+      );
+    } else if (area === "close") {
+
+      let closeLocations = close.map((location) => {
+        return (
+          <a
+            className="pl-sn-loc-li-left"
+            href={`#${this.location.join("/")}?=${location}`}
+            onClick={this.props.toggleLocationModal}>
+            {location}
+          </a>
+        );
+      });
+
+      return (
+        <div className="pl-sn-loc-list">
+          {closeLocations}
+        </div>
+      );
     }
   }
 
@@ -119,14 +231,25 @@ class projectList extends React.Component {
       return (
         <main className="pl-sn-location-modal-container">
           <section className="pl-sn-location-modal-top">
-            <input className="pl-sn-location-search"></input>
-            <div>
-              <div className="pl-sn-loc-header">Broader Locations</div>
-              <div className="pl-sn-loc-header">Nearby Locations</div>
+            <div className="pl-sn-loc-input-box">
+              <input
+                className="pl-sn-location-search"
+                placeholder="Search by country ...">
+              </input>
+              <i className="fas fa-search pl-sn-search-icon"></i>
+            </div>
+            <div className="pl-sn-loc-flexed-row">
+              <div>BROADER LOCATIONS</div>
+              <div className="pl-sn-loc-header">NEARBY LOCATIONS</div>
             </div>
           </section>
           <section className="pl-sn-location-modal-bottom">
-
+            <div className="pl-sn-loc-list">
+              {this.modalLocations("broad")}
+            </div>
+            <div className="pl-sn-loc-list">
+              {this.modalLocations("close")}
+            </div>
           </section>
         </main>
       );
@@ -369,17 +492,19 @@ class projectList extends React.Component {
       );
     } else {
       return (
-        <div className="pl-sn-flex-row">
-          <div>
-            on &nbsp;
+        <main className="pos-relative">
+          <div className="pl-sn-flex-row">
+            <div>
+              on &nbsp;
+            </div>
+            <div className={this.locationClassCheck()}
+              onClick={this.props.toggleLocationModal}>
+              Earth
+              <i className="fas fa-caret-down pl-caret pl-mag"></i>
+            </div>
           </div>
-          <div className={this.locationClassCheck()}
-            onClick={this.props.toggleLocationModal}>
-            Earth
-            <i className="fas fa-caret-down pl-caret pl-mag"></i>
-            {this.displayLocationModal()}
-          </div>
-        </div>
+          {this.displayLocationModal()}
+        </main>
       );
     }
   }

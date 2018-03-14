@@ -43,6 +43,7 @@ class Navbar extends React.Component {
   componentWillUnmount() {
     if (this.props.exploreModalActive) {
       this.props.deactivateExploreModal();
+      window.scrollTo(0, 0);
     }
   }
 
