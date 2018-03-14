@@ -135,7 +135,7 @@ class projectList extends React.Component {
           return (
             <a
               className="pl-sn-loc-li-right"
-              href={`#${this.location.join("/")}?=${location}`}
+              href={`#${this.location.join("/")}?loc=${location}`}
               onClick={this.props.toggleLocationModal}>
               {display}
             </a>
@@ -146,7 +146,7 @@ class projectList extends React.Component {
           return (
             <a
               className="pl-sn-loc-li-right"
-              href={`#${this.location.join("/")}?=${location}`}
+              href={`#${this.location.join("/")}?loc=${location}`}
               onClick={this.props.toggleLocationModal}>
               {display}
             </a>
@@ -155,7 +155,7 @@ class projectList extends React.Component {
           return (
             <a
               className="pl-sn-loc-li-right"
-              href={`#${this.location.join("/")}?=${location}`}
+              href={`#${this.location.join("/")}?loc=${location}`}
               onClick={this.props.toggleLocationModal}>
               {location}
             </a>
@@ -171,15 +171,31 @@ class projectList extends React.Component {
     } else if (area === "close") {
 
       let closeLocations = close.map((location) => {
+
+      if (location === "the United States"){
+        location = "theUnitedStates";
+        let display = "The United States";
         return (
           <a
             className="pl-sn-loc-li-left"
-            href={`#${this.location.join("/")}?=${location}`}
+            href={`#${this.location.join("/")}?loc=${location}`}
+            onClick={this.props.toggleLocationModal}>
+            {display}
+          </a>
+        );
+      } else {
+
+        return (
+          <a
+            className="pl-sn-loc-li-left"
+            href={`#${this.location.join("/")}?loc=${location}`}
             onClick={this.props.toggleLocationModal}>
             {location}
           </a>
         );
-      });
+      }
+    });
+
 
       return (
         <div className="pl-sn-loc-list">
