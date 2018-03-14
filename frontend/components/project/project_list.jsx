@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProjectListItem from './project_list_item';
-import FontAwesome from 'react-fontawesome';
 
 class projectList extends React.Component {
   constructor(props) {
