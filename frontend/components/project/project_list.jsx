@@ -11,6 +11,7 @@ class projectList extends React.Component {
     this.projectList = this.projectList.bind(this);
     this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
     this.location = this.props.location.pathname.split("/");
+    this.loaded = false;
 
     if (this.location[3]) {
       this.activeCategory = this.location[3];
@@ -60,7 +61,15 @@ class projectList extends React.Component {
       if (this.location[3]) {
         this.activeCategory = this.location[3];
         this.props.fetchProjects(this.location[3]);
+        this.loaded = false;
       }
+    } else if (
+      nextProps.location.pathname.includes("discover") &&
+      !nextProps.location.pathname.includes("category") &&
+      this.loaded === false) {
+      this.location = nextProps.location.pathname.split('/');
+      this.props.fetchProjects();
+      this.loaded = true;
     }
 
     if (nextProps.projects && nextProps.projects.length === 0) {
@@ -192,11 +201,19 @@ class projectList extends React.Component {
     }
   }
 
-  numProjectsCheck() {
-    if (this.props.projects > 1) {
-      return "project-index-container";
+  numProjectsCheck(string) {
+    if (this.props.projects.length > 2) {
+      if (string) {
+        return "flex-children";
+      } else {
+        return "project-index-container";
+      }
     } else {
-      return "project-index-container pl-hundred-width";
+      if (string) {
+        return "flex-children-low-proj";
+      } else {
+        return "project-index-container pl-hundred-width";
+      }
     }
   }
 
@@ -594,7 +611,7 @@ class projectList extends React.Component {
                 </div>
                 </h1>
               </div>
-              <ul className="flex-children">
+              <ul className={this.numProjectsCheck("flex")}>
                 {mappedProjectList.reverse()}
               </ul>
             </div>

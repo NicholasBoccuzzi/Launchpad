@@ -53,8 +53,7 @@ class App extends React.Component {
           <Route exact path="/" component={Mainpage}></Route>
           <ProtectedRoute exact path="/startproject" component={CreateProjectForm} />
           <ProtectedRoute exact path="/projects/:projectId/edit" component={UpdateProjectForm}/>
-          <Route exact path="/discover" component={ProjectList} />
-          <Route exact path="/discover/category/:categoryId" component={ProjectList} />
+          <Route path="/discover" component={ProjectList} />
           <AuthRoute path="/login" component={SessionFormContainer}/>
           <AuthRoute path="/signup" component={SessionFormContainer} />
           <Switch>

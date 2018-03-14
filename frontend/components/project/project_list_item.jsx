@@ -43,7 +43,7 @@ class ProjectListItem extends React.Component {
 
   render () {
     return (
-      <div className="animated fadeIn">
+      <div>
         <main className="list-item-container" key={this.props.project.id}>
           <div className="li-image-container">
             <a className="list-item-image" href={`#/projects/${this.props.project.id}`}>
@@ -54,7 +54,7 @@ class ProjectListItem extends React.Component {
             <a className="li-title-link" href={`#/projects/${this.props.project.id}`}>
               <h3 className="li-title-link">{this.props.project.title}</h3>
             </a>
-            <h3 className="small-text">by {this.props.project.user.username}</h3>
+            <h3 className="small-text">by <a href={`#/user/${this.props.project.user.id}`}>{this.props.project.user.username}</a></h3>
           </div>
           <div className="li-bot-container">
             <Line className="li-percent-indicator" trailColor="#F1EEEA" percent={this.percentMath()} strokeWidth=".1" strokeColor="#169D74" />

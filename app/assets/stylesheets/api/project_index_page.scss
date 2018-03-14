@@ -69,9 +69,22 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-left: 0px;
 
   @media (max-width: 1380px) {
     justify-content: flex-start;
+  }
+}
+
+.flex-children-low-proj {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 0px;
+
+  @media (min-width: 1380px) {
+    margin-left: 30px;
   }
 }
 
