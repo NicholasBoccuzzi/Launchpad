@@ -281,10 +281,6 @@
   color: #169D74;
 }
 
-.pl-green {
-  color: #169D74;
-}
-
 .pl-section-whitespace {
   height: 300px;
   min-width: 20px;
@@ -384,7 +380,7 @@
 
 .pl-sn-loc-li-right {
   font-size: 14px;
-  color: #2C59FB;
+  color: black;
   padding-left: 10px;
   padding-bottom: 15px;
 }
@@ -404,7 +400,9 @@
   color: #4EB495;
 }
 
-
+.pl-green {
+  color: #169D74;
+}
 
 // @media (max-width: 1025px)  {
 //   .list-item-container {

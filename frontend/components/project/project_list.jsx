@@ -41,6 +41,7 @@ class projectList extends React.Component {
     this.locationClick = this.locationClick.bind(this);
     this.disectSearch = this.disectSearch.bind(this);
     this.onOrFrom = this.onOrFrom.bind(this);
+    this.locationLiClass = this.locationLiClass.bind(this);
   }
 
   componentDidMount() {
@@ -167,6 +168,26 @@ class projectList extends React.Component {
     }
   }
 
+  locationLiClass (location, side) {
+    if (location === "Earth") {
+      location = null;
+    }
+
+    if (this.state.loc === location) {
+      if (side) {
+        return "pl-sn-loc-li-left pl-green";
+      } else {
+        return "pl-sn-loc-li-right pl-green";
+      }
+    } else {
+      if (side) {
+        return "pl-sn-loc-li-left";
+      } else {
+        return "pl-sn-loc-li-right";
+      }
+    }
+  }
+
   modalLocations (area) {
     let locations = [
       "Australia",
@@ -208,13 +229,15 @@ class projectList extends React.Component {
     ];
 
     if (area === "broad") {
+
       let broadLocations = broad.map((location) => {
+
         if (location === "Earth") {
           return (
             <a
-              className="pl-sn-loc-li-right"
+              className={this.locationLiClass(location)}
               href={`#${this.location.join("/")}`}
-              onClick={() => {this.locationClick();}}
+              onClick={() => {this.locationClick(location);}}
               >
               {location}
             </a>
@@ -224,7 +247,7 @@ class projectList extends React.Component {
           let display = "The United States";
           return (
             <a
-              className="pl-sn-loc-li-right"
+              className={this.locationLiClass(location)}
               href={`#${this.location.join("/")}?loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {display}
@@ -235,8 +258,8 @@ class projectList extends React.Component {
           let display = "The United Kingdom";
           return (
             <a
-              className="pl-sn-loc-li-right"
-              href={`#${this.location.join("/")}${this.checkForSearch()}loc=${location}`}
+              className={this.locationLiClass(location)}
+              href={`#${this.location.join("/")}?loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {display}
             </a>
@@ -244,7 +267,7 @@ class projectList extends React.Component {
         } else {
           return (
             <a
-              className="pl-sn-loc-li-right"
+              className={this.locationLiClass(location)}
               href={`#${this.location.join("/")}?loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {location}
@@ -260,14 +283,22 @@ class projectList extends React.Component {
       );
     } else if (area === "close") {
 
+      let className;
+      if (this.state.loc === location) {
+        className = "pl-sn-loc-li-left pl-green";
+      } else {
+        "pl-sn-loc-li-left";
+      }
+
       let closeLocations = close.map((location) => {
+
 
       if (location === "the United States"){
         location = "theUnitedStates";
         let display = "The United States";
         return (
           <a
-            className="pl-sn-loc-li-left"
+            className={this.locationLiClass(location, "left")}
             href={`#${this.location.join("/")}?loc=${location}`}
             onClick={() => {this.locationClick(location);}}>
             {display}
@@ -277,7 +308,7 @@ class projectList extends React.Component {
 
         return (
           <a
-            className="pl-sn-loc-li-left"
+            className={this.locationLiClass(location, "left")}
             href={`#${this.location.join("/")}?loc=${location}`}
             onClick={() => {this.locationClick(location);}}>
             {location}
@@ -607,7 +638,7 @@ class projectList extends React.Component {
       return "on";
     }
   }
-  
+
   fromWhere() {
     return (
       <main className="pos-relative">
