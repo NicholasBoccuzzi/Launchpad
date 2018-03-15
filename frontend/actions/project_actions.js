@@ -54,10 +54,10 @@ export const clearProjectErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
 });
 
-export const fetchProjects = (category) => dispatch => {
-  if (category) {
+export const fetchProjects = (search) => dispatch => {
+  if (search) {
     return (
-      ProjectAPIUtil.fetchProjectByCategory(category).then(projects => dispatch(receiveAllProjects(projects)),
+      ProjectAPIUtil.fetchProjectBySearch(search).then(projects => dispatch(receiveAllProjects(projects)),
     err => dispatch(receiveProjectErrors))
     );
   } else {

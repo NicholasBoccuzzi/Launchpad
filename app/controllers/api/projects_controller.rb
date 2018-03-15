@@ -1,7 +1,17 @@
 class Api::ProjectsController < ApplicationController
   def index
-    if params[:category]
-      @projects = Project.select("*").from("projects").where("category = ? AND live = ?", params[:category], "true")
+    if params[:search]
+      if params[:search][:location] != nil
+        @projects = Project.select("*").from("projects").where("location = ? AND live = true", params[:search][:location])
+      else
+        @projects = Project.select("*").from("projects").where("live = true")
+      end
+
+      if params[:search][:category] != nil
+        @projects = @projects.where("category = ?", params[:search][:category])
+      end
+
+      return @projects
     elsif params[:creator_id]
       @projects = Project.select("*").from("projects").where("creator_id = ?", params[:creator_id])
     else

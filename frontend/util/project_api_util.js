@@ -5,11 +5,11 @@ export const fetchProjects = () => {
   });
 };
 
-export const fetchProjectByCategory = (category) => {
+export const fetchProjectBySearch = (search) => {
   return $.ajax({
       method: "GET",
       url: `api/projects`,
-      data: {category: category}
+      data: {search: search}
   });
 };
 

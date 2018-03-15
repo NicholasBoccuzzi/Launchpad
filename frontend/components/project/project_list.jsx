@@ -10,16 +10,23 @@ class projectList extends React.Component {
     this.projectList = this.projectList.bind(this);
     this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
     this.location = this.props.location.pathname.split("/");
-    this.loaded = false;
+    this.state = {
+      loaded: false,
+      cat: null,
+      loc: null,
+      ord: null
+    };
 
-    if (this.location[3]) {
-      this.activeCategory = this.location[3];
+    if (this.props.location.search !== "") {
+      this.search = this.props.location.search.split("&");
     }
+
 
     this.showMe = this.showMe.bind(this);
     this.sortedBy = this.sortedBy.bind(this);
     this.fromWhere = this.fromWhere.bind(this);
     this.displayCategoryModal = this.displayCategoryModal.bind(this);
+    this.displayCurrentCountry = this.displayCurrentCountry.bind(this);
     this.displayLocationModal = this.displayLocationModal.bind(this);
     this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
     this.activeCategoryClass = this.activeCategoryClass.bind(this);
@@ -29,50 +36,134 @@ class projectList extends React.Component {
     this.numProjectsCheck = this.numProjectsCheck.bind(this);
     this.noProjectsResponse = this.noProjectsResponse.bind(this);
     this.modalLocations = this.modalLocations.bind(this);
+    this.checkForSearch = this.checkForSearch.bind(this);
+    this.createSearchQuery = this.createSearchQuery.bind(this);
+    this.locationClick = this.locationClick.bind(this);
+    this.disectSearch = this.disectSearch.bind(this);
+    this.onOrFrom = this.onOrFrom.bind(this);
   }
 
   componentDidMount() {
     if (this.location[1] === ("discover")) {
-      if (this.location[2] === "category") {
-        this.props.fetchProjects(this.location[3]);
+      if (this.search) {
+        let cat;
+        let loc;
+
+        for (var i = 0; i < this.search.length; i++) {
+          if (i === 0) {
+            this.search[i] = this.search[i].slice(1);
+          }
+
+          let cur = this.search[i].slice(0, 4);
+          if (cur === "loc=") {
+            loc = this.search[i].slice(4);
+            this.setState({loc: loc});
+          } else if (cur === "cat=") {
+            cat = this.search[i].slice(4);
+            this.setState({cat: cat});
+          }
+        }
+
+        let searchQuery = {category: cat, location: loc};
+
+        this.props.fetchProjects(searchQuery);
       } else {
         this.props.fetchProjects();
+        this.setState({loaded: true});
       }
     } else if (this.location[1] === ("user")) {
       this.props.fetchUserProjects(this.props.user.id);
     }
   }
 
+  createSearchQuery (nextProps) {
+    this.search = nextProps.location.search.split("&");
+    let cat;
+    let loc;
+
+    for (var i = 0; i < this.search.length; i++) {
+      if (i === 0) {
+        this.search[i] = this.search[i].slice(1);
+      }
+
+      let cur = this.search[i].slice(0, 4);
+      if (cur === "loc=") {
+        loc = this.search[i].slice(4);
+      } else if (cur === "cat=") {
+        cat = this.search[i].slice(4);
+      }
+    }
+
+    let searchQuery = {category: cat, location: loc};
+    return searchQuery;
+  }
+
+  checkForSearch() {
+    if (this.search) {
+      return this.search.join("&");
+    } else {
+      return "?";
+    }
+  }
+
+  locationClick(location) {
+    let cat;
+
+    let searchQuery = {category: cat, location: location};
+
+    if (location) {
+      this.props.toggleLocationModal();
+      this.props.fetchProjects(searchQuery);
+    } else {
+      this.props.toggleLocationModal();
+      this.props.fetchProjects();
+    }
+  }
+
+  disectSearch(nextProps) {
+    let search = nextProps.location.search.split("&");
+
+    for (var i = 0; i < search.length; i++) {
+      if (i === 0) {
+        search[i] = search[i].slice(1);
+      }
+
+      if (search[i].includes("loc=")) {
+        this.setState({loc: search[i].slice(4)});
+      } else if (search[i].includes("cat=")) {
+        this.setState({cat: search[i].slice(4)});
+      }
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     this.noProjects = false;
+
     if (nextProps.userProjects){
       if (nextProps.userProjects[0].creator_id !== this.props.user.id) {
         this.props.fetchUserProjects(this.props.user.id);
       }
     }
 
-    if (
-    nextProps.location.pathname.includes("category") &&
-    nextProps.location.pathname.split("/")[3] !== this.location[3]
-  ) {
-      this.location = nextProps.location.pathname.split('/');
+    if (nextProps.location.search) {
+      this.disectSearch(nextProps);
+    }
 
-      if (this.location[3]) {
-        this.activeCategory = this.location[3];
-        this.props.fetchProjects(this.location[3]);
-        this.loaded = false;
-      }
-    } else if (
-      nextProps.location.pathname.includes("discover") &&
-      !nextProps.location.pathname.includes("category") &&
-      this.loaded === false) {
-      this.location = nextProps.location.pathname.split('/');
-      this.props.fetchProjects();
-      this.loaded = true;
+    else {
+      this.setState({loc: null});
+      this.setState({cat: null});
     }
 
     if (nextProps.projects && nextProps.projects.length === 0) {
       this.noProjects = true;
+    }
+  }
+
+  displayCurrentCountry() {
+    if (this.state.loc) {
+      return (this.state.loc);
+    } else {
+      return "Earth";
     }
   }
 
@@ -123,7 +214,7 @@ class projectList extends React.Component {
             <a
               className="pl-sn-loc-li-right"
               href={`#${this.location.join("/")}`}
-              onClick={this.props.toggleLocationModal}
+              onClick={() => {this.locationClick();}}
               >
               {location}
             </a>
@@ -135,7 +226,7 @@ class projectList extends React.Component {
             <a
               className="pl-sn-loc-li-right"
               href={`#${this.location.join("/")}?loc=${location}`}
-              onClick={this.props.toggleLocationModal}>
+              onClick={() => {this.locationClick(location);}}>
               {display}
             </a>
           );
@@ -145,8 +236,8 @@ class projectList extends React.Component {
           return (
             <a
               className="pl-sn-loc-li-right"
-              href={`#${this.location.join("/")}?loc=${location}`}
-              onClick={this.props.toggleLocationModal}>
+              href={`#${this.location.join("/")}${this.checkForSearch()}loc=${location}`}
+              onClick={() => {this.locationClick(location);}}>
               {display}
             </a>
           );
@@ -155,7 +246,7 @@ class projectList extends React.Component {
             <a
               className="pl-sn-loc-li-right"
               href={`#${this.location.join("/")}?loc=${location}`}
-              onClick={this.props.toggleLocationModal}>
+              onClick={() => {this.locationClick(location);}}>
               {location}
             </a>
           );
@@ -178,7 +269,7 @@ class projectList extends React.Component {
           <a
             className="pl-sn-loc-li-left"
             href={`#${this.location.join("/")}?loc=${location}`}
-            onClick={this.props.toggleLocationModal}>
+            onClick={() => {this.locationClick(location);}}>
             {display}
           </a>
         );
@@ -188,7 +279,7 @@ class projectList extends React.Component {
           <a
             className="pl-sn-loc-li-left"
             href={`#${this.location.join("/")}?loc=${location}`}
-            onClick={this.props.toggleLocationModal}>
+            onClick={() => {this.locationClick(location);}}>
             {location}
           </a>
         );
@@ -509,36 +600,30 @@ class projectList extends React.Component {
     }
   }
 
+  onOrFrom() {
+    if (this.state.loc) {
+      return "from";
+    } else {
+      return "on";
+    }
+  }
+  
   fromWhere() {
-    if (this.location[2] === "advanced") {
-      return (
+    return (
+      <main className="pos-relative">
         <div className="pl-sn-flex-row">
           <div>
-            from &nbsp;
+            {this.onOrFrom()} &nbsp;
           </div>
-          <div className="pl-sn-flex-row pl-sn-box">
-            "Everywhere"
-            <i className="fas fa-caret-down pl-caret"></i>
+          <div className={this.locationClassCheck()}
+            onClick={this.props.toggleLocationModal}>
+            {this.displayCurrentCountry()}
+            <i className="fas fa-caret-down pl-caret pl-mag"></i>
           </div>
         </div>
-      );
-    } else {
-      return (
-        <main className="pos-relative">
-          <div className="pl-sn-flex-row">
-            <div>
-              on &nbsp;
-            </div>
-            <div className={this.locationClassCheck()}
-              onClick={this.props.toggleLocationModal}>
-              Earth
-              <i className="fas fa-caret-down pl-caret pl-mag"></i>
-            </div>
-          </div>
-          {this.displayLocationModal()}
-        </main>
-      );
-    }
+        {this.displayLocationModal()}
+      </main>
+    );
   }
 
   sortedBy () {
