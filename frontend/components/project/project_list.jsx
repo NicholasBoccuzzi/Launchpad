@@ -30,15 +30,16 @@ class projectList extends React.Component {
     this.displayLocationModal = this.displayLocationModal.bind(this);
     this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
     this.activeCategoryClass = this.activeCategoryClass.bind(this);
-    this.urlCheck = this.urlCheck.bind(this);
     this.categoryClassCheck = this.categoryClassCheck.bind(this);
     this.locationClassCheck = this.locationClassCheck.bind(this);
     this.numProjectsCheck = this.numProjectsCheck.bind(this);
     this.noProjectsResponse = this.noProjectsResponse.bind(this);
     this.modalLocations = this.modalLocations.bind(this);
-    this.checkForSearch = this.checkForSearch.bind(this);
+    this.searchUrlFromLoc = this.searchUrlFromLoc.bind(this);
+    this.searchUrlFromCat = this.searchUrlFromCat.bind(this);
     this.createSearchQuery = this.createSearchQuery.bind(this);
     this.locationClick = this.locationClick.bind(this);
+    this.categoryClick = this.categoryClick.bind(this);
     this.disectSearch = this.disectSearch.bind(this);
     this.onOrFrom = this.onOrFrom.bind(this);
     this.locationLiClass = this.locationLiClass.bind(this);
@@ -99,40 +100,112 @@ class projectList extends React.Component {
     return searchQuery;
   }
 
-  checkForSearch() {
-    if (this.search) {
-      return this.search.join("&");
+  searchUrlFromLoc() {
+    if (this.state.cat) {
+      return `?cat=${this.state.cat}&`;
     } else {
-      return "?";
+      return `?`;
+    }
+  }
+
+  searchUrlFromCat(category) {
+    if (category === "All Categories") {
+      if (this.state.loc) {
+        return `?loc=${this.state.loc}`;
+      } else {
+        return "";
+      }
+    } else {
+      if (this.state.loc) {
+        return `?cat=${category}&${this.state.loc}`;
+      } else {
+        return `?cat=${category}`;
+      }
     }
   }
 
   locationClick(location) {
     let cat;
+    if (this.state.cat !== "") {
+      cat = this.state.cat;
+    } else {
+      cat = null;
+    }
+
+    if (location === "") {
+      location = null;
+    }
 
     let searchQuery = {category: cat, location: location};
+    this.props.toggleLocationModal();
 
-    if (location) {
-      this.props.toggleLocationModal();
+    if (location || cat) {
       this.props.fetchProjects(searchQuery);
     } else {
-      this.props.toggleLocationModal();
       this.props.fetchProjects();
     }
   }
 
-  disectSearch(nextProps) {
-    let search = nextProps.location.search.split("&");
+  categoryClick(category) {
+    if (category === "All Categories") {
+      category = null;
+    }
 
-    for (var i = 0; i < search.length; i++) {
+    this.setState({cat: category});
+
+    let loc;
+    if (this.state.loc === "") {
+      loc = null;
+    } else {
+      loc = this.state.loc;
+    }
+
+
+    let searchQuery = {category: category, location: loc};
+
+    this.props.toggleCategoryModal();
+
+    if (category || loc) {
+      this.props.fetchProjects(searchQuery);
+    } else {
+      this.props.fetchProjects();
+    }
+  }
+
+  currentCategory() {
+    if (this.search) {
+      if (this.search[0].includes("cat=")) {
+        return this.search[0].slice(4);
+      } else {
+        return "All";
+      }
+    } else {
+      return "All";
+    }
+  }
+
+  disectSearch(nextProps) {
+    this.search = nextProps.location.search.split("&");
+
+    for (var i = 0; i < this.search.length; i++) {
       if (i === 0) {
-        search[i] = search[i].slice(1);
+        this.search[i] = this.search[i].slice(1);
       }
 
-      if (search[i].includes("loc=")) {
-        this.setState({loc: search[i].slice(4)});
-      } else if (search[i].includes("cat=")) {
-        this.setState({cat: search[i].slice(4)});
+      if (this.search[i].includes("loc=")) {
+        this.setState({loc: this.search[i].slice(4)});
+      }
+
+      if (this.search[i].includes("cat=")) {
+        this.setState({cat: this.search[i].slice(4)});
+      }
+
+      if (this.state.cat && !this.search[i].includes("cat=")) {
+        this.setState({cat: null});
+      }
+
+      if (this.state.loc && !this.search[i].includes("loc=")) {
+        this.setState({loc: null});
       }
     }
   }
@@ -148,9 +221,8 @@ class projectList extends React.Component {
 
     if (nextProps.location.search) {
       this.disectSearch(nextProps);
-    }
-
-    else {
+    } else {
+      this.search = null;
       this.setState({loc: null});
       this.setState({cat: null});
     }
@@ -161,8 +233,14 @@ class projectList extends React.Component {
   }
 
   displayCurrentCountry() {
-    if (this.state.loc) {
-      return (this.state.loc);
+    if (this.search) {
+      if (this.search[1] && this.search[1].includes("loc=")) {
+        return this.search[1].slice(4);
+      } else if (this.search[1]) {
+        return this.search[1];
+      } else {
+        return "Earth";
+      }
     } else {
       return "Earth";
     }
@@ -190,28 +268,10 @@ class projectList extends React.Component {
 
   modalLocations (area) {
     let locations = [
-      "Australia",
-      "Austria",
-      "Belgium",
-      "Canada",
-      "Denmark",
-      "France",
-      "Germany",
-      "Hong Kong",
-      "Ireland",
-      "Italy",
-      "Japan",
-      "Luxembourg",
-      "Mexico",
-      "New Zealand",
-      "Norway",
-      "Singapore",
-      "Spain",
-      "Sweden",
-      "Switzerland",
-      "the Netherlands",
-      "the United Kingdom",
-      "the United States"
+      "Australia", "Austria", "Belgium", "Canada", "Denmark", "France", "Germany",
+      "Hong Kong","Ireland","Italy","Japan","Luxembourg","Mexico","New Zealand",
+      "Norway","Singapore","Spain","Sweden","Switzerland","the Netherlands",
+      "the United Kingdom","the United States"
     ];
 
     let broad = [
@@ -235,8 +295,9 @@ class projectList extends React.Component {
         if (location === "Earth") {
           return (
             <a
+              key="Earth"
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}`}
               onClick={() => {this.locationClick(location);}}
               >
               {location}
@@ -247,8 +308,9 @@ class projectList extends React.Component {
           let display = "The United States";
           return (
             <a
+              key="theUnitedStates"
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}?loc=${location}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {display}
             </a>
@@ -258,8 +320,9 @@ class projectList extends React.Component {
           let display = "The United Kingdom";
           return (
             <a
+              key="theUnitedKingdom"
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}?loc=${location}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {display}
             </a>
@@ -267,8 +330,9 @@ class projectList extends React.Component {
         } else {
           return (
             <a
+              key={location}
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}?loc=${location}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {location}
             </a>
@@ -282,8 +346,8 @@ class projectList extends React.Component {
         </div>
       );
     } else if (area === "close") {
-
       let className;
+
       if (this.state.loc === location) {
         className = "pl-sn-loc-li-left pl-green";
       } else {
@@ -292,14 +356,14 @@ class projectList extends React.Component {
 
       let closeLocations = close.map((location) => {
 
-
       if (location === "the United States"){
         location = "theUnitedStates";
         let display = "The United States";
         return (
           <a
+            key={location}
             className={this.locationLiClass(location, "left")}
-            href={`#${this.location.join("/")}?loc=${location}`}
+            href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
             onClick={() => {this.locationClick(location);}}>
             {display}
           </a>
@@ -308,15 +372,15 @@ class projectList extends React.Component {
 
         return (
           <a
+            key={location}
             className={this.locationLiClass(location, "left")}
-            href={`#${this.location.join("/")}?loc=${location}`}
+            href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
             onClick={() => {this.locationClick(location);}}>
             {location}
           </a>
         );
       }
     });
-
 
       return (
         <div className="pl-sn-loc-list">
@@ -326,11 +390,51 @@ class projectList extends React.Component {
     }
   }
 
+  modalCategories (side) {
+    if (side === "left") {
+      let leftCategories = [
+        "All Categories", "Art", "Comics", "Crafts", "Dance", "Design", "Fashion", "Film+Video",
+      ];
+      let result = leftCategories.map((category) => {
+
+        return (
+          <a key={category}
+            id={category}
+            href={`#${this.location.join("/")}${this.searchUrlFromCat(category)}`}
+            className={this.activeCategoryClass(category)}
+            onClick={() => {this.categoryClick(category);}}>
+            {category}
+          </a>
+        );
+      });
+
+      return result;
+    } else {
+      let rightCategories = [
+        "Food", "Games", "Journalism", "Music", "Photogrphy", "Publishing", "Technology", "Theater"
+      ];
+      let result = rightCategories.map((category) => {
+
+        return (
+          <a key={category}
+            id={category}
+            href={`#${this.location.join("/")}${this.searchUrlFromCat(category)}`}
+            className={this.activeCategoryClass(category)}
+            onClick={() => {this.categoryClick(category);}}>
+            {category}
+          </a>
+        );
+      });
+
+      return result;
+    }
+  }
+
   noProjectsResponse () {
     if (this.noProjects) {
       return (
         <main>
-          <div className="loading-no-projects">It doesn't appear that there are any projects in this category yet!</div>
+          <div className="loading-no-projects">It doesn't appear that any projects fit this criteria yet!</div>
           <br/> <br/>
           <a className="loading-no-projects no-proj-right" href="#/startproject">Click here to make one yourself!</a>
         </main>
@@ -352,14 +456,6 @@ class projectList extends React.Component {
         return "project-index-container pl-hundred-width";
       }
     }
-  }
-
-  urlCheck (e) {
-    if (this.activeCategory && this.activeCategory !== e.currentTarget.id) {
-      this.props.fetchProjects(e.currentTarget.id);
-    }
-
-    this.props.updatePage();
   }
 
   displayDeactivateModal() {
@@ -411,9 +507,9 @@ class projectList extends React.Component {
   }
 
   activeCategoryClass (category) {
-    if (this.location[2] === "category" && this.activeCategory === category) {
+    if (this.state.cat === category) {
       return "pl-sn-modal-section-li pl-green";
-    } else if (this.location[1] === "discover" && !this.location[2] && category === null) {
+   } else if (this.state.cat === null && category === "All Categories") {
       return "pl-sn-modal-section-li pl-green";
     } else {
       return "pl-sn-modal-section-li";
@@ -432,120 +528,12 @@ class projectList extends React.Component {
               <section className="pl-section-whitespace">
               </section>
               <section className="pl-sn-modal-section">
-                <a
-                  href="#/discover"
-                  className={this.activeCategoryClass(null)}
-                  >
-                  All Categories</a>
-                <a
-                  id="Art"
-                  href="#/discover/category/Art"
-                  className={this.activeCategoryClass("Art")}
-                  onClick={this.urlCheck}
-                  >
-                  Art</a>
-                <a
-                  id="Comics"
-                  href="#/discover/category/Comics"
-                  className={this.activeCategoryClass("Comics")}
-                  onClick={this.urlCheck}
-                  >
-                  Comics</a>
-                <a
-                  id="Crafts"
-                  href="#/discover/category/Crafts"
-                  className={this.activeCategoryClass("Crafts")}
-                  onClick={this.urlCheck}
-                  >
-                  Crafts</a>
-                <a
-                  id="Dance"
-                  href="#/discover/category/Dance"
-                  className={this.activeCategoryClass("Dance")}
-                  onClick={this.urlCheck}
-                  >
-                  Dance</a>
-                <a
-                  id="Design"
-                  href="#/discover/category/Design"
-                  className={this.activeCategoryClass("Design")}
-                  onClick={this.urlCheck}
-                  >
-                  Design</a>
-                <a
-                  id="Fashion"
-                  href="#/discover/category/Fashion"
-                  className={this.activeCategoryClass("Fashion")}
-                  onClick={this.urlCheck}
-                  >
-                  Fashion</a>
-                <a
-                  id="Film+Video"
-                  href="#/discover/category/Film+Video"
-                  className={this.activeCategoryClass("Film+Video")}
-                  onClick={this.urlCheck}
-                  >
-                  Film & Video</a>
+                {this.modalCategories("left")}
               </section>
               <section className="pl-section-whitespace">
               </section>
               <section className="pl-sn-modal-section">
-                <a
-                  id="Food"
-                  href="#/discover/category/Food"
-                  className={this.activeCategoryClass("Food")}
-                  onClick={this.urlCheck}
-                  >
-                  Food</a>
-                <a
-                  id="Games"
-                  href="#/discover/category/Games"
-                  className={this.activeCategoryClass("Games")}
-                  onClick={this.urlCheck}
-                  >
-                  Games</a>
-                <a
-                  id="Journalism"
-                  href="#/discover/category/Journalism"
-                  className={this.activeCategoryClass("Journalism")}
-                  onClick={this.urlCheck}
-                  >
-                  Journalism</a>
-                <a
-                  id="Music"
-                  href="#/discover/category/Music"
-                  className={this.activeCategoryClass("Music")}
-                  onClick={this.urlCheck}
-                  >
-                  Music</a>
-                <a
-                  id="Photography"
-                  href="#/discover/category/Photography"
-                  className={this.activeCategoryClass("Photography")}
-                  onClick={this.urlCheck}
-                  >
-                  Photography</a>
-                <a
-                  id="Publishing"
-                  href="#/discover/category/Publishing"
-                  className={this.activeCategoryClass("Publishing")}
-                  onClick={this.urlCheck}
-                  >
-                  Publishing</a>
-                <a
-                  id="Tech"
-                  href="#/discover/category/Tech"
-                  className={this.activeCategoryClass("Technology")}
-                  onClick={this.urlCheck}
-                  >
-                  Technology</a>
-                <a
-                  id="Theater"
-                  href="#/discover/category/Theater"
-                  className={this.activeCategoryClass("Theater")}
-                  onClick={this.urlCheck}
-                  >
-                  Theater</a>
+                {this.modalCategories("right")}
               </section>
             </div>
           </div>
@@ -594,41 +582,20 @@ class projectList extends React.Component {
   }
 
   showMe() {
-    if (this.location[2] === "category") {
       return (
-        <div className="pl-sn-flex-row pl-sn-box" onClick={this.props.toggleCategoryModal}>
-          {this.location[3]}
-            {this.displayCategoryModal()}
-            <a href="#/discover" className="pl-fa-container">
-              <i className="fas fa-times pl-caret"></i>
-            </a>
+      <main className="pos-relative">
+        <div className={this.categoryClassCheck()}>
+          <div className="pl-category-button"
+            onClick={this.props.toggleCategoryModal}>
+          </div>
+          <div >
+            {this.currentCategory()}
+          </div>
+          <i className="fas fa-caret-down pl-caret pl-category-margin"></i>
         </div>
-      );
-  } else if (this.location[2] === "advanced") {
-      return (
-        <div className="pl-sn-flex-row">
-          <div>
-            from &nbsp;
-          </div>
-          <div className="pl-sn-flex-row pl-sn-box">
-            "Everywhere"
-            <i className="fas fa-caret-down pl-caret"></i>
-          </div>
-        </div>
-      );
-    } else {
-        return (
-          <div
-            onClick={this.props.toggleCategoryModal}
-            className={this.categoryClassCheck()}>
-            <div>
-              All &nbsp;
-            </div>
-            <i className="fas fa-caret-down pl-caret"></i>
-            {this.displayCategoryModal()}
-          </div>
-      );
-    }
+        {this.displayCategoryModal()}
+      </main>
+    );
   }
 
   onOrFrom() {
@@ -641,11 +608,11 @@ class projectList extends React.Component {
 
   fromWhere() {
     return (
-      <main className="pos-relative">
+      <main className="pos-relative pl-sn-flex-row">
+        <div>
+          {this.onOrFrom()} &nbsp;
+        </div>
         <div className="pl-sn-flex-row">
-          <div>
-            {this.onOrFrom()} &nbsp;
-          </div>
           <div className={this.locationClassCheck()}
             onClick={this.props.toggleLocationModal}>
             {this.displayCurrentCountry()}

@@ -1,13 +1,14 @@
 class Api::ProjectsController < ApplicationController
   def index
     if params[:search]
-      if params[:search][:location] == nil || params[:search][:location] == "Earth"
+      if params[:search][:location] == nil || params[:search][:location] == "Earth" || params[:search][:location] == ""
         @projects = Project.select("*").from("projects").where("live = true")
       else
         @projects = Project.select("*").from("projects").where("location = ? AND live = true", params[:search][:location])
       end
 
-      if params[:search][:category] != nil
+      if params[:search][:category] == nil || params[:search][:category] == ""
+      else
         @projects = @projects.where("category = ?", params[:search][:category])
       end
 
