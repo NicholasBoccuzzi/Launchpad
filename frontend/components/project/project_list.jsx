@@ -100,9 +100,13 @@ class projectList extends React.Component {
     return searchQuery;
   }
 
-  searchUrlFromLoc() {
-    if (this.state.cat) {
-      return `?cat=${this.state.cat}&`;
+  searchUrlFromLoc(bool) {
+    if (this.search) {
+      if (this.search[0].includes("cat") && bool) {
+        return `?${this.search[0]}&`;
+      } else {
+        return `?${this.search[0]}`;
+      }
     } else {
       return `?`;
     }
@@ -117,7 +121,7 @@ class projectList extends React.Component {
       }
     } else {
       if (this.state.loc) {
-        return `?cat=${category}&${this.state.loc}`;
+        return `?cat=${category}&loc=${this.state.loc}`;
       } else {
         return `?cat=${category}`;
       }
@@ -126,14 +130,14 @@ class projectList extends React.Component {
 
   locationClick(location) {
     let cat;
-    if (this.state.cat !== "") {
-      cat = this.state.cat;
+    if (this.search) {
+      if (this.search[0].includes('cat')) {
+        cat = this.search[0].slice(4);
+      } else {
+        cat = null;
+      }
     } else {
       cat = null;
-    }
-
-    if (location === "") {
-      location = null;
     }
 
     let searchQuery = {category: cat, location: location};
@@ -234,10 +238,10 @@ class projectList extends React.Component {
 
   displayCurrentCountry() {
     if (this.search) {
-      if (this.search[1] && this.search[1].includes("loc=")) {
-        return this.search[1].slice(4);
-      } else if (this.search[1]) {
-        return this.search[1];
+      let i = this.search.length - 1;
+
+      if (this.search[i] && this.search[i].includes("loc=")) {
+        return this.search[i].slice(4);
       } else {
         return "Earth";
       }
@@ -310,7 +314,7 @@ class projectList extends React.Component {
             <a
               key="theUnitedStates"
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc(true)}loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {display}
             </a>
@@ -322,7 +326,7 @@ class projectList extends React.Component {
             <a
               key="theUnitedKingdom"
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc(true)}loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {display}
             </a>
@@ -332,7 +336,7 @@ class projectList extends React.Component {
             <a
               key={location}
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc(true)}loc=${location}`}
               onClick={() => {this.locationClick(location);}}>
               {location}
             </a>
@@ -363,7 +367,7 @@ class projectList extends React.Component {
           <a
             key={location}
             className={this.locationLiClass(location, "left")}
-            href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
+            href={`#${this.location.join("/")}${this.searchUrlFromLoc(true)}loc=${location}`}
             onClick={() => {this.locationClick(location);}}>
             {display}
           </a>
@@ -374,7 +378,7 @@ class projectList extends React.Component {
           <a
             key={location}
             className={this.locationLiClass(location, "left")}
-            href={`#${this.location.join("/")}${this.searchUrlFromLoc()}loc=${location}`}
+            href={`#${this.location.join("/")}${this.searchUrlFromLoc(true)}loc=${location}`}
             onClick={() => {this.locationClick(location);}}>
             {location}
           </a>
@@ -411,7 +415,7 @@ class projectList extends React.Component {
       return result;
     } else {
       let rightCategories = [
-        "Food", "Games", "Journalism", "Music", "Photogrphy", "Publishing", "Technology", "Theater"
+        "Food", "Games", "Journalism", "Music", "Photogrphy", "Publishing", "Tech", "Theater"
       ];
       let result = rightCategories.map((category) => {
 
@@ -507,9 +511,11 @@ class projectList extends React.Component {
   }
 
   activeCategoryClass (category) {
-    if (this.state.cat === category) {
+    if (this.search && this.search[0].includes(category) && category !== null) {
       return "pl-sn-modal-section-li pl-green";
-   } else if (this.state.cat === null && category === "All Categories") {
+   } else if (this.search && !this.search[0].includes("cat") && category === "All Categories") {
+      return "pl-sn-modal-section-li pl-green";
+   } else if (!this.search && category === "All Categories") {
       return "pl-sn-modal-section-li pl-green";
     } else {
       return "pl-sn-modal-section-li";
