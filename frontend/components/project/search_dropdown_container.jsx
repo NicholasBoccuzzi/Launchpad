@@ -10,8 +10,6 @@ import {
 
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
-
   return {
     location: ownProps.location,
     locationModal: state.ui.plLocationModalActive,

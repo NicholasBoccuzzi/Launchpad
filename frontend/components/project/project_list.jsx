@@ -241,18 +241,21 @@ class projectList extends React.Component {
       }
 
       if (this.search[i].includes("ord=")) {
+        let oldOrd = this.state.ord;
         this.setState({ord: this.search[i].slice(4)});
+        if (oldOrd !== this.state.ord)
+        this.props.fetchProjects({category: this.state.cat, location: this.state.loc, order: this.state.ord});
       }
 
-      if (this.state.cat && !this.search[i].includes("cat=")) {
+      if (this.state.cat && !nextProps.location.search.includes("cat=")) {
         this.setState({cat: null});
       }
 
-      if (this.state.loc && !this.search[i].includes("loc=")) {
+      if (this.state.loc && !nextProps.location.search.includes("loc=")) {
         this.setState({loc: null});
       }
 
-      if (this.state.loc && !this.search[i].includes("ord=")) {
+      if (this.state.loc && !nextProps.location.search.includes("ord=")) {
         this.setState({ord: null});
       }
     }
@@ -493,6 +496,13 @@ class projectList extends React.Component {
           onClick={this.props.toggleLocationModal}>
         </div>
       );
+    } else if (this.props.searchOrderModalActive) {
+      return (
+        <div
+          className="pl-sn-invis-background"
+          onClick={this.props.toggleSearchOrderModal}>
+        </div>
+      );
     }
   }
 
@@ -530,7 +540,10 @@ class projectList extends React.Component {
 
       return (
         <SearchOrderModal
-          location={this.props.location} active={active}/>
+          location={this.props.location}
+          search={this.search}
+          toggleSearchOrderModal={this.props.toggleSearchOrderModal}
+          currentOrd={this.state.ord}/>
       );
     }
   }
