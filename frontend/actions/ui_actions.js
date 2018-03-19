@@ -15,10 +15,17 @@ export const UPDATE_BANK = "UPDATE_BANK";
 export const LOAD_CURRENT_USER_INFO = "LOAD_CURRENT_USER_INFO";
 export const TOGGLE_CATEGORY_MODAL = "TOGGLE_CATEGORY_MODAL";
 export const TOGGLE_LOCATION_MODAL = "TOGGLE_LOCATION_MODAL";
+export const TOGGLE_LOCATION_SEARCH_MODAL = "TOGGLE_LOCATION_SEARCH_MODAL";
 
 export const toggleProfileDropDown = () => {
   return {
     type: TOGGLE_PROFILE_DROPDOWN
+  };
+};
+
+export const toggleLocationsSearchModal = () => {
+  return {
+    type: TOGGLE_LOCATION_SEARCH_MODAL
   };
 };
 

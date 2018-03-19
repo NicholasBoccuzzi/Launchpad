@@ -7,11 +7,9 @@ import {
 import {
   toggleLocationModal,
   toggleCategoryModal,
+  toggleLocationsSearchModal,
   updatePage
 } from '../../actions/ui_actions';
-import onClickOutside from 'react-onclickoutside';
-
-
 
 const mapStateToProps = (state, ownProps) => {
   let userProjects;
@@ -28,7 +26,8 @@ const mapStateToProps = (state, ownProps) => {
     projects: projects,
     userProjects: userProjects,
     categoryModal: state.ui.plCategoryModalActive,
-    locationModal: state.ui.plLocationModalActive
+    locationModal: state.ui.plLocationModalActive,
+    locationsSearchModalActive: state.ui.locationsSearchModalActive
   };
 };
 
@@ -38,7 +37,8 @@ const mapDispatchToProps = dispatch => {
     fetchUserProjects: (id) => dispatch(fetchUserProjects(id)),
     updatePage: () => dispatch(updatePage()),
     toggleCategoryModal: () => dispatch(toggleCategoryModal()),
-    toggleLocationModal: () => dispatch(toggleLocationModal())
+    toggleLocationModal: () => dispatch(toggleLocationModal()),
+    toggleLocationsSearchModal: () => dispatch(toggleLocationsSearchModal()),
   };
 };
 

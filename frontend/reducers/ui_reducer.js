@@ -16,6 +16,7 @@ import {
   LOAD_CURRENT_USER_INFO,
   TOGGLE_CATEGORY_MODAL,
   TOGGLE_LOCATION_MODAL,
+  TOGGLE_LOCATION_SEARCH_MODAL,
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
@@ -36,6 +37,7 @@ const initialState = {
   loadCurrentUserInfo: false,
   plCategoryModalActive: false,
   plLocationModalActive: false,
+  locationsSearchModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -110,6 +112,10 @@ export default (state = initialState, action) => {
     let plLocationState = merge({}, state);
     plLocationState.plLocationModalActive = !plLocationState.plLocationModalActive;
     return plLocationState;
+  case TOGGLE_LOCATION_SEARCH_MODAL:
+    let locationSearch = merge({}, state);
+    locationSearch.locationsSearchModalActive = !locationSearch.locationsSearchModalActive;
+    return locationSearch;
   default:
     return state;
   }

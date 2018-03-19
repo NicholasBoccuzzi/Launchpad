@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProjectListItem from './project_list_item';
+import SearchDropdown from './search_dropdown_container';
 
 class projectList extends React.Component {
   constructor(props) {
@@ -10,11 +11,13 @@ class projectList extends React.Component {
     this.projectList = this.projectList.bind(this);
     this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
     this.location = this.props.location.pathname.split("/");
+    this.loaded = false;
     this.state = {
       loaded: false,
       cat: null,
       loc: null,
-      ord: null
+      ord: null,
+      currentSearch: "",
     };
 
     if (this.props.location.search !== "") {
@@ -28,6 +31,7 @@ class projectList extends React.Component {
     this.displayCategoryModal = this.displayCategoryModal.bind(this);
     this.displayCurrentCountry = this.displayCurrentCountry.bind(this);
     this.displayLocationModal = this.displayLocationModal.bind(this);
+    this.displayLocationSearch = this.displayLocationSearch.bind(this);
     this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
     this.activeCategoryClass = this.activeCategoryClass.bind(this);
     this.categoryClassCheck = this.categoryClassCheck.bind(this);
@@ -43,6 +47,7 @@ class projectList extends React.Component {
     this.disectSearch = this.disectSearch.bind(this);
     this.onOrFrom = this.onOrFrom.bind(this);
     this.locationLiClass = this.locationLiClass.bind(this);
+    this.updateLocationInput = this.updateLocationInput.bind(this);
   }
 
   componentDidMount() {
@@ -78,6 +83,32 @@ class projectList extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.noProjects = false;
+
+    if (nextProps.userProjects){
+      if (nextProps.userProjects[0].creator_id !== this.props.user.id) {
+        this.props.fetchUserProjects(this.props.user.id);
+      }
+    }
+
+    if (nextProps.location.search) {
+      this.disectSearch(nextProps);
+    } else {
+      this.search = null;
+      this.setState({loc: null});
+      this.setState({cat: null});
+    }
+
+    if (nextProps.projects) {
+      this.loaded = true;
+    }
+
+    if (nextProps.projects && nextProps.projects.length === 0) {
+      this.noProjects = true;
+    }
+  }
+
   createSearchQuery (nextProps) {
     this.search = nextProps.location.search.split("&");
     let cat;
@@ -105,7 +136,7 @@ class projectList extends React.Component {
       if (this.search[0].includes("cat") && bool) {
         return `?${this.search[0]}&`;
       } else {
-        return `?${this.search[0]}`;
+        return `?`;
       }
     } else {
       return `?`;
@@ -214,27 +245,6 @@ class projectList extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.noProjects = false;
-
-    if (nextProps.userProjects){
-      if (nextProps.userProjects[0].creator_id !== this.props.user.id) {
-        this.props.fetchUserProjects(this.props.user.id);
-      }
-    }
-
-    if (nextProps.location.search) {
-      this.disectSearch(nextProps);
-    } else {
-      this.search = null;
-      this.setState({loc: null});
-      this.setState({cat: null});
-    }
-
-    if (nextProps.projects && nextProps.projects.length === 0) {
-      this.noProjects = true;
-    }
-  }
 
   displayCurrentCountry() {
     if (this.search) {
@@ -271,13 +281,6 @@ class projectList extends React.Component {
   }
 
   modalLocations (area) {
-    let locations = [
-      "Australia", "Austria", "Belgium", "Canada", "Denmark", "France", "Germany",
-      "Hong Kong","Ireland","Italy","Japan","Luxembourg","Mexico","New Zealand",
-      "Norway","Singapore","Spain","Sweden","Switzerland","the Netherlands",
-      "the United Kingdom","the United States"
-    ];
-
     let broad = [
       "Earth",
       "the United States",
@@ -480,6 +483,29 @@ class projectList extends React.Component {
     }
   }
 
+  updateLocationInput(e) {
+    this.setState({currentSearch: e.currentTarget.value});
+
+    if (e.currentTarget.value.length >= 3 && !this.props.locationsSearchModalActive) {
+      this.props.toggleLocationsSearchModal();
+    } else if (e.currentTarget.value.length < 3 && this.props.locationsSearchModalActive){
+      this.props.toggleLocationsSearchModal();
+    }
+  }
+
+  displayLocationSearch() {
+    if (this.props.locationsSearchModalActive) {
+      return (
+        <SearchDropdown
+          location={this.props.location}
+          currentSearch={this.state.currentSearch}
+          locationClick={this.locationClick.bind(this)}
+          searchUrlFromLoc={this.searchUrlFromLoc.bind(this)}
+          />
+      );
+    }
+  }
+
   displayLocationModal() {
     if (this.props.locationModal) {
       return (
@@ -488,9 +514,12 @@ class projectList extends React.Component {
             <div className="pl-sn-loc-input-box">
               <input
                 className="pl-sn-location-search"
-                placeholder="Search by country ...">
+                placeholder="Search by country ..."
+                value={this.state.currentSearch}
+                onChange={this.updateLocationInput}>
               </input>
               <i className="fas fa-search pl-sn-search-icon"></i>
+              {this.displayLocationSearch()}
             </div>
             <div className="pl-sn-loc-flexed-row">
               <div>BROADER LOCATIONS</div>
@@ -759,12 +788,35 @@ class projectList extends React.Component {
 
   render () {
     if (this.props.location.pathname.includes("discover")) {
-      return (
-        <div>
-          {this.renderSearchNav()}
-          {this.projectList()}
-        </div>
-      );
+      if (this.loaded === false) {
+        return (
+          <main>
+            <section className="loading-screen">
+              <div className="loading-container">
+                <div className="loading-rocket-fire">
+                  <div className="loading-rocket">
+                    <i className="fas fa-rocket"
+                      data-fa-transform="rotate-315"></i>
+                  </div>
+                  <div className="loading-fire">
+                    <i className="fab fa-gripfire"
+                      data-fa-transform="rotate-180"></i>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section className="loading-screen-whitespace">
+            </section>
+          </main>
+        );
+      } else {
+        return (
+          <div>
+            {this.renderSearchNav()}
+            {this.projectList()}
+          </div>
+        );
+      }
     } else if (this.props.location.pathname.includes("user")) {
       return (
         <div>
