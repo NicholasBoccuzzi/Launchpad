@@ -16,6 +16,7 @@ export const LOAD_CURRENT_USER_INFO = "LOAD_CURRENT_USER_INFO";
 export const TOGGLE_CATEGORY_MODAL = "TOGGLE_CATEGORY_MODAL";
 export const TOGGLE_LOCATION_MODAL = "TOGGLE_LOCATION_MODAL";
 export const TOGGLE_LOCATION_SEARCH_MODAL = "TOGGLE_LOCATION_SEARCH_MODAL";
+export const TOGGLE_SEARCH_ORDER_MODAL = "TOGGLE_SEARCH_ORDER_MODAL";
 
 export const toggleProfileDropDown = () => {
   return {
@@ -26,6 +27,12 @@ export const toggleProfileDropDown = () => {
 export const toggleLocationsSearchModal = () => {
   return {
     type: TOGGLE_LOCATION_SEARCH_MODAL
+  };
+};
+
+export const toggleSearchOrderModal = () => {
+  return {
+    type: TOGGLE_SEARCH_ORDER_MODAL
   };
 };
 

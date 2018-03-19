@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ProjectListItem from './project_list_item';
 import SearchDropdown from './search_dropdown_container';
+import SearchOrderModal from './search_order_dropdown';
 
 class projectList extends React.Component {
   constructor(props) {
@@ -30,12 +31,14 @@ class projectList extends React.Component {
     this.fromWhere = this.fromWhere.bind(this);
     this.displayCategoryModal = this.displayCategoryModal.bind(this);
     this.displayCurrentCountry = this.displayCurrentCountry.bind(this);
+    this.displayCurrentOrder = this.displayCurrentOrder.bind(this);
     this.displayLocationModal = this.displayLocationModal.bind(this);
     this.displayLocationSearch = this.displayLocationSearch.bind(this);
     this.displayDeactivateModal = this.displayDeactivateModal.bind(this);
     this.activeCategoryClass = this.activeCategoryClass.bind(this);
     this.categoryClassCheck = this.categoryClassCheck.bind(this);
     this.locationClassCheck = this.locationClassCheck.bind(this);
+    this.orderClassCheck = this.orderClassCheck.bind(this);
     this.numProjectsCheck = this.numProjectsCheck.bind(this);
     this.noProjectsResponse = this.noProjectsResponse.bind(this);
     this.modalLocations = this.modalLocations.bind(this);
@@ -48,6 +51,7 @@ class projectList extends React.Component {
     this.onOrFrom = this.onOrFrom.bind(this);
     this.locationLiClass = this.locationLiClass.bind(this);
     this.updateLocationInput = this.updateLocationInput.bind(this);
+    this.displayOrderModal = this.displayOrderModal.bind(this);
   }
 
   componentDidMount() {
@@ -98,6 +102,7 @@ class projectList extends React.Component {
       this.search = null;
       this.setState({loc: null});
       this.setState({cat: null});
+      this.setState({ord: null});
     }
 
     if (nextProps.projects) {
@@ -235,12 +240,20 @@ class projectList extends React.Component {
         this.setState({cat: this.search[i].slice(4)});
       }
 
+      if (this.search[i].includes("ord=")) {
+        this.setState({ord: this.search[i].slice(4)});
+      }
+
       if (this.state.cat && !this.search[i].includes("cat=")) {
         this.setState({cat: null});
       }
 
       if (this.state.loc && !this.search[i].includes("loc=")) {
         this.setState({loc: null});
+      }
+
+      if (this.state.loc && !this.search[i].includes("ord=")) {
+        this.setState({ord: null});
       }
     }
   }
@@ -506,6 +519,22 @@ class projectList extends React.Component {
     }
   }
 
+  displayOrderModal() {
+    if (this.props.searchOrderModalActive) {
+      let active;
+      if (this.state.active) {
+        active = this.state.active;
+      } else {
+        active = "";
+      }
+
+      return (
+        <SearchOrderModal
+          location={this.props.location} active={active}/>
+      );
+    }
+  }
+
   displayLocationModal() {
     if (this.props.locationModal) {
       return (
@@ -616,6 +645,14 @@ class projectList extends React.Component {
     }
   }
 
+  orderClassCheck() {
+    if (this.props.searchOrderModalActive) {
+      return "pl-sn-flex-row pl-sn-box pl-sn-active-box";
+    } else {
+      return "pl-sn-flex-row pl-sn-box";
+    }
+  }
+
   showMe() {
       return (
       <main className="pos-relative">
@@ -644,9 +681,6 @@ class projectList extends React.Component {
   fromWhere() {
     return (
       <main className="pos-relative pl-sn-flex-row">
-        <div>
-          {this.onOrFrom()} &nbsp;
-        </div>
         <div className="pl-sn-flex-row">
           <div className={this.locationClassCheck()}
             onClick={this.props.toggleLocationModal}>
@@ -659,32 +693,27 @@ class projectList extends React.Component {
     );
   }
 
-  sortedBy () {
-    if (this.location[2] === "advanced") {
-      return (
-        <div className="pl-sn-flex-row">
-          <div>
-            sorted by &nbsp;
-          </div>
-          <div className="pl-sn-flex-row pl-sn-box">
-            Magic
-            <i className="fas fa-caret-down pl-caret"></i>
-          </div>
-        </div>
-      );
+  displayCurrentOrder() {
+    if (this.state.ord && this.state.ord !== "Magic") {
+      return this.state.ord;
     } else {
-      return (
-        <div className="pl-sn-flex-row">
-          <div>
-             &nbsp; sorted by &nbsp;
-          </div>
-          <div className="pl-sn-flex-row pl-sn-box">
-            Magic
-            <i className="fas fa-caret-down pl-caret pl-mag"></i>
-          </div>
-        </div>
-      );
+      return "Magic";
     }
+  }
+
+  sortedBy () {
+
+    return (
+    <main className="pos-relative">
+      <div className="pl-sn-flex-row" onClick={this.props.toggleSearchOrderModal}>
+        <div className={this.orderClassCheck()}>
+          {this.displayCurrentOrder()}
+          <i className="fas fa-caret-down pl-caret pl-mag"></i>
+        </div>
+      </div>
+      {this.displayOrderModal()}
+    </main>
+    );
   }
 
   renderSearchNav () {
@@ -701,7 +730,13 @@ class projectList extends React.Component {
               <div>
                 &nbsp; projects &nbsp;
               </div>
+              <div>
+                {this.onOrFrom()} &nbsp;
+              </div>
               {this.fromWhere()}
+              <div>
+                &nbsp; sorted by &nbsp;
+              </div>
               {this.sortedBy()}
             </main>
           </div>

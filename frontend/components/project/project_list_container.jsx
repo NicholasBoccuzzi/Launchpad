@@ -8,6 +8,7 @@ import {
   toggleLocationModal,
   toggleCategoryModal,
   toggleLocationsSearchModal,
+  toggleSearchOrderModal,
   updatePage
 } from '../../actions/ui_actions';
 
@@ -27,7 +28,8 @@ const mapStateToProps = (state, ownProps) => {
     userProjects: userProjects,
     categoryModal: state.ui.plCategoryModalActive,
     locationModal: state.ui.plLocationModalActive,
-    locationsSearchModalActive: state.ui.locationsSearchModalActive
+    locationsSearchModalActive: state.ui.locationsSearchModalActive,
+    searchOrderModalActive: state.ui.searchOrderModalActive
   };
 };
 
@@ -39,6 +41,7 @@ const mapDispatchToProps = dispatch => {
     toggleCategoryModal: () => dispatch(toggleCategoryModal()),
     toggleLocationModal: () => dispatch(toggleLocationModal()),
     toggleLocationsSearchModal: () => dispatch(toggleLocationsSearchModal()),
+    toggleSearchOrderModal: () => dispatch(toggleSearchOrderModal()),
   };
 };
 
