@@ -2,34 +2,47 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const footer = () => (
+class footer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleCatClick = this.handleCatClick.bind(this);
+  }
+
+  handleCatClick (category) {
+    let search = {category: category};
+    this.props.fetchProjects(search);
+  }
+
+  render() {
+
+    return (
   <main className="footer-container">
     <div className="footer-block-top">
       <div className="footer-project-categories">
         <ul className="footer-project-categories-container">
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Arts</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Art");}} href="#/discover?cat=Art">Arts</a>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Comics & Illustration</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Comics");}} href="#/discover?cat=Comics">Comics & Illustration</a>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Design & Tech</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Tech");}} href="#/discover?cat=Tech">Design & Tech</a>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Film</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Film+Video");}} href="#/discover?cat=Film+Video">Film</a>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Food & Craft</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Food");}} href="#/discover?cat=Food">Food & Craft</a>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Games</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Games");}} href="#/discover?cat=Games">Games</a>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Music</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Music");}} href="#/discover?cat=Music">Music</a>
           </li>
           <li className="footer-project-li">
-            <Link className="footer-nav-button" to="/underconstruction">Publishing</Link>
+            <a className="footer-nav-button" onClick={() => {this.handleCatClick("Publishing");}} href="#/discover?cat=Publishing">Publishing</a>
           </li>
         </ul>
       </div>
@@ -86,7 +99,9 @@ const footer = () => (
       </ul>
     </div>
   </main>
-);
+    );
+  }
+}
 
 
 export default footer;

@@ -16,7 +16,7 @@ import ProjectList from './project/project_list_container';
 import CreateProjectForm from './project/create_project_container';
 import UpdateProjectForm from './project/update_project_container';
 import ProfilePage from './user/profile_page_container';
-import Footer from './footer';
+import Footer from './footer_container';
 import ProjectShow from './project/project_show_page_container';
 import UnderConstruction from './underconstruction';
 import { withRouter } from 'react-router-dom';

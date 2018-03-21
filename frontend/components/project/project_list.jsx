@@ -59,6 +59,7 @@ class projectList extends React.Component {
       if (this.search) {
         let cat;
         let loc;
+        let ord;
 
         for (var i = 0; i < this.search.length; i++) {
           if (i === 0) {
@@ -72,10 +73,12 @@ class projectList extends React.Component {
           } else if (cur === "cat=") {
             cat = this.search[i].slice(4);
             this.setState({cat: cat});
+          } else if (cur === "ord=") {
+            ord = this.search[i].slice(4);
           }
         }
 
-        let searchQuery = {category: cat, location: loc};
+        let searchQuery = {category: cat, location: loc, order: ord};
 
         this.props.fetchProjects(searchQuery);
       } else {
@@ -243,8 +246,9 @@ class projectList extends React.Component {
       if (this.search[i].includes("ord=")) {
         let oldOrd = this.state.ord;
         this.setState({ord: this.search[i].slice(4)});
-        if (oldOrd !== this.state.ord)
-        this.props.fetchProjects({category: this.state.cat, location: this.state.loc, order: this.state.ord});
+        if (oldOrd !== this.search[i].slice(4)) {
+          this.props.fetchProjects({category: this.state.cat, location: this.state.loc, order: this.state.ord});
+        }
       }
 
       if (this.state.cat && !nextProps.location.search.includes("cat=")) {
@@ -543,6 +547,7 @@ class projectList extends React.Component {
           location={this.props.location}
           search={this.search}
           toggleSearchOrderModal={this.props.toggleSearchOrderModal}
+          updatePage={this.props.updatePage}
           currentOrd={this.state.ord}/>
       );
     }

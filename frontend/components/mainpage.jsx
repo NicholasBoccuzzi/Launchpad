@@ -13,7 +13,11 @@ class Main extends React.Component {
     this.displayProjects = this.displayProjects.bind(this);
     this.setDate = this.setDate.bind(this);
     this.displayProjectsInfo = this.displayProjectsInfo.bind(this);
+    this.displayCatButtons = this.displayCatButtons.bind(this);
     this.calcMonth = this.calcMonth.bind(this);
+    this.currentFeatured = "Food & Craft";
+    this.switchCat = this.switchCat.bind(this);
+    this.displayRandomProjects = this.displayRandomProjects.bind(this);
   }
 
   setDate() {
@@ -66,6 +70,11 @@ class Main extends React.Component {
   componentWillUnmount () {
   }
 
+  switchCat(e) {
+    this.currentFeatured = e.currentTarget.id;
+    this.props.updatePage();
+  }
+
   componentWillReceiveProps(nextProps) {
     this.loaded = true;
   }
@@ -74,30 +83,116 @@ class Main extends React.Component {
     return Math.floor((cur/goal) * 100);
   }
 
+  displayRandomProjects() {
+    if (this.props.projects) {
+      let randomNums = [];
+
+      while (randomNums.length < 4) {
+        let num = Math.floor(Math.random() * this.props.projects.length);
+
+        if (!randomNums.includes(num)) {
+          randomNums.push(num);
+        }
+      }
+
+      let result = randomNums.map((num, i) => {
+        let project = this.props.projects[num];
+
+        if (i === 0) {
+          return (
+            <main className="mp-rec-proj-container mp-rec-margleft">
+              <img className="mp-rec-proj-img" src={project.image}></img>
+              <div className="mp-rec-proj-bod">
+                {project.body}
+              </div>
+              <div className="mp-rec-proj-percent">
+                {`${this.percentFunded(project.current_funding, project.funding_goal)}% funded`}
+              </div>
+            </main>
+          );
+        } else {
+          return (
+            <main className="mp-rec-proj-container">
+              <img className="mp-rec-proj-img" src={project.image}></img>
+              <div className="mp-rec-proj-bod">
+                {project.body}
+              </div>
+              <div className="mp-rec-proj-percent">
+                {`${this.percentFunded(project.current_funding, project.funding_goal)}% funded`}
+              </div>
+            </main>
+          );
+        }
+
+      });
+
+      return result;
+    }
+  }
+
+  displayCatButtons() {
+    let buttons = [
+      "Food & Craft", "Design & Tech", "Arts", "Comics & Illustration",
+      "Film", "Music", "Games", "Publishing"
+    ];
+
+    let buttonEls = buttons.map((button) => {
+
+      if (this.currentFeatured === button) {
+        return (
+          <div id={button} className="mainpage-active-cat">
+            {button}
+          </div>
+        );
+      } else {
+        return (
+          <div id={button} className="mainpage-cat-li" onClick={this.switchCat}>
+            {button}
+          </div>
+        );
+      }
+    });
+
+    return (
+      <main className="mainpage-cat-ul">
+        {buttonEls}
+      </main>
+    );
+  }
+
 
   displayProjects () {
     let latestList;
-    let latest;
+    let featured;
+    let featuredCount = 0;
     let latestCount = 0;
+    let currentFeat = this.currentFeatured;
+
+    if (currentFeat === "Food & Craft") {
+      currentFeat= "Food";
+    } else if (currentFeat === "Design & Tech") {
+      currentFeat = "Tech";
+    } else if (currentFeat === "Comics & Illustration") {
+      currentFeat = "Comics";
+    } else if (currentFeat === "Arts") {
+      currentFeat = "Crafts";
+    } else if (currentFeat === "Film") {
+      currentFeat = "Film+Video";
+    }
+
 
     if (this.props.projects.length > 0 && this.loaded === true) {
       let projects = Array.from(this.props.projects);
-      let liveProjects = [];
       let that = this;
-      projects.forEach(project => {
-        if (project.live) {
-          liveProjects.push(project);
-        }
-      });
 
       let reversedProjects = [];
-      for (var i = liveProjects.length - 1; i >= 0; i--) {
-        if (latestCount === 0) {
-          latest = liveProjects[i];
-
+      for (var i = projects.length - 1; i >= 0; i--) {
+        if (featuredCount === 0 && projects[i].category === currentFeat) {
+          featured = projects[i];
+          featuredCount += 1;
         }
           latestCount += 1;
-          reversedProjects.push(liveProjects[i]);
+          reversedProjects.push(projects[i]);
       }
 
       if (latestCount > 5) {
@@ -122,7 +217,7 @@ class Main extends React.Component {
         );
       });
     } else {
-      latest = <div></div>;
+      featured = <div></div>;
       latestList = [<div>Missing Projects</div>];
     }
 
@@ -130,29 +225,33 @@ class Main extends React.Component {
       <main className="mainpage-projects-container">
         <div className="flexed">
           <section className="featured-project-container">
-            <h2 className="mainpage-projects-header ten-px-bottom">Latest Project</h2>
-            <Link to={`/projects/${latest.id}`} className="featured-image-container">
-              <img className="featured-image" src={latest.image}></img>
+            <h2 className="mainpage-projects-header ten-px-bottom">FEATURED PROJECT</h2>
+            <Link to={`/projects/${featured.id}`} className="featured-image-container">
+              <img className="featured-image" src={featured.image}></img>
               <div className="main-info-containers">
                 <div className="white-background featured-title">
-                  <p>{latest.title}</p>
+                  <p>{featured.title}</p>
                 </div>
                 <br></br>
 
                 <div className="white-background featured-author">
-                  <p>BY CREATOR #{latest.creator_id}</p>
+                  <p>BY CREATOR #{featured.creator_id}</p>
                 </div>
                 <br></br>
                 <div className="white-background featured-author">
                   <p className="white-background featured-funded">
-                    {this.percentFunded(latest.current_funding, latest.funding_goal)}% FUNDED
+                    {this.percentFunded(featured.current_funding, featured.funding_goal)}% FUNDED
                   </p>
                 </div>
               </div>
             </Link>
           </section>
           <section className="category-tabs-container">
-            <h2 className="mainpage-projects-header">New & Noteworthy</h2>
+            <h2 className="mainpage-projects-header mainpage-littletabs">
+              <div className="mp-littletabs-header">
+                NEW & NOTEWORTHY
+              </div>
+            </h2>
             {latestList}
           </section>
         </div>
@@ -178,6 +277,28 @@ class Main extends React.Component {
     });
 
     return projects;
+  }
+
+  displayCurrentCat() {
+    let featured;
+
+    if (this.currentFeatured === "Food+Craft") {
+      featured = "Food & Craft";
+    } else {
+      featured = this.currentFeatured;
+    }
+
+    return (
+      <main className="mainpage-current-cat">
+        <div>
+          {featured}
+        </div>
+        <a className="mainpage-view-all-container">
+          <div className="mainpage-view-all">VIEW ALL</div>
+          <i className="fas fa-long-arrow-alt-right"></i>
+        </a>
+      </main>
+    );
   }
 
   displayInfo () {
@@ -215,6 +336,10 @@ class Main extends React.Component {
         <main className="animated fadeIn">
           {this.displayInfo()}
           <div className="mainpage-centered-content">
+            <section className="mainpage-cat-container">
+              {this.displayCatButtons()}
+              {this.displayCurrentCat()}
+            </section>
             {this.displayProjects()}
           </div>
           <section className="mainpage-recommended-content">
@@ -222,7 +347,7 @@ class Main extends React.Component {
               Recommended For You
             </div>
             <div className="mainpage-project-list">
-
+              {this.displayRandomProjects()}
             </div>
           </section>
 

@@ -12,6 +12,19 @@ class Api::ProjectsController < ApplicationController
         @projects = @projects.where("category = ?", params[:search][:category])
       end
 
+      if params[:search][:order] != nil || params[:search][:order] != ""
+        if params[:search][:order] == "Magic" || params[:search][:order] == "Newest"
+        elsif params[:search][:order] == "Popularity"
+          @projects = @projects.order("current_funding DESC")
+        elsif params[:search][:order] == "MostFunded"
+          @projects = @projects.order("current_funding DESC")
+        elsif params[:search][:order] == "EndDate"
+          @projects = @projects.order(deadline: "ASC")
+        elsif params[:search][:order] == "Newest"
+          @projects = @projects.order("created_at DESC")
+        end
+      end
+
       return @projects
     elsif params[:creator_id]
       @projects = Project.select("*").from("projects").where("creator_id = ?", params[:creator_id])

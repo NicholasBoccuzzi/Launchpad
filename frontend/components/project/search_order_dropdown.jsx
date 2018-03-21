@@ -39,7 +39,7 @@ class searchOrderModal extends React.Component {
       }
 
       if (this.search[1] && this.search[1].includes("loc")) {
-        result += this.search[1];
+        result += "&" + this.search[1] + "&";
       }
     }
 
@@ -65,6 +65,8 @@ class searchOrderModal extends React.Component {
         trueOption = "MostFunded";
       } else if (option === "Most Backed") {
         trueOption = "MostBacked";
+      } else if (option === "End Date") {
+        trueOption = "EndDate";
       } else {
         trueOption = option;
       }
