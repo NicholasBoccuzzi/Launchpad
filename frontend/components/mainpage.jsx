@@ -18,6 +18,7 @@ class Main extends React.Component {
     this.currentFeatured = "Food & Craft";
     this.switchCat = this.switchCat.bind(this);
     this.displayRandomProjects = this.displayRandomProjects.bind(this);
+    this.displayKSQuote = this.displayKSQuote.bind(this);
   }
 
   setDate() {
@@ -77,6 +78,28 @@ class Main extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.loaded = true;
+  }
+
+  displayKSQuote () {
+    return (
+      <main className="mp-quote">
+        <i className="fas fa-bullseye mp-quote-logo"></i>
+        <section className="flex-col">
+          <div className="mp-quote-text">
+            "If you are doing what you love then you're doing what is right...
+            It's that passion that will fuel the fire to overcome challenges."
+          </div>
+          <div className="mp-quote-by">
+            <div className="mp-quote-by">FORMER PROFESSIONAL SURFER & WORLD CHAMPION LAYNE BEACHLEY IN &nbsp;</div>
+            <a className="mp-quote-readmore" href="https://www.thesecret.tv/">THE SECRET</a>
+          </div>
+          <a href="https://www.thesecret.tv/" className="flex-row mp-quote-readmore mp-rec-margtop">
+            <div>READ MORE &nbsp;</div>
+            <i className="fas fa-long-arrow-alt-right"></i>
+          </a>
+        </section>
+      </main>
+    );
   }
 
   percentFunded (cur, goal) {
@@ -350,7 +373,9 @@ class Main extends React.Component {
               {this.displayRandomProjects()}
             </div>
           </section>
-
+          <section className="mp-quote-container">
+            {this.displayKSQuote()}
+          </section>
         </main>
       );
     } else {

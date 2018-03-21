@@ -247,6 +247,7 @@
 .mainpage-recommended-content {
   border-top: 1px solid black;
   padding-top: 60px;
+  padding-bottom: 60px;
 
   @media (min-width: 1024px) {
     padding-left: 60px;
@@ -373,8 +374,59 @@
   text-decoration: none;
 }
 
+.mp-quote-container {
+  padding: 65px 0px;
+  padding-left: 60px;
+  padding-right: 60px;
+  border-top: 1px solid black;
+}
 
+.mp-quote {
+  max-width: 1366px;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.mp-quote-text {
+  font-size: 44px;
+  font-family: "Cooper Light", Georgia, Times, "Times New Roman", serif;
+  line-height: 50px;
+  max-width: 1000px;
+  margin-right: 60px;
+  margin-bottom: 40px;
+}
+
+.mp-quote-logo {
+  font-size: 70px;
+  margin-right: 50px;
+  padding: 20px 20px 0px 50px;
+}
+
+.mp-quote-by {
+  display: flex;
+  flex: row;
+  color: #656969;
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.mp-quote-readmore {
+  color: black;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+}
+.mp-quote-readmore:hover {
+  color: #0F7262;
+  text-decoration: underline;
+}
 
 .mp-rec-margleft {
   margin-left: 0px;
+}
+
+.mp-rec-margtop {
+  margin-top: 8px;
 }
