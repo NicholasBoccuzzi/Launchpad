@@ -430,3 +430,65 @@
 .mp-rec-margtop {
   margin-top: 8px;
 }
+
+.mp-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.mp-contact {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0px 50px 0px;
+  border-top: 1px solid black;
+}
+
+.mp-contact-me {
+  font-size: 30px;
+}
+
+.mp-contact-me-text {
+  margin-top: 30px;
+}
+
+
+@keyframes toGrey {
+  0% {
+    background-color: black;
+  }
+
+  100% {
+    background-color: grey;
+  }
+}
+
+.mp-contact-me-button {
+  margin-top: 30px;
+  width: 135px;
+  height: 45px;
+  background:black;
+  color: white;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  vertical-align: center;
+  position: relative;
+}
+
+.mp-contact-me-button:hover {
+  animation: toGrey .4s ease;
+  background: grey;
+  cursor: pointer;
+}
+
+.mp-contact-me-button:active {
+  outline: none;
+}
+
+.mp-contact-me-button-text {
+  margin-top: 15px;
+}

@@ -136,7 +136,7 @@ class DropDown extends React.Component {
                 <div className="dd-my-blank-container">
                   {this.displayMyProjects()}
                 <div className="dd-view-all">
-                  <a href={`/user/${this.props.currentUser.id}/projects`} className="dd-view-all">
+                  <a href={`#/user/${this.props.currentUser.id}/projects`} className="dd-view-all">
                     View all
                   </a>
                 </div>

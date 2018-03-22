@@ -19,6 +19,7 @@ class Main extends React.Component {
     this.switchCat = this.switchCat.bind(this);
     this.displayRandomProjects = this.displayRandomProjects.bind(this);
     this.displayKSQuote = this.displayKSQuote.bind(this);
+    this.displayContact = this.displayContact.bind(this);
   }
 
   setDate() {
@@ -91,9 +92,9 @@ class Main extends React.Component {
           </div>
           <div className="mp-quote-by">
             <div className="mp-quote-by">FORMER PROFESSIONAL SURFER & WORLD CHAMPION LAYNE BEACHLEY IN &nbsp;</div>
-            <a className="mp-quote-readmore" href="https://www.thesecret.tv/">THE SECRET</a>
+            <a className="mp-quote-readmore" href="http://www.azquotes.com/author/26499-Layne_Beachley">AZ QUOTES</a>
           </div>
-          <a href="https://www.thesecret.tv/" className="flex-row mp-quote-readmore mp-rec-margtop">
+          <a href="http://www.azquotes.com/author/26499-Layne_Beachley" className="flex-row mp-quote-readmore mp-rec-margtop">
             <div>READ MORE &nbsp;</div>
             <i className="fas fa-long-arrow-alt-right"></i>
           </a>
@@ -123,7 +124,7 @@ class Main extends React.Component {
 
         if (i === 0) {
           return (
-            <main className="mp-rec-proj-container mp-rec-margleft">
+            <a href={`#/projects/${project.id}`} className="mp-rec-proj-container mp-rec-margleft">
               <img className="mp-rec-proj-img" src={project.image}></img>
               <div className="mp-rec-proj-bod">
                 {project.body}
@@ -131,11 +132,11 @@ class Main extends React.Component {
               <div className="mp-rec-proj-percent">
                 {`${this.percentFunded(project.current_funding, project.funding_goal)}% funded`}
               </div>
-            </main>
+            </a>
           );
         } else {
           return (
-            <main className="mp-rec-proj-container">
+            <a href={`#/projects/${project.id}`} className="mp-rec-proj-container">
               <img className="mp-rec-proj-img" src={project.image}></img>
               <div className="mp-rec-proj-bod">
                 {project.body}
@@ -143,7 +144,7 @@ class Main extends React.Component {
               <div className="mp-rec-proj-percent">
                 {`${this.percentFunded(project.current_funding, project.funding_goal)}% funded`}
               </div>
-            </main>
+            </a >
           );
         }
 
@@ -151,6 +152,25 @@ class Main extends React.Component {
 
       return result;
     }
+  }
+
+  displayContact() {
+
+    return (
+      <main className="mp-center">
+        <div className="mp-contact-me">
+          Contact Information
+        </div>
+        <div className="mp-contact-me-text">
+          Email me and receive a response within the first 48 hours guarenteed.
+        </div>
+        <a href="mailto:Nicholas.R.Boccuzzi@email.com" className="mp-contact-me-button">
+          <div className="mp-contact-me-button-text">
+            Contact Me
+          </div>
+        </a>
+      </main>
+    );
   }
 
   displayCatButtons() {
@@ -376,11 +396,14 @@ class Main extends React.Component {
           <section className="mp-quote-container">
             {this.displayKSQuote()}
           </section>
+          <section className="mp-contact">
+            {this.displayContact()}
+          </section>
         </main>
       );
     } else {
       return (
-        <main>
+        <main className="animated fadeIn">
           <section className="loading-screen">
             <div className="loading-container">
               <div className="loading-rocket-fire">
