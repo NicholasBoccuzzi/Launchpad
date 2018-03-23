@@ -230,7 +230,7 @@ class updateProjectForm extends React.Component {
   displayProjectRewards() {
     if (this.activeTab === "Rewards") {
       return (
-        <RewardsTab state={this.state} location={this.props.location} />
+        <RewardsTab state={this.state} location={this.props.location} id={this.state.id}/>
       );
     }
   }

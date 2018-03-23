@@ -6,14 +6,34 @@ class RewardsTabItem extends React.Component {
     this.rewardNumber = props.rewardNum;
     this.key = props.key;
 
+    if (props.loaded === true) {
+      this.exists = true;
+    }
+
     this.state = {
+      title: null,
+      pledge: "1",
+      description: null,
+      estimatedDeliveryMonth: "January",
+      estimatedDeliveryYear: "2018"
     };
+
+    this.updateRewardState = this.updateRewardState.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.rewardNum) {
       this.rewardNum = nextProps.rewardNum;
     }
+  }
+
+  updateRewardState(e, el) {
+    if (!this.props.rewardsModalActive) {
+      this.props.toggleRewardsModal();
+    }
+
+    this.setState({el: e.currentTarget.value});
+    console.log(this.state);  
   }
 
 
@@ -28,24 +48,31 @@ class RewardsTabItem extends React.Component {
             <div className="project-rewards-info-container flexed-columns">
               <div className="flexed-rows reward-input-container">
                 <div className="reward-input-title">Title</div>
-                <input className="reward-user-input"></input>
+                <input
+                  onChange={(e) => {this.updateRewardState(e, "title");}}
+                  className="reward-user-input">
+                </input>
               </div>
               <div className="flexed-rows reward-input-container">
                 <div className="reward-input-title">Pledge Amount</div>
                 <input
+                  onChange={(e) => {this.updateRewardState(e, "pledge");}}
                   className="reward-user-input"
-                  placeholder="$0">
+                  placeholder="$1">
                 </input>
               </div>
               <div className="flexed-rows reward-input-container">
                 <div className="reward-input-title reward-description">Description</div>
-                <textarea className="reward-user-input textarea"></textarea>
+                <textarea
+                  onChange={(e) => {this.updateRewardState(e, "description");}}
+                  className="reward-user-input textarea">
+                </textarea>
               </div>
               <div className="flexed-rows reward-input-container no-bottom">
                 <div className="reward-input-title">Estimated <br/> delivery</div>
                 <div className="reward-month-select-container">
                   <select className="reward-month-year-select no-border"
-                    onChange={""}>
+                    onChange={(e) => {this.updateRewardState(e, "estimatedDeliveryMonth");}}>
                     <option value="January">January</option>
                     <option value="February">February</option>
                     <option value="March">March</option>
@@ -62,7 +89,7 @@ class RewardsTabItem extends React.Component {
                 </div>
                 <div className="reward-month-select-container">
                   <select className="reward-month-year-select year-width no-border"
-                    onChange={""}>
+                    onChange={(e) => {this.updateRewardState(e, "estimatedDeliveryYear");}}>
                     <option value="2018">2018</option>
                     <option value="2019">2019</option>
                     <option value="2020">2020</option>

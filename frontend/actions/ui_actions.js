@@ -4,6 +4,7 @@ export const DEACTIVATE_EXPLORE_MODAL = "DEACTIVATE_EXPLORE_MODAL";
 export const TOGGLE_ERROR_MODAL = "TOGGLE_ERROR_MODAL";
 export const TOGGLE_CREATE_PROJECT_MODAL = "TOGGLE_CREATE_PROJECT_MODAL";
 export const TOGGLE_UPDATE_PROJECT_MODAL = "TOGGLE_UPDATE_PROJECT_MODAL";
+export const TOGGLE_REWARDS_MODAL = "TOGGLE_REWARDS_MODAL";
 export const SWITCH_TABS = "SWITCH_TABS";
 export const CHECK_REWARD_COUNT = "CHECK_REWARD_COUNT";
 export const TOGGLE_CATEGORY_CHOICES = "TOGGLE_CATEGORY_CHOICES";
@@ -21,6 +22,12 @@ export const TOGGLE_SEARCH_ORDER_MODAL = "TOGGLE_SEARCH_ORDER_MODAL";
 export const toggleProfileDropDown = () => {
   return {
     type: TOGGLE_PROFILE_DROPDOWN
+  };
+};
+
+export const toggleRewardsModal = () => {
+  return {
+    type: TOGGLE_REWARDS_MODAL
   };
 };
 

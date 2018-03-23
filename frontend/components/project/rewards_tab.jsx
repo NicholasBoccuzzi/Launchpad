@@ -1,21 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Modal from '../modal_container';
-import RewardsTabItem from './rewards_tab_item';
+import RewardsTabItem from './rewards_tab_item_container';
 
 class rewardsTab extends React.Component {
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.rewards = [];
+    this.activeTab = "Rewards";
     this.newRewardBox = this.newRewardBox.bind(this);
     this.displayRewardsBoxes = this.displayRewardsBoxes.bind(this);
     this.removeReward = this.removeReward.bind(this);
     this.updateRewards = this.updateRewards.bind(this);
     this.renderRewardSubmit = this.renderRewardSubmit.bind(this);
-
     this.state = {
-      modalActive: false,
+      id: props.id
     };
+
   }
 
   newRewardBox(num) {
@@ -25,7 +26,7 @@ class rewardsTab extends React.Component {
   }
 
   renderRewardSubmit () {
-    if (this.activeTab === "Rewards" && this.state.modalActive) {
+    if (this.activeTab === "Rewards" && this.props.rewardsModalActive) {
       return (
         <Modal
           activeTab={this.activeTab}

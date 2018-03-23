@@ -18,6 +18,7 @@ import {
   TOGGLE_LOCATION_MODAL,
   TOGGLE_LOCATION_SEARCH_MODAL,
   TOGGLE_SEARCH_ORDER_MODAL,
+  TOGGLE_REWARDS_MODAL,
 } from '../actions/ui_actions.js';
 import { merge } from 'lodash';
 
@@ -40,6 +41,7 @@ const initialState = {
   plLocationModalActive: false,
   locationsSearchModalActive: false,
   searchOrderModalActive: false,
+  rewardsModalActive: false,
 };
 
 export default (state = initialState, action) => {
@@ -122,6 +124,10 @@ export default (state = initialState, action) => {
     let orderModal = merge({}, state);
     orderModal.searchOrderModalActive = !orderModal.searchOrderModalActive;
     return orderModal;
+  case TOGGLE_REWARDS_MODAL:
+    let rewardsModal = merge({}, state);
+    rewardsModal.rewardsModalActive = !rewardsModal.rewardsModalActive;
+    return rewardsModal;
   default:
     return state;
   }

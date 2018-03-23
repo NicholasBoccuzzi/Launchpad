@@ -6,7 +6,8 @@ import { checkRewardCount } from '../../actions/ui_actions.js';
 const mapStateToProps = (state) => {
   return {
     rewardCount: state.ui.rewardCount,
-    loadedRewards: state.ui.loadedRewards
+    loadedRewards: state.ui.loadedRewards,
+    rewardsModalActive: state.ui.rewardsModalActive
   };
 };
 
