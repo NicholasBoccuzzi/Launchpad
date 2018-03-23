@@ -40,6 +40,7 @@ class updateProjectForm extends React.Component {
     this.switchSelectedTab = this.switchSelectedTab.bind(this);
     this.displayProjectBasics = this.displayProjectBasics.bind(this);
     this.displayProjectRewards = this.displayProjectRewards.bind(this);
+    this.selectedTabClass = this.selectedTabClass.bind(this);
 
   }
 
@@ -58,6 +59,10 @@ class updateProjectForm extends React.Component {
   componentDidMount () {
     if (this.props.modalVisible) {
       this.setState({modalVisible: false});
+    }
+
+    if (this.props.location.pathname.includes("rewards")) {
+      this.activeTab = "Rewards";
     }
 
     this.props.fetchProject(parseInt(location.hash.split('/')[2]));
@@ -140,6 +145,14 @@ class updateProjectForm extends React.Component {
           image: {imageUrl: nextProps.project.image}
         });
       }
+    }
+  }
+
+  selectedTabClass (name) {
+    if (this.activeTab === name) {
+      return "project-nav-tabs-li selected-project-tab-li";
+    } else {
+      return "project-nav-tabs-li";
     }
   }
 
@@ -369,7 +382,7 @@ class updateProjectForm extends React.Component {
           </form>
           <section className="project-current-summary">
             <div className="helpful-tips-box">
-              <i class="far fa-lightbulb"  aria-hidden="true"></i>&nbsp;&nbsp;
+              <i className="far fa-lightbulb"  aria-hidden="true"></i>&nbsp;&nbsp;
                 <div className="helpful-tips-box-content">
                   <h2 className="small-font">How to:</h2>
                   <br/>
@@ -420,48 +433,54 @@ class updateProjectForm extends React.Component {
         {redirect}
 
         <nav className="project-nav">
+          <div className="project-nav-tabs-container small-margin-right">
+            <a href="#" className="project-nav-tabs-li no-border pnav-black">
+              <i class="fas fa-long-arrow-alt-left small-margin-right"></i>
+              <div>Exit Editor</div>
+            </a>
+          </div>
+
           <div className="project-nav-tabs-container">
-            <div className="project-nav-tabs-li selected-project-tab-li"
+            <a className={this.selectedTabClass("Basics")}
+              href="#/projects/262/edit"
               id="Basics"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               <div>Basics</div>
-            </div>
-            <div className="project-nav-tabs-li"
+            </a>
+            <a className={this.selectedTabClass("Rewards")}
+              href="#/projects/262/edit/rewards"
               id="Rewards"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               <div>Rewards</div>
-            </div>
-            <div className="project-nav-tabs-li"
+            </a>
+            <a className={this.selectedTabClass("Story")}
+              href="#/projects/262/edit/story"
               id="Story"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               Story
-            </div>
-            <div className="project-nav-tabs-li"
+            </a>
+            <a className={this.selectedTabClass("About you")}
+              href="#/projects/262/edit/about"
               id="About you"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               <div>About you</div>
-            </div>
-            <div className="project-nav-tabs-li no-border"
+            </a>
+            <a className={`${this.selectedTabClass("Account")} no-border`}
+              href="#/projects/262/edit/account"
               id="Account"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               <div>Account</div>
-            </div>
+            </a>
           </div>
 
           <div className="project-nav-tabs-container small-margin-left">
             <div className="project-nav-tabs-li no-border" id="Preview" onClick={this.switchSelectedTab}>
               <div>Preview</div>
-            </div>
-          </div>
-
-          <div className="project-nav-tabs-container small-margin-left">
-            <div className="project-nav-tabs-li no-border">
-              <div>Activate the Project</div>
             </div>
           </div>
         </nav>

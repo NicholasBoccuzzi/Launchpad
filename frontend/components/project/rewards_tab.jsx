@@ -11,12 +11,29 @@ class rewardsTab extends React.Component {
     this.displayRewardsBoxes = this.displayRewardsBoxes.bind(this);
     this.removeReward = this.removeReward.bind(this);
     this.updateRewards = this.updateRewards.bind(this);
+    this.renderRewardSubmit = this.renderRewardSubmit.bind(this);
+
+    this.state = {
+      modalActive: false,
+    };
   }
 
   newRewardBox(num) {
     return (
-      <RewardsTabItem rewardNum={num} removeReward={this.removeReward}/>
+      <RewardsTabItem rewardNum={num} key={num} removeReward={this.removeReward}/>
     );
+  }
+
+  renderRewardSubmit () {
+    if (this.activeTab === "Rewards" && this.state.modalActive) {
+      return (
+        <Modal
+          activeTab={this.activeTab}
+          location={this.props.location}
+          id={this.state.id}
+          />
+      );
+    }
   }
 
   updateRewards() {
@@ -33,7 +50,7 @@ class rewardsTab extends React.Component {
 
   displayRewardsBoxes() {
     if (this.props.location.pathname.includes("edit")
-    && this.props.loadedRewards === false
+    && this.props.loadedRewards === false && this.rewards.length < 1
   ) {
       this.rewards.push(this.newRewardBox(this.rewards.length + 1));
     }
@@ -72,7 +89,7 @@ class rewardsTab extends React.Component {
 
           <section className="project-current-summary animated fadeIn">
             <div className="helpful-tips-box">
-              <i class="far fa-lightbulb" aria-hidden="true"></i>&nbsp;&nbsp;
+              <i className="far fa-lightbulb" aria-hidden="true"></i>&nbsp;&nbsp;
                 <div className="helpful-tips-box-content">
                   <h2 className="small-font">How to:</h2>
                   <br/>
@@ -90,6 +107,7 @@ class rewardsTab extends React.Component {
 
             </section>
         </main>
+        {this.renderRewardSubmit()}
       </div>
     );
   }

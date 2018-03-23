@@ -13,8 +13,8 @@ class Modal extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.forLogin = this.forLogin.bind(this);
-    this.forCreate = this.forCreate.bind(this);
     this.forUpdate = this.forUpdate.bind(this);
+    this.forRewards = this.forRewards.bind(this);
   }
 
   componentDidMount() {
@@ -104,16 +104,6 @@ class Modal extends React.Component {
       }
     }
 
-    forCreate() {
-      if (this.props.location.pathname === "/startproject") {
-        return (
-            <div>
-              {this.renderIfCreateProjectActive()}
-            </div>
-          );
-        }
-      }
-
     forUpdate() {
       if (this.props.location.pathname.includes("edit")
       && this.props.location.pathname.includes("projects")) {
@@ -125,6 +115,20 @@ class Modal extends React.Component {
         );
       }
     }
+
+    forRewards() {
+      if (this.props.location.pathname.includes("edit")
+      && this.props.location.pathname.includes("projects")
+      && this.props.activeTab === "Rewards"
+    ) {
+        return (
+          <div>
+            {this.renderIfCreateProjectActive()}
+          </div>
+        );
+      }
+    }
+
 
   render () {
 
@@ -142,8 +146,8 @@ class Modal extends React.Component {
       <div>
         {redirected}
         {this.forLogin()}
-        {this.forCreate()}
         {this.forUpdate()}
+        {this.forRewards()}
       </div>
 
     );

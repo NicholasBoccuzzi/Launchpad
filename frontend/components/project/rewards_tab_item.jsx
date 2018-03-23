@@ -4,6 +4,10 @@ class RewardsTabItem extends React.Component {
   constructor (props) {
     super(props);
     this.rewardNumber = props.rewardNum;
+    this.key = props.key;
+
+    this.state = {
+    };
   }
 
   componentWillReceiveProps(nextProps) {
@@ -15,7 +19,7 @@ class RewardsTabItem extends React.Component {
 
   render () {
     return (
-      <div className="reward-form-input-box">
+      <div key={this.key} className="reward-form-input-box">
         <div className="reward-form-input-title-box">
           <h3 className="reward-form-input-title ">Reward #{this.rewardNumber}</h3>
         </div>
