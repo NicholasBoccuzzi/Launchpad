@@ -24,7 +24,6 @@ class updateProjectForm extends React.Component {
       },
       modalVisible: false,
       wrongUser: false
-
     };
 
     this.activeTab = "Basics";
@@ -49,6 +48,10 @@ class updateProjectForm extends React.Component {
   }
 
   switchSelectedTab (e) {
+    if (e.currentTarget.id !== "Basics") {
+      this.props.toggleUpdateProjectModal();
+    }
+
     let curSelected = document.getElementsByClassName("selected-project-tab-li");
     curSelected[0].classList.remove("selected-project-tab-li");
     e.currentTarget.classList.add("selected-project-tab-li");
@@ -181,6 +184,7 @@ class updateProjectForm extends React.Component {
 
       return (
         <Modal
+          activeTab={this.activeTab}
           fundingGoal={this.state.funding_goal}
           modalVisible={this.state.modalVisible}
           image={this.state.image}
@@ -435,7 +439,7 @@ class updateProjectForm extends React.Component {
         <nav className="project-nav">
           <div className="project-nav-tabs-container small-margin-right">
             <a href="#" className="project-nav-tabs-li no-border pnav-black">
-              <i class="fas fa-long-arrow-alt-left small-margin-right"></i>
+              <i className="fas fa-long-arrow-alt-left small-margin-right"></i>
               <div>Exit Editor</div>
             </a>
           </div>

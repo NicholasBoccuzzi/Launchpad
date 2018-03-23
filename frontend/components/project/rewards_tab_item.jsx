@@ -25,6 +25,7 @@ class RewardsTabItem extends React.Component {
     if (nextProps.rewardNum) {
       this.rewardNum = nextProps.rewardNum;
     }
+
   }
 
   updateRewardState(e, el) {
@@ -32,14 +33,14 @@ class RewardsTabItem extends React.Component {
       this.props.toggleRewardsModal();
     }
 
-    this.setState({el: e.currentTarget.value});
-    console.log(this.state);  
+    this.setState({[el]: e.currentTarget.value});
+    this.props.rewardsState[this.rewardNumber] = this;
   }
 
 
   render () {
     return (
-      <div key={this.key} className="reward-form-input-box">
+      <div key={this.key} data={this.state} className="reward-form-input-box">
         <div className="reward-form-input-title-box">
           <h3 className="reward-form-input-title ">Reward #{this.rewardNumber}</h3>
         </div>

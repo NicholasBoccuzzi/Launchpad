@@ -12,6 +12,7 @@ class Modal extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRewardsSubmit = this.handleRewardsSubmit.bind(this);
     this.forLogin = this.forLogin.bind(this);
     this.forUpdate = this.forUpdate.bind(this);
     this.forRewards = this.forRewards.bind(this);
@@ -75,19 +76,27 @@ class Modal extends React.Component {
     }
   }
 
+  handleRewardsSubmit (e) {
+    e.preventDefault();
+    const that = this;
+
+    console.log(this.props.rewardsState);
+  }
+
   renderIfCreateProjectActive () {
-    if (this.props.projectCreateUpdateModalActive && this.props.location.pathname === "/startproject") {
-      return (
-        <div className="submit-project-bar animated slideInUp">
-          <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
-          <input type="submit" className="project-save-button" value="Create" onClick={this.handleSubmit}></input>
-        </div>
-      );
-    } else if (this.props.projectCreateUpdateModalActive && this.props.location.pathname.includes("edit")){
+    if (this.props.projectCreateUpdateModalActive && this.props.location.pathname.includes("edit") && this.props.activeTab === "Basics"){
       return (
         <div className="submit-project-bar animated slideInUp">
           <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
           <input type="submit" className="project-save-button" value="Save" onClick={this.handleSubmit}></input>
+        </div>
+      );
+    }
+    else if (this.props.projectCreateUpdateModalActive && this.props.location.pathname.includes("edit") && this.props.activeTab === "Rewards"){
+      return (
+        <div className="submit-project-bar animated slideInUp">
+          <button className="discard-project-changes" onClick={() => history.go(0)}>Discard changes</button>
+          <input type="submit" className="project-save-button" value="Save" onClick={this.handleRewardsSubmit}></input>
         </div>
       );
     }

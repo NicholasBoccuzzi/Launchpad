@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import RewardsTabItem from './rewards_tab_item';
-import { toggleRewardsModal } from '../../actions/ui_actions.js';
+import { toggleRewardsModal, updatePage } from '../../actions/ui_actions.js';
 
 
 const mapStateToProps = (state) => {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleRewardsModal: () => dispatch(toggleRewardsModal())
+    toggleRewardsModal: () => dispatch(toggleRewardsModal()),
+    updatePage: () => dispatch(updatePage())
   };
 };
 

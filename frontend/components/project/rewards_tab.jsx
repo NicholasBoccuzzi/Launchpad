@@ -16,20 +16,34 @@ class rewardsTab extends React.Component {
     this.state = {
       id: props.id
     };
+    this.rewardsState = {
+
+    };
 
   }
 
   newRewardBox(num) {
     return (
-      <RewardsTabItem rewardNum={num} key={num} removeReward={this.removeReward}/>
+      <RewardsTabItem rewardNum={num}
+        key={num}
+        rewardsState={this.rewardsState}
+        removeReward={this.removeReward}/>
     );
+  }
+
+  componentWillUnmount () {
+    if (this.props.rewardsModalActive) {
+      this.props.toggleRewardsModal();
+    }
   }
 
   renderRewardSubmit () {
     if (this.activeTab === "Rewards" && this.props.rewardsModalActive) {
       return (
         <Modal
+          rewardsState={this.rewardsState}
           activeTab={this.activeTab}
+          rewards={this.rewards}
           location={this.props.location}
           id={this.state.id}
           />
