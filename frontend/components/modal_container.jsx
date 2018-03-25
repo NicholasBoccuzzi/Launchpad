@@ -7,6 +7,7 @@ import {
   deactivateExploreModal
 } from '../actions/ui_actions.js';
 import { createProject, updateProject } from '../actions/project_actions';
+import { createReward } from '../actions/reward_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
@@ -18,6 +19,7 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+  createReward: (reward) => dispatch(createReward(reward)),
   updateProject: (project, id) => dispatch(updateProject(project, id)),
   createProject: (project) => dispatch(createProject(project)),
   toggleErrorModal: () => dispatch(toggleErrorModal()),

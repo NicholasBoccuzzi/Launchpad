@@ -40,7 +40,7 @@ class updateProjectForm extends React.Component {
     this.displayProjectBasics = this.displayProjectBasics.bind(this);
     this.displayProjectRewards = this.displayProjectRewards.bind(this);
     this.selectedTabClass = this.selectedTabClass.bind(this);
-
+    this.changesMade = false;
   }
 
   handleSubmit (e) {
@@ -48,7 +48,9 @@ class updateProjectForm extends React.Component {
   }
 
   switchSelectedTab (e) {
-    if (e.currentTarget.id !== "Basics") {
+    if (e.currentTarget.id !== "Basics" && this.props.projectCreateUpdateModalActive) {
+      this.props.toggleUpdateProjectModal();
+    } else if (this.changesMade && !this.props.projectCreateUpdateModalActive) {
       this.props.toggleUpdateProjectModal();
     }
 
@@ -160,6 +162,7 @@ class updateProjectForm extends React.Component {
   }
 
   update(field) {
+    this.changesMade = true;
     const that = this;
     return e => {
       that.setState({
@@ -234,7 +237,7 @@ class updateProjectForm extends React.Component {
   displayProjectRewards() {
     if (this.activeTab === "Rewards") {
       return (
-        <RewardsTab state={this.state} location={this.props.location} id={this.state.id}/>
+        <RewardsTab state={this.state} activeTab={this.activeTab} location={this.props.location} id={this.state.id}/>
       );
     }
   }

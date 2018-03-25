@@ -19,6 +19,7 @@ class RewardsTabItem extends React.Component {
     };
 
     this.updateRewardState = this.updateRewardState.bind(this);
+    this.props.rewardsState.push(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -34,7 +35,6 @@ class RewardsTabItem extends React.Component {
     }
 
     this.setState({[el]: e.currentTarget.value});
-    this.props.rewardsState[this.rewardNumber] = this;
   }
 
 

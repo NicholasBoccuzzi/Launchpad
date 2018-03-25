@@ -80,7 +80,19 @@ class Modal extends React.Component {
     e.preventDefault();
     const that = this;
 
-    console.log(this.props.rewardsState);
+    this.props.rewardsState.forEach((reward) => {
+      let rewardObj = {
+        reward: {
+          title: reward.state["title"],
+          body: reward.state["description"],
+          amount: reward.state["pledge"],
+          delivery_date: reward.state["estimatedDeliveryMonth"] + "," + reward.state["estimatedDeliveryYear"],
+          project_id: this.props.projectId
+        }
+      };
+
+      this.props.createReward(rewardObj);
+    });
   }
 
   renderIfCreateProjectActive () {

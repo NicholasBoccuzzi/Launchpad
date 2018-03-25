@@ -7,19 +7,16 @@ class rewardsTab extends React.Component {
   constructor (props) {
     super(props);
     this.rewards = [];
-    this.activeTab = "Rewards";
+    this.activeTab = this.props.activeTab;
     this.newRewardBox = this.newRewardBox.bind(this);
     this.displayRewardsBoxes = this.displayRewardsBoxes.bind(this);
     this.removeReward = this.removeReward.bind(this);
     this.updateRewards = this.updateRewards.bind(this);
     this.renderRewardSubmit = this.renderRewardSubmit.bind(this);
     this.state = {
-      id: props.id
+      projectId: props.id
     };
-    this.rewardsState = {
-
-    };
-
+    this.rewardsState = [];
   }
 
   newRewardBox(num) {
@@ -37,15 +34,18 @@ class rewardsTab extends React.Component {
     }
   }
 
+  componentDidMount () {
+  }
+
   renderRewardSubmit () {
     if (this.activeTab === "Rewards" && this.props.rewardsModalActive) {
       return (
         <Modal
           rewardsState={this.rewardsState}
-          activeTab={this.activeTab}
+          activeTab={"Rewards"}
           rewards={this.rewards}
           location={this.props.location}
-          id={this.state.id}
+          projectId={this.state.projectId}
           />
       );
     }
