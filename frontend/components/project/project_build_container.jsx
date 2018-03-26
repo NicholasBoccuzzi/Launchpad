@@ -25,3 +25,5 @@ const mapDispatchToProps = (dispatch) => {
     fetchProject: (id) => dispatch(fetchProject)
   };
 };
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProjectBuild);

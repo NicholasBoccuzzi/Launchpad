@@ -89,14 +89,14 @@ class DropDown extends React.Component {
 
   dropDownContent() {
 
-    if (this.props.location.pathname === "/startproject") {
+    if (this.props.location.pathname === "/startproject" || this.props.location.pathname.includes("build")) {
       return (
         <main className="start-project-modal-container">
           <div className="animated fadeIn start-project-modal">
             <div>
-              <div className="cp-modal-options">
+              <a href={`#/user/${this.props.currentUser.id}`} className="cp-modal-options">
                 Profile
-              </div>
+              </a>
               <div className="cp-modal-options">
                 My projects
               </div>

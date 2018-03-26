@@ -386,12 +386,14 @@ class Main extends React.Component {
             {this.displayProjects()}
           </div>
           <section className="mainpage-recommended-content">
-            <div className="mainpage-recommended-title">
-              Recommended For You
-            </div>
-            <div className="mainpage-project-list">
-              {this.displayRandomProjects()}
-            </div>
+            <main className="mainpage-max-width">
+              <div className="mainpage-recommended-title">
+                Recommended For You
+              </div>
+              <div className="mainpage-project-list">
+                {this.displayRandomProjects()}
+              </div>
+            </main>
           </section>
           <section className="mp-quote-container">
             {this.displayKSQuote()}

@@ -10,6 +10,7 @@ import {
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Navbar from './nav_bar_container';
 import CreateProjectNavBar from './create_project_nav_bar_container';
+import ProjectBuildNavBar from './project_build_nav_bar_container';
 import Mainpage from './mainpage_container';
 import SessionFormContainer from './session_form_container';
 import ProjectList from './project/project_list_container';
@@ -19,6 +20,7 @@ import ProfilePage from './user/profile_page_container';
 import Footer from './footer_container';
 import ProjectShow from './project/project_show_page_container';
 import UnderConstruction from './underconstruction';
+import ProjectBuild from './project/project_build_container';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -44,6 +46,7 @@ class App extends React.Component {
         <div>
           <Switch>
             <Route path='/startproject' component={CreateProjectNavBar} exact/>
+            <Route path='/projects/:projectId/build' component={ProjectBuildNavBar} excact />
             <Route path='/'   component={Navbar}/>
           </Switch>
 
@@ -52,6 +55,7 @@ class App extends React.Component {
           <Route exact path="/projects/:projectId" component={ProjectShow}></Route>
           <Route exact path="/" component={Mainpage}></Route>
           <ProtectedRoute exact path="/startproject" component={CreateProjectForm} />
+          <ProtectedRoute exact path="/projects/:projectId/build" component={ProjectBuild} />
           <ProtectedRoute exact path="/projects/:projectId/edit" component={UpdateProjectForm}/>
           <Route path="/discover" component={ProjectList} />
           <AuthRoute path="/login" component={SessionFormContainer}/>
