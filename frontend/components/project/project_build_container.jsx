@@ -16,13 +16,14 @@ const mapStateToProps = (state, ownProps) => {
   return {
     location: ownProps.location,
     projectId: ownProps.match.params.projectId,
-    project: project
+    project: project,
+    currentUser: state.session.currentUser,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProject: (id) => dispatch(fetchProject)
+    fetchProject: (id) => dispatch(fetchProject(id))
   };
 };
 

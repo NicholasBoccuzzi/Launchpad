@@ -7,8 +7,15 @@
 
 .Launchpad-info-nav {
   display: flex;
-  padding: 0px 60px;
   max-height: 90px;
+  justify-content: center;
+  margin: auto;
+  max-width: 1366px;
+
+  @media (max-width: 1366px) {
+    padding: 0px 60px;
+    justify-content: flex-start;
+  }
 }
 
 .top-info-box {
@@ -25,6 +32,10 @@
 
 .top-info-box-right{
   padding: 30px 10px 24px 30px;
+
+  @media (min-width: 1366px) {
+    width: 15%;
+  }
 }
 
 .top-info {

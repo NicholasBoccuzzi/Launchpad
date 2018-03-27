@@ -1,0 +1,30 @@
+.pbuild-proj-title-cont {
+  font-size: 30px;
+  margin-top: 10px;
+  color: white;
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+
+.pbuild-user-image-container {
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  object-fit: fill;
+  margin: 0 auto;
+}
+
+.pbuild-user-image {
+  width: 40px;
+  height: 40px;
+}
+
+.pbuild-top-container {
+  background: #212121;
+  height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+}

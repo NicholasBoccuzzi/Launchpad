@@ -24,7 +24,7 @@ class ProjectBuildNavbar extends React.Component {
   displayFAQs () {
     return (
       <div className="pbuild-faq-container">
-        <a className="pbuild-faq-li">FAQ</a>
+        <a className="pbuild-faq-li pbuild-no-margin">FAQ</a>
         <a className="pbuild-faq-li">Rules</a>
         <a className="pbuild-faq-li">Handbook</a>
       </div>
@@ -35,7 +35,7 @@ class ProjectBuildNavbar extends React.Component {
 
     if (this.props.currentUser) {
       return(
-        <div id="cp-icon" className="cp-icon" onClick={this.activeBorder}>
+        <div id="cp-icon" className="cp-icon pbuild-icon-margin" onClick={this.activeBorder}>
           <div className="cp-nav-button cp-profile-button" onClick={this.props.toggleProfileDropDown}>
             <img className="profile-icon cp-icon" src={this.props.currentUser.image}>
             </img>

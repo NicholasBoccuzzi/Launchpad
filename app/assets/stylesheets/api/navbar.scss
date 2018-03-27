@@ -405,9 +405,10 @@
 
 .pbuild-lpad {
   color:white;
-  font-size: 20px;
-  margin-top: 4px;
+  font-size: 18px;
+  margin-top: 10px;
   margin-right: 130px;
+  letter-spacing: .4px;
 }
 
 .pbuild-cp-nav {
@@ -426,7 +427,7 @@
   flex-direction: row;
   color: white;
   font-weight: 300;
-  padding-top: 20px;
+  padding-top: 24px;
 }
 
 .pbuild-faq-li {
@@ -435,8 +436,12 @@
   font-weight: 300;
   font-size: 13px;
   cursor: pointer;
-  margin-left: 10px;
-  letter-spacing: .5px;
+  margin-left: 18px;
+  letter-spacing: .4px;
+}
+
+.pbuild-no-margin {
+  margin-left: 4px;
 }
 
 .pbuild-faq-li:hover {
@@ -451,7 +456,21 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
 
-  padding-right: 80px;
-  padding-left: 80px;
+  @media (min-width: 794px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media (min-width: 1024px) {
+    padding-right: 80px;
+    padding-left: 80px;
+  }
+}
+
+.pbuild-icon-margin {
+  margin-top: 24px;
+  margin-right: 4px;
 }
