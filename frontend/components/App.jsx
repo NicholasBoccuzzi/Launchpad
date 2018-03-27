@@ -62,6 +62,7 @@ class App extends React.Component {
           <AuthRoute path="/signup" component={SessionFormContainer} />
           <Switch>
             <Route path='/startproject' exact/>
+            <Route path='/projects/:projectId/build' exact />
             <Route path='/'   component={Footer}/>
           </Switch>
         </div>
