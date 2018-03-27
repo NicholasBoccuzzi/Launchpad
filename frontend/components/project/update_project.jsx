@@ -449,35 +449,35 @@ class updateProjectForm extends React.Component {
 
           <div className="project-nav-tabs-container">
             <a className={this.selectedTabClass("Basics")}
-              href="#/projects/262/edit"
+              href={`#/projects/${this.state.id}/edit`}
               id="Basics"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               <div>Basics</div>
             </a>
             <a className={this.selectedTabClass("Rewards")}
-              href="#/projects/262/edit/rewards"
+              href={`#/projects/${this.state.id}/edit/rewards`}
               id="Rewards"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               <div>Rewards</div>
             </a>
             <a className={this.selectedTabClass("Story")}
-              href="#/projects/262/edit/story"
+              href={`#/projects/${this.state.id}/edit/story`}
               id="Story"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               Story
             </a>
             <a className={this.selectedTabClass("About you")}
-              href="#/projects/262/edit/about"
+              href={`#/projects/${this.state.id}/edit/about`}
               id="About you"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>
               <div>About you</div>
             </a>
             <a className={`${this.selectedTabClass("Account")} no-border`}
-              href="#/projects/262/edit/account"
+              href={`#/projects/${this.state.id}/edit/account`}
               id="Account"
               onClick={this.switchSelectedTab}>
               <i className="fa fa-check-circle project-tab-li-checkbox"></i>

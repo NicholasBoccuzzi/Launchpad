@@ -7,6 +7,7 @@ class projectBuild extends React.Component {
     this.displayProjectTitle = this.displayProjectTitle.bind(this);
     this.displayCampaignBox = this.displayCampaignBox.bind(this);
     this.displayAccountBox = this.displayAccountBox.bind(this);
+    this.green = this.green.bind(this);
   }
 
   componentDidMount() {
@@ -14,7 +15,6 @@ class projectBuild extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
   }
 
   displayProjectTitle() {
@@ -27,6 +27,18 @@ class projectBuild extends React.Component {
     }
   }
 
+  green(el) {
+    if (this.props.project) {
+      if (this.props.project.live) {
+        return "pbuild-green";
+      } else if (el === "reward" && this.props.project.rewards.length > 0) {
+        return "pbuild-green";
+      } else if (el === "account") {
+        return "pbuild-green";
+      }
+    }
+  }
+
   displayAccountBox() {
     if (this.props.project) {
       return (
@@ -34,7 +46,7 @@ class projectBuild extends React.Component {
           <main className="pbuild-campaign-ul">
             <a href={`#/user/${this.props.currentUser.id}`} className="pbuild-li">
               <div className="flex-row">
-                <i className="far fa-check-circle pbuild-circle"></i>
+                <i className={`far fa-check-circle pbuild-circle ${this.green("profile")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Profile</div>
                   <div className="pbuild-button-text">Write a bio and add links to your social accounts.</div>
@@ -43,7 +55,7 @@ class projectBuild extends React.Component {
             </a>
             <a href="mailto:Nicholas.R.Boccuzzi@gmail.com" className="pbuild-li pbuild-account-li">
               <div className="flex-row">
-                <i className="far fa-check-circle pbuild-circle"></i>
+                <i className={`far fa-check-circle pbuild-circle ${this.green("account")}`}></i>
                 <section className="flex-col margin-auto-zero pbuild-account-marg">
                   <div className="pbuild-button-header">Account</div>
                   <div className="pbuild-button-text">Confirm your identity and contact Launchpad's creator.</div>
@@ -67,25 +79,25 @@ class projectBuild extends React.Component {
           <main className="pbuild-campaign-ul">
             <a href={`#/projects/${this.props.project.id}/edit`} className="pbuild-li">
               <div className="flex-row">
-                <i className="far fa-check-circle pbuild-circle"></i>
+                <i className={`far fa-check-circle pbuild-circle ${this.green("basics")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Basics</div>
                   <div className="pbuild-button-text">Add an image, set your funding goal, and more.</div>
                 </section>
               </div>
             </a>
-            <div className="pbuild-li">
+            <a href={`#/projects/${this.props.project.id}/edit/rewards`} className="pbuild-li">
               <div className="flex-row">
-                <i className="far fa-check-circle pbuild-circle"></i>
+                <i className={`far fa-check-circle pbuild-circle ${this.green("reward")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Rewards</div>
                   <div className="pbuild-button-text">Done.</div>
                 </section>
               </div>
-            </div>
+            </a>
             <div className="pbuild-li pbuild-li-margbot">
               <div className="flex-row">
-                <i className="far fa-check-circle pbuild-circle"></i>
+                <i className={`far fa-check-circle pbuild-circle ${this.green("story")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Story</div>
                   <div className="pbuild-button-text">Add an video and detailed project description.</div>
