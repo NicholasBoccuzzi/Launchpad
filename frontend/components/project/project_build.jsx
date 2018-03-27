@@ -1,8 +1,15 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class projectBuild extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      id: parseInt(this.props.projectId),
+      wrongUser: false
+    };
+
     this.displayUserIcon = this.displayUserIcon.bind(this);
     this.displayProjectTitle = this.displayProjectTitle.bind(this);
     this.displayCampaignBox = this.displayCampaignBox.bind(this);
@@ -15,6 +22,15 @@ class projectBuild extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+
+    let projectUser;
+    if (nextProps.project) {
+      projectUser = nextProps.project.creator_id;
+      if (this.props.currentUser.id !== projectUser) {
+        this.setState({wrongUser: true});
+      }
+    }
+
   }
 
   displayProjectTitle() {
@@ -124,8 +140,14 @@ class projectBuild extends React.Component {
   }
 
   render () {
+    let redirect;
+    if (this.state.wrongUser) {
+      redirect = <Redirect to={`/projects/${this.state.id}`} />;
+    }
+
     return (
       <main>
+        {redirect}
         <section className="pbuild-top-container">
           {this.displayProjectTitle()}
           {this.displayUserIcon()}
