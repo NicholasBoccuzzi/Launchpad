@@ -18,7 +18,7 @@ class projectBuild extends React.Component {
   displayProjectTitle() {
     if (this.props.project) {
       return (
-        <main className="animated slideInUp pbuild-proj-title-cont">
+        <main className="pbuild-proj-title-cont">
           {this.props.project.title} by {this.props.currentUser.username}
         </main>
       );
@@ -28,7 +28,7 @@ class projectBuild extends React.Component {
   displayUserIcon() {
     if (this.props.currentUser) {
       return (
-        <div className="animated slideInUp pbuild-user-image-container">
+        <div className="pbuild-user-image-container">
           <img className="pbuild-user-image"
             src={this.props.currentUser.image}>
 
@@ -45,8 +45,19 @@ class projectBuild extends React.Component {
           {this.displayProjectTitle()}
           {this.displayUserIcon()}
         </section>
-        <section>
+        <section className="pbuild-preview-button-section">
+          <main className="pbuild-preview-button-container">
+            <section className="pbuild-preview-button-click">
+              <i class="fas fa-eye pbuild-eyeball"></i>
+              <div className="pbuild-preview-button">Preview</div>
+            </section>
+          </main>
         </section>
+      <section className="pbuild-project-info-container">
+
+
+
+      </section>
       </main>
     );
   }
