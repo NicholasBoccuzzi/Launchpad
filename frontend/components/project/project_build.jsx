@@ -25,6 +25,7 @@ class projectBuild extends React.Component {
 
   componentDidMount() {
     this.props.fetchProject(this.props.projectId);
+    window.scrollTo(0, 0);
   }
 
   componentWillReceiveProps(nextProps) {

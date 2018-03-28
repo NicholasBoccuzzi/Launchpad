@@ -25,7 +25,6 @@ class SearchDropdown extends React.Component {
   }
 
   componentDidMount () {
-
   }
 
 

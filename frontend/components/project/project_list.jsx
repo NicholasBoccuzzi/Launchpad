@@ -55,6 +55,7 @@ class projectList extends React.Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     if (this.location[1] === ("discover")) {
       if (this.search) {
         let cat;
@@ -81,6 +82,7 @@ class projectList extends React.Component {
         let searchQuery = {category: cat, location: loc, order: ord};
 
         this.props.fetchProjects(searchQuery);
+        this.setState({loaded: true});
       } else {
         this.props.fetchProjects();
         this.setState({loaded: true});
@@ -115,6 +117,7 @@ class projectList extends React.Component {
     if (nextProps.projects && nextProps.projects.length === 0) {
       this.noProjects = true;
     }
+
   }
 
   createSearchQuery (nextProps) {

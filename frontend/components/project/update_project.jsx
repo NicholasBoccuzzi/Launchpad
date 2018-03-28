@@ -62,12 +62,15 @@ class updateProjectForm extends React.Component {
   }
 
   componentDidMount () {
+    window.scrollTo(0, 0);
     if (this.props.modalVisible) {
       this.setState({modalVisible: false});
     }
 
     if (this.props.location.pathname.includes("rewards")) {
       this.activeTab = "Rewards";
+    } else if (this.props.location.pathname.includes("story")) {
+      this.activeTab = "Story";
     }
 
     this.props.fetchProject(parseInt(location.hash.split('/')[2]));
@@ -441,7 +444,7 @@ class updateProjectForm extends React.Component {
 
         <nav className="project-nav">
           <div className="project-nav-tabs-container small-margin-right">
-            <a href="#" className="project-nav-tabs-li no-border pnav-black">
+            <a href={`#/projects/${this.state.id}/build`} className="project-nav-tabs-li no-border pnav-black">
               <i className="fas fa-long-arrow-alt-left small-margin-right"></i>
               <div>Exit Editor</div>
             </a>
