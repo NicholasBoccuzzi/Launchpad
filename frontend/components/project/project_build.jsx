@@ -15,6 +15,12 @@ class projectBuild extends React.Component {
     this.displayCampaignBox = this.displayCampaignBox.bind(this);
     this.displayAccountBox = this.displayAccountBox.bind(this);
     this.green = this.green.bind(this);
+    this.greenCount = 0;
+    this.checkRewardText = this.checkRewardText.bind(this);
+    this.checkProfileText = this.checkProfileText.bind(this);
+    this.checkAccountText = this.checkAccountText.bind(this);
+    this.checkBasicsText = this.checkBasicsText.bind(this);
+    this.checkStoryText = this.checkStoryText.bind(this);
   }
 
   componentDidMount() {
@@ -46,14 +52,97 @@ class projectBuild extends React.Component {
   green(el) {
     if (this.props.project) {
       if (this.props.project.live) {
+        this.greenCount = 5;
         return "pbuild-green";
       } else if (el === "reward" && this.props.project.rewards.length > 0) {
+        this.greenCount += 1;
         return "pbuild-green";
       } else if (el === "account") {
+        this.greenCount += 1;
+        return "pbuild-green";
+      } else if (
+        el === "basics" &&
+        this.props.project.title
+         && this.props.project.summary
+         && this.props.project.funding_goal
+         && this.props.project.deadline
+         && this.props.project.category
+         && this.props.project.image
+         && this.props.project.location
+       ){
+         this.greenCount += 1;
+         return "pbuild-green";
+      } else if ( el === "story" && this.props.project.body) {
+        this.greenCount += 1;
         return "pbuild-green";
       }
     }
   }
+
+  checkRewardText() {
+    if (this.props.project.live) {
+      return "Done.";
+    }
+
+    if (this.props.project.rewards.length > 0) {
+      return "Done.";
+    } else {
+      return "Set your rewards and shipping costs.";
+    }
+  }
+
+  checkProfileText() {
+    if (this.props.project.live) {
+      return "Done.";
+    }
+
+    if (this.props.currentUser.biography) {
+     return "Done";
+   } else {
+     return "Write a bio and add links to your social accounts.";
+   }
+  }
+
+  checkAccountText() {
+    if (this.props.project.live) {
+      return "Done";
+    } else {
+      return "Done";
+    }
+  }
+
+  checkBasicsText() {
+    if (this.props.project.live) {
+      return "Done";
+    }
+
+    if (
+      this.props.project.title
+       && this.props.project.summary
+       && this.props.project.funding_goal
+       && this.props.project.deadline
+       && this.props.project.category
+       && this.props.project.image
+       && this.props.project.location
+     ) {
+       return "Done";
+     } else {
+       return "Add an image, set your funding goal, and more.";
+     }
+  }
+
+  checkStoryText() {
+    if (this.props.project.live) {
+      return "Done.";
+    }
+
+    if (this.props.project.body) {
+      return "Done.";
+    } else {
+      return "Add a video and detailed project video";
+    }
+  }
+
 
   displayAccountBox() {
     if (this.props.project) {
@@ -65,7 +154,7 @@ class projectBuild extends React.Component {
                 <i className={`far fa-check-circle pbuild-circle ${this.green("profile")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Profile</div>
-                  <div className="pbuild-button-text">Write a bio and add links to your social accounts.</div>
+                  <div className="pbuild-button-text">{this.checkProfileText()}</div>
                 </section>
               </div>
             </a>
@@ -74,7 +163,7 @@ class projectBuild extends React.Component {
                 <i className={`far fa-check-circle pbuild-circle ${this.green("account")}`}></i>
                 <section className="flex-col margin-auto-zero pbuild-account-marg">
                   <div className="pbuild-button-header">Account</div>
-                  <div className="pbuild-button-text">Confirm your identity and contact Launchpad's creator.</div>
+                  <div className="pbuild-button-text">{this.checkAccountText()}</div>
                   <div className="pbuild-reply-container">
                     <i class="far fa-clock pbuild-clock"></i>
                     <div className="pbuild-reply"> 3 days to receive reply</div>
@@ -98,7 +187,7 @@ class projectBuild extends React.Component {
                 <i className={`far fa-check-circle pbuild-circle ${this.green("basics")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Basics</div>
-                  <div className="pbuild-button-text">Add an image, set your funding goal, and more.</div>
+                  <div className="pbuild-button-text">{this.checkBasicsText()}</div>
                 </section>
               </div>
             </a>
@@ -107,19 +196,19 @@ class projectBuild extends React.Component {
                 <i className={`far fa-check-circle pbuild-circle ${this.green("reward")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Rewards</div>
-                  <div className="pbuild-button-text">Done.</div>
+                  <div className="pbuild-button-text">{this.checkRewardText()}</div>
                 </section>
               </div>
             </a>
-            <div className="pbuild-li pbuild-li-margbot">
+            <a href={`#/projects/${this.props.project.id}/edit/story`} className="pbuild-li">
               <div className="flex-row">
                 <i className={`far fa-check-circle pbuild-circle ${this.green("story")}`}></i>
                 <section className="flex-col margin-auto-zero">
                   <div className="pbuild-button-header">Story</div>
-                  <div className="pbuild-button-text">Add an video and detailed project description.</div>
+                  <div className="pbuild-button-text">{this.checkStoryText()}</div>
                 </section>
               </div>
-            </div>
+            </a>
           </main>
         </section>
       );
@@ -168,6 +257,14 @@ class projectBuild extends React.Component {
             <div className="pbuild-header pbuild-account">Account</div>
             {this.displayAccountBox()}
           </div>
+          <section className="pbuild-completion-container">
+            <div className="pbuild-completion-count">
+              {this.greenCount} of 5 complete
+            </div>
+            <div className="pbuild-completion-text">
+              After you've completed all steps, you can submit for review
+            </div>
+          </section>
         </main>
       </section>
       </main>

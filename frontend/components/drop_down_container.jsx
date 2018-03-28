@@ -12,10 +12,32 @@ const mapStateToProps = state => {
     currentUserProjects = Object.values(
       state.entities.projects.currentUserProjects
     );
-    currentUserProjects = currentUserProjects.slice(
-      currentUserProjects.length - 5,
-      currentUserProjects.length
-    );
+    if (currentUserProjects.length >= 5) {
+      currentUserProjects = currentUserProjects.slice(
+        currentUserProjects.length - 5,
+        currentUserProjects.length
+      );
+    } else if (currentUserProjects.length === 4) {
+      currentUserProjects = currentUserProjects.slice(
+        currentUserProjects.length - 4,
+        currentUserProjects.length
+      );
+    } else if (currentUserProjects.length === 3) {
+      currentUserProjects = currentUserProjects.slice(
+        currentUserProjects.length - 3,
+        currentUserProjects.length
+      );
+    } else if (currentUserProjects.length === 2) {
+      currentUserProjects = currentUserProjects.slice(
+        currentUserProjects.length - 2,
+        currentUserProjects.length
+      );
+    } else if (currentUserProjects.length === 1) {
+      currentUserProjects = currentUserProjects.slice(
+        currentUserProjects.length - 1,
+        currentUserProjects.length
+      );
+    }
   }
   return {
     loggedIn: Boolean(state.session.currentUser),

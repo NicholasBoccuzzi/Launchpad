@@ -53,18 +53,25 @@ class DropDown extends React.Component {
 
   displayMyProjects() {
     if (this.props.currentUser && this.props.currentUserProjects) {
-      let projects = this.props.currentUser.projects.slice(
-        this.props.currentUser.projects.length - 5,
+      let projects;
+      let number;
+
+      if (this.props.currentUserProjects.length >= 5) {
+        number = 5;
+      } else {
+        number = this.props.currentUserProjects.length;
+      }
+
+      projects = this.props.currentUser.projects.slice(
+        this.props.currentUser.projects.length - number,
         this.props.currentUser.projects.length
       );
-
-
 
 
       let result = [];
 
       for (var i =  projects.length - 1; i >= 0; i--) {
-        let url = `#/projects/${this.props.currentUserProjects[i].id}/edit`;
+        let url = `#/projects/${this.props.currentUserProjects[i].id}/build`;
 
         result.push (
           <div className="dd-projects-li-container">
@@ -136,7 +143,9 @@ class DropDown extends React.Component {
                 <div className="dd-my-blank-container">
                   {this.displayMyProjects()}
                 <div className="dd-view-all">
-                  <a href={`#/user/${this.props.currentUser.id}/projects`} className="dd-view-all">
+                  <a href={`#/user/${this.props.currentUser.id}/projects`}
+                    onClick={this.props.toggleProfileDropDown}
+                    className="dd-view-all">
                     View all
                   </a>
                 </div>
