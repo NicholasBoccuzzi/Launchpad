@@ -163,7 +163,7 @@ class Main extends React.Component {
           Contact Information
         </div>
         <div className="mp-contact-me-text">
-          Email me and receive a response within the first 48 hours guarenteed.
+          Email me and receive a response within the first 48 hours guaranteed.
         </div>
         <a href="mailto:Nicholas.R.Boccuzzi@email.com" className="mp-contact-me-button">
           <div className="mp-contact-me-button-text">

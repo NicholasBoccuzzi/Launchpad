@@ -11,6 +11,7 @@ class DropDown extends React.Component {
     this.displayMyProjects = this.displayMyProjects.bind(this);
     this.switchProjects = this.switchProjects.bind(this);
     this.loadUserInfo = this.loadUserInfo.bind(this);
+    this.isProjectBuild = this.isProjectBuild.bind(this);
   }
 
   componentDidMount() {
@@ -35,6 +36,12 @@ class DropDown extends React.Component {
   switchProjects () {
     this.props.toggleProfileDropDown();
     this.props.updatePage();
+  }
+
+  isProjectBuild () {
+    if (this.props.location.pathname.includes("build")) {
+      return "pbuild-pos-abs animated fadeIn";
+    }
   }
 
   displayMyStuff() {
@@ -171,7 +178,7 @@ class DropDown extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className={this.isProjectBuild()}>
         {this.dropDownContent()}
       </div>
     );
