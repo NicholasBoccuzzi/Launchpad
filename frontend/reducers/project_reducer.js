@@ -15,7 +15,6 @@ const projectsReducer = (state = {}, action) => {
     case RECEIVE_ALL_PROJECTS:
       return action.projects;
     case RECEIVE_CURRENT_USER_PROJECTS:
-      debugger
       return merge({}, state, {currentUserProjects: action.currentUserProjects});
     case RECEIVE_USER_PROJECTS:
       let useProj = merge({}, state);
