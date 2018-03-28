@@ -16,6 +16,8 @@ class Modal extends React.Component {
     this.forLogin = this.forLogin.bind(this);
     this.forUpdate = this.forUpdate.bind(this);
     this.forRewards = this.forRewards.bind(this);
+    this.rewardsRedirect = this.rewardsRedirect.bind(this);
+    this.rewardsSubmitted = false;
   }
 
   componentDidMount() {
@@ -31,6 +33,13 @@ class Modal extends React.Component {
   componentWillUnmount () {
     if (this.props.location === "login") {
       this.props.clearSessionErrors();
+    }
+  }
+
+  rewardsRedirect () {
+    debugger
+    if (this.rewardsSubmitted === true && this.props.rewardErrors.length === 0) {
+      return <Redirect to={`/projects/${this.props.projectId}/build`} />;
     }
   }
 
@@ -80,7 +89,9 @@ class Modal extends React.Component {
     e.preventDefault();
     const that = this;
 
-    this.props.rewardsState.forEach((reward) => {
+    for (var i = 0; i < this.props.rewardsState.length; i++) {
+      let reward = this.props.rewardsState[i];
+
       let rewardObj = {
         reward: {
           title: reward.state["title"],
@@ -92,7 +103,9 @@ class Modal extends React.Component {
       };
 
       this.props.createReward(rewardObj);
-    });
+    }
+
+    this.rewardsSubmitted = true;
   }
 
   renderIfCreateProjectActive () {
@@ -166,6 +179,7 @@ class Modal extends React.Component {
     return (
       <div>
         {redirected}
+        {this.rewardsRedirect()}
         {this.forLogin()}
         {this.forUpdate()}
         {this.forRewards()}

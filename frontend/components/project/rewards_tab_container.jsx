@@ -7,7 +7,8 @@ const mapStateToProps = (state) => {
   return {
     rewardCount: state.ui.rewardCount,
     loadedRewards: state.ui.loadedRewards,
-    rewardsModalActive: state.ui.rewardsModalActive
+    rewardsModalActive: state.ui.rewardsModalActive,
+    reward: state.errors.reward,
   };
 };
 

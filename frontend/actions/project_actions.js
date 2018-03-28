@@ -94,7 +94,7 @@ export const createProject = (project) => dispatch => {
     ProjectAPIUtil.createProject(project).then(project => dispatch(receiveProject(project)),
     err => dispatch(receiveProjectErrors)).then((project) => {
       let origin = window.location.origin + "/#/";
-      let projectEdit = `projects/${project.project.id}/edit`;
+      let projectEdit = `projects/${project.project.id}/build`;
       window.location.assign(origin + projectEdit);
     })
   );
