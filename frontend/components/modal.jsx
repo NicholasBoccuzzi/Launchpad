@@ -103,6 +103,7 @@ class Modal extends React.Component {
       };
 
       this.props.createReward(rewardObj);
+    
     }
 
     this.rewardsSubmitted = true;

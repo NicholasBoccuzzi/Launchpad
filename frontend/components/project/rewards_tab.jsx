@@ -24,7 +24,10 @@ class rewardsTab extends React.Component {
       <RewardsTabItem rewardNum={num}
         key={num}
         rewardsState={this.rewardsState}
-        removeReward={this.removeReward}/>
+        removeReward={this.removeReward}
+        projectId={this.state.projectId}
+        />
+
     );
   }
 

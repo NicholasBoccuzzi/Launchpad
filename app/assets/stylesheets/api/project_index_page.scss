@@ -43,7 +43,7 @@
 }
 
 .list-item-container {
-    min-width: 355px;
+    min-width: 353px;
     max-width: 390px;
     max-height: 530px;
     min-height: 440px;
@@ -51,7 +51,7 @@
     border: 1px solid #DCDEDD;
 
     @media (max-width: 1380px) {
-      width: 355px;
+      width: 353px;
     }
 }
 
