@@ -161,4 +161,14 @@
 .show-backproject {
   width: 100%;
   height: 50px;
+  text-align: center;
+  font-size: 14px;
+  background: #169D74;
+  cursor: pointer;
+  color: white;
+}
+
+.show-backproject:hover {
+  background:#0F7262;
+
 }

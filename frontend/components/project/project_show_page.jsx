@@ -46,6 +46,30 @@ class projectShow extends React.Component {
       }
   }
 
+  displayBackProject(string) {
+    if (string === "text") {
+      if (this.props.currentUser && this.props.project) {
+        if (this.props.currentUser.backings && this.props.currentUser.backingIds.includes(this.props.project.id)) {
+          return "View Pledge";
+        } else {
+          return "Back this Project";
+        }
+      }else {
+        return "Back this Project";
+      }
+    } else if (string === "class") {
+      if (this.props.currentUser && this.props.project) {
+        if (this.props.currentUser.backings && this.props.currentUser.backingIds.includes(this.props.project.id)) {
+          return "show-backproject blue";
+        } else {
+          return "show-backproject";
+        }
+      } else {
+        return "show-backproject";
+      }
+    }
+  }
+
   renderUser() {
     if (this.props.currentUser) {
       if (this.props.currentUser.id == this.props.project.creator_id) {
@@ -126,7 +150,7 @@ class projectShow extends React.Component {
                 <h2 className="show-info-backup-text bold">Backers</h2>
                 <h1>{this.dateMath()}</h1>
                 <section className="show-backproject-container">
-                  <div className={this.displayBackProject("text")}>
+                  <div className={this.displayBackProject("class")}>
                     {this.displayBackProject("text")}
                   </div>
                 </section>
