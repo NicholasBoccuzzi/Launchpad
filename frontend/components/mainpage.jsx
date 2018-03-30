@@ -20,6 +20,7 @@ class Main extends React.Component {
     this.displayRandomProjects = this.displayRandomProjects.bind(this);
     this.displayKSQuote = this.displayKSQuote.bind(this);
     this.displayContact = this.displayContact.bind(this);
+    this.displayFeatured = this.displayFeatured.bind(this);
   }
 
   setDate() {
@@ -204,6 +205,36 @@ class Main extends React.Component {
     );
   }
 
+  displayFeatured (featured) {
+    if (featured) {
+      return (
+        <a href={`#/projects/${featured.id}`} className="featured-image-container">
+          <img className="featured-image" src={featured.image}></img>
+          <div className="main-info-containers">
+            <div className="white-background featured-title">
+              <p>{featured.title}</p>
+            </div>
+            <br></br>
+
+            <div className="white-background featured-author">
+              <p>BY CREATOR #{featured.creator_id}</p>
+            </div>
+            <br></br>
+            <div className="white-background featured-author">
+              <p className="white-background featured-funded">
+                {this.percentFunded(featured.current_funding, featured.funding_goal)}% FUNDED
+              </p>
+            </div>
+          </div>
+        </a>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
+  }
+
 
   displayProjects () {
     let latestList;
@@ -261,7 +292,7 @@ class Main extends React.Component {
         );
       });
     } else {
-      featured = <div></div>;
+      featured = undefined;
       latestList = [<div>Missing Projects</div>];
     }
 
@@ -270,25 +301,7 @@ class Main extends React.Component {
         <div className="flexed">
           <section className="featured-project-container">
             <h2 className="mainpage-projects-header ten-px-bottom">FEATURED PROJECT</h2>
-            <Link to={`/projects/${featured.id}`} className="featured-image-container">
-              <img className="featured-image" src={featured.image}></img>
-              <div className="main-info-containers">
-                <div className="white-background featured-title">
-                  <p>{featured.title}</p>
-                </div>
-                <br></br>
-
-                <div className="white-background featured-author">
-                  <p>BY CREATOR #{featured.creator_id}</p>
-                </div>
-                <br></br>
-                <div className="white-background featured-author">
-                  <p className="white-background featured-funded">
-                    {this.percentFunded(featured.current_funding, featured.funding_goal)}% FUNDED
-                  </p>
-                </div>
-              </div>
-            </Link>
+            {this.displayFeatured(featured)}
           </section>
           <section className="category-tabs-container">
             <h2 className="mainpage-projects-header mainpage-littletabs">

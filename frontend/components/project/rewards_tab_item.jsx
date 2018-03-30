@@ -26,24 +26,6 @@ class RewardsTabItem extends React.Component {
     if (nextProps.rewardNum) {
       this.rewardNum = nextProps.rewardNum;
     }
-
-
-    if (nextProps.createUpdateRewardActive) {
-      let rewardObj = {
-        reward: {
-          title: this.state["title"],
-          body: this.state["description"],
-          amount: this.state["pledge"],
-          delivery_date: this.state["estimatedDeliveryMonth"] + "," + this.state["estimatedDeliveryYear"],
-          project_id: this.props.projectId
-        }
-      };
-      if (this.exists) {
-        this.props.updateReward(rewardObj);
-      } else {
-        this.props.createReward(rewardObj);
-      }
-    }
   }
 
   updateRewardState(e, el) {
@@ -76,7 +58,7 @@ class RewardsTabItem extends React.Component {
                 <input
                   onChange={(e) => {this.updateRewardState(e, "pledge");}}
                   className="reward-user-input"
-                  placeholder="$1">{this.state.pledge}
+                  placeholder="$1">
                 </input>
               </div>
               <div className="flexed-rows reward-input-container">

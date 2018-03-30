@@ -6,6 +6,7 @@ class projectShow extends React.Component {
   constructor(props) {
     super(props);
     this.dateMath = this.dateMath.bind(this);
+    this.displayBackProject = this.displayBackProject.bind(this);
   }
 
   componentDidMount() {
@@ -112,7 +113,7 @@ class projectShow extends React.Component {
               <div className="show-video-container">
                 <img className="show-image-resize" src={this.props.project.image}></img>
               </div>
-              <div className="show-page-info">
+              <main className="show-page-info">
                 <Line className="show-progress-bar"
                   trailColor="#F1EEEA"
                   percent={this.percentMath()}
@@ -124,7 +125,12 @@ class projectShow extends React.Component {
                 <h1 className="show-main-info bold">200</h1>
                 <h2 className="show-info-backup-text bold">Backers</h2>
                 <h1>{this.dateMath()}</h1>
-              </div>
+                <section className="show-backproject-container">
+                  <div className={this.displayBackProject("text")}>
+                    {this.displayBackProject("text")}
+                  </div>
+                </section>
+              </main>
             </div>
             <div className="show-page-buttons">
               <div className="show-main-button-container">

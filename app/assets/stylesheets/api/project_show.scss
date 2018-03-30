@@ -69,6 +69,7 @@
   min-height: 300px;
   max-height: 430px;
   display: flex;
+  margin-right: 60px;
 }
 
 .show-progress-bar {
@@ -151,4 +152,13 @@
   font-weight: 700;
   border-radius: 360px;
   text-align: center;
+}
+
+.show-backproject-container {
+  margin-top: 32px;
+}
+
+.show-backproject {
+  width: 100%;
+  height: 50px;
 }
