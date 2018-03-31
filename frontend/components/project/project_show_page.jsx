@@ -5,8 +5,18 @@ import { Link } from 'react-router-dom';
 class projectShow extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      selectedTab: "campaign"
+    };
+
     this.dateMath = this.dateMath.bind(this);
     this.displayBackProject = this.displayBackProject.bind(this);
+    this.displayFacebookButton = this.displayFacebookButton.bind(this);
+    this.displayTwitterButton = this.displayTwitterButton.bind(this);
+    this.displayEmailButton = this.displayEmailButton.bind(this);
+    this.displayFundedBy = this.displayFundedBy.bind(this);
+    this.selectedTab = this.selectedTab.bind(this);
   }
 
   componentDidMount() {
@@ -16,6 +26,55 @@ class projectShow extends React.Component {
 
   componentWillUnmount() {
 
+  }
+
+  selectedTab () {
+    if (this.state.selectedTab === "campaign") {
+      return "sp-selected-tab";
+    }
+  }
+
+  displayFundedBy () {
+    if (this.props.project) {
+      return `This project will only be funded if it reaches its goal by ${this.props.project.funded_by} 11:59 PM EDT.`;
+    }
+  }
+  displayFacebookButton () {
+    if (this.props.project) {
+      return (
+        <div
+          data-href={`https://thelaunchpad.herokuapp.com/#/projects/${this.props.project.id}/`}
+          data-layout="button"
+          data-size="small"
+          data-mobile-iframe="true">
+          <a target="_blank"
+            href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthelaunchpad.herokuapp.com%2F%23%2Fprojects%2F${this.props.project.id}%2F&amp;src=sdkpreparse`}
+          className="fb-xfbml-parse-ignore">
+          <i className="fab fa-facebook facebook-icon"></i>
+          </a>
+        </div>
+      );
+    }
+  }
+
+  displayTwitterButton () {
+    if (this.props.project) {
+      return (
+        <a
+        href={`https://twitter.com/intent/tweet?text=${this.props.project.title}%20is%20popular%20on%20@Launchpad!`}
+        data-size="large">
+        <i className="fab fa-twitter facebook-icon"></i>
+        </a>
+      );
+    }
+  }
+
+  displayEmailButton () {
+    return(
+      <a href="mailto:Nicholas.R.Boccuzzi@email.com">
+        <i className="fas fa-envelope facebook-icon"></i>
+      </a>
+    );
   }
 
   dateMath () {
@@ -154,6 +213,17 @@ class projectShow extends React.Component {
                     {this.displayBackProject("text")}
                   </div>
                 </section>
+                <section className="sp-social-links">
+                  {this.displayFacebookButton()}
+                  {this.displayTwitterButton()}
+                  {this.displayEmailButton()}
+                </section>
+                <p className="sp-all-or-nothing">
+                  <a className="sp-aon" href="https://www.kickstarter.com/help/faq/kickstarter+basics?ref=project_header#faq_41848">
+                    All or nothing.
+                  </a>
+                  {this.displayFundedBy()}
+                </p>
               </main>
             </div>
             <div className="show-page-buttons">
@@ -178,6 +248,11 @@ class projectShow extends React.Component {
                     </div>
               </div>
             </div>
+            <section className="sp-project-buttons-container">
+              <div className={`sp-project-button ${this.selectedTab()}`}>
+                Campaign
+              </div>
+            </section>
           </div>
         </main>
       );
