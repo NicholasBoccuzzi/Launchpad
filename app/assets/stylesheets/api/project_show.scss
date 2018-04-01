@@ -230,13 +230,19 @@
   color: black;
 }
 
-.sp-project-buttons-container {
+.sp-project-buttons-nav {
   border-top: 1px solid #DCDEDD;
   padding-top: 32px;
-  padding-left: 120px;
-  padding-right: 120px;
   display: flex;
+  justify-content: center;
+  margin:auto;
+  background: white;
   flex-direction: row;
+}
+
+.sp-project-buttons-container {
+  width: 1040px;
+  margin: 0 auto;
 }
 
 .sp-selected-tab {
@@ -250,8 +256,19 @@
   font-size: 14px;
   color: black;
   cursor: pointer;
+  width: fit-content;
+  display: block;
 }
 
 .sp-project-button:hover {
   color: #169D74;
+}
+
+.sp-content-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.sp-campaign-container {
+
 }

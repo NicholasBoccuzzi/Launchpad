@@ -1,6 +1,7 @@
 import React from 'react';
 import { Line, Circle } from 'rc-progress';
 import { Link } from 'react-router-dom';
+import projectCampaign from './project_show_campaign';
 
 class projectShow extends React.Component {
   constructor(props) {
@@ -248,11 +249,14 @@ class projectShow extends React.Component {
                     </div>
               </div>
             </div>
-            <section className="sp-project-buttons-container">
-              <div className={`sp-project-button ${this.selectedTab()}`}>
-                Campaign
+            <section className="sp-project-buttons-nav">
+              <div className="sp-project-buttons-container">
+                <div className={`sp-project-button ${this.selectedTab()}`}>
+                  Campaign
+                </div>
               </div>
             </section>
+
           </div>
         </main>
       );
