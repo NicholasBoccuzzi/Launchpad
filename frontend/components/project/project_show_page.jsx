@@ -1,7 +1,7 @@
 import React from 'react';
 import { Line, Circle } from 'rc-progress';
 import { Link } from 'react-router-dom';
-import projectCampaign from './project_show_campaign';
+import ProjectCampaign from './project_show_campaign';
 
 class projectShow extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class projectShow extends React.Component {
     this.displayEmailButton = this.displayEmailButton.bind(this);
     this.displayFundedBy = this.displayFundedBy.bind(this);
     this.selectedTab = this.selectedTab.bind(this);
+    this.displayCampaignBody = this.displayCampaignBody.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +33,14 @@ class projectShow extends React.Component {
   selectedTab () {
     if (this.state.selectedTab === "campaign") {
       return "sp-selected-tab";
+    }
+  }
+
+  displayCampaignBody () {
+    if (this.props.project) {
+      return (
+        <ProjectCampaign body={this.props.project.body} rewards={this.props.project.rewards}/>
+      );
     }
   }
 
@@ -256,7 +265,9 @@ class projectShow extends React.Component {
                 </div>
               </div>
             </section>
-
+            <section className="sp-campaign-container">
+              {this.displayCampaignBody()}
+            </section>
           </div>
         </main>
       );

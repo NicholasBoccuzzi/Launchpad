@@ -1,6 +1,6 @@
 .project-show-page-container {
   background: #FBFBFA;
-
+  width: 100%;
 }
 
 .project-show-title-container {
@@ -270,5 +270,8 @@
 }
 
 .sp-campaign-container {
+  display: flex;
 
+  padding-left: 18px;
+  padding-right: 18px;
 }
