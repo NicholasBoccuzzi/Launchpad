@@ -136,6 +136,12 @@ class projectShow extends React.Component {
       } else {
         return "show-backproject";
       }
+    } else if (string === "link") {
+      if (this.props.project) {
+        return `#/${this.props.project.id}/rewards`;
+      } else {
+        return `#`;
+      }
     }
   }
 
@@ -219,9 +225,9 @@ class projectShow extends React.Component {
                 <h2 className="show-info-backup-text bold">Backers</h2>
                 <h1>{this.dateMath()}</h1>
                 <section className="show-backproject-container">
-                  <div className={this.displayBackProject("class")}>
+                  <a href={`${this.displayBackProject("link")}`} className={this.displayBackProject("class")}>
                     {this.displayBackProject("text")}
-                  </div>
+                  </a>
                 </section>
                 <section className="sp-social-links">
                   {this.displayFacebookButton()}
