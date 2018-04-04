@@ -14,7 +14,7 @@ u2 = User.create!(username: "winnie", password: "ilovetreats", email: "cutepuppy
 u3 = User.create!(username: "luke", password: "starwars", email: "thelastjedi@hotmail.com", location: "Tatooine")
 
 p1 = Project.create!(
-  title: "Seed Project 1",
+  title: "Seed Games Project",
   current_funding: 0,
   funding_goal: 10000,
   summary: "seed summary",
@@ -23,7 +23,7 @@ p1 = Project.create!(
   creator_id: u1.id,
   deadline: "2020/02/05",
   category: "Games",
-  image: File.open('app/assets/images/seeds.jpg'),
+  image: File.open('app/assets/images/sot.png'),
   live: true
 )
 
@@ -37,7 +37,7 @@ p2 = Project.create!(
   creator_id: u2.id,
   deadline: "2020/11/16",
   category: "Tech",
-  image: File.open('app/assets/images/pumpkin.jpg'),
+  image: File.open('app/assets/images/puppies.jpg'),
   live: true
 )
 
@@ -52,7 +52,7 @@ p3 = Project.create!(
   creator_id: u3.id,
   deadline: "2025/05/20",
   category: "Movie",
-  image: File.open('app/assets/images/sunflower.jpg'),
+  image: File.open('app/assets/images/starwars.png'),
   live: true
 )
 
@@ -67,7 +67,7 @@ p4 = Project.create!(
   creator_id: u1.id,
   deadline: "2020/02/02",
   category: "Tech",
-  image: File.open('app/assets/images/acorn.jpg'),
+  image: File.open('app/assets/images/app.png'),
   live: true
 )
 
@@ -82,7 +82,7 @@ p5 = Project.create!(
   creator_id: u2.id,
   deadline: "2022/01/01",
   category: "Art",
-  image: File.open('app/assets/images/flex.jpg'),
+  image: File.open('app/assets/images/artist.jpg'),
   live: false
 )
 
@@ -97,7 +97,7 @@ p6 = Project.create!(
   creator_id: u1.id,
   deadline: "2019/01/01",
   category: "Music",
-  image: File.open('app/assets/images/flex.jpg'),
+  image: File.open('app/assets/images/music.jpg'),
   live: true
 )
 
@@ -112,7 +112,7 @@ p7 = Project.create!(
   creator_id: u2.id,
   deadline: "2019/12/12",
   category: "Journalism",
-  image: File.open('app/assets/images/flex.jpg'),
+  image: File.open('app/assets/images/journalist.jpg'),
   live: true
 )
 
@@ -127,7 +127,7 @@ p8 = Project.create!(
   creator_id: u3.id,
   deadline: "2019/10/09",
   category: "Photography",
-  image: File.open('app/assets/images/flex.jpg'),
+  image: File.open('app/assets/images/photography.jpg'),
   live: true
 )
 
@@ -142,7 +142,7 @@ p9 = Project.create!(
   creator_id: u3.id,
   deadline: "2018/11/04",
   category: "Food",
-  image: File.open('app/assets/images/flex.jpg'),
+  image: File.open('app/assets/images/donuts.jpg'),
   live: true
 )
 
@@ -157,7 +157,7 @@ p10 = Project.create!(
   creator_id: u3.id,
   deadline: "2018/06/07",
   category: "Publishing",
-  image: File.open('app/assets/images/seeds.jpg'),
+  image: File.open('app/assets/images/publishing.jpg'),
   live: true
 )
 
@@ -172,7 +172,7 @@ p11 = Project.create!(
   creator_id: u1.id,
   deadline: "2018/04/03",
   category: "Theater",
-  image: File.open('app/assets/images/seeds.jpg'),
+  image: File.open('app/assets/images/theater.jpg'),
   live: true
 )
 
@@ -187,7 +187,7 @@ p12 = Project.create!(
   creator_id: u1.id,
   deadline: "2018/04/03",
   category: "Film+Video",
-  image: File.open('app/assets/images/seeds.jpg'),
+  image: File.open('app/assets/images/filming.jpg'),
   live: true
 )
 
@@ -202,7 +202,7 @@ p13 = Project.create!(
   creator_id: u1.id,
   deadline: "2018/04/03",
   category: "Fashion",
-  image: File.open('app/assets/images/pumpkin.jpg'),
+  image: File.open('app/assets/images/fashion.jpg'),
   live: true
 )
 
@@ -217,7 +217,7 @@ p14 = Project.create!(
   creator_id: u1.id,
   deadline: "2018/04/03",
   category: "Design",
-  image: File.open('app/assets/images/pumpkin.jpg'),
+  image: File.open('app/assets/images/design.jpg'),
   live: true
 )
 
@@ -232,7 +232,7 @@ p14 = Project.create!(
   creator_id: u1.id,
   deadline: "2018/04/03",
   category: "Crafts",
-  image: File.open('app/assets/images/pumpkin.jpg'),
+  image: File.open('app/assets/images/crafts.jpg'),
   live: true
 )
 
@@ -247,7 +247,7 @@ p15 = Project.create!(
   creator_id: u1.id,
   deadline: "2018/04/03",
   category: "Comics",
-  image: File.open('app/assets/images/pumpkin.jpg'),
+  image: File.open('app/assets/images/comics.jpg'),
   live: true
 )
 
@@ -262,6 +262,6 @@ p16 = Project.create!(
   creator_id: u3.id,
   deadline: "2018/04/03",
   category: "Dance",
-  image: File.open('app/assets/images/acorn.jpg'),
+  image: File.open('app/assets/images/dance.jpg'),
   live: true
 )

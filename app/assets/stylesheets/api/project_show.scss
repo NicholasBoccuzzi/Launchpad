@@ -231,6 +231,7 @@
 }
 
 .sp-project-buttons-nav {
+  border-bottom: 1px solid #DCDEDD;
   border-top: 1px solid #DCDEDD;
   padding-top: 32px;
   display: flex;
@@ -267,11 +268,29 @@
 .sp-content-container {
   display: flex;
   flex-direction: row;
+  margin: 0 auto;
+  background: white;
+
+  @media (min-width: 1040px) {
+    min-width: 1040px;
+  }
 }
 
 .sp-campaign-container {
   display: flex;
+  flex-direction: column;
+  padding-right: 10px;
+  padding-left: 10px;
+  background: white;
 
-  padding-left: 18px;
-  padding-right: 18px;
+  @media (min-width: 1040px) {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.sp-campaign-header {
+  font-size: 18px;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
