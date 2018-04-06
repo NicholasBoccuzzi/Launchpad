@@ -287,7 +287,7 @@ class projectShow extends React.Component {
       );
     } else {
       return (
-        <h3>hi</h3>
+        <h3>Loading...</h3>
       );
     }
   }
