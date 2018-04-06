@@ -236,7 +236,7 @@ class Navbar extends React.Component {
               </div>
             </div>
             <section className="exp-list">
-              <a href="#/discover?cat=Arts"
+              <a href="#/discover?cat=Art"
                 onClick={this.props.deactivateExploreModal}
                 className="exp-list-item">Arts</a>
               <a href="#/discover?cat=Comics"

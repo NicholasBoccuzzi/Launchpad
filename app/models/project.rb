@@ -36,6 +36,9 @@ class Project < ApplicationRecord
   class_name: "User"
 
   has_many :rewards
+  has_many :backers,
+    through: :rewards
+
 
   accepts_nested_attributes_for :rewards
 

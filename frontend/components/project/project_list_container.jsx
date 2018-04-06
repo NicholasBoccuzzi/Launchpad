@@ -11,6 +11,8 @@ import {
   toggleSearchOrderModal,
   updatePage
 } from '../../actions/ui_actions';
+import { withRouter } from 'react-router-dom';
+
 
 const mapStateToProps = (state, ownProps) => {
   let userProjects;
@@ -45,4 +47,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(projectList);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(projectList));

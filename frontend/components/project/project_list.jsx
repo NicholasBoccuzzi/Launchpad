@@ -12,7 +12,7 @@ class projectList extends React.Component {
     this.projectList = this.projectList.bind(this);
     this.displayProfilePageProjects = this.displayProfilePageProjects.bind(this);
     this.location = this.props.location.pathname.split("/");
-    this.loaded = false;
+    this.loadedCount = 0;
     this.state = {
       loaded: false,
       cat: null,
@@ -80,12 +80,11 @@ class projectList extends React.Component {
         }
 
         let searchQuery = {category: cat, location: loc, order: ord};
-
         this.props.fetchProjects(searchQuery);
-        this.setState({loaded: true});
+        this.loadedCount += 1;
       } else {
         this.props.fetchProjects();
-        this.setState({loaded: true});
+        this.loadedCount += 2;
       }
     } else if (this.location[1] === ("user")) {
       this.props.fetchUserProjects(this.props.user.id);
@@ -102,7 +101,11 @@ class projectList extends React.Component {
     }
 
     if (nextProps.location.search) {
-      this.disectSearch(nextProps);
+      if (this.loadedCount !== 1) {
+        this.disectSearch(nextProps);
+      } else {
+        this.loadedCount += 1;
+      }
     } else {
       this.search = null;
       this.setState({loc: null});
@@ -233,12 +236,17 @@ class projectList extends React.Component {
   disectSearch(nextProps) {
     this.search = nextProps.location.search.split("&");
 
+    let oldCat = this.state.cat;
+    let oldOrd = this.state.ord;
+    let oldLoc = this.state.loc;
+
     for (var i = 0; i < this.search.length; i++) {
       if (i === 0) {
         this.search[i] = this.search[i].slice(1);
       }
 
       if (this.search[i].includes("loc=")) {
+
         this.setState({loc: this.search[i].slice(4)});
       }
 
@@ -247,22 +255,21 @@ class projectList extends React.Component {
       }
 
       if (this.search[i].includes("ord=")) {
-        let oldOrd = this.state.ord;
         this.setState({ord: this.search[i].slice(4)});
         if (oldOrd !== this.search[i].slice(4)) {
           this.props.fetchProjects({category: this.state.cat, location: this.state.loc, order: this.state.ord});
         }
       }
 
-      if (this.state.cat && !nextProps.location.search.includes("cat=")) {
+      if (oldCat && !nextProps.location.search.includes("cat=")) {
         this.setState({cat: null});
       }
 
-      if (this.state.loc && !nextProps.location.search.includes("loc=")) {
+      if (oldLoc && !nextProps.location.search.includes("loc=")) {
         this.setState({loc: null});
       }
 
-      if (this.state.loc && !nextProps.location.search.includes("ord=")) {
+      if (oldOrd && !nextProps.location.search.includes("ord=")) {
         this.setState({ord: null});
       }
     }
@@ -327,7 +334,7 @@ class projectList extends React.Component {
             <a
               key="Earth"
               className={this.locationLiClass(location)}
-              href={`#${this.location.join("/")}${this.searchUrlFromLoc()}`}
+              href={`#${this.location.join("/")}${this.searchUrlFromLoc(true)}`}
               onClick={() => {this.locationClick(location);}}
               >
               {location}

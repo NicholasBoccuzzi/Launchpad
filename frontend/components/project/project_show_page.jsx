@@ -11,6 +11,7 @@ class projectShow extends React.Component {
       selectedTab: "campaign"
     };
 
+    this.url;
     this.dateMath = this.dateMath.bind(this);
     this.displayBackProject = this.displayBackProject.bind(this);
     this.displayFacebookButton = this.displayFacebookButton.bind(this);
@@ -28,6 +29,13 @@ class projectShow extends React.Component {
 
   componentWillUnmount() {
 
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.project) {
+
+      this.url = nextProps.project.youtube.replace("watch?v=", "embed/");
+    }
   }
 
   selectedTab () {
@@ -150,10 +158,10 @@ class projectShow extends React.Component {
       if (this.props.currentUser.id == this.props.project.creator_id) {
         return (
           <section className="project-show-creator-info">
-            <Link className="edit-button"
-              to={`/projects/${this.props.project.id}/edit`}>
+            <a className="edit-button"
+              href={`#/projects/${this.props.project.id}/build`}>
               Edit Project
-            </Link>
+            </a>
           </section>
         );
       } else {
@@ -210,7 +218,7 @@ class projectShow extends React.Component {
             </div>
             <div className="show-page-info-container">
               <div className="show-video-container">
-                <img className="show-image-resize" src={this.props.project.image}></img>
+                <iframe src={this.url} className="show-image-resize" poster={this.props.project.image}></iframe>
               </div>
               <main className="show-page-info">
                 <Line className="show-progress-bar"

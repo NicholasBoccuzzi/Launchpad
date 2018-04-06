@@ -24,7 +24,8 @@ p1 = Project.create!(
   deadline: "2020/02/05",
   category: "Games",
   image: File.open('app/assets/images/sot.png'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p2 = Project.create!(
@@ -38,7 +39,8 @@ p2 = Project.create!(
   deadline: "2020/11/16",
   category: "Tech",
   image: File.open('app/assets/images/puppies.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p3 = Project.create!(
@@ -53,7 +55,8 @@ p3 = Project.create!(
   deadline: "2025/05/20",
   category: "Movie",
   image: File.open('app/assets/images/starwars.png'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p4 = Project.create!(
@@ -68,7 +71,8 @@ p4 = Project.create!(
   deadline: "2020/02/02",
   category: "Tech",
   image: File.open('app/assets/images/app.png'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p5 = Project.create!(
@@ -83,7 +87,8 @@ p5 = Project.create!(
   deadline: "2022/01/01",
   category: "Art",
   image: File.open('app/assets/images/artist.jpg'),
-  live: false
+  live: false,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p6 = Project.create!(
@@ -98,7 +103,8 @@ p6 = Project.create!(
   deadline: "2019/01/01",
   category: "Music",
   image: File.open('app/assets/images/music.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p7 = Project.create!(
@@ -113,7 +119,8 @@ p7 = Project.create!(
   deadline: "2019/12/12",
   category: "Journalism",
   image: File.open('app/assets/images/journalist.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p8 = Project.create!(
@@ -128,7 +135,8 @@ p8 = Project.create!(
   deadline: "2019/10/09",
   category: "Photography",
   image: File.open('app/assets/images/photography.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p9 = Project.create!(
@@ -143,7 +151,8 @@ p9 = Project.create!(
   deadline: "2018/11/04",
   category: "Food",
   image: File.open('app/assets/images/donuts.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p10 = Project.create!(
@@ -158,7 +167,8 @@ p10 = Project.create!(
   deadline: "2018/06/07",
   category: "Publishing",
   image: File.open('app/assets/images/publishing.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p11 = Project.create!(
@@ -173,7 +183,8 @@ p11 = Project.create!(
   deadline: "2018/04/03",
   category: "Theater",
   image: File.open('app/assets/images/theater.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p12 = Project.create!(
@@ -188,7 +199,8 @@ p12 = Project.create!(
   deadline: "2018/04/03",
   category: "Film+Video",
   image: File.open('app/assets/images/filming.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p13 = Project.create!(
@@ -203,7 +215,8 @@ p13 = Project.create!(
   deadline: "2018/04/03",
   category: "Fashion",
   image: File.open('app/assets/images/fashion.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p14 = Project.create!(
@@ -218,7 +231,8 @@ p14 = Project.create!(
   deadline: "2018/04/03",
   category: "Design",
   image: File.open('app/assets/images/design.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p14 = Project.create!(
@@ -233,7 +247,8 @@ p14 = Project.create!(
   deadline: "2018/04/03",
   category: "Crafts",
   image: File.open('app/assets/images/crafts.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p15 = Project.create!(
@@ -248,7 +263,8 @@ p15 = Project.create!(
   deadline: "2018/04/03",
   category: "Comics",
   image: File.open('app/assets/images/comics.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
 p16 = Project.create!(
@@ -263,5 +279,6 @@ p16 = Project.create!(
   deadline: "2018/04/03",
   category: "Dance",
   image: File.open('app/assets/images/dance.jpg'),
-  live: true
+  live: true,
+  youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )

@@ -350,7 +350,7 @@ class Main extends React.Component {
         <div>
           {featured}
         </div>
-        <a className="mainpage-view-all-container">
+        <a className="mainpage-view-all-container" href={`#/discover?cat=${this.currentFeatured}`}>
           <div className="mainpage-view-all">VIEW ALL</div>
           <i className="fas fa-long-arrow-alt-right"></i>
         </a>

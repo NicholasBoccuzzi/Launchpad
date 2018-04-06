@@ -47,3 +47,6 @@ Users are able to sign up, log in and log out of Launchpad. User information is 
 
 * Project Creation / Updating
 When logged in, Users have access to both the Create form for new projects and the Update form for their own projects. Front-End authentication redirects a User back to the Project's show page when the User is not the creator of the project.
+
+* Multi-Layered Search Queries
+Using injected SQL in my backend ruby methods, Users (logged in or not) can use the explore page to select particular projects from my PostgreSQL database.
