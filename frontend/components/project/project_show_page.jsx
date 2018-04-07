@@ -123,6 +123,7 @@ class projectShow extends React.Component {
       }
   }
 
+
   displayBackProject(string) {
     if (string === "text") {
       if (this.props.currentUser && this.props.project) {
@@ -218,7 +219,7 @@ class projectShow extends React.Component {
             </div>
             <div className="show-page-info-container">
               <div className="show-video-container">
-                <iframe src={this.url} className="show-image-resize" poster={this.props.project.image}></iframe>
+                <object data={this.url} className="show-image-resize"></object>
               </div>
               <main className="show-page-info">
                 <Line className="show-progress-bar"
