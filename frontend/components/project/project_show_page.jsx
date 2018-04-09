@@ -205,85 +205,87 @@ class projectShow extends React.Component {
     if (this.props.project) {
       return (
         <main className="show-page-container">
-          <div className="project-show-page-container">
-            <div className="project-intro">
-              {this.renderUser()}
-              <section className="project-show-title-container">
-                <h1 className="project-show-title">
-                  {this.props.project.title}
-                </h1>
-                <h1 className="project-show-summary">
-                  {this.props.project.summary}
-                </h1>
-            </section>
-            </div>
-            <div className="show-page-info-container">
-              <div className="show-video-container">
-                <object data={this.url} className="show-image-resize"></object>
+          <section className="project-show-flex-col">
+            <div className="project-show-page-container">
+              <div className="project-intro">
+                {this.renderUser()}
+                <section className="project-show-title-container">
+                  <h1 className="project-show-title">
+                    {this.props.project.title}
+                  </h1>
+                  <h1 className="project-show-summary">
+                    {this.props.project.summary}
+                  </h1>
+                </section>
               </div>
-              <main className="show-page-info">
-                <Line className="show-progress-bar"
-                  trailColor="#F1EEEA"
-                  percent={this.percentMath()}
-                  strokeWidth="1"
-                  strokeColor="#169D74" />
+              <div className="show-page-info-container">
+                <div className="show-video-container">
+                  <object data={this.url} className="show-image-resize"></object>
+                </div>
+                <main className="show-page-info">
+                  <Line className="show-progress-bar"
+                    trailColor="#F1EEEA"
+                    percent={this.percentMath()}
+                    strokeWidth="1"
+                    strokeColor="#169D74" />
 
-                <h1 className="show-main-info cash bold">${this.props.project.current_funding}</h1>
-                <h2 className="show-info-backup-text bold">Pledged of ${this.props.project.funding_goal} goal</h2>
-                <h1 className="show-main-info bold">200</h1>
-                <h2 className="show-info-backup-text bold">Backers</h2>
-                <h1>{this.dateMath()}</h1>
-                <section className="show-backproject-container">
-                  <a href={`${this.displayBackProject("link")}`} className={this.displayBackProject("class")}>
-                    {this.displayBackProject("text")}
-                  </a>
-                </section>
-                <section className="sp-social-links">
-                  {this.displayFacebookButton()}
-                  {this.displayTwitterButton()}
-                  {this.displayEmailButton()}
-                </section>
-                <p className="sp-all-or-nothing">
-                  <a className="sp-aon" href="https://www.kickstarter.com/help/faq/kickstarter+basics?ref=project_header#faq_41848">
-                    All or nothing.
-                  </a>
-                  {this.displayFundedBy()}
-                </p>
-              </main>
-            </div>
-            <div className="show-page-buttons">
-              <div className="show-main-button-container">
-                <div className="show-main-button">
-                  <div className="launchpad-loves">L</div>&nbsp;&nbsp;
-                    <div className="small-text">
-                      Project We Love
-                    </div>
-                  </div>
+                  <h1 className="show-main-info cash bold">${this.props.project.current_funding}</h1>
+                  <h2 className="show-info-backup-text bold">Pledged of ${this.props.project.funding_goal} goal</h2>
+                  <h1 className="show-main-info bold">200</h1>
+                  <h2 className="show-info-backup-text bold">Backers</h2>
+                  <h1>{this.dateMath()}</h1>
+                  <section className="show-backproject-container">
+                    <a href={`${this.displayBackProject("link")}`} className={this.displayBackProject("class")}>
+                      {this.displayBackProject("text")}
+                    </a>
+                  </section>
+                  <section className="sp-social-links">
+                    {this.displayFacebookButton()}
+                    {this.displayTwitterButton()}
+                    {this.displayEmailButton()}
+                  </section>
+                  <p className="sp-all-or-nothing">
+                    <a className="sp-aon" href="https://www.kickstarter.com/help/faq/kickstarter+basics?ref=project_header#faq_41848">
+                      All or nothing.
+                    </a>
+                    {this.displayFundedBy()}
+                  </p>
+                </main>
+              </div>
+              <div className="show-page-buttons">
+                <div className="show-main-button-container">
                   <div className="show-main-button">
-                    <i class="fa fa-compass" aria-hidden="true"></i>&nbsp;&nbsp;
+                    <div className="launchpad-loves">L</div>&nbsp;&nbsp;
                       <div className="small-text">
-                        {this.props.project.category.toUpperCase()}
+                        Project We Love
                       </div>
                     </div>
                     <div className="show-main-button">
-                      <i className="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;
+                      <i class="fa fa-compass" aria-hidden="true"></i>&nbsp;&nbsp;
                         <div className="small-text">
-                          {this.props.project.location.toUpperCase()}
+                          {this.props.project.category.toUpperCase()}
                         </div>
+                      </div>
+                      <div className="show-main-button">
+                        <i className="fa fa-map-marker" aria-hidden="true"></i>&nbsp;&nbsp;
+                          <div className="small-text">
+                            {this.props.project.location.toUpperCase()}
+                          </div>
+                        </div>
+                      </div>
                     </div>
-              </div>
-            </div>
-            <section className="sp-project-buttons-nav">
-              <div className="sp-project-buttons-container">
-                <div className={`sp-project-button ${this.selectedTab()}`}>
-                  Campaign
-                </div>
-              </div>
-            </section>
-            <section className="sp-campaign-container">
-              {this.displayCampaignBody()}
-            </section>
-          </div>
+                    <section className="sp-project-buttons-nav">
+                      <div className="sp-project-buttons-container">
+                        <div className={`sp-project-button ${this.selectedTab()}`}>
+                          Campaign
+                        </div>
+                      </div>
+                    </section>
+                    <section className="sp-campaign-container">
+                      {this.displayCampaignBody()}
+                    </section>
+                  </div>
+          </section>
         </main>
       );
     } else {
