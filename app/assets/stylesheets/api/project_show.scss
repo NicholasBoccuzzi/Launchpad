@@ -58,7 +58,7 @@
 }
 
 .show-video-container {
-  max-height: 482px;
+  height: 482px;
   background: transparent;
   overflow: hidden;
   padding-right: 20px;
@@ -115,7 +115,8 @@
   padding-right: 20px;
   width: 100%;
   object-fit: fill;
-  height: -webkit-fill-available;
+  height: 100%;
+  // height: -webkit-fill-available;
 }
 
 .show-page-buttons {
@@ -284,6 +285,7 @@
   flex-direction: row;
   margin: 0 auto;
   background: white;
+  overflow: hidden;
 
   @media (min-width: 1040px) {
     min-width: 1040px;
@@ -296,6 +298,8 @@
   padding-right: 10px;
   padding-left: 10px;
   background: white;
+  min-height: 800px;
+  overflow: hidden;
 
   @media (min-width: 1040px) {
     padding-left: 0px;
@@ -313,4 +317,9 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+.sp-campaign-image {
+  object-fit: contain;
+  max-width: 50%;
 }

@@ -4,6 +4,7 @@ import React from 'react';
    constructor (props) {
      super(props);
      this.body = props.body;
+     this.image = props.image;
      this.rewards = props.rewards;
      this.displayCampaignBody = this.displayCampaignBody.bind(this);
    }
@@ -23,6 +24,7 @@ import React from 'react';
           <div className="sp-campaign-header">
             About
           </div>
+          <img className="sp-campaign-image" src={this.image}></img>
           <div>{this.displayCampaignBody()}</div>
         </section>
         <section className="sp-rewards-container">

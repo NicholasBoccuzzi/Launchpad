@@ -20,6 +20,7 @@ class projectShow extends React.Component {
     this.displayFundedBy = this.displayFundedBy.bind(this);
     this.selectedTab = this.selectedTab.bind(this);
     this.displayCampaignBody = this.displayCampaignBody.bind(this);
+    this.displayCorrectHeight = this.displayCorrectHeight.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +48,9 @@ class projectShow extends React.Component {
   displayCampaignBody () {
     if (this.props.project) {
       return (
-        <ProjectCampaign body={this.props.project.body} rewards={this.props.project.rewards}/>
+        <ProjectCampaign image={this.props.project.image}
+           body={this.props.project.body}
+           rewards={this.props.project.rewards}/>
       );
     }
   }
@@ -197,7 +200,12 @@ class projectShow extends React.Component {
         </section>
       );
     }
+  }
 
+  displayCorrectHeight () {
+    return (
+      window.innerHeight * .9
+    );
   }
 
 
@@ -218,9 +226,9 @@ class projectShow extends React.Component {
                   </h1>
                 </section>
               </div>
-              <div className="show-page-info-container">
-                <div className="show-video-container">
-                  <object data={this.url} className="show-image-resize"></object>
+              <div className="show-page-info-container" >
+                <div className="show-video-container"  style={{height: `${this.displayCorrectHeight()}`}}>
+                  <iframe src={this.url} className="show-image-resize"></iframe>
                 </div>
                 <main className="show-page-info">
                   <Line className="show-progress-bar"
