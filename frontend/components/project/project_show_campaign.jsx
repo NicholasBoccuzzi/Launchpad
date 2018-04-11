@@ -1,5 +1,5 @@
 import React from 'react';
-import ProjectCampaignRewardItem from './project_show_reward_item';
+import ProjectCampaignRewardItem from './project_show_reward_item_container';
 
  class projectShowCampaign extends React.Component {
    constructor (props) {
@@ -9,6 +9,12 @@ import ProjectCampaignRewardItem from './project_show_reward_item';
      this.rewards = props.rewards;
      this.displayCampaignBody = this.displayCampaignBody.bind(this);
      this.displayCampaignRewards = this.displayCampaignRewards.bind(this);
+   }
+
+   componentWillReceiveProps(nextProps) {
+     if (nextProps.rewards) {
+       this.rewards = nextProps.rewards;
+     }
    }
 
    displayCampaignBody () {
@@ -24,17 +30,18 @@ import ProjectCampaignRewardItem from './project_show_reward_item';
      if (this.rewards) {
        this.rewards.forEach((reward) => {
          rewards.push(
-           <ProjectCampaignRewardItem reward={reward}/>
+           <ProjectCampaignRewardItem reward={reward} id={this.props.projectId}/>
          );
        });
      }
 
      return (
-       <div ps-rewards-container>{rewards}</div>
+       <div className="ps-rewards-container">{rewards}</div>
      );
    }
 
   render () {
+
     return (
       <main className="sp-content-container">
         <section className="sp-campaign-container">

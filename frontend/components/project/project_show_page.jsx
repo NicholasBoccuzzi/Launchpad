@@ -52,6 +52,7 @@ class projectShow extends React.Component {
           image={this.props.project.image}
            body={this.props.project.body}
            rewards={this.rewards}
+           projectId={this.props.project.id}
            />
       );
     }
