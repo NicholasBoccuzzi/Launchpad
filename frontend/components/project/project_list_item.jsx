@@ -34,10 +34,12 @@ class ProjectListItem extends React.Component {
       return (
         <h1 className="li-percent-stats">{time.days} days {time.hours} hours remaining</h1>
       );
-    } else {
+    } else if (time.days > 0) {
       return (
         <h1 className="li-percent-stats">{time.days} days remaining</h1>
       );
+    } else {
+      return <h1 className="li-percent-stats">Campaign Ended</h1>;
     }
   }
 

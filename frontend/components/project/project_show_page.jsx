@@ -10,6 +10,7 @@ class projectShow extends React.Component {
     this.state = {
       selectedTab: "campaign"
     };
+    this.ended;
     this.url;
     this.dateMath = this.dateMath.bind(this);
     this.displayBackProject = this.displayBackProject.bind(this);
@@ -48,6 +49,7 @@ class projectShow extends React.Component {
     if (this.props.project) {
       return (
         <ProjectCampaign
+          deadline={this.props.project.deadline}
           image={this.props.project.image}
            body={this.props.project.body}
            rewards={this.rewards}
@@ -106,22 +108,26 @@ class projectShow extends React.Component {
       hours: Math.floor((new Date(this.props.project.deadline) - new Date(Date.now()))/1000/60/60/24%10)
     };
 
+    if (el === "loaded" && time.days <= 0 && time.hours <= 0) {
+      return true;
+    }
+
     if (el && time.days <= 0 && time.hours <= 0) {
-      return "Campaign Ended";
+      return true;
+    } else if (el) {
+      return false;
     }
 
     if (time.days > 0){
       return (
         <div className="show-main-info bold">{time.days} <h2 className="show-info-backup-text bold">days remaining</h2></div>
       );
-    } else if (time.days === 0 && time.hours > 0) {
+    } else if (time.days <= 0 && time.hours > 0) {
       return (
         <div className="show-main-info bold">{time.hours}   <h2 className="show-info-backup-text bold">hours remaining</h2></div>
       );
-    } else {
-        return <h1 className="show-main-info bold">Campaign Ended</h1>;
-      }
     }
+  }
 
   percentMath () {
       let percent = (this.props.project.current_funding/this.props.project.funding_goal)*100;
@@ -135,7 +141,7 @@ class projectShow extends React.Component {
 
   displayBackProject(string) {
     if (string === "text") {
-      if (this.dateMath(true)) {
+      if (this.dateMath("true")) {
         return "Campaign Ended";
     } else if (this.props.currentUser && this.props.project) {
         if (this.props.currentUser.backings && this.props.currentUser.backingIds.includes(this.props.project.id)) {
@@ -147,7 +153,9 @@ class projectShow extends React.Component {
         return "Back this Project";
       }
     } else if (string === "class") {
-      if (this.props.currentUser && this.props.project) {
+      if (this.dateMath("true")) {
+        return "greyed-project-button";
+      } else if (this.props.currentUser && this.props.project) {
         if (this.props.currentUser.backings && this.props.currentUser.backingIds.includes(this.props.project.id)) {
           return "show-backproject blue";
         } else {
@@ -157,8 +165,13 @@ class projectShow extends React.Component {
         return "show-backproject";
       }
     } else if (string === "link") {
-      if (this.props.project) {
+      if (this.dateMath("true")) {
+        return `#/projects/${this.props.project.id}`;
+      }
+      if (this.props.project && this.props.currentUser) {
         return `#/projects/${this.props.project.id}/rewards`;
+      } else if (this.props.project){
+        return `#/login`;
       } else {
         return `#`;
       }
@@ -249,7 +262,7 @@ class projectShow extends React.Component {
                   <h2 className="show-info-backup-text bold">Pledged of ${this.props.project.funding_goal} goal</h2>
                   <h1 className="show-main-info bold">200</h1>
                   <h2 className="show-info-backup-text bold">Backers</h2>
-                  <h1>{this.dateMath()}</h1>
+                  {this.dateMath()}
                   <section className="show-backproject-container">
                     <a href={`${this.displayBackProject("link")}`} className={this.displayBackProject("class")}>
                       {this.displayBackProject("text")}

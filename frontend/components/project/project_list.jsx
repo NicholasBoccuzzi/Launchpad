@@ -82,7 +82,7 @@ class projectList extends React.Component {
         let searchQuery = {category: cat, location: loc, order: ord};
         this.props.fetchProjects(searchQuery);
         this.loadedCount += 1;
-      } else {
+      } else if (!this.props.projects) {
         this.props.fetchProjects();
         this.loadedCount += 2;
       }
@@ -190,8 +190,6 @@ class projectList extends React.Component {
 
     if (location || cat) {
       this.props.fetchProjects(searchQuery);
-    } else {
-      this.props.fetchProjects();
     }
   }
 

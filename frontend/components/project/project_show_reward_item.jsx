@@ -3,18 +3,26 @@ import React from 'react';
 class projectCampaignRewardItem extends React.Component {
   constructor(props) {
     super(props);
-    this.id = props.reward.id;
-    this.amount = props.reward.amount;
-    this.title = props.reward.title;
-    this.body = props.reward.body;
+    this.tip = props.tip;
+    if (!this.tip) {
+      this.id = props.reward.id;
+      this.amount = props.reward.amount;
+      this.title = props.reward.title;
+      this.body = props.reward.body;
+      this.amount = props.reward.amount;
+      this.state = {
+        currentAmount: props.reward.amount
+      };
+      this.includes = props.reward.includes;
+      this.delivery_date = this.disectDate(props.reward.delivery_date);
+    } else {
+      this.state = {
+        currentAmount: 1
+      };
+      this.amount = 1;
+    }
     this.selected = false;
     this.projectId = props.projectId;
-    this.amount = props.reward.amount;
-    this.state = {
-      currentAmount: props.reward.amount
-    };
-    this.includes = props.reward.includes;
-    this.delivery_date = this.disectDate(props.reward.delivery_date);
     this.hoverActive = false;
     this.displayIncludes = this.displayIncludes.bind(this);
     this.disectDate = this.disectDate.bind(this);
@@ -42,6 +50,10 @@ class projectCampaignRewardItem extends React.Component {
   classIfSelected(el) {
     if (this.selected && el === "hide") {
       return "hide";
+    } else if (this.selected && el === "tip"){
+      return "tip-continue";
+    } else if (el === "tip" && !this.selected) {
+      return "";
     }
   }
 
@@ -76,8 +88,10 @@ class projectCampaignRewardItem extends React.Component {
     console.log(this.state.currentAmount);
   }
 
-  provideUrl () {
-    if (this.state.currentAmount >= this.amount) {
+  provideUrl (el) {
+    if (!el && this.state.currentAmount >= this.amount) {
+      return `#/projects/${this.projectId}/rewards/${this.id}`;
+    } else if (el && this.state.currentAmount >= 0) {
       return `#/projects/${this.projectId}/rewards/${this.id}`;
     } else {
       return `#/projects/${this.projectId}`;
@@ -85,7 +99,7 @@ class projectCampaignRewardItem extends React.Component {
   }
 
   displaySelectedReward() {
-    if (this.selected) {
+    if (this.selected && !this.tip) {
       return(
         <main className="ps-reward-selected-cont">
           <div className="ps-ri-little-header bold">PLEDGE AMOUNT</div>
@@ -100,6 +114,12 @@ class projectCampaignRewardItem extends React.Component {
             Continue
           </a>
         </main>
+      );
+    } else if (this.tip && this.selected) {
+      return (
+        <a className={this.amountHighEnough()} href={`${this.provideUrl()}`}>
+          Continue
+        </a>
       );
     }
   }
@@ -134,26 +154,44 @@ class projectCampaignRewardItem extends React.Component {
 
 
   render () {
-    return (
-      <a className="ps-reward-item-container">
-        <section onClick={this.activateSelected} className={`ps-reward-hover ${this.classIfSelected("hide")}`}>
-          <div className="ps-select-reward-text">Select this reward</div>
-        </section>
-        <section className="ps-ri-inner-marg">
-          <div className="ps-ri-pledge">Pledge ${this.amount} or more</div>
-          <div className="ps-ri-title">{this.title}</div>
-          <div className="ps-ri-body">{this.body}</div>
-          {this.displayIncludes()}
-          <section className="ps-ri-delivery-cont">
-            <div className="ps-ri-little-header">
-              ESTIMATED DELIVERY
-            </div>
-            <div className="ps-ri-delivery-text">{this.delivery_date}</div>
+    if (!this.tip) {
+      return (
+        <div className="ps-reward-item-container">
+          <section onClick={this.activateSelected} className={`ps-reward-hover ${this.classIfSelected("hide")}`}>
+            <div className="ps-select-reward-text">Select this reward</div>
           </section>
-          {this.displaySelectedReward()}
-        </section>
-      </a>
-    );
+          <section className="ps-ri-inner-marg">
+            <div className="ps-ri-pledge">Pledge ${this.amount} or more</div>
+            <div className="ps-ri-title">{this.title}</div>
+            <div className="ps-ri-body">{this.body}</div>
+            {this.displayIncludes()}
+            <section className="ps-ri-delivery-cont">
+              <div className="ps-ri-little-header">
+                ESTIMATED DELIVERY
+              </div>
+              <div className="ps-ri-delivery-text">{this.delivery_date}</div>
+            </section>
+            {this.displaySelectedReward()}
+          </section>
+        </div>
+      );
+    } else {
+      return (
+        <div className={`ps-reward-item-container tip-marg ${this.classIfSelected("tip")}`} onClick={this.activateSelected}>
+          <section className="ps-ri-inner-marg">
+            <div className="ps-ri-pledge">Make a pledge without a reward</div>
+            <div className={`ps-reward-selected-input-cont tip-input ${this.classIfSelected("green")}`}>
+              <div className="ps-reward-selected-dollar">$</div>
+              <input className="ps-reward-selected-input"
+                onChange={this.updateCurrentAmount}
+                value={this.state.currentAmount}
+                placeholder={this.amount}></input>
+            </div>
+            {this.displaySelectedReward()}
+          </section>
+        </div>
+      );
+    }
   }
 }
 

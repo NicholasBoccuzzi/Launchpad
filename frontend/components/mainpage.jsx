@@ -21,6 +21,8 @@ class Main extends React.Component {
     this.displayKSQuote = this.displayKSQuote.bind(this);
     this.displayContact = this.displayContact.bind(this);
     this.displayFeatured = this.displayFeatured.bind(this);
+    this.dateMath = this.dateMath.bind(this);
+    this.currentFeaturedSearch = this.currentFeaturedSearch.bind(this);
   }
 
   setDate() {
@@ -36,6 +38,33 @@ class Main extends React.Component {
     mm = this.calcMonth(mm);
 
     return `${mm} ${dd}, ${yyyy}`;
+  }
+
+  dateMath(project) {
+    const time = {
+      days: Math.floor((new Date(project.deadline) - new Date(Date.now()))/1000/60/60/24),
+      hours: Math.floor((new Date(project.deadline) - new Date(Date.now()))/1000/60/60/24%10)
+    };
+
+    if (time.days > 0 && time.hours > 0) {
+      return true;
+    }
+  }
+
+  currentFeaturedSearch() {
+    if (this.currentFeatured === "Food & Craft") {
+      return "Food";
+    } else if (this.currentFeatured === "Arts") {
+      return "Art";
+    } else if (this.currentFeatured === "Design & Tech") {
+      return "Tech";
+    } else if (this.currentFeatured === "Comics & Illustration") {
+      return "Comics";
+    } else if (this.currentFeatured === "Film") {
+      return "Film+Video";
+    } else {
+      return this.currentFeatured;
+    }
   }
 
   calcMonth (month) {
@@ -266,8 +295,10 @@ class Main extends React.Component {
           featured = projects[i];
           featuredCount += 1;
         }
+          if (this.dateMath(projects[i])){
           latestCount += 1;
           reversedProjects.push(projects[i]);
+        }
       }
 
       if (latestCount > 5) {
@@ -298,7 +329,7 @@ class Main extends React.Component {
 
     return (
       <main className="mainpage-projects-container">
-        <div className="flexed">
+        <div className="flexed mainpage-marg-cont">
           <section className="featured-project-container">
             <h2 className="mainpage-projects-header ten-px-bottom">FEATURED PROJECT</h2>
             {this.displayFeatured(featured)}
@@ -350,7 +381,7 @@ class Main extends React.Component {
         <div>
           {featured}
         </div>
-        <a className="mainpage-view-all-container" href={`#/discover?cat=${this.currentFeatured}`}>
+        <a className="mainpage-view-all-container" href={`#/discover?cat=${this.currentFeaturedSearch()}`}>
           <div className="mainpage-view-all">VIEW ALL</div>
           <i className="fas fa-long-arrow-alt-right"></i>
         </a>
