@@ -3,6 +3,7 @@ import React from 'react';
 class projectCampaignRewardItem extends React.Component {
   constructor(props) {
     super(props);
+    this.id = props.reward.id;
     this.amount = props.reward.amount;
     this.title = props.reward.title;
     this.body = props.reward.body;
@@ -10,7 +11,7 @@ class projectCampaignRewardItem extends React.Component {
     this.projectId = props.projectId;
     this.amount = props.reward.amount;
     this.state = {
-      currentAmount: this.amount
+      currentAmount: props.reward.amount
     };
     this.includes = props.reward.includes;
     this.delivery_date = this.disectDate(props.reward.delivery_date);
@@ -45,7 +46,7 @@ class projectCampaignRewardItem extends React.Component {
   }
 
   amountHighEnough () {
-    if (this.state.currentAmount > this.amount) {
+    if (this.state.currentAmount >= this.amount) {
       return "ps-reward-continue-box";
     } else {
       return "ps-reward-continue-box grey-box";
@@ -66,14 +67,20 @@ class projectCampaignRewardItem extends React.Component {
   }
 
   updateCurrentAmount(e) {
-    this.setState({currentAmount: parseInt(e.currentTarget.value)});
+    if (parseInt(e.currentTarget.value)) {
+      this.setState({currentAmount: parseInt(e.currentTarget.value)});
+    } else {
+      this.setState({currentAmount: 0});
+    }
     this.props.updatePage();
     console.log(this.state.currentAmount);
   }
 
   provideUrl () {
     if (this.state.currentAmount >= this.amount) {
-      return `#/p`
+      return `#/projects/${this.projectId}/rewards/${this.id}`;
+    } else {
+      return `#/projects/${this.projectId}`;
     }
   }
 

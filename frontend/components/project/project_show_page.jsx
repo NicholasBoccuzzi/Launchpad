@@ -10,7 +10,6 @@ class projectShow extends React.Component {
     this.state = {
       selectedTab: "campaign"
     };
-
     this.url;
     this.dateMath = this.dateMath.bind(this);
     this.displayBackProject = this.displayBackProject.bind(this);
@@ -101,11 +100,15 @@ class projectShow extends React.Component {
     );
   }
 
-  dateMath () {
+  dateMath (el) {
     const time = {
       days: Math.floor((new Date(this.props.project.deadline) - new Date(Date.now()))/1000/60/60/24),
       hours: Math.floor((new Date(this.props.project.deadline) - new Date(Date.now()))/1000/60/60/24%10)
     };
+
+    if (el && time.days <= 0 && time.hours <= 0) {
+      return "Campaign Ended";
+    }
 
     if (time.days > 0){
       return (
@@ -132,13 +135,15 @@ class projectShow extends React.Component {
 
   displayBackProject(string) {
     if (string === "text") {
-      if (this.props.currentUser && this.props.project) {
+      if (this.dateMath(true)) {
+        return "Campaign Ended";
+    } else if (this.props.currentUser && this.props.project) {
         if (this.props.currentUser.backings && this.props.currentUser.backingIds.includes(this.props.project.id)) {
           return "View Pledge";
         } else {
           return "Back this Project";
         }
-      }else {
+      } else {
         return "Back this Project";
       }
     } else if (string === "class") {
@@ -153,7 +158,7 @@ class projectShow extends React.Component {
       }
     } else if (string === "link") {
       if (this.props.project) {
-        return `#/${this.props.project.id}/rewards`;
+        return `#/projects/${this.props.project.id}/rewards`;
       } else {
         return `#`;
       }
@@ -180,9 +185,9 @@ class projectShow extends React.Component {
                   src={this.props.project.user_image}>
                 </img>
               </a>
-            </div>
-            <div className="small-text">
-              By {this.props.project.user.username}
+              <a className="small-text ps-username">
+                By {this.props.project.user.username}
+              </a>
             </div>
           </section>
         );

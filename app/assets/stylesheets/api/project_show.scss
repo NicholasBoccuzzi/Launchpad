@@ -34,6 +34,8 @@
   border: 1px solid white;
   border-radius: 360px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .project-show-creator-icon {
@@ -457,7 +459,7 @@
 
 .ps-reward-selected-cont {
   animation: inputResize .25s ease-out;
-  height: 100px;
+  height: 140px;
   margin-top: 45px;
 }
 
@@ -468,7 +470,7 @@
   }
 
   100% {
-    height: 100px;
+    height: 140px;
     margin-top: 45px;
   }
 }
@@ -514,17 +516,22 @@
 }
 
 .ps-reward-continue-box {
-  animation: greyToGreen .25s ease-out;
+  animation: greyToGreen .25s ease-in-out;
   height: 42px;
   max-height: 42px;
-  text-align: center;
   color: white;
   width: 100%;
+  background: #2DA782;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grey-box {
-  animation: greenToGrey .3s ease-out;
+  animation: greenToGrey .3s ease-in-out;
   background: #9B9E9E;
+  cursor: default;
 }
 
 @keyframes greenToGrey {
@@ -539,10 +546,14 @@
 
 @keyframes greyToGreen {
   0% {
-    background:#2DA782;
+    background: #9B9E9E;
   }
 
   100% {
-    background: #9B9E9E;
+    background:#2DA782;
   }
+}
+
+.ps-username:hover {
+  color: #2DA782;
 }

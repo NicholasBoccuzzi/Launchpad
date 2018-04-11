@@ -30,7 +30,7 @@ import ProjectCampaignRewardItem from './project_show_reward_item_container';
      if (this.rewards) {
        this.rewards.forEach((reward) => {
          rewards.push(
-           <ProjectCampaignRewardItem reward={reward} id={this.props.projectId}/>
+           <ProjectCampaignRewardItem reward={reward} projectId={this.props.projectId}/>
          );
        });
      }
