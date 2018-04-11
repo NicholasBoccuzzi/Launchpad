@@ -8,6 +8,7 @@
 
 User.destroy_all
 Project.destroy_all
+Reward.destroy_all
 
 u1 = User.create!(username: "demo", password: "password", email: "demo@gmail.com", location: "New York")
 u2 = User.create!(username: "winnie", password: "ilovetreats", email: "cutepuppy@yahoo.com", location: "Naples")
@@ -281,4 +282,13 @@ p16 = Project.create!(
   image: File.open('app/assets/images/dance.jpg'),
   live: true,
   youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
+)
+
+
+r1 = Reward.create!(
+  project_id: p15.id,
+  amount: 1,
+  title: "Helpful Tip",
+  body: "We thank you for your support!",
+  delivery_date: DateTime.new(2018,5,10)
 )

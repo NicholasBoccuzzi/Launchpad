@@ -34,7 +34,7 @@ class projectShow extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.project) {
-
+      this.rewards = nextProps.project.rewards;
       this.url = nextProps.project.youtube.replace("watch?v=", "embed/");
     }
   }
@@ -48,9 +48,11 @@ class projectShow extends React.Component {
   displayCampaignBody () {
     if (this.props.project) {
       return (
-        <ProjectCampaign image={this.props.project.image}
+        <ProjectCampaign
+          image={this.props.project.image}
            body={this.props.project.body}
-           rewards={this.props.project.rewards}/>
+           rewards={this.rewards}
+           />
       );
     }
   }
@@ -289,7 +291,7 @@ class projectShow extends React.Component {
                         </div>
                       </div>
                     </section>
-                    <section className="sp-campaign-container">
+                    <section className="sp-campaign-rewards-container">
                       {this.displayCampaignBody()}
                     </section>
                   </div>

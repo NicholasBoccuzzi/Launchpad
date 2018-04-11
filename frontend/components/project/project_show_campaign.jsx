@@ -1,4 +1,5 @@
 import React from 'react';
+import ProjectCampaignRewardItem from './project_show_reward_item';
 
  class projectShowCampaign extends React.Component {
    constructor (props) {
@@ -7,6 +8,7 @@ import React from 'react';
      this.image = props.image;
      this.rewards = props.rewards;
      this.displayCampaignBody = this.displayCampaignBody.bind(this);
+     this.displayCampaignRewards = this.displayCampaignRewards.bind(this);
    }
 
    displayCampaignBody () {
@@ -17,6 +19,21 @@ import React from 'react';
     }
    }
 
+   displayCampaignRewards () {
+     let rewards = [];
+     if (this.rewards) {
+       this.rewards.forEach((reward) => {
+         rewards.push(
+           <ProjectCampaignRewardItem reward={reward}/>
+         );
+       });
+     }
+
+     return (
+       <div ps-rewards-container>{rewards}</div>
+     );
+   }
+
   render () {
     return (
       <main className="sp-content-container">
@@ -25,9 +42,13 @@ import React from 'react';
             About
           </div>
           <img className="sp-campaign-image" src={this.image}></img>
-          <div>{this.displayCampaignBody()}</div>
+          <div className="sp-campaign-body">{this.displayCampaignBody()}</div>
         </section>
         <section className="sp-rewards-container">
+          <div className="sp-campaign-header">
+            Support
+          </div>
+          {this.displayCampaignRewards()}
         </section>
       </main>
     );

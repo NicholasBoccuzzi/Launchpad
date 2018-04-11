@@ -16,3 +16,4 @@ json.image asset_path(project.image.url)
 json.user project.user
 json.user_image  asset_path(project.user.image.url)
 json.youtube project.youtube
+json.rewards project.rewards
