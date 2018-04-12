@@ -246,7 +246,7 @@ class Main extends React.Component {
             <br></br>
 
             <div className="white-background featured-author">
-              <p>BY CREATOR #{featured.creator_id}</p>
+              <p>BY {featured.user.username.toUpperCase()}</p>
             </div>
             <br></br>
             <div className="white-background featured-author">

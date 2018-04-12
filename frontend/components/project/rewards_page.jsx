@@ -34,7 +34,7 @@ class rewardsPage extends React.Component {
         <main className="rewards-page-container">
           <section className="rp-title-container">
             <h1 className="rp-title-title">{this.project.title}</h1>
-            <h2 className="rp-title-author">by {this.project.creator_id}</h2>
+            <h2 className="rp-title-author">by {this.project.user.username}</h2>
           </section>
 
         </main>

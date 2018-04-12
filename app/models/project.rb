@@ -37,7 +37,8 @@ class Project < ApplicationRecord
 
   has_many :rewards
   has_many :backers,
-    through: :rewards
+    through: :rewards,
+    source: :backers
 
 
   accepts_nested_attributes_for :rewards

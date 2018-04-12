@@ -18,9 +18,5 @@ class Reward < ApplicationRecord
   belongs_to :project
 
   has_many :backings
-  
-  has_many :backers,
-    through: :backings,
-    source: :user_id
 
 end
