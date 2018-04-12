@@ -47,3 +47,153 @@
 .rp-nav:visited {
   color: #084751;
 }
+
+.rp-rewards-main-container {
+  margin:auto;
+  margin-top: 80px;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: row;
+  min-height: 900px;
+}
+
+.rp-rewards-container {
+
+}
+
+.rp-right-info-container {
+  width: 33.33333%
+}
+
+
+.rp-right-info-marg {
+  padding: 10px;
+}
+
+.rp-ri-header {
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.rp-ri-text-med {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.rp-ri-text-small{
+  font-size: 12px;
+  line-height: 18px;
+  margin-bottom: 12px;
+}
+
+.rp-ri-accountability {
+  color: black;
+  text-decoration: underline;
+  cursor:pointer;
+  font-size: 12px;
+}
+
+.rp-ri-accountability:visited {
+  color: black;
+}
+
+.rp-ri-faq-header {
+  font-size: 12px;
+  font-weight:500;
+}
+.rp-ri-faq-container {
+  margin-top: 50px;
+}
+
+.rp-ri-faqs {
+  margin-left: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.rp-faq-li-container {
+  display: flex;
+  flex-direction: column;
+  height: 16px;
+  overflow: hidden;
+  margin-left: 2px;
+  font-size: 12px;
+  margin-bottom: 0px;
+  padding-top: 10px;
+}
+
+.rp-faq-li-title {
+  margin-left: 10px;
+  font-size: 12px;
+  position: absolute;
+  left: 2px;
+}
+
+.rp-faq-li {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  line-height: 15px;
+  cursor: pointer;
+  margin-left: 2px;
+}
+
+.rp-faq-li-text {
+  margin-top: 16px;
+  color: #ADB0B0;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.rp-caret {
+  font-size: 12px;
+}
+
+.rp-animation-open {
+  animation: faqOpen .1s ease-in-out;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.rp-animation-close {
+  animation: faqClose .15s ease-in-out;
+}
+
+@keyframes faqOpen {
+  0% {
+    height: 16px;
+    margin-bottom: 0px
+  }
+
+  100% {
+    height: 40px;
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes faqClose {
+  0% {
+    height: 40px;
+    margin-bottom: 10px;
+  }
+
+  100% {
+    height: 16px;
+    margin-bottom: 0px;
+  }
+}
+
+.rp-left-rewards-container {
+  width: 66.66666%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.rp-lr-header {
+  font-weight: 400;
+  font-size: 20px;
+  display: block;
+  width: 100%;
+}

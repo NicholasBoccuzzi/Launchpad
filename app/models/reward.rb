@@ -16,7 +16,6 @@ class Reward < ApplicationRecord
   presence: true
 
   belongs_to :project
-
   has_many :backings
 
 end
