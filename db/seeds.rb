@@ -15,7 +15,7 @@ u2 = User.create!(username: "winnie", password: "ilovetreats", email: "cutepuppy
 u3 = User.create!(username: "luke", password: "starwars", email: "thelastjedi@hotmail.com", location: "Tatooine")
 
 p1 = Project.create!(
-  title: "Seed Games Project",
+  title: "Games Project",
   current_funding: 0,
   funding_goal: 10000,
   summary: "seed summary",
@@ -30,7 +30,7 @@ p1 = Project.create!(
 )
 
 p2 = Project.create!(
-  title: "Seed Puppy Project",
+  title: "Puppy Project",
   current_funding: 50000,
   funding_goal: 1000000,
   summary: "tracks puppy location",
@@ -45,7 +45,7 @@ p2 = Project.create!(
 )
 
 p3 = Project.create!(
-  title: "Seed Star Wars Project",
+  title: "Star Wars Project",
   current_funding: 1100,
   funding_goal: 1000,
   funded: true,
@@ -61,7 +61,7 @@ p3 = Project.create!(
 )
 
 p4 = Project.create!(
-  title: "Seed App Project",
+  title: "App Project",
   current_funding: 12345,
   funding_goal: 100000,
   funded: false,
@@ -77,7 +77,7 @@ p4 = Project.create!(
 )
 
 p5 = Project.create!(
-  title: "Seed Art Project",
+  title: "Art Project",
   current_funding: 250,
   funding_goal: 1000,
   funded: false,
@@ -93,7 +93,7 @@ p5 = Project.create!(
 )
 
 p6 = Project.create!(
-  title: "Seed Music Project",
+  title: "Music Project",
   current_funding: 250,
   funding_goal: 1000,
   funded: false,
@@ -109,7 +109,7 @@ p6 = Project.create!(
 )
 
 p7 = Project.create!(
-  title: "Seed Journalism Project",
+  title: "Journalism Project",
   current_funding: 250,
   funding_goal: 10000,
   funded: false,
@@ -125,7 +125,7 @@ p7 = Project.create!(
 )
 
 p8 = Project.create!(
-  title: "Seed Photography Project",
+  title: "Photography Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: false,
@@ -141,7 +141,7 @@ p8 = Project.create!(
 )
 
 p9 = Project.create!(
-  title: "Seed Food Project",
+  title: "Food Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: false,
@@ -157,7 +157,7 @@ p9 = Project.create!(
 )
 
 p10 = Project.create!(
-  title: "Seed Publishing Project",
+  title: "Publishing Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: true,
@@ -173,7 +173,7 @@ p10 = Project.create!(
 )
 
 p11 = Project.create!(
-  title: "Seed Theater Project",
+  title: "Theater Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: true,
@@ -189,7 +189,7 @@ p11 = Project.create!(
 )
 
 p12 = Project.create!(
-  title: "Seed Film & Video Project",
+  title: "Film & Video Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: true,
@@ -205,7 +205,7 @@ p12 = Project.create!(
 )
 
 p13 = Project.create!(
-  title: "Seed Fashion Project",
+  title: "Fashion Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: true,
@@ -221,7 +221,7 @@ p13 = Project.create!(
 )
 
 p14 = Project.create!(
-  title: "Seed Design Project",
+  title: "Design Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: false,
@@ -237,7 +237,7 @@ p14 = Project.create!(
 )
 
 p14 = Project.create!(
-  title: "Seed Crafts Project",
+  title: "Crafts Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: false,
@@ -253,7 +253,7 @@ p14 = Project.create!(
 )
 
 p15 = Project.create!(
-  title: "Seed Comics Project",
+  title: "Comics Project",
   current_funding: 0,
   funding_goal: 1000,
   funded: false,
@@ -269,7 +269,7 @@ p15 = Project.create!(
 )
 
 p16 = Project.create!(
-  title: "Seed Dance Project",
+  title: "Dance Project",
   current_funding: 0,
   funding_goal: 500,
   funded: false,
