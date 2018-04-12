@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Line, Circle } from 'rc-progress';
 import Modal from '../modal_container';
 import { Redirect } from 'react-router-dom';
-import RewardsTab from './rewards_tab_container';
+import RewardsTab from '../reward/rewards_tab_container';
 
 class updateProjectForm extends React.Component {
   constructor (props) {

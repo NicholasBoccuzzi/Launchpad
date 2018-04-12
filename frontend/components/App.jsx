@@ -21,7 +21,7 @@ import Footer from './footer_container';
 import ProjectShow from './project/project_show_page_container';
 import UnderConstruction from './underconstruction';
 import ProjectBuild from './project/project_build_container';
-import RewardsPage from './project/rewards_page_container';
+import RewardsPage from './reward/rewards_page_container';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
