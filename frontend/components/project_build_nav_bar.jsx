@@ -9,6 +9,15 @@ class ProjectBuildNavbar extends React.Component {
     this.displayDrowDown = this.displayDrowDown.bind(this);
     this.activeBorder = false;
     this.profileIcon = document.getElementById("cp-icon");
+    if (props.location.includes("build")) {
+      this.location = "build";
+    } else {
+      this.location = "rewards";
+    }
+  }
+
+  componentDidMount() {
+
   }
 
   activeBorder() {
@@ -53,10 +62,9 @@ class ProjectBuildNavbar extends React.Component {
 
 
   render () {
-
-    return (
-      <nav className="pbuild-main-nav">
-
+    if (this.location === "build") {
+      return (
+        <nav className="pbuild-main-nav">
           <div className="pbuild-cp-nav">
             <div className="pbuild-centered-container">
               {this.displayFAQs()}
@@ -65,10 +73,15 @@ class ProjectBuildNavbar extends React.Component {
             </div>
             {this.displayDrowDown()}
           </div>
-
-
-      </nav>
-    );
+        </nav>
+      );
+    } else if (this.location === "rewards") {
+      return (
+        <nav className="rp-nav">
+          <a href="#" className="rp-nav-title">LAUNCHPAD</a>
+        </nav>
+      );
+    }
   }
 }
 

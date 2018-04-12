@@ -1,0 +1,49 @@
+.rewards-page-container {
+  width: 100%;
+}
+
+.rp-title-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  background: #FBFBFA;
+  height: 150px;
+  max-height: 150px;
+  margin: auto;
+  align-items: center;
+  border-bottom: 1px solid #F1EEEA;
+}
+
+.rp-title-title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.rp-title-author {
+  font-size: 20px;
+}
+
+.rp-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 66px;
+  max-height: 66px;
+  width: 100%;
+  margin: auto;
+  border-bottom: 1px solid black;
+}
+
+.rp-nav-title {
+  font-size: 30px;
+  font-family: 'Modak';
+  color: #084751;
+}
+
+
+.rp-nav:visited {
+  color: #084751;
+}

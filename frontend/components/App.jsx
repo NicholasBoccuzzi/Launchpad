@@ -21,6 +21,7 @@ import Footer from './footer_container';
 import ProjectShow from './project/project_show_page_container';
 import UnderConstruction from './underconstruction';
 import ProjectBuild from './project/project_build_container';
+import RewardsPage from './project/rewards_page_container';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -47,6 +48,7 @@ class App extends React.Component {
           <Switch>
             <Route path='/startproject' component={CreateProjectNavBar} exact/>
             <Route path='/projects/:projectId/build' component={ProjectBuildNavBar} excact />
+            <Route path='/projects/:projectId/rewards' component={ProjectBuildNavBar} excact />
             <Route path='/'   component={Navbar}/>
           </Switch>
 
@@ -57,6 +59,7 @@ class App extends React.Component {
           <ProtectedRoute exact path="/startproject" component={CreateProjectForm} />
           <ProtectedRoute exact path="/projects/:projectId/build" component={ProjectBuild} />
           <ProtectedRoute exact path="/projects/:projectId/edit" component={UpdateProjectForm}/>
+          <ProtectedRoute exact path="/projects/:projectId/rewards" component={RewardsPage}/>
           <Route path="/discover" component={ProjectList} />
           <AuthRoute path="/login" component={SessionFormContainer}/>
           <AuthRoute path="/signup" component={SessionFormContainer} />
