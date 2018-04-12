@@ -286,9 +286,103 @@ p16 = Project.create!(
 
 
 r1 = Reward.create!(
-  project_id: p15.id,
+  project_id: p9.id,
   amount: 1,
-  title: "Helpful Tip",
-  body: "We thank you for your support!",
+  title: "Smallest Reward",
+  body: "Thank you for this backing!",
   delivery_date: DateTime.new(2018,5,10)
+)
+
+r2 = Reward.create!(
+  project_id: p9.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,6,10)
+)
+
+r3 = Reward.create!(
+  project_id: p9.id,
+  amount: 100,
+  title: "Large Tip",
+  body: "Thank you for this large sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r4 = Reward.create!(
+  project_id: p10.id,
+  amount: 1,
+  title: "Small Tip",
+  body: "Thank you for this backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r5 = Reward.create!(
+  project_id: p8.id,
+  amount: 1,
+  title: "Smallest Reward",
+  body: "Thank you for this backing!",
+  delivery_date: DateTime.new(2018,5,10)
+)
+
+r6 = Reward.create!(
+  project_id: p8.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,6,10)
+)
+
+r7 = Reward.create!(
+  project_id: p8.id,
+  amount: 100,
+  title: "Large Tip",
+  body: "Thank you for this large sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+r8 = Reward.create!(
+  project_id: p11.id,
+  amount: 1,
+  title: "Smallest Reward",
+  body: "Thank you for this backing!",
+  delivery_date: DateTime.new(2018,5,10)
+)
+
+r9 = Reward.create!(
+  project_id: p12.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,6,10)
+)
+
+r10 = Reward.create!(
+  project_id: p7.id,
+  amount: 100,
+  title: "Large Tip",
+  body: "Thank you for this large sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r11 = Reward.create!(
+  project_id: p4.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r12 = Reward.create!(
+  project_id: p5.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+r13 = Reward.create!(
+  project_id: p6.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
 )
