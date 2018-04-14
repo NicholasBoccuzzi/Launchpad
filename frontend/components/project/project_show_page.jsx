@@ -47,15 +47,29 @@ class projectShow extends React.Component {
 
   displayCampaignBody () {
     if (this.props.project) {
-      return (
-        <ProjectCampaign
-          deadline={this.props.project.deadline}
-          image={this.props.project.image}
-           body={this.props.project.body}
-           rewards={this.rewards}
-           projectId={this.props.project.id}
-           />
-      );
+      if (this.props.currentUser) {
+        return (
+          <ProjectCampaign
+            creatorProject={this.props.currentUser.id == this.props.project.creator_id}
+            deadline={this.props.project.deadline}
+            image={this.props.project.image}
+            body={this.props.project.body}
+            rewards={this.rewards}
+            projectId={this.props.project.id}
+            />
+        );
+      } else {
+        return (
+          <ProjectCampaign
+            creatorProject={false}
+            deadline={this.props.project.deadline}
+            image={this.props.project.image}
+            body={this.props.project.body}
+            rewards={this.rewards}
+            projectId={this.props.project.id}
+            />
+        );
+      }
     }
   }
 

@@ -8,6 +8,7 @@ import ProjectCampaignRewardItem from './project_show_reward_item_container';
      this.image = props.image;
      this.rewards = props.rewards;
      this.deadline = props.deadline;
+     this.creatorProject = props.creatorProject;
      this.displayCampaignBody = this.displayCampaignBody.bind(this);
      this.displayCampaignRewards = this.displayCampaignRewards.bind(this);
      this.displayTipBox = this.displayTipBox.bind(this);
@@ -36,6 +37,8 @@ import ProjectCampaignRewardItem from './project_show_reward_item_container';
 
      if (time.days <= 0 && time.hours <= 0) {
        if (el === "campaign") {
+         return "sp-camp-full";
+       } else if (this.creatorProject){
          return "sp-camp-full";
        } else if (el === "rewards"){
          return "sp-rew-hide";
