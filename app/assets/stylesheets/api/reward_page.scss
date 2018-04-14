@@ -226,7 +226,6 @@
 
 .rp-shrink-reward {
   animation: shrinkReward .1s ease-in-out;
-  font-size: 16px;
   cursor: pointer;
 }
 
@@ -259,41 +258,52 @@
 }
 
 .rp-grow-makepledge {
-  animation: growMakePledge .1s ease-in-out;
-  font-size: 18px;
-  margin-left: -20px;
+  animation: growMakePledge .12s ease-in-out;
+  font-size: 18.75px;
+  margin-left: -14px;
+  margin-top: 5px;
+  padding-top: 4px;
 }
 
 .rp-shrink-makepledge {
-  animation: shrinkMakePledge .1s ease-in-out;
-  font-size: 16px;
+  animation: shrinkMakePledge .12s ease-in-out;
+  font-size: 18px;
+  padding-top: 4px;
+  margin-left: 0px;
+  margin-top: 0px;
 }
 
 .rp-makepledge {
-  font-size: 16px;
+  font-size: 18px;
+  padding-top: 4px;
+  margin-left: 0px;
 }
 
 @keyframes growMakePledge {
   0% {
-    font-size: 16px;
+    font-size: 18px;
+    margin-top: 0px;
     margin-left: 0px;
   }
 
   100% {
-    font-size: 18px;
-    margin-left: -20px;
+    font-size: 18.75px;
+    margin-left: -14px;
+    margin-top: 5px;
   }
 }
 
 @keyframes shrinkMakePledge {
   0% {
-    font-size: 18px;
-    margin-left: -20px;
+    font-size: 18.75px;
+    margin-left: -14px;
+    margin-top: 5px;
   }
 
   100% {
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 0px;
+    margin-top: 0px;
   }
 }
 

@@ -11,6 +11,7 @@ class rewardsPageReward extends React.Component {
     this.contractBox = this.contractBox.bind(this);
     this.animateExpansion = this.animateExpansion.bind(this);
     this.animateMakePledge = this.animateMakePledge.bind(this);
+    this.openContinue = this.openContinue.bind(this);
   }
 
   animateExpansion () {
@@ -21,6 +22,10 @@ class rewardsPageReward extends React.Component {
     } else {
       return "";
     }
+  }
+
+  openContinue() {
+
   }
 
   animateMakePledge () {
