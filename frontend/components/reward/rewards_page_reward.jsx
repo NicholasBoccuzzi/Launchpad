@@ -11,7 +11,15 @@ class rewardsPageReward extends React.Component {
     this.contractBox = this.contractBox.bind(this);
     this.animateExpansion = this.animateExpansion.bind(this);
     this.animateMakePledge = this.animateMakePledge.bind(this);
-    this.openContinue = this.openContinue.bind(this);
+    this.openedContinue = this.openedContinue.bind(this);
+    this.displayContinueButton = this.displayContinueButton.bind(this);
+    this.checked = this.checked.bind(this);
+    this.continueClick = this.continueClick.bind(this);
+  }
+
+  continueClick () {
+    this.continueButton = true;
+    this.props.updatePage();
   }
 
   animateExpansion () {
@@ -24,13 +32,31 @@ class rewardsPageReward extends React.Component {
     }
   }
 
-  openContinue() {
+  openedContinue() {
+    if (this.continueButton) {
+      return "rp-reward-continue";
+    } else {
+      return "";
+    }
+  }
 
+  checked() {
+    if (this.continueButton) {
+      return "check-circle green rp-margin-left";
+    } else if (this.expand && !this.continueButton) {
+      return "circle rp-margin-left";
+    } else if (this.loaded){
+      return "circle rp-no-margin-left";
+    } else {
+      return "circle";
+    }
   }
 
   animateMakePledge () {
-    if (this.expand) {
+    if (this.expand && !this.continueButton) {
       return "rp-grow-makepledge";
+    } else if (this.continueButton){
+      return "rp-grow-makepledge no-padding";
     } else if (this.loaded && !this.expand){
       return "rp-shrink-makepledge";
     } else {
@@ -39,9 +65,11 @@ class rewardsPageReward extends React.Component {
   }
 
   expandBox () {
-    this.loaded = true;
-    this.expand = true;
-    this.props.updatePage();
+    if (!this.continueButton) {
+      this.loaded = true;
+      this.expand = true;
+      this.props.updatePage();
+    }
   }
 
   contractBox () {
@@ -51,8 +79,12 @@ class rewardsPageReward extends React.Component {
     }
   }
 
-  continueButton() {
-    this.continueButton = true;
+  displayContinueButton () {
+    if (this.continueButton) {
+      return "";
+    } else {
+      return "hidden";
+    }
   }
 
   render () {
@@ -61,7 +93,8 @@ class rewardsPageReward extends React.Component {
         <main
           onMouseOver={this.expandBox}
           onMouseLeave={this.contractBox}
-          className={`rp-reward-container ${this.animateExpansion()}`}>
+          onClick={this.continueClick}
+          className={`rp-reward-container ${this.animateExpansion()} ${this.openedContinue()}`}>
           <section className="rp-reward-inner-marg">
             <div className="rp-reward-title"></div>
             <div className="rp-reward-description"></div>
@@ -74,9 +107,14 @@ class rewardsPageReward extends React.Component {
         <main
           onMouseOver={this.expandBox}
           onMouseLeave={this.contractBox}
-          className={`rp-reward-container ${this.animateExpansion()}`}>
-          <section className="rp-reward-inner-marg">
+          onClick={this.continueClick}
+          className={`rp-reward-container ${this.animateExpansion()} ${this.openedContinue()}`}>
+          <section className="rp-reward-inner-marg rp-flex-row">
+            <i className={`far fa-${this.checked()} rp-checked-space`}></i>
             <div className={`${this.animateMakePledge()}`}>Make a pledge without a reward</div>
+          </section>
+          <section className={`${this.displayContinueButton()}`}>
+
           </section>
         </main>
       );

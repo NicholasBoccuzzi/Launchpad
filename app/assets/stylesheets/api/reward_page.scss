@@ -258,19 +258,17 @@
 }
 
 .rp-grow-makepledge {
-  animation: growMakePledge .12s ease-in-out;
-  font-size: 18.75px;
-  margin-left: -14px;
-  margin-top: 5px;
+  animation: growSmall .1s ease-in-out;
+  font-size: 18px;
+  margin-left: -2px;
   padding-top: 4px;
 }
 
 .rp-shrink-makepledge {
-  animation: shrinkMakePledge .12s ease-in-out;
+  animation: shrinkSmall .1s ease-in-out;
   font-size: 18px;
   padding-top: 4px;
   margin-left: 0px;
-  margin-top: 0px;
 }
 
 .rp-makepledge {
@@ -279,34 +277,87 @@
   margin-left: 0px;
 }
 
-@keyframes growMakePledge {
+@keyframes growSmall {
   0% {
-    font-size: 18px;
-    margin-top: 0px;
     margin-left: 0px;
   }
 
   100% {
-    font-size: 18.75px;
-    margin-left: -14px;
-    margin-top: 5px;
+    margin-left: -2px;
   }
 }
 
-@keyframes shrinkMakePledge {
+@keyframes shrinkSmall {
   0% {
-    font-size: 18.75px;
-    margin-left: -14px;
-    margin-top: 5px;
+    margin-left: -2px;
   }
 
   100% {
-    font-size: 18px;
     margin-left: 0px;
-    margin-top: 0px;
+  }
+}
+
+@keyframes grow {
+  0% {
+    margin-left: 0px;
+  }
+
+  100% {
+    margin-left: -10px;
+  }
+}
+
+@keyframes shrink{
+  0% {
+    margin-left: -10px;
+  }
+
+  100% {
+    margin-left: 0px;
   }
 }
 
 .rp-reward-inner-marg {
   margin: 20px 25px;
+}
+
+.rp-reward-continue {
+
+}
+
+.rp-checked-space {
+  margin-right: 30px;
+  padding-top: 4px;
+}
+
+.rp-margin-left {
+  animation: grow .1s ease-in-out;
+  margin-left: -10px;
+}
+
+.rp-no-margin-left {
+  animation: shrink .1s ease-in-out;
+  margin-left: 0px;
+}
+
+.rp-flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+
+.hidden {
+  display: none;
+}
+
+.rp-green {
+  color: #169D74;
+}
+
+.no-padding {
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
 }
