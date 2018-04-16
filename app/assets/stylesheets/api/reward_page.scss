@@ -328,6 +328,9 @@
   align-items: center;
 }
 
+.rp-max-width {
+  width: 100%;
+}
 
 .hidden {
   display: none;
@@ -379,8 +382,10 @@
   height: 45px;
   align-items: center;
   border: 1px solid #DDDFDE;
-  justify-content: center;
+  justify-content: flex-start;
   overflow: hidden;
+  width: 70%;
+  margin-right: 20px;
 }
 
 .rp-green-border {
@@ -425,4 +430,76 @@
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.rp-continue-button-green {
+  width: 170px;
+  height: 46px;
+  background-color: #169D74;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: .5px;
+}
+
+.rp-continue-button-green:hover {
+  animation: greenToDarkGreen .3s ease-in-out;
+  background: #0F7262;
+}
+
+.rp-dark-green {
+  animation: greenToDarkGreen .1s ease-in-out;
+}
+
+@keyframes greenToDarkGreen {
+  0% {
+    background-color: #169D74;
+  }
+
+  100% {
+    background-color: #0F7262;
+  }
+}
+
+@keyframes darkGreenToGreen {
+  0% {
+    background-color: #0F7262;
+  }
+
+  100% {
+    background-color: #169D74;
+  }
+}
+
+.rp-opacity-out {
+  opacity: .2;
+  animation: opacityOut .5s ease-in-out;
+}
+
+.rp-opacity-in {
+  animation: opacityIn .5s ease-in-out;
+  opacity: 1;
+}
+
+@keyframes opacityIn {
+  0%{
+    opacity: .2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes opacityOut {
+  0%{
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .2;
+  }
 }

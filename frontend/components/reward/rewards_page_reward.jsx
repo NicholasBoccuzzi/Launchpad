@@ -15,6 +15,7 @@ class rewardsPageReward extends React.Component {
     this.firstClick = false;
     this.loaded = false;
     this.expand = false;
+    this.continueLoaded = false;
     this.continueButton = false;
     this.greenBorderActive = false;
     this.expandBox = this.expandBox.bind(this);
@@ -32,10 +33,9 @@ class rewardsPageReward extends React.Component {
   }
 
   updateInput(e) {
-    e.preventDefault();
+    this.continueLoaded = true;
     let numbers = "0123456789".split("");
     let updated = e.currentTarget.value.split("");
-    console.log(updated);
 
     if (updated.length === 0 || updated.every((number) => {
       return numbers.includes(number);
@@ -48,7 +48,6 @@ class rewardsPageReward extends React.Component {
         this.setState({currentPrice: 0});
       }
     }
-
   }
 
   continueClick () {
@@ -142,18 +141,16 @@ class rewardsPageReward extends React.Component {
   }
 
   continueButtonClass () {
-    if (this.continueLoaded === true && parseInt(this.state.currentTarget) >= this.targetValue) {
-      return (
-        "rp-continue-button-green"
-      );
-    } else if (parseInt(this.state.currentTarget >= this.targetValue)) {
-      return (
-        "rp-continue-button-green"
-      );
-    } else {
-      return (
-        "rp-continue-button-green rp-greyed-out"
-      );
+    if (this.continueLoaded === true) {
+      if (parseInt(this.state.currentPrice) < this.targetValue || this.state.currentPrice === "") {
+        return (
+          "rp-opacity-out"
+        );
+      } else if (this.continueLoaded === true && parseInt(this.state.currentPrice) >= this.targetValue) {
+        return (
+          "rp-opacity-in"
+        );
+      }
     }
   }
 
@@ -186,12 +183,14 @@ class rewardsPageReward extends React.Component {
           <section className={`${this.displayContinueButton()}`}>
             <div className="rp-flex-col">
               <div className="rp-pledge-amount">Pledge Amount</div>
-              <div className={`rp-pledge-container ${this.greenBorder()}`} onClick={this.toggleGreenBorder}>
-                <div className="rp-dollar"><div>$</div></div>
-                <input className="rp-input" value={this.state.currentPrice} onChange={this.updateInput}>
-                </input>
-                <div className={`${this.continueButtonClass()}`}></div>
-              </div>
+              <section className="rp-flex-row rp-max-width">
+                <div className={`rp-pledge-container ${this.greenBorder()}`} onClick={this.toggleGreenBorder}>
+                  <div className="rp-dollar"><div>$</div></div>
+                  <input className="rp-input" value={this.state.currentPrice} onChange={this.updateInput}>
+                  </input>
+                </div>
+                <div className={`rp-continue-button-green rp-dark-green ${this.continueButtonClass()}`}><div>Continue</div></div>
+              </section>
             </div>
           </section>
         </main>
