@@ -208,7 +208,7 @@
   border: 1px solid #DCDEDD;
   margin-bottom: 20px;
   padding: 0px;
-  min-height: 66px;
+  min-height: 60px;
 }
 
 .rp-lr-rewards-ul {
@@ -218,8 +218,8 @@
 
 .rp-grow-reward {
   animation: growReward .1s ease-in-out;
-  padding: 2px 12px;
-  margin-left: -12px;
+  padding: 2px 14px;
+  margin-left: -14px;
   margin-top: -4px;
   cursor: pointer;
 }
@@ -237,17 +237,17 @@
   }
 
   100% {
-    padding: 2px 12px;
+    padding: 2px 14px;
     margin-top: -4px;
-    margin-left: -12px;
+    margin-left: -14px;
   }
 }
 
 @keyframes shrinkReward {
   0% {
-    padding: 2px 12px;
+    padding: 2px 14px;
     margin-top: -4px;
-    margin-left: -12px;
+    margin-left: -14px;
   }
 
   100% {
@@ -260,7 +260,7 @@
 .rp-grow-makepledge {
   animation: growSmall .1s ease-in-out;
   font-size: 18px;
-  margin-left: -2px;
+  margin-left: -1px;
   padding-top: 4px;
 }
 
@@ -277,39 +277,19 @@
   margin-left: 0px;
 }
 
-@keyframes growSmall {
-  0% {
-    margin-left: 0px;
-  }
-
-  100% {
-    margin-left: -2px;
-  }
-}
-
-@keyframes shrinkSmall {
-  0% {
-    margin-left: -2px;
-  }
-
-  100% {
-    margin-left: 0px;
-  }
-}
-
 @keyframes grow {
   0% {
     margin-left: 0px;
   }
 
   100% {
-    margin-left: -10px;
+    margin-left: -14px;
   }
 }
 
 @keyframes shrink{
   0% {
-    margin-left: -10px;
+    margin-left: -14px;
   }
 
   100% {
@@ -318,21 +298,23 @@
 }
 
 .rp-reward-inner-marg {
-  margin: 20px 25px;
+  margin: 15px;
 }
 
 .rp-reward-continue {
 
 }
 
-.rp-checked-space {
+.rp-check {
   margin-right: 30px;
   padding-top: 4px;
+  font-size: 20px;
+  color: #DCDEDD;
 }
 
 .rp-margin-left {
   animation: grow .1s ease-in-out;
-  margin-left: -10px;
+  margin-left: -14px;
 }
 
 .rp-no-margin-left {
@@ -355,9 +337,92 @@
   color: #169D74;
 }
 
-.no-padding {
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-left: 0px;
-  padding-bottom: 0px;
+.rp-selected {
+  border: 1px solid #9B9E9E;
+  cursor: default;
+}
+
+@keyframes openContinue {
+  0% {
+    height: 0px;
+  }
+
+  100% {
+    height: 110px;
+  }
+}
+
+@keyframes closeContinue {
+  0% {
+    height: 110px;
+  }
+
+  100% {
+    height: 0px;
+  }
+}
+
+.rp-open-continue {
+  animation: openContinue .2s ease-in-out;
+  overflow: hidden;
+  height: 110px;
+}
+
+.rp-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.rp-pledge-container {
+  display: flex;
+  flex-direction: row;
+  height: 45px;
+  align-items: center;
+  border: 1px solid #DDDFDE;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.rp-green-border {
+  border: 1px solid #169D74;
+}
+.rp-pledge-container:hover {
+  border: 1px solid #169D74;
+}
+
+.rp-pledge-amount {
+  color: #656969;
+  font-size: 12px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.rp-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  padding-left: 8px;
+  border-left: 1px solid #DDDFDE;
+  font-size: 14px;
+}
+
+.rp-input:hover {
+  border-color: #169D74;
+}
+
+.rp-input:focus {
+  border-color: #169D74;
+}
+
+.rp-dollar {
+  height: 100%;
+  width: 46px;
+  font-size: 14px;
+  font-weight: 300;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
 }
