@@ -65,6 +65,11 @@
   align-items: end;
 }
 
+.co-space-start {
+  justify-content: flex-start;
+  align-items: end;
+}
+
 .co-copyright {
   font-size: 10px;
   color: #848787;
@@ -120,7 +125,7 @@
 
 .co-pledge-header {
   color: #282828;
-  font-size: 20px;
+  font-size: 21px;
 }
 
 .co-pledge-inner-marg {
@@ -201,13 +206,34 @@
 
 .co-current-pledge-container {
   width: 100%;
+  background: #FBFBFA;
+  border: 1px solid #E8E8E8;
+  margin-top: 22px;
 }
 
 .co-cp-inner-marg {
-  margin: 18px 20px;
+  padding: 20px 18px;
+
 }
 
 .co-flex-col {
   display: flex;
   flex-direction: column;
+}
+
+.co-max-120 {
+  max-width: 120px;
+  width: 100%;
+}
+
+.co-cur-pledge-head {
+  font-size: 14px;
+  color:#282828;
+  font-weight: 400;
+  margin-bottom: 15px;
+  line-height: 16px;
+}
+
+.co-no-marg {
+  margin: 0px;
 }

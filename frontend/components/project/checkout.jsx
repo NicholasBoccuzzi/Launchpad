@@ -1,4 +1,5 @@
 import React from 'react';
+import {LoadingScreen} from '../loading';
 
 class CheckoutPage extends React.Component {
   constructor(props) {
@@ -6,9 +7,9 @@ class CheckoutPage extends React.Component {
     this.projectId = props.search[1].slice(5);
     this.amount = props.search[2].slice(5);
     if (props.search[3]) {
-      this.reward = props.search[2].slice(5);
+      this.rewardId = props.search[3].slice(5);
     }
-
+    this.rewardTitle = "No reward, I just want to support the project";
     this.currentUser = props.currentUser;
     this.hoverHelp = this.hoverHelp.bind(this);
     this.hoverTrue = this.hoverTrue.bind(this);
@@ -25,7 +26,15 @@ class CheckoutPage extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.project) {
-      this.project = nextProps.project;
+      this.project = nextProps.project[this.projectId];
+      if (this.rewardId) {
+
+        this.reward = this.project.rewards.find((reward) => {
+          return reward.id === parseInt(this.rewardId);
+        });
+
+        this.rewardTitle = this.reward.title;
+      }
     }
   }
 
@@ -51,7 +60,6 @@ class CheckoutPage extends React.Component {
   }
 
   displayPayment () {
-
     return (
       <main className="co-payment-container">
         <section className="co-max-width co-media-padding co-pledge-mw">
@@ -66,14 +74,14 @@ class CheckoutPage extends React.Component {
               </a>
             </div>
             <section className="co-current-pledge-container">
-              <div className="co-cp-inner-marg co-flex-row co-justify-space">
-                <section className="co-flex-col">
-                  <div>Project</div>
-                  <div>Pledge</div>
-                  <div>Total Amount</div>
+              <div className="co-cp-inner-marg co-flex-row co-space-start">
+                <section className="co-flex-col co-max-120">
+                  <div className="co-cur-pledge-head">Project</div>
+                  <div className="co-cur-pledge-head">Pledge</div>
+                  <div className="co-cur-pledge-head co-no-marg">Total Amount</div>
                 </section>
                 <section className="co-flex-col">
-                  <div>{this.project.title}</div>
+                  <div className="co-cur-pledge-head">{this.project.title}</div>
                   <div></div>
                   <div></div>
                 </section>
@@ -135,7 +143,7 @@ class CheckoutPage extends React.Component {
         </main>
       );
     } else {
-      return <div>Loading</div>;
+      return <LoadingScreen />;
     }
   }
 }
