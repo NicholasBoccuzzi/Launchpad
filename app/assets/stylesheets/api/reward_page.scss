@@ -325,11 +325,7 @@
 .rp-flex-row {
   display: flex;
   flex-direction: row;
-  align-items: center;
-}
-
-.rp-max-width {
-  width: 100%;
+  align-items: left;
 }
 
 .hidden {
@@ -369,6 +365,14 @@
   animation: openContinue .2s ease-in-out;
   overflow: hidden;
   height: 110px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.rp-close-continue {
+  animation: closeContinue .2s ease-in-out;
+  overflow: hidden;
+  height: 0px;
 }
 
 .rp-flex-col {
@@ -386,6 +390,7 @@
   overflow: hidden;
   width: 70%;
   margin-right: 20px;
+  max-width: 415px;
 }
 
 .rp-green-border {
@@ -435,23 +440,26 @@
 .rp-continue-button-green {
   width: 170px;
   height: 46px;
-  background-color: #169D74;
   color: white;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
   font-size: 14px;
   font-weight: 300;
   letter-spacing: .5px;
+  cursor: pointer;
+  max-width: 160px;
 }
 
-.rp-continue-button-green:hover {
+.rp-light-green {
   animation: greenToDarkGreen .3s ease-in-out;
   background: #0F7262;
 }
 
 .rp-dark-green {
-  animation: greenToDarkGreen .1s ease-in-out;
+  animation: darkGreenToGreen .3s ease-in-out;
+  background: #169D74;
 }
 
 @keyframes greenToDarkGreen {
@@ -475,31 +483,110 @@
 }
 
 .rp-opacity-out {
-  opacity: .2;
-  animation: opacityOut .5s ease-in-out;
+  opacity: 0;
+  animation: opacityOut .3s ease-in-out;
+  background: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }
 
 .rp-opacity-in {
-  animation: opacityIn .5s ease-in-out;
-  opacity: 1;
+  animation: opacityIn .3s ease-in-out;
+  opacity: .8;
+  background: white;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  cursor: not-allowed;
 }
 
 @keyframes opacityIn {
   0%{
-    opacity: .2;
+    opacity: 0;
   }
 
   100% {
-    opacity: 1;
+    opacity: .8;
   }
 }
 
 @keyframes opacityOut {
   0%{
-    opacity: 1;
+    opacity: .8;
   }
 
   100% {
-    opacity: .2;
+    opacity: 0;
   }
+}
+
+.rp-reward-desc {
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  color: #6D7171;
+}
+
+.rp-reward-title {
+  font-size: 18px;
+  margin-top: 30px;
+  color: #282828;
+}
+
+.rp-reward-delivery {
+  color: #020721;
+  font-size: 14px;
+}
+
+.rp-half-width {
+  width: 50%;
+}
+
+.rp-light-weight {
+  font-weight: 200;
+}
+
+.rp-continue-width {
+  max-width: 600px;
+  margin-left: 50px;
+}
+
+@keyframes raiseDeliv {
+  0% {
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+
+  100% {
+    margin-top: -6px;
+    margin-left: 6px
+  }
+}
+
+@keyframes lowDeliv {
+  0% {
+    margin-top: -6px;
+    margin-left: 6px;
+  }
+
+  100% {
+    margin-top: 0px;
+    margin-left: 0px
+  }
+}
+
+.rp-raise-del {
+  animation: raiseDeliv .1s ease-in-out;
+  margin-top: -6px;
+  margin-left: 6px;
+}
+
+.rp-low-del {
+  animation: lowDeliv .1s ease-in-out;
+  margin-top: 0px;
 }

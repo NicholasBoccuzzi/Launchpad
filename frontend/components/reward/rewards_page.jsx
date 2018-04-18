@@ -15,14 +15,22 @@ class rewardsPage extends React.Component {
     if (this.project) {
       this.rewards = this.project.rewards;
     }
+
+    this.selected = -1;
     this.displayRewards = this.displayRewards.bind(this);
     this.displayFaqs = this.displayFaqs.bind(this);
+    this.select = this.select.bind(this);
   }
 
   componentDidMount() {
     if (!this.props.project) {
       this.props.fetchProject(this.props.projectId);
     }
+  }
+
+  select(key) {
+    this.selected = key;
+    this.props.updatePage();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,10 +43,19 @@ class rewardsPage extends React.Component {
   displayRewards() {
     let rewards = [];
     if (this.project) {
-      rewards.push(<RewardsPageReward first={true} />);
+      rewards.push(<RewardsPageReward
+        first={true}
+        project={this.project.id}
+        selected={this.selected}
+        select={this.select}/>);
       this.project.rewards.forEach((reward) => {
         rewards.push(
-          <RewardsPageReward first={false} />
+          <RewardsPageReward
+            first={false}
+            reward={reward}
+            project={this.project.id}
+            selected={this.selected}
+            select={this.select}/>
         );
       });
       return rewards;
