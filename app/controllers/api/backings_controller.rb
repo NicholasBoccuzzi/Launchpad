@@ -2,6 +2,12 @@ class Api::BackingsController < ApplicationController
 
   def create
     @backing = Backing.new(backing_params)
+
+    if @backing.save
+      print "true"
+    else
+      render json: @backing.errors.full_messages, status:422
+    end
   end
 
 private

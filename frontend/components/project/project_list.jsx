@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ProjectListItem from './project_list_item';
 import SearchDropdown from './search_dropdown_container';
 import SearchOrderModal from './search_order_dropdown';
+import { LoadingScreen } from '../loading';
 
 class projectList extends React.Component {
   constructor(props) {

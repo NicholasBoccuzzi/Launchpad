@@ -22,6 +22,7 @@ import ProjectShow from './project/project_show_page_container';
 import UnderConstruction from './underconstruction';
 import ProjectBuild from './project/project_build_container';
 import RewardsPage from './reward/rewards_page_container';
+import CheckoutPage from './project/checkout_container';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -47,6 +48,7 @@ class App extends React.Component {
         <div>
           <Switch>
             <Route path='/startproject' component={CreateProjectNavBar} exact/>
+            <Route path='/checkout' component={ProjectBuildNavBar} />
             <Route path='/projects/:projectId/build' component={ProjectBuildNavBar} excact />
             <Route path='/projects/:projectId/rewards' component={ProjectBuildNavBar} excact />
             <Route path='/'   component={Navbar}/>
@@ -60,12 +62,14 @@ class App extends React.Component {
           <ProtectedRoute exact path="/projects/:projectId/build" component={ProjectBuild} />
           <ProtectedRoute exact path="/projects/:projectId/edit" component={UpdateProjectForm}/>
           <ProtectedRoute exact path="/projects/:projectId/rewards" component={RewardsPage}/>
+          <ProtectedRoute exact path="/checkout" component={CheckoutPage}/>
           <Route path="/discover" component={ProjectList} />
           <AuthRoute path="/login" component={SessionFormContainer}/>
           <AuthRoute path="/signup" component={SessionFormContainer} />
           <Switch>
             <Route path='/startproject' exact/>
             <Route path='/projects/:projectId/build' exact />
+            <Route path='/checkout' exact />
             <Route path='/'   component={Footer}/>
           </Switch>
         </div>

@@ -1,5 +1,6 @@
 json.id user.id
 json.username user.username
+json.email user.email
 json.image asset_path(user.image.url)
 json.projects user.projects
 json.joindate user.created_at

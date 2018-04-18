@@ -255,9 +255,9 @@ class rewardsPageReward extends React.Component {
 
   reroute() {
     if (this.state.currentPrice >= this.targetValue && this.reward) {
-      return `#/checkout?proj=${this.project}&amnt=${this.state.currentPrice}&rwrd=${this.reward.id}`;
+      return `#/checkout?&proj=${this.project}&amnt=${this.state.currentPrice}&rwrd=${this.reward.id}`;
     } else if (this.state.currentPrice >= this.targetValue) {
-      return `#/checkout?proj=${this.project}&amnt=${this.state.currentPrice}`;
+      return `#/checkout?&proj=${this.project}&amnt=${this.state.currentPrice}`;
     } else {
       return `${window.location.hash}`;
     }
