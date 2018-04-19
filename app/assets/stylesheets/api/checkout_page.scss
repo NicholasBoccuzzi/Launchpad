@@ -295,8 +295,19 @@
     font-size: 14px;
     font-style:italic;
 }
+.co-pay-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #B1B3B3;
+    font-size: 14px;
+    font-style:italic;
+}
 
-.co-expir-box:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.co-expir-box::-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #B1B3B3;
+  font-size: 14px;
+  font-style:italic;
+
+}
+.co-pay-input::-ms-input-placeholder { /* Internet Explorer 10-11 */
   color: #B1B3B3;
   font-size: 14px;
   font-style:italic;
@@ -313,4 +324,50 @@
 .co-security-cont {
   max-width: 60%;
   width: 100%;
+}
+
+.co-pay-input::-ms-input-placeholder { /* Microsoft Edge */
+  color: #B1B3B3;
+  font-size: 14px;
+  font-style:italic;
+
+}
+
+.co-pay-input {
+  padding-left: 10px;
+}
+
+.co-small-checkbox {
+  position: relative;
+  border: 1px solid #B1B3B3;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.co-small-checkbox:hover {
+  border-color: #169D74;
+}
+
+.co-click-text {
+  margin-left: 20px;
+  color: black;
+  font-size: 14px;
+}
+
+.co-align-center {
+  align-items: center;
+}
+
+.co-hidden {
+  display: none;
+}
+
+.co-check-size {
+  font-size: 24px;
+  margin-bottom: 4px;
+  position: absolute;
+  top: -3px;
+  left: -1px;
+  color: #169D74;
 }

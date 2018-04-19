@@ -9,6 +9,8 @@ class CheckoutPage extends React.Component {
     if (props.search[3]) {
       this.rewardId = props.search[3].slice(5);
     }
+
+    this.filledIn = false;
     this.rewardBody = "No reward, I just want to support the project";
     this.currentUser = props.currentUser;
     this.hoverHelp = this.hoverHelp.bind(this);
@@ -20,11 +22,51 @@ class CheckoutPage extends React.Component {
     this.displayPaymentBoxes = this.displayPaymentBoxes.bind(this);
     this.displayCardHolderName = this.displayCardHolderName.bind(this);
     this.displayExpiration = this.displayExpiration.bind(this);
+    this.displayBackProject = this.displayBackProject.bind(this);
+    this.checkboxClass = this.checkboxClass.bind(this);
+    this.autofill = this.autofill.bind(this);
+    this.fill = this.fill.bind(this);
   }
 
   componentDidMount () {
     this.props.fetchProject(this.projectId);
     window.scrollTo(0,0);
+
+  }
+
+  autofill() {
+    if (!this.filledIn) {
+      this.filledIn = true;
+      let nameInput = document.getElementById("name");
+      let monthInput = document.getElementById("month");
+      let yearInput = document.getElementById("year");
+      let numInput = document.getElementById("number");
+      let codeInput = document.getElementById("code");
+      let cardNum = [1,2,3,4,1,2,3,4,1,2,3,4,1,2,3,4];
+      let name = ["D","e","m","o"," ","I","n","p","u","t"];
+      let month = [1,2];
+      let year = [2,1];
+      let code = [1,0,0];
+
+      this.fill(numInput, cardNum);
+      this.fill(monthInput, month);
+      this.fill(yearInput, year);
+      this.fill(codeInput, code);
+      this.fill(nameInput, name);
+
+      this.props.updatePage();
+    }
+  }
+
+  fill (input, list) {
+    var index=0;
+    var intObject = setInterval(function() {
+      input.value += list[index];
+      index++;
+      if(index === list.length){
+        clearInterval(intObject);
+      }
+    }, 100);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -38,6 +80,14 @@ class CheckoutPage extends React.Component {
 
         this.rewardBody = this.reward.body;
       }
+    }
+  }
+
+  checkboxClass () {
+    if (this.filledIn) {
+      return "fas fa-check-square co-check-size";
+    } else {
+      return "fas fa-chek-square co-hidden";
     }
   }
 
@@ -69,13 +119,13 @@ class CheckoutPage extends React.Component {
           <div className="co-flex-col co-expir-cont">
             <div className="co-pay-header">Expiration</div>
             <section className="co-flex-row co-space-start">
-              <input className="co-expir-box" placeholder={"MM"}></input>
-              <input className="co-expir-box" placeholder={"YY"}></input>
+              <input id="month" className="co-expir-box" placeholder={"MM"}></input>
+              <input id="year" className="co-expir-box" placeholder={"YY"}></input>
             </section>
           </div>
           <div className="co-flex-col co-security-cont">
             <div className="co-pay-header">Security code</div>
-            <input className="co-pay-input" placeholder={"ex: 101"}></input>
+            <input id="code"className="co-pay-input" type="password" placeholder={"ex: 101"}></input>
           </div>
         </section>
       </main>
@@ -96,7 +146,7 @@ class CheckoutPage extends React.Component {
               <i className="fab fa-cc-jcb co-cc"></i>
             </div>
           </div>
-          <input className="co-pay-input" placeholder={"Card number"}></input>
+          <input id="number"className="co-pay-input" type="password" placeholder={"Card number"}></input>
         </section>
       </main>
     );
@@ -107,11 +157,13 @@ class CheckoutPage extends React.Component {
       <main className="co-payment-cont">
         <section className="co-cardnum-cont">
           <div className="co-pay-header">Cardholder name</div>
-          <input className="co-pay-input"></input>
+          <input id="name" className="co-pay-input"></input>
         </section>
       </main>
     );
   }
+
+
 
   displayPayment () {
     return (
@@ -144,7 +196,21 @@ class CheckoutPage extends React.Component {
             {this.displayPaymentBoxes()}
             {this.displayCardHolderName()}
             {this.displayExpiration()}
+            {this.displayBackProject()}
           </div>
+        </section>
+      </main>
+    );
+  }
+
+  displayBackProject() {
+    return (
+      <main className="co-payment-cont">
+        <section className="co-flex-row co-space-start co-align-center">
+          <div className="co-small-checkbox" onClick={this.autofill}>
+            <i className={`${this.checkboxClass()}`}></i>
+          </div>
+          <div className="co-click-text">Click here to autofill information</div>
         </section>
       </main>
     );
