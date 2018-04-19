@@ -9,7 +9,7 @@ class CheckoutPage extends React.Component {
     if (props.search[3]) {
       this.rewardId = props.search[3].slice(5);
     }
-    this.rewardTitle = "No reward, I just want to support the project";
+    this.rewardBody = "No reward, I just want to support the project";
     this.currentUser = props.currentUser;
     this.hoverHelp = this.hoverHelp.bind(this);
     this.hoverTrue = this.hoverTrue.bind(this);
@@ -17,11 +17,14 @@ class CheckoutPage extends React.Component {
     this.hover = "initial";
     this.displayPayment = this.displayPayment.bind(this);
     this.displayDetails = this.displayDetails.bind(this);
-
+    this.displayPaymentBoxes = this.displayPaymentBoxes.bind(this);
+    this.displayCardHolderName = this.displayCardHolderName.bind(this);
+    this.displayExpiration = this.displayExpiration.bind(this);
   }
 
   componentDidMount () {
     this.props.fetchProject(this.projectId);
+    window.scrollTo(0,0);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,7 +36,7 @@ class CheckoutPage extends React.Component {
           return reward.id === parseInt(this.rewardId);
         });
 
-        this.rewardTitle = this.reward.title;
+        this.rewardBody = this.reward.body;
       }
     }
   }
@@ -59,6 +62,57 @@ class CheckoutPage extends React.Component {
     }
   }
 
+  displayExpiration() {
+    return (
+      <main className="co-payment-cont">
+        <section className="co-flex-row">
+          <div className="co-flex-col co-expir-cont">
+            <div className="co-pay-header">Expiration</div>
+            <section className="co-flex-row co-space-start">
+              <input className="co-expir-box" placeholder={"MM"}></input>
+              <input className="co-expir-box" placeholder={"YY"}></input>
+            </section>
+          </div>
+          <div className="co-flex-col co-security-cont">
+            <div className="co-pay-header">Security code</div>
+            <input className="co-pay-input" placeholder={"ex: 101"}></input>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  displayPaymentBoxes () {
+    return (
+      <main className="co-payment-cont">
+        <section className="co-cardnum-cont">
+          <div className="co-flex-row co-justify-space">
+            <div className="co-pay-header">Card number</div>
+            <div className="co-flex-row co-justify-space">
+              <i className="fab fa-cc-visa co-cc"></i>
+              <i className="fab fa-cc-mastercard co-cc"></i>
+              <i className="fab fa-cc-discover co-cc"></i>
+              <i className="fab fa-cc-amex co-cc"></i>
+              <i className="fab fa-cc-jcb co-cc"></i>
+            </div>
+          </div>
+          <input className="co-pay-input" placeholder={"Card number"}></input>
+        </section>
+      </main>
+    );
+  }
+
+  displayCardHolderName () {
+    return (
+      <main className="co-payment-cont">
+        <section className="co-cardnum-cont">
+          <div className="co-pay-header">Cardholder name</div>
+          <input className="co-pay-input"></input>
+        </section>
+      </main>
+    );
+  }
+
   displayPayment () {
     return (
       <main className="co-payment-container">
@@ -82,11 +136,14 @@ class CheckoutPage extends React.Component {
                 </section>
                 <section className="co-flex-col">
                   <div className="co-cur-pledge-head">{this.project.title}</div>
-                  <div></div>
-                  <div></div>
+                  <div className="co-cur-pledge-head">${this.amount}.00 + {this.rewardBody}</div>
+                  <div className="co-cur-pledge-head co-no-marg">${this.amount}.00</div>
                 </section>
               </div>
             </section>
+            {this.displayPaymentBoxes()}
+            {this.displayCardHolderName()}
+            {this.displayExpiration()}
           </div>
         </section>
       </main>

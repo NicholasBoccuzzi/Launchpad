@@ -133,6 +133,7 @@
 
   @media (min-width: 1024px) {
     margin-left: 5%;
+    margin-right: 1%;
   }
 }
 
@@ -140,7 +141,6 @@
   font-size: 14px;
   color: black;
   text-decoration: underline;
-  margin-right: 2%;
 }
 
 .co-pledge-edit:hover {
@@ -209,6 +209,7 @@
   background: #FBFBFA;
   border: 1px solid #E8E8E8;
   margin-top: 22px;
+  margin-bottom: 34px;
 }
 
 .co-cp-inner-marg {
@@ -236,4 +237,80 @@
 
 .co-no-marg {
   margin: 0px;
+}
+
+.co-cardnum-cont {
+  width: 100%;
+  height: 74px;
+}
+
+.co-cc {
+  height: 18px;
+  margin-left: 4px;
+}
+
+.co-pay-header {
+  font-size: 13px;
+  font-weight: 300;
+  margin-bottom: 6px;
+}
+
+.co-pay-input {
+  margin-top: 2px;
+  border: 1px solid #E8E8E8;
+  width: 100%;
+  height: 44px;
+}
+
+.co-pay-input:hover{
+  border: 1px solid #169D74;
+}
+
+.co-payment-cont {
+  margin-bottom: 18px;
+}
+
+.co-expir-cont {
+  max-width: 42%;
+  width: 100%;
+}
+
+.co-expir-box {
+  width: 24px;
+  height: 40px;
+  margin-top: 4px;
+  border: 1px solid #E8E8E8;
+  margin-right: 12px;
+  padding-right: 15px;
+  padding-left: 15px;
+  letter-spacing: 1.5px;
+}
+
+.co-expir-box:focus {
+  outline: none;
+}
+
+.co-expir-box::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #B1B3B3;
+    font-size: 14px;
+    font-style:italic;
+}
+
+.co-expir-box:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #B1B3B3;
+  font-size: 14px;
+  font-style:italic;
+
+}
+
+.co-expir-box::-ms-input-placeholder { /* Microsoft Edge */
+  color: #B1B3B3;
+  font-size: 14px;
+  font-style:italic;
+
+}
+
+.co-security-cont {
+  max-width: 60%;
+  width: 100%;
 }
