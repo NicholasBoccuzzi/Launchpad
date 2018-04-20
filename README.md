@@ -50,14 +50,18 @@ User Authentication
 Project Creation
 * When logged in, Users have access to the Create form for new projects. Similar to Kickstarter, the only requirements are a category, a short summary of the project, the project creator's location and a checklist of qualifications to ensure creator validity. These are all displayed using dropdown menus that update onClick of the selected criteria.
 
+
 ![](https://imgur.com/VHte4l5.png)
 
 Project Build
 * Launchpad features a Project Build page that tracks a project's progress to completion before it is allowed to go live on the site for backing. This is the page that is rerouted to on a successful project creation. Depending on whether or not certain aspects of the project are complete, the checklist will designate " x / 5 " complete and display a green check when that aspect is ready to be pushed live.
+
+
 ![](https://imgur.com/SBdqm95.png)
 
 Project Update
 * The update page features a nav bar that will allow you to switch between updating specific attributes of the project. It also has a back button that will send you to the build page. Depending on which button is selected, a CSS animation will remove the current page and slide in the new one. It is here that a project can create new rewards, update its picture and all other attributes by making any changes. To save the changes made, a modal is displayed. Depending on the page, the modal will either send an AJAX Patch request for the project or an AJAX Create request for rewards.
+
 
 ![](https://imgur.com/BRcPQvc.png)
 
@@ -70,15 +74,17 @@ Explore
 Multi-Layered Search Queries
 * Using injected SQL in my backend ruby methods, Users (logged in or not) can use the discover page to select particular projects from my PostgreSQL database. By selecting a project category, it will display all of the projects with that given category. A step further, users can add additional search params by selecting a location and a sorting method. These are all handled by updating the URL with the selected criteria, dissecting the new URL's search parameters, and then sending a fetch request to the server.
 
+
 ![](https://imgur.com/kbB2gKh.png)
 
 Reward Selection
 * Users are able to select from any reward or the default ("Make a pledge without a reward"). These rewards are loaded through Rails associations for the current page's project. Each reward's info is passed into a React component which will return the proper reward cost, description and delivery date as a link. The link will update depending on the reward passed in and load the checkout page when clicked.
 
+
 ![](https://imgur.com/5TaCSZs.png)
 
-
 * OnClick of a reward will bring you directly to the checkout page with all of the information pre-filled. A user may fill out their payment info and onClick of the pledge, two AJAX requests are made to the back end. If there was a reward involved, it creates a Backing and there is also an update request made to the Project to increase the Current_Funding by the pledge amount.
+
 
 ![](https://imgur.com/f0hrAW4.png)
 
