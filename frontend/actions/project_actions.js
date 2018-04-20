@@ -100,9 +100,9 @@ export const createProject = (project) => dispatch => {
   );
 };
 
-export const updateProject = (project) => dispatch => {
+export const updateProject = (project, id) => dispatch => {
   return (
-    ProjectAPIUtil.updateProject(project).then(project => dispatch(receiveProject(project)),
+    ProjectAPIUtil.updateProject(project, id).then(project => dispatch(receiveProject(project)),
   err => dispatch(receiveProjectErrors))
   );
 };

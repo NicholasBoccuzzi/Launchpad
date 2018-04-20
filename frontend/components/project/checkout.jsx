@@ -10,6 +10,7 @@ class CheckoutPage extends React.Component {
       this.rewardId = props.search[3].slice(5);
     }
 
+    this.hoveredButton;
     this.filledIn = false;
     this.rewardBody = "No reward, I just want to support the project";
     this.currentUser = props.currentUser;
@@ -26,12 +27,46 @@ class CheckoutPage extends React.Component {
     this.checkboxClass = this.checkboxClass.bind(this);
     this.autofill = this.autofill.bind(this);
     this.fill = this.fill.bind(this);
+    this.pledgeButtonColor = this.pledgeButtonColor.bind(this);
+    this.darkerButton = this.darkerButton.bind(this);
+    this.lighterButton = this.lighterButton.bind(this);
+    this.createBacking = this.createBacking.bind(this);
   }
 
   componentDidMount () {
     this.props.fetchProject(this.projectId);
     window.scrollTo(0,0);
 
+  }
+
+  pledgeButtonColor () {
+    if (this.hoveredButton === "on") {
+      return "rp-light-green";
+    } else if (this.hoveredButton === "off"){
+      return "rp-dark-green";
+    }
+  }
+
+  createBacking () {
+
+    let project = {project: {id: this.projectId, additional_funds: this.amount}};
+    let backing = `{amount: ${this.amount}, reward_id: ${this.rewardId}, user_id: ${this.currentUser.id}}`;
+
+    this.props.updateProject(project, this.projectId);
+
+    // if (this.reward) {
+    //   this.props.createBacking(backing);
+    // }
+  }
+
+  darkerButton () {
+    this.hoveredButton = "on";
+    this.props.updatePage();
+  }
+
+  lighterButton () {
+    this.hoveredButton = "off";
+    this.props.updatePage();
   }
 
   autofill() {
@@ -125,7 +160,7 @@ class CheckoutPage extends React.Component {
           </div>
           <div className="co-flex-col co-security-cont">
             <div className="co-pay-header">Security code</div>
-            <input id="code"className="co-pay-input" type="password" placeholder={"ex: 101"}></input>
+            <input id="code"className="co-pay-input co-96perc" type="password" placeholder={"ex: 101"}></input>
           </div>
         </section>
       </main>
@@ -210,11 +245,15 @@ class CheckoutPage extends React.Component {
           <div className="co-small-checkbox" onClick={this.autofill}>
             <i className={`${this.checkboxClass()}`}></i>
           </div>
-          <div className="co-click-text">Click here to autofill information</div>
+          <div className="co-click-text">Click here to autofill demo information</div>
         </section>
       </main>
     );
   }
+  // <main className={`co-pledge-button ${this.pledgeButtonColor()}`}
+  //   onMouseEnter={this.darkerButton} onMouseLeave={this.lighterButton} onClick={this.createBacking}>
+  //   <div>Pledge</div>
+  // </main>
 
   displayDetails () {
 

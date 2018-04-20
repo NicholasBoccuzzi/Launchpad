@@ -45,13 +45,21 @@ export const createProject = (project) => {
 };
 
 export const updateProject = (project, id) => {
-  return $.ajax({
+  if (project.project.additional_funds) {
+    return $.ajax({
+      method: "PATCH",
+      url: `api/projects/${id}`,
+      data: project
+    });
+  } else {
+    return $.ajax({
       method: "PATCH",
       url: `api/projects/${id}`,
       processData: false,
       contentType: false,
       data: project
-  });
+    });
+  }
 };
 
 export const destroyProject = (project) => {
