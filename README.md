@@ -47,6 +47,8 @@ Launchpad uses:
 User Authentication
 * Users are able to sign up, log in and log out of Launchpad. User information is kept secure using BCrypt's password hashing. Rather than storing a User's password in Launchpad's PostgreSQL database, a password hash is stored and compared every time a User signs up or attempts to log in, respectively. This process allows for the secure verification of User credentials.
 
+![](https://imgur.com/DAZoVjQ.png)
+
 Project Creation
 * When logged in, Users have access to the Create form for new projects. Similar to Kickstarter, the only requirements are a category, a short summary of the project, the project creator's location and a checklist of qualifications to ensure creator validity. These are all displayed using dropdown menus that update onClick of the selected criteria.
 
@@ -74,8 +76,12 @@ Explore
 Multi-Layered Search Queries
 * Using injected SQL in my backend ruby methods, Users (logged in or not) can use the discover page to select particular projects from my PostgreSQL database. By selecting a project category, it will display all of the projects with that given category. A step further, users can add additional search params by selecting a location and a sorting method. These are all handled by updating the URL with the selected criteria, dissecting the new URL's search parameters, and then sending a fetch request to the server.
 
-
 ![](https://imgur.com/kbB2gKh.png)
+
+Project Show
+* The project show will fetch the project that is associated with the project id in the URL. Once that loads, the project show page will display whether or not the project is live and whether it belongs to the currentUser. Based on those two criteria, the proper React components will be rendered. Below, you can see that the project is not live, therefore the button to back the project is grey'd out, however the project does not belong to the current User so there is an icon and name rendered of the project's User which links to that user's profile page.
+
+![](https://imgur.com/ZTmujwT.png)
 
 Reward Selection
 * Users are able to select from any reward or the default ("Make a pledge without a reward"). These rewards are loaded through Rails associations for the current page's project. Each reward's info is passed into a React component which will return the proper reward cost, description and delivery date as a link. The link will update depending on the reward passed in and load the checkout page when clicked.
@@ -83,13 +89,16 @@ Reward Selection
 
 ![](https://imgur.com/5TaCSZs.png)
 
+
+Checkout
 * OnClick of a reward will bring you directly to the checkout page with all of the information pre-filled. A user may fill out their payment info and onClick of the pledge, two AJAX requests are made to the back end. If there was a reward involved, it creates a Backing and there is also an update request made to the Project to increase the Current_Funding by the pledge amount.
 
 
 ![](https://imgur.com/f0hrAW4.png)
 
 User Profile Page
-![](https://imgur.com/E12PJB2.png)
-There are multiple ways for Users to enter anther users profile page. If the User does not own the project, the User may click on the User icon and it will send them to the profile page of the project owner.
+* There are multiple ways for Users to enter anther users profile page. If the User does not own the project, the User may click on the User icon and it will send them to the profile page of the project owner.
 
-In a User profile page, all of the live projects that a User has will be displayed below. It also features an About page where a User can read where the page's User is from and any biography they might have.
+* In a User profile page, all of the live projects that a User has will be displayed below. It also features an About page where a User can read where the page's User is from and any biography they might have.
+
+![](https://imgur.com/E12PJB2.png)
