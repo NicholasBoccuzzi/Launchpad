@@ -48,7 +48,7 @@ class projectList extends React.Component {
     this.createSearchQuery = this.createSearchQuery.bind(this);
     this.locationClick = this.locationClick.bind(this);
     this.categoryClick = this.categoryClick.bind(this);
-    this.disectSearch = this.disectSearch.bind(this);
+    this.dissectSearch = this.dissectSearch.bind(this);
     this.onOrFrom = this.onOrFrom.bind(this);
     this.locationLiClass = this.locationLiClass.bind(this);
     this.updateLocationInput = this.updateLocationInput.bind(this);
@@ -103,7 +103,7 @@ class projectList extends React.Component {
 
     if (nextProps.location.search) {
       if (this.loadedCount !== 1) {
-        this.disectSearch(nextProps);
+        this.dissectSearch(nextProps);
       } else {
         this.loadedCount += 1;
       }
@@ -232,7 +232,7 @@ class projectList extends React.Component {
     }
   }
 
-  disectSearch(nextProps) {
+  dissectSearch(nextProps) {
     this.search = nextProps.location.search.split("&");
 
     let oldCat = this.state.cat;

@@ -21,7 +21,7 @@ class searchOrderModal extends React.Component {
     ];
 
     this.displayOptions = this.displayOptions.bind(this);
-    this.disectCurrentSearch = this.disectCurrentSearch.bind(this);
+    this.dissectCurrentSearch = this.dissectCurrentSearch.bind(this);
     this.handleOrderClick = this.handleOrderClick.bind(this);
   }
 
@@ -29,7 +29,7 @@ class searchOrderModal extends React.Component {
     this.props.toggleSearchOrderModal();
   }
 
-  disectCurrentSearch() {
+  dissectCurrentSearch() {
     let result;
 
 
@@ -75,7 +75,7 @@ class searchOrderModal extends React.Component {
       if (!this.props.currentOrd && option === "Magic") {
         return (
           <a className="sdropdown-order-li sdropdown-order-li-active"
-            href={`#${this.location.join('/')}?${this.disectCurrentSearch()}ord=${trueOption}`}
+            href={`#${this.location.join('/')}?${this.dissectCurrentSearch()}ord=${trueOption}`}
             onClick={this.handleOrderClick}>
             {option}
           </a>
@@ -84,7 +84,7 @@ class searchOrderModal extends React.Component {
       else if (this.props.currentOrd === option) {
         return (
           <a className="sdropdown-order-li sdropdown-order-li-active"
-            href={`#${this.location.join('/')}?${this.disectCurrentSearch()}ord=${trueOption}`}
+            href={`#${this.location.join('/')}?${this.dissectCurrentSearch()}ord=${trueOption}`}
             onClick={this.handleOrderClick}>
             {option}
           </a>
@@ -92,7 +92,7 @@ class searchOrderModal extends React.Component {
       } else {
         return (
           <a className="sdropdown-order-li"
-            href={`#${this.location.join('/')}?${this.disectCurrentSearch()}ord=${trueOption}`}
+            href={`#${this.location.join('/')}?${this.dissectCurrentSearch()}ord=${trueOption}`}
             onClick={this.handleOrderClick}>
             {option}
           </a>

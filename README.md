@@ -1,18 +1,20 @@
 # README
 
 # LAUNCHPAD
-![](https://i.imgur.com/hl5yvXZm.png)
+![](https://imgur.com/ogbzPXf.png)
 
 [Launchpad](https://thelaunchpad.herokuapp.com/#/)
 
 
 # SUMMARY
 
-Launchpad is a full-stack application that allows a User to create projects similar to Kickstarter. Launchpads current functionality includes:
+Launchpad is a Kickstarter-Inspired full-stack app. Launchpads current functionality includes:
 
 *  Create an account
 *  Log In / Log Out
 *  Create / Update Projects
+*  Create Rewards
+*  Back Projects
 *  View Individual Project Info
 *  View List of all Projects
 
@@ -42,11 +44,46 @@ Launchpad uses:
 
 # Primary Components
 
-* User Authentication
-Users are able to sign up, log in and log out of Launchpad. User information is kept secure using BCrypt's password hashing. Rather than storing a User's password in Launchpad's PostgreSQL database, a password hash is stored and compared every time a User signs up or attempts to log in, respectively. This process allows for the secure verification of User credentials.
+User Authentication
+* Users are able to sign up, log in and log out of Launchpad. User information is kept secure using BCrypt's password hashing. Rather than storing a User's password in Launchpad's PostgreSQL database, a password hash is stored and compared every time a User signs up or attempts to log in, respectively. This process allows for the secure verification of User credentials.
 
-* Project Creation / Updating
-When logged in, Users have access to both the Create form for new projects and the Update form for their own projects. Front-End authentication redirects a User back to the Project's show page when the User is not the creator of the project.
+Project Creation
+* When logged in, Users have access to the Create form for new projects. Similar to Kickstarter, the only requirements are a category, a short summary of the project, the project creator's location and a checklist of qualifications to ensure creator validity. These are all displayed using dropdown menus that update onClick of the selected criteria.
 
-* Multi-Layered Search Queries
-Using injected SQL in my backend ruby methods, Users (logged in or not) can use the explore page to select particular projects from my PostgreSQL database.
+![](https://imgur.com/VHte4l5.png)
+
+Project Build
+* Launchpad features a Project Build page that tracks a project's progress to completion before it is allowed to go live on the site for backing. This is the page that is rerouted to on a successful project creation. Depending on whether or not certain aspects of the project are complete, the checklist will designate " x / 5 " complete and display a green check when that aspect is ready to be pushed live.
+![](https://imgur.com/SBdqm95.png)
+
+Project Update
+* The update page features a nav bar that will allow you to switch between updating specific attributes of the project. It also has a back button that will send you to the build page. Depending on which button is selected, a CSS animation will remove the current page and slide in the new one. It is here that a project can create new rewards, update its picture and all other attributes by making any changes. To save the changes made, a modal is displayed. Depending on the page, the modal will either send an AJAX Patch request for the project or an AJAX Create request for rewards.
+
+![](https://imgur.com/BRcPQvc.png)
+
+Explore
+* The Explore page is used to link a User to the discover page with pre-filled search criteria. This page features dynamic class selection for its HTML elements which will stack the Header of each list depending on how far a User has scrolled down the page. This page removes all other components from being rendered at the time and on click of either the X in the top corner or any of the selections, it either sends a User back to the prior URL or to the new discover page with the correct search params.
+
+
+![](https://imgur.com/pi4OwAl.png)
+
+Multi-Layered Search Queries
+* Using injected SQL in my backend ruby methods, Users (logged in or not) can use the discover page to select particular projects from my PostgreSQL database. By selecting a project category, it will display all of the projects with that given category. A step further, users can add additional search params by selecting a location and a sorting method. These are all handled by updating the URL with the selected criteria, dissecting the new URL's search parameters, and then sending a fetch request to the server.
+
+![](https://imgur.com/kbB2gKh.png)
+
+Reward Selection
+* Users are able to select from any reward or the default ("Make a pledge without a reward"). These rewards are loaded through Rails associations for the current page's project. Each reward's info is passed into a React component which will return the proper reward cost, description and delivery date as a link. The link will update depending on the reward passed in and load the checkout page when clicked.
+
+![](https://imgur.com/5TaCSZs.png)
+
+
+* OnClick of a reward will bring you directly to the checkout page with all of the information pre-filled. A user may fill out their payment info and onClick of the pledge, two AJAX requests are made to the back end. If there was a reward involved, it creates a Backing and there is also an update request made to the Project to increase the Current_Funding by the pledge amount.
+
+![](https://imgur.com/f0hrAW4.png)
+
+User Profile Page
+![](https://imgur.com/E12PJB2.png)
+There are multiple ways for Users to enter anther users profile page. If the User does not own the project, the User may click on the User icon and it will send them to the profile page of the project owner.
+
+In a User profile page, all of the live projects that a User has will be displayed below. It also features an About page where a User can read where the page's User is from and any biography they might have.

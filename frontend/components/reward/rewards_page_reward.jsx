@@ -9,7 +9,7 @@ class rewardsPageReward extends React.Component {
       this.id = props.reward.id;
       this.title = props.reward.title;
       this.description = props.reward.body;
-      this.date = this.disectDate(props.reward.delivery_date);
+      this.date = this.dissectDate(props.reward.delivery_date);
       this.state = {
         currentPrice: props.reward.amount
       };
@@ -48,7 +48,7 @@ class rewardsPageReward extends React.Component {
     this.leaveBox = this.leaveBox.bind(this);
     this.reroute = this.reroute.bind(this);
     this.select = props.select;
-    this.disectDate = this.disectDate.bind(this);
+    this.dissectDate = this.dissectDate.bind(this);
     this.calcMonth = this.calcMonth.bind(this);
   }
 
@@ -67,7 +67,7 @@ class rewardsPageReward extends React.Component {
     }
   }
 
-  disectDate(date) {
+  dissectDate(date) {
     let month = date.slice(5,7);
     month = this.calcMonth(month);
     let year = date.slice(0, 4);

@@ -14,7 +14,7 @@ class projectCampaignRewardItem extends React.Component {
         currentAmount: props.reward.amount
       };
       this.includes = props.reward.includes;
-      this.delivery_date = this.disectDate(props.reward.delivery_date);
+      this.delivery_date = this.dissectDate(props.reward.delivery_date);
     } else {
       this.state = {
         currentAmount: 1
@@ -25,7 +25,7 @@ class projectCampaignRewardItem extends React.Component {
     this.projectId = props.projectId;
     this.hoverActive = false;
     this.displayIncludes = this.displayIncludes.bind(this);
-    this.disectDate = this.disectDate.bind(this);
+    this.dissectDate = this.dissectDate.bind(this);
     this.calcMonth = this.calcMonth.bind(this);
     this.classIfSelected = this.classIfSelected.bind(this);
     this.activateSelected = this.activateSelected.bind(this);
@@ -70,7 +70,7 @@ class projectCampaignRewardItem extends React.Component {
     this.props.updatePage();
   }
 
-  disectDate(date) {
+  dissectDate(date) {
     let month = date.slice(5,7);
     month = this.calcMonth(month);
     let year = date.slice(0, 4);
