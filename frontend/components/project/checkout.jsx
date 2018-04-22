@@ -247,13 +247,13 @@ class CheckoutPage extends React.Component {
           </div>
           <div className="co-click-text">Click here to autofill demo information</div>
         </section>
+        <main className={`co-pledge-button ${this.pledgeButtonColor()}`}
+          onMouseEnter={this.darkerButton} onMouseLeave={this.lighterButton} onClick={this.createBacking}>
+          <div>Pledge</div>
+        </main>
       </main>
     );
   }
-  // <main className={`co-pledge-button ${this.pledgeButtonColor()}`}
-  //   onMouseEnter={this.darkerButton} onMouseLeave={this.lighterButton} onClick={this.createBacking}>
-  //   <div>Pledge</div>
-  // </main>
 
   displayDetails () {
 

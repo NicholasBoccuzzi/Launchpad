@@ -55,8 +55,9 @@ class Api::ProjectsController < ApplicationController
     @project = Project.find(project_params[:id])
 
     debugger
+
     if project_params[:additional_funds] != false
-      Project.update(project_params[:id], current_funding: (@project.current_funding += params[:project][:additional_funds].to_i))
+      Project.update(project_params[:id], current_funding: (@project.current_funding += project_params[:additional_funds].to_i))
       @project.save
       print @project.current_funding
     end

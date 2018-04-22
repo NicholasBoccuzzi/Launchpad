@@ -1,0 +1,45 @@
+// Implement a method to perform basic string compression using the counts of
+// repeated characters. For example, the string 'aabcccccaaa' would become a2b1c5a3.
+// If the 'compressed' string woul dnot become smaller than the original string,
+// your method should return the original string. You can assume the string has only
+// uppercase and lowercase letters (a-z).
+
+// Make two pointers. One will point to the origins of the first sequential character.
+// One will point ahead to the last sequential character
+
+// If the next sequential character of the last pointer is not the first character,
+// then generate the compression.
+
+
+const letterCounter = (string) => {
+  let curLetter;
+  let curCount = 0;
+  let returnString = "";
+
+  for (var i = 0; i < string.length; i++) {
+    if (i === 0) {
+      curLetter = string[i];
+    }
+
+    if (string[i] === curLetter) {
+      curCount += 1;
+    } else {
+      returnString += `${curLetter}${curCount}`;
+      curLetter = string[i];
+      curCount = 1;
+    }
+
+    if (i === string.length - 1) {
+      returnString += `${curLetter}${curCount}`;
+    }
+  }
+
+  if (returnString.length < string.length) {
+    return returnString;
+  } else {
+    return string;
+  }
+};
+
+
+// "aabbbc"

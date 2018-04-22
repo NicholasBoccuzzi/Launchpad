@@ -76,6 +76,52 @@ Explore
 Multi-Layered Search Queries
 * Using injected SQL in my backend ruby methods, Users (logged in or not) can use the discover page to select particular projects from my PostgreSQL database. By selecting a project category, it will display all of the projects with that given category. A step further, users can add additional search params by selecting a location and a sorting method. These are all handled by updating the URL with the selected criteria, dissecting the new URL's search parameters, and then sending a fetch request to the server.
 
+Dissecting the Search
+* depending on what the current search is (if any), the state is set accordingly.
+```
+dissectSearch(nextProps) {
+  this.search = nextProps.location.search.split("&");
+
+  let oldCat = this.state.cat;
+  let oldOrd = this.state.ord;
+  let oldLoc = this.state.loc;
+
+  for (var i = 0; i < this.search.length; i++) {
+    if (i === 0) {
+      this.search[i] = this.search[i].slice(1);
+    }
+
+    if (this.search[i].includes("loc=")) {
+
+      this.setState({loc: this.search[i].slice(4)});
+    }
+
+    if (this.search[i].includes("cat=")) {
+      this.setState({cat: this.search[i].slice(4)});
+    }
+
+    if (this.search[i].includes("ord=")) {
+      this.setState({ord: this.search[i].slice(4)});
+      if (oldOrd !== this.search[i].slice(4)) {
+        this.props.fetchProjects({category: this.state.cat, location: this.state.loc, order: this.state.ord});
+      }
+    }
+
+    if (oldCat && !nextProps.location.search.includes("cat=")) {
+      this.setState({cat: null});
+    }
+
+    if (oldLoc && !nextProps.location.search.includes("loc=")) {
+      this.setState({loc: null});
+    }
+
+    if (oldOrd && !nextProps.location.search.includes("ord=")) {
+      this.setState({ord: null});
+    }
+  }
+}
+```
+
 ![](https://imgur.com/kbB2gKh.png)
 
 Project Show
