@@ -39,6 +39,7 @@ class updateProjectForm extends React.Component {
     this.switchSelectedTab = this.switchSelectedTab.bind(this);
     this.displayProjectBasics = this.displayProjectBasics.bind(this);
     this.displayProjectRewards = this.displayProjectRewards.bind(this);
+    this.displayProjectStory = this.displayProjectStory.bind(this);
     this.selectedTabClass = this.selectedTabClass.bind(this);
     this.changesMade = false;
   }
@@ -242,6 +243,12 @@ class updateProjectForm extends React.Component {
       return (
         <RewardsTab state={this.state} activeTab={this.activeTab} location={this.props.location} id={this.state.id}/>
       );
+    }
+  }
+
+  displayProjectStory() {
+    if (this.activeTab === "Story") {
+      return;
     }
   }
 
@@ -495,6 +502,7 @@ class updateProjectForm extends React.Component {
           </div>
         </nav>
 
+        {this.displayProjectStory()}
         {this.displayProjectRewards()}
         {this.displayProjectBasics()}
         {this.renderSubmit()}

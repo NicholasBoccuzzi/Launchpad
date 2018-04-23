@@ -17,9 +17,11 @@ class rewardsTab extends React.Component {
       projectId: props.id
     };
     this.rewardsState = [];
+    this.renderRewards = this.renderRewards.bind(this);
   }
 
   newRewardBox(num) {
+    console.log("hit");
     return (
       <RewardsTabItem rewardNum={num}
         key={num}
@@ -39,6 +41,12 @@ class rewardsTab extends React.Component {
 
   componentDidMount () {
     window.scrollTo(0, 0);
+  }
+
+  renderRewards () {
+    this.rewards.forEach(() => {
+
+    });
   }
 
   renderRewardSubmit () {
@@ -62,7 +70,6 @@ class rewardsTab extends React.Component {
   }
 
   removeReward(e) {
-
     this.rewards.splice(parseInt(e.currentTarget.id - 1), 1);
     this.props.checkRewardCount();
   }
@@ -97,7 +104,6 @@ class rewardsTab extends React.Component {
         <main className="new-project-container no-overflow">
           <form className="reward-form animated slideInLeft">
             {this.rewards}
-
             <div className="new-reward-button-container" onClick={() => {this.addReward(this.rewards.length + 1); } } >
               <i className="fa fa-plus"></i>
               <div className="new-reward-button-text">
