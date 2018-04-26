@@ -50,13 +50,12 @@ class CheckoutPage extends React.Component {
   createBacking () {
 
     let project = {project: {id: this.projectId, additional_funds: this.amount}};
-    let backing = `{amount: ${this.amount}, reward_id: ${this.rewardId}, user_id: ${this.currentUser.id}}`;
+    let backing = {amount: this.amount, reward_id: this.rewardId, user_id: this.currentUser.id};
 
     this.props.updateProject(project, this.projectId);
-
-    // if (this.reward) {
-    //   this.props.createBacking(backing);
-    // }
+    if (this.reward) {
+      this.props.createBacking(backing);
+    }
   }
 
   darkerButton () {

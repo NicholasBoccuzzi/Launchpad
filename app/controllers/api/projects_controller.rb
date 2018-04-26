@@ -53,18 +53,15 @@ class Api::ProjectsController < ApplicationController
 
   def update
     @project = Project.find(project_params[:id])
-
     debugger
 
-    if project_params[:additional_funds] != false
-      Project.update(project_params[:id], current_funding: (@project.current_funding += project_params[:additional_funds].to_i))
+    if project_params[:additional_funds] != nil
+      @project.update(current_funding: (@project.current_funding += project_params[:additional_funds].to_i))
+      debugger
       @project.save
-      print @project.current_funding
-    end
-
-    if @project.update_attributes(project_params) && !project_params[:additional_funds]
+    elsif project_params[:additional_funds] == nil && @project.update_attributes(project_params)
       render :show
-    elsif !project_params[:additional_funds]
+    else
       render json: @project.errors.full_messages, status:422
     end
   end

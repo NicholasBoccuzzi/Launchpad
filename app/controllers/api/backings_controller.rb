@@ -3,6 +3,7 @@ class Api::BackingsController < ApplicationController
   def create
     @backing = Backing.new(backing_params)
 
+    debugger
     if @backing.save
       print "true"
     else
