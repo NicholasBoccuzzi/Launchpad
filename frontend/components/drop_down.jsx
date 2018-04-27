@@ -58,8 +58,8 @@ class DropDown extends React.Component {
     }
   }
 
-  displayMyProjects() {
-    if (this.props.currentUser && this.props.currentUserProjects) {
+  displayMyProjects(string) {
+    if (this.props.currentUser && this.props.currentUserProjects && string !== "backed") {
       let projects;
       let number;
 
@@ -98,6 +98,48 @@ class DropDown extends React.Component {
       }
 
       return result;
+    } else {
+        if (this.props.currentUser && this.props.currentUser.backed_projects && string === "backed") {
+          let projects;
+          let number;
+
+          if (this.props.currentUser.backed_projects.length >= 5) {
+            number = 5;
+          } else {
+            number = this.props.currentUser.backed_projects.length;
+          }
+
+
+          projects = this.props.currentUser.backed_projects.slice(
+            this.props.currentUser.backed_projects.length - number,
+            this.props.currentUser.backed_projects.length
+          );
+
+
+          let result = [];
+
+          for (var i =  projects.length - 1; i >= 0; i--) {
+            let url = `#/projects/${this.props.currentUser.backed_projects[i].id}`;
+
+            result.push (
+              <div className="dd-projects-li-container">
+                <a href={url} className="dd-projects-li-image-container" onClick={this.switchProjects}>
+                  <img className="dd-projects-li-image"
+                    src={`${this.props.currentUser.backed_projects[i].image}`}></img>
+                </a>
+
+                <div className="dd-projects-li-title">
+                  <a href={url} className="dd-projects-li-image-container dd-link"
+                    onClick={this.switchProjects}>
+                    {`${projects[i].title}`}
+                  </a>
+                </div>
+              </div>
+            );
+          }
+
+          return result;
+      }
     }
   }
 
@@ -111,9 +153,9 @@ class DropDown extends React.Component {
               <a href={`#/user/${this.props.currentUser.id}`} className="cp-modal-options">
                 Profile
               </a>
-              <div className="cp-modal-options">
+              <a href={`#/user/${this.props.currentUser.id}`} className="cp-modal-options">
                 My projects
-              </div>
+              </a>
               <div className="cp-modal-options">
                 Account
               </div>
@@ -144,6 +186,16 @@ class DropDown extends React.Component {
               </section>
               <section className="dd-backed-projects dd-bold">
                 <h1 className="dd-section-header">BACKED PROJECTS</h1>
+                  <div className="dd-my-blank-container">
+                    {this.displayMyProjects("backed")}
+                  <div className="dd-view-all">
+                    <a href={`#/user/${this.props.currentUser.id}/projects`}
+                      onClick={this.props.toggleProfileDropDown}
+                      className="dd-view-all">
+                      View all
+                    </a>
+                  </div>
+                </div>
               </section>
               <section className="dd-my-projects dd-bold">
                 <h1 className="dd-section-header">MY PROJECTS</h1>
@@ -156,7 +208,7 @@ class DropDown extends React.Component {
                     View all
                   </a>
                 </div>
-                </div>
+              </div>
               </section>
             </div>
             <div className="logout-dropdown-box">

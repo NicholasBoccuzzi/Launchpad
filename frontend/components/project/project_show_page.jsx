@@ -158,7 +158,9 @@ class projectShow extends React.Component {
       if (this.dateMath("true")) {
         return "Campaign Ended";
     } else if (this.props.currentUser && this.props.project) {
-        if (this.props.currentUser.backings && this.props.currentUser.backingIds.includes(this.props.project.id)) {
+        if (this.props.currentUser.backed_projects.length > 0 && this.props.currentUser.backed_projects.some((project) => {
+          project.id === this.props.project.id;
+        })) {
           return "View Pledge";
         } else {
           return "Back this Project";
@@ -170,7 +172,9 @@ class projectShow extends React.Component {
       if (this.dateMath("true")) {
         return "greyed-project-button";
       } else if (this.props.currentUser && this.props.project) {
-        if (this.props.currentUser.backings && this.props.currentUser.backingIds.includes(this.props.project.id)) {
+        if (this.props.currentUser.backed_projects.length > 0 && this.props.currentUser.backed_projects.some((project) => {
+          project.id === this.props.project.id;
+        })) {
           return "show-backproject blue";
         } else {
           return "show-backproject";

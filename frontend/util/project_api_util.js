@@ -29,6 +29,14 @@ export const fetchUserProjects = (id) => {
   });
 };
 
+export const fetchBackedProjects = (id) => {
+  return $.ajax({
+      method: "GET",
+      url: `api/projects`,
+      data: {creator_id: id, backed: true}
+  });
+};
+
 export const fetchProject = (id) => {
   return $.ajax({
       method: "GET",

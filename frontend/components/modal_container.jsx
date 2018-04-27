@@ -11,7 +11,6 @@ import { createReward } from '../actions/reward_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger
   return {
     errors: state.errors.session,
     rewardErrors: state.errors.reward,

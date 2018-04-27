@@ -37,7 +37,6 @@ class Modal extends React.Component {
   }
 
   rewardsRedirect () {
-    debugger
     if (this.rewardsSubmitted === true && this.props.rewardErrors.length === 0) {
       return <Redirect to={`/projects/${this.props.projectId}/build`} />;
     }
@@ -103,7 +102,7 @@ class Modal extends React.Component {
       };
 
       this.props.createReward(rewardObj);
-    
+
     }
 
     this.rewardsSubmitted = true;

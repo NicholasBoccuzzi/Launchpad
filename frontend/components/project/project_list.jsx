@@ -83,12 +83,14 @@ class projectList extends React.Component {
         let searchQuery = {category: cat, location: loc, order: ord};
         this.props.fetchProjects(searchQuery);
         this.loadedCount += 1;
-      } else if (!this.props.projects) {
+      } else {
         this.props.fetchProjects();
         this.loadedCount += 2;
       }
-    } else if (this.location[1] === ("user")) {
+    } else if (this.location[1] === ("user") && this.props.currentTab === "Created") {
       this.props.fetchUserProjects(this.props.user.id);
+    } else if (this.location[1] === ("user") && this.props.currentTab === "Backed") {
+      this.props.fetchBackedProjects(this.props.user.id);
     }
   }
 
@@ -653,6 +655,32 @@ class projectList extends React.Component {
           </div>
         </div>
       );
+    } else if (
+        this.props.location.pathname.includes("user")
+        && this.props.currentTab === "Backed"
+        && this.props.userProjects
+      ){
+        if (this.props.user.backed_projects.length > 0) {
+          let mappedProjectList = this.props.user.backed_projects.map((project) => {
+            return (
+              <ProjectListItem key={project.id} project={project} backed={true}/>
+            );
+          });
+
+          return (
+            <div className="pro-project-list pro-projects-border">
+              <div className="pro-projects-center flex-children">
+                {mappedProjectList}
+              </div>
+            </div>
+          );
+        } else {
+          return (
+          <div className="pro-project-list pro-projects-border">
+            There are no backed projects to be found
+          </div>
+          );
+        }
     }
   }
 
@@ -789,7 +817,7 @@ class projectList extends React.Component {
           this.liveCount -= 1;
         } else {
           return (
-            <ProjectListItem key={project.id} project={project} />
+            <ProjectListItem key={project.id} project={project}/>
           );
         }
       });

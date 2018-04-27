@@ -8,7 +8,7 @@ export const fetchBackings = () => {
 export const createBacking = (backing) => {
   return $.ajax({
       method: "POST",
-      url: `api/backing`,
+      url: `api/backings`,
       data: backing,
   });
 };

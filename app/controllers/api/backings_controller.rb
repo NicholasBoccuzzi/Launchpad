@@ -2,10 +2,10 @@ class Api::BackingsController < ApplicationController
 
   def create
     @backing = Backing.new(backing_params)
+    @reward = Reward.find(backing_params[:reward_id])
 
-    debugger
     if @backing.save
-      print "true"
+      render :show
     else
       render json: @backing.errors.full_messages, status:422
     end

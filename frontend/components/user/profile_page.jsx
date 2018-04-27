@@ -7,7 +7,7 @@ class profilePage extends React.Component {
     super(props);
 
     this.state = {
-      currentTab: "Created"
+      currentTab: "Backed"
     };
 
     this.refreshed = false;
@@ -27,6 +27,7 @@ class profilePage extends React.Component {
     this.displayWebsites = this.displayWebsites.bind(this);
     this.selectedAbout = this.selectedAbout.bind(this);
     this.selectedCreated = this.selectedCreated.bind(this);
+    this.selectedBacked = this.selectedBacked.bind(this);
     this.selectedComments = this.selectedComments.bind(this);
   }
 
@@ -78,6 +79,10 @@ class profilePage extends React.Component {
     if (this.state.currentTab === "Created" && this.props.user) {
       return (
         <ProjectList location={this.props.location} user={this.props.user} currentTab={this.state.currentTab}/>
+      );
+    } else if (this.state.currentTab === "Backed" && this.props.user) {
+      return (
+        <ProjectList location={this.props.location} user={this.props.user} currentTab={this.state.currentTab} backed={true}/>
       );
     } else if (this.state.currentTab === "About" && this.props.user) {
       return (
@@ -137,6 +142,17 @@ class profilePage extends React.Component {
           </div>
         </div>
         <div
+          className={this.selectedBacked()}
+          id="Backed"
+          onClick={this.switchLocalTab}>
+          <div>
+            Backed
+          </div>
+          <div className="pro-tab-num">
+            {this.props.user.backed_projects.length}
+          </div>
+        </div>
+        <div
           className={this.selectedCreated()}
           id="Created"
           onClick={this.switchLocalTab}>
@@ -180,11 +196,19 @@ class profilePage extends React.Component {
      }
    }
 
-   selectedComments() {
-     if (this.state.currentTab === "Comments") {
+   selectedBacked() {
+     if (this.state.currentTab === "Backed") {
        return "pro-tab pro-selected-tab";
      } else {
        return "pro-tab";
+     }
+   }
+
+   selectedComments() {
+     if (this.state.currentTab === "Comments") {
+       return "pro-tab pro-selected-tab no-margin-right";
+     } else {
+       return "pro-tab no-margin-right";
      }
    }
 

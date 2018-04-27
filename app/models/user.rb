@@ -31,6 +31,16 @@ class User < ApplicationRecord
   has_many :projects,
   foreign_key: :creator_id
 
+  has_many :backings,
+  foreign_key: :user_id
+
+  has_many :rewards,
+  through: :backings
+
+  has_many :backed_projects,
+  through: :rewards,
+  source: :project
+
   after_initialize :ensure_session_token
 
   def self.find_by_credentials(username, password)

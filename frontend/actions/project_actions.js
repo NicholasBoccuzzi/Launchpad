@@ -7,6 +7,7 @@ export const RECEIVE_PROJECT = "RECEIVE_PROJECT";
 export const REMOVE_PROJECT = "REMOVE_PROJECT";
 export const RECEIVE_PROJECT_ERRORS = "RECEIVE_PROJECT_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
+export const RECEIVE_CURRENT_USER_BACKED_PROJECTS = "RECEIVE_CURRENT_USER_BACKED_PROJECTS";
 
 export const receiveAllProjects = (projects) => {
   return {
@@ -19,6 +20,13 @@ export const receiveCurrentUserProjects = (projects) => {
   return {
     type: RECEIVE_CURRENT_USER_PROJECTS,
     currentUserProjects: projects
+  };
+};
+
+export const receiveCurrentUserBackedProjects = (projects) => {
+  return {
+    type: RECEIVE_CURRENT_USER_BACKED_PROJECTS,
+    currentUserBackedProjects: projects
   };
 };
 
@@ -75,6 +83,14 @@ export const fetchCurrentUserProjects = (id) => dispatch => {
   );
 };
 
+export const fetchBackedProjects = (id) => dispatch => {
+  debugger
+  return (
+    ProjectAPIUtil.fetchCurrentUserProjects(id).then(currentUserProjects => dispatch(receiveCurrentUserProjects(currentUserProjects)),
+    err => dispatch(receiveProjectErrors))
+  );
+};
+
 export const fetchUserProjects = (id) => dispatch => {
   return (
     ProjectAPIUtil.fetchUserProjects(id).then(userProjects => dispatch(receiveUserProjects(userProjects)),
@@ -101,10 +117,14 @@ export const createProject = (project) => dispatch => {
 };
 
 export const updateProject = (project, id) => dispatch => {
-  return (
-    ProjectAPIUtil.updateProject(project, id).then(project => dispatch(receiveProject(project)),
-  err => dispatch(receiveProjectErrors))
-  );
+  if (project.project.additional_funds) {
+    ProjectAPIUtil.updateProject(project,id);
+  } else {
+    return (
+      ProjectAPIUtil.updateProject(project, id).then(project => dispatch(receiveProject(project)),
+      err => dispatch(receiveProjectErrors))
+    );
+  }
 };
 
 export const deleteProject = (project) => dispatch => {

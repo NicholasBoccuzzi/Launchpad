@@ -27,6 +27,10 @@ export const clearBackingErrors = () => ({
 export const createBacking = (backing) => dispatch => {
   return (
     BackingAPIUtil.createBacking(backing).then(backing => dispatch(receiveBacking(backing)),
-    err => dispatch(receiveBackingErrors(err)))
+    err => dispatch(receiveBackingErrors(err))).then((backing) => {
+      let origin = window.location.origin + "/#/";
+      let userEdit = `user/${backing.backing.user_id}`;
+      window.location.assign(origin + userEdit);
+    })
   );
 };

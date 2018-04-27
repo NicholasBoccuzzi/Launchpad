@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import projectList from './project_list';
 import {
   fetchProjects,
-  fetchUserProjects
+  fetchUserProjects,
+  fetchBackedProjects
 } from '../../actions/project_actions';
 import {
   toggleLocationModal,
@@ -39,6 +40,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchProjects: (category) => dispatch(fetchProjects(category)),
     fetchUserProjects: (id) => dispatch(fetchUserProjects(id)),
+    fetchBackedProjects: (id) => dispatch(fetchUserProjects(id)),
     updatePage: () => dispatch(updatePage()),
     toggleCategoryModal: () => dispatch(toggleCategoryModal()),
     toggleLocationModal: () => dispatch(toggleLocationModal()),

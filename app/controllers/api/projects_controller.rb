@@ -26,7 +26,9 @@ class Api::ProjectsController < ApplicationController
       end
 
       return @projects
-    elsif params[:creator_id]
+    elsif params[:creator_id] && params[:backed] == nil
+      @projects = Project.select("*").from("projects").where("creator_id = ?", params[:creator_id])
+    elsif params[:creator_id] && params[:backed] != nil
       @projects = Project.select("*").from("projects").where("creator_id = ?", params[:creator_id])
     else
       @projects = Project.select("*").from("projects").where("live = ?", "true")
@@ -53,13 +55,13 @@ class Api::ProjectsController < ApplicationController
 
   def update
     @project = Project.find(project_params[:id])
-    debugger
 
     if project_params[:additional_funds] != nil
       @project.update(current_funding: (@project.current_funding += project_params[:additional_funds].to_i))
-      debugger
       @project.save
+      render :show
     elsif project_params[:additional_funds] == nil && @project.update_attributes(project_params)
+      @project.save
       render :show
     else
       render json: @project.errors.full_messages, status:422

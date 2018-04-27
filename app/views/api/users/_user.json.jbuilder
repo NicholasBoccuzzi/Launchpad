@@ -6,6 +6,7 @@ json.projects user.projects
 json.joindate user.created_at
 json.location user.location
 json.biography user.biography
+json.backed_projects user.backed_projects
 
 # json.user do
 #   json.id user.id
