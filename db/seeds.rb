@@ -9,6 +9,7 @@
 User.destroy_all
 Project.destroy_all
 Reward.destroy_all
+Backing.destroy_all
 
 u1 = User.create!(username: "demo", password: "password", email: "demo@gmail.com", location: "New York")
 u2 = User.create!(username: "winnie", password: "ilovetreats", email: "cutepuppy@yahoo.com", location: "Naples")
@@ -385,4 +386,75 @@ r13 = Reward.create!(
   title: "Medium Tip",
   body: "Thank you for this medium sized backing!",
   delivery_date: DateTime.new(2018,7,10)
+)
+
+b1 = Backing.create!(
+  reward_id: r1.id,
+  user_id: u1.id,
+  amount: r1.amount
+)
+
+b2 = Backing.create!(
+  reward_id: r2.id,
+  user_id: u1.id,
+  amount: r2.amount
+)
+
+b3 = Backing.create!(
+  reward_id: r3.id,
+  user_id: u1.id,
+  amount: r3.amount
+)
+
+b4 = Backing.create!(
+  reward_id: r4.id,
+  user_id: u2.id,
+  amount: r4.amount
+)
+b5 = Backing.create!(
+  reward_id: r5.id,
+  user_id: u2.id,
+  amount: r5.amount
+)
+b6 = Backing.create!(
+  reward_id: r6.id,
+  user_id: u2.id,
+  amount: r6.amount
+)
+b7 = Backing.create!(
+  reward_id: r7.id,
+  user_id: u2.id,
+  amount: r7.amount
+)
+b8 = Backing.create!(
+  reward_id: r8.id,
+  user_id: u2.id,
+  amount: r8.amount
+)
+
+b9 = Backing.create!(
+  reward_id: r9.id,
+  user_id: u2.id,
+  amount: r9.amount
+)
+
+b10 = Backing.create!(
+  reward_id: r10.id,
+  user_id: u3.id,
+  amount: r10.amount
+)
+b11 = Backing.create!(
+  reward_id: r11.id,
+  user_id: u3.id,
+  amount: r11.amount
+)
+b12 = Backing.create!(
+  reward_id: r12.id,
+  user_id: u3.id,
+  amount: r12.amount
+)
+b13 = Backing.create!(
+  reward_id: r13.id,
+  user_id: u3.id,
+  amount: r13.amount
 )
