@@ -395,15 +395,15 @@ b1 = Backing.create!(
 )
 
 b2 = Backing.create!(
-  reward_id: r2.id,
+  reward_id: r5.id,
   user_id: u1.id,
-  amount: r2.amount
+  amount: r5.amount
 )
 
 b3 = Backing.create!(
-  reward_id: r3.id,
+  reward_id: r10.id,
   user_id: u1.id,
-  amount: r3.amount
+  amount: r10.amount
 )
 
 b4 = Backing.create!(

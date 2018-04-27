@@ -119,6 +119,7 @@ class DropDown extends React.Component {
           let result = [];
 
           for (var i =  projects.length - 1; i >= 0; i--) {
+            debugger
             let url = `#/projects/${this.props.currentUser.backed_projects[i].id}`;
 
             result.push (
