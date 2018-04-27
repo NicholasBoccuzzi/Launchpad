@@ -8,7 +8,6 @@ class ProjectListItem extends React.Component {
     super(props);
     this.percentMath = this.percentMath.bind(this);
     this.dateMath = this.dateMath.bind(this);
-    debugger
   }
 
   percentMath () {
@@ -46,7 +45,6 @@ class ProjectListItem extends React.Component {
 
   render () {
     if (!this.props.backed) {
-      debugger
       return (
         <div>
           <main className="list-item-container" key={this.props.project.id}>

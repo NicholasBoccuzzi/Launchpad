@@ -84,7 +84,6 @@ export const fetchCurrentUserProjects = (id) => dispatch => {
 };
 
 export const fetchBackedProjects = (id) => dispatch => {
-  debugger
   return (
     ProjectAPIUtil.fetchCurrentUserProjects(id).then(currentUserProjects => dispatch(receiveCurrentUserProjects(currentUserProjects)),
     err => dispatch(receiveProjectErrors))
