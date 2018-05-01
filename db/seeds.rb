@@ -143,7 +143,7 @@ p8 = Project.create!(
 
 p9 = Project.create!(
   title: "DONUT Project",
-  current_funding: 0,
+  current_funding: 500,
   funding_goal: 1000,
   funded: false,
   location: "Italy",
@@ -159,7 +159,7 @@ p9 = Project.create!(
 
 p10 = Project.create!(
   title: "Publishing Project",
-  current_funding: 0,
+  current_funding: 80,
   funding_goal: 1000,
   funded: true,
   location: "Japan",
@@ -175,7 +175,7 @@ p10 = Project.create!(
 
 p11 = Project.create!(
   title: "Theater Project",
-  current_funding: 0,
+  current_funding: 20,
   funding_goal: 1000,
   funded: true,
   location: "Luxembourg",
@@ -191,7 +191,7 @@ p11 = Project.create!(
 
 p12 = Project.create!(
   title: "Film & Video Project",
-  current_funding: 0,
+  current_funding: 1100,
   funding_goal: 1000,
   funded: true,
   location: "Mexico",
@@ -207,7 +207,7 @@ p12 = Project.create!(
 
 p13 = Project.create!(
   title: "Fashion Project",
-  current_funding: 0,
+  current_funding: 250,
   funding_goal: 1000,
   funded: true,
   location: "New Zealand",
@@ -223,7 +223,7 @@ p13 = Project.create!(
 
 p14 = Project.create!(
   title: "Design Project",
-  current_funding: 0,
+  current_funding: 1100,
   funding_goal: 1000,
   funded: false,
   location: "Switzerland",
@@ -239,7 +239,7 @@ p14 = Project.create!(
 
 p15 = Project.create!(
   title: "Crafts Project",
-  current_funding: 0,
+  current_funding: 150,
   funding_goal: 1000,
   funded: false,
   location: "Norway",
@@ -255,7 +255,7 @@ p15 = Project.create!(
 
 p16 = Project.create!(
   title: "Comics Project",
-  current_funding: 0,
+  current_funding: 950,
   funding_goal: 1000,
   funded: false,
   location: "theUnitedStates",
@@ -271,7 +271,7 @@ p16 = Project.create!(
 
 p17 = Project.create!(
   title: "Dance Project",
-  current_funding: 0,
+  current_funding: 50,
   funding_goal: 500,
   funded: false,
   location: "theUnitedKingdom",
