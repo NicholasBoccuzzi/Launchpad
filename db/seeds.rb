@@ -237,7 +237,7 @@ p14 = Project.create!(
   youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
-p14 = Project.create!(
+p15 = Project.create!(
   title: "Crafts Project",
   current_funding: 0,
   funding_goal: 1000,
@@ -253,7 +253,7 @@ p14 = Project.create!(
   youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
-p15 = Project.create!(
+p16 = Project.create!(
   title: "Comics Project",
   current_funding: 0,
   funding_goal: 1000,
@@ -269,7 +269,7 @@ p15 = Project.create!(
   youtube: "https://www.youtube.com/watch?v=2YBtspm8j8M"
 )
 
-p16 = Project.create!(
+p17 = Project.create!(
   title: "Dance Project",
   current_funding: 0,
   funding_goal: 500,
@@ -380,11 +380,44 @@ r12 = Reward.create!(
   body: "Thank you for this medium sized backing!",
   delivery_date: DateTime.new(2018,7,10)
 )
+
 r13 = Reward.create!(
-  project_id: p6.id,
+  project_id: p14.id,
   amount: 10,
   title: "Medium Tip",
   body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r14 = Reward.create!(
+  project_id: p16.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r15 = Reward.create!(
+  project_id: p15.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r16 = Reward.create!(
+  project_id: p13.id,
+  amount: 10,
+  title: "Medium Tip",
+  body: "Thank you for this medium sized backing!",
+  delivery_date: DateTime.new(2018,7,10)
+)
+
+r17 = Reward.create!(
+  project_id: p16.id,
+  amount: 50,
+  title: "Large Tip",
+  body: "Thank you for this larger sized backing!",
   delivery_date: DateTime.new(2018,7,10)
 )
 
