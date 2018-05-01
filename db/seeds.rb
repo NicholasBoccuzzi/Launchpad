@@ -262,7 +262,7 @@ p15 = Project.create!(
   summary: "a Comics project",
   body: "longer body of text to summarize the Comics project",
   creator_id: u1.id,
-  deadline: "2018/24/09",
+  deadline: "2018/03/03",
   category: "Comics",
   image: File.open('app/assets/images/comics.jpg'),
   live: true,
@@ -331,7 +331,7 @@ r6 = Reward.create!(
   amount: 10,
   title: "Medium Tip",
   body: "Thank you for this medium sized backing!",
-  delivery_date: DateTime.new(2018,6,10)
+  delivery_date: DateTime.new(2018,03,03)
 )
 
 r7 = Reward.create!(
