@@ -42,12 +42,7 @@ class Main extends React.Component {
   }
 
   dateMath(project) {
-    const time = {
-      days: Math.floor((new Date(project.deadline) - new Date(Date.now()))/1000/60/60/24),
-      hours: Math.floor((new Date(project.deadline) - new Date(Date.now()))/1000/60/60/24%10)
-    };
-
-    if (time.days > 0 && time.hours > 0) {
+    if (project.live === true) {
       return true;
     }
   }
